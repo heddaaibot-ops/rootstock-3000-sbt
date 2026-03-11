@@ -21,7 +21,7 @@ export const Countdown: React.FC<CountdownProps> = ({ milestoneTimestamp }) => {
       <div className="text-center py-8">
         <div className="inline-block bg-rsk-orange/10 border border-rsk-orange rounded-2xl px-8 py-6">
           <div className="text-2xl font-bold text-rsk-orange mb-2">
-            🎉 Milestone Reached! 🎉
+            Milestone Reached!
           </div>
           <div className="text-gray-400">
             {formatDate(milestoneTimestamp)}

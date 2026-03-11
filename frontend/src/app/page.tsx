@@ -59,7 +59,6 @@ export default function Home() {
           <div className="max-w-4xl mx-auto">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
               <div className="bg-rsk-gray border border-rsk-orange/30 rounded-2xl p-6 text-center hover:border-rsk-orange transition-colors">
-                <div className="text-4xl mb-4">🔒</div>
                 <h3 className="text-lg font-bold text-rsk-light mb-2">Soul Bound</h3>
                 <p className="text-sm text-gray-400">
                   Non-transferable and permanently bound to your wallet
@@ -67,7 +66,6 @@ export default function Home() {
               </div>
 
               <div className="bg-rsk-gray border border-rsk-orange/30 rounded-2xl p-6 text-center hover:border-rsk-orange transition-colors">
-                <div className="text-4xl mb-4">🆓</div>
                 <h3 className="text-lg font-bold text-rsk-light mb-2">Free Mint</h3>
                 <p className="text-sm text-gray-400">
                   Only pay network gas fees, no minting cost
@@ -75,7 +73,6 @@ export default function Home() {
               </div>
 
               <div className="bg-rsk-gray border border-rsk-orange/30 rounded-2xl p-6 text-center hover:border-rsk-orange transition-colors">
-                <div className="text-4xl mb-4">🎟️</div>
                 <h3 className="text-lg font-bold text-rsk-light mb-2">Limited Supply</h3>
                 <p className="text-sm text-gray-400">
                   Only 10,000 tokens available, one per wallet
@@ -114,14 +111,13 @@ export default function Home() {
             <div className="mb-16">
               {error ? (
                 <div className="bg-red-500/10 border border-red-500/30 rounded-xl p-8 text-center">
-                  <div className="text-4xl mb-4">⚠️</div>
                   <h3 className="text-xl font-bold text-red-500 mb-2">Failed to Load Data</h3>
                   <p className="text-gray-400 mb-6">{error}</p>
                   <button
                     onClick={refresh}
                     className="px-6 py-3 bg-rsk-orange hover:bg-rsk-orange/80 rounded-xl font-bold transition-colors"
                   >
-                    🔄 Retry
+                    Retry
                   </button>
                 </div>
               ) : loading || !contractData ? (
@@ -174,11 +170,11 @@ export default function Home() {
                 <div className="text-sm text-gray-400 mb-1">Status</div>
                 <div className="text-lg font-bold text-rsk-light">
                   {!contractData ? (
-                    <span className="text-gray-500">⏳ Loading...</span>
+                    <span className="text-gray-500">Loading...</span>
                   ) : contractData.isPaused ? (
-                    <span className="text-yellow-500">⏸️ Paused</span>
+                    <span className="text-yellow-500">Paused</span>
                   ) : (
-                    <span className="text-green-500">▶️ Live</span>
+                    <span className="text-green-500">Live</span>
                   )}
                 </div>
               </div>
