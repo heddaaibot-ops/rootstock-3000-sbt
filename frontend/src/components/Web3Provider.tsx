@@ -6,6 +6,9 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ConnectKitProvider, getDefaultConfig } from 'connectkit';
 import { ROOTSTOCK_CHAINS } from '@/utils/contract';
 
+// WalletConnect Project ID (optional - app will work without it for read-only features)
+const WALLETCONNECT_PROJECT_ID = process.env.NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID || 'demo';
+
 // 配置 Rootstock 網絡
 const config = createConfig(
   getDefaultConfig({
@@ -14,11 +17,11 @@ const config = createConfig(
       [ROOTSTOCK_CHAINS.testnet.id]: http(ROOTSTOCK_CHAINS.testnet.rpcUrls.default.http[0]),
       [ROOTSTOCK_CHAINS.mainnet.id]: http(ROOTSTOCK_CHAINS.mainnet.rpcUrls.default.http[0]),
     },
-    walletConnectProjectId: process.env.NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID || '',
+    walletConnectProjectId: WALLETCONNECT_PROJECT_ID,
     appName: 'Rootstock 3000 Days SBT',
     appDescription: 'Commemorating 3000 days of Rootstock',
-    appUrl: 'https://rootstock3000.com',
-    appIcon: 'https://rootstock3000.com/icon.png',
+    appUrl: 'https://frontend-green-delta-12.vercel.app',
+    appIcon: 'https://frontend-green-delta-12.vercel.app/favicon.ico',
   })
 );
 
