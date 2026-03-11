@@ -42,7 +42,7 @@ export const MintButton: React.FC<MintButtonProps> = ({
 
   // Twitter 分享函數
   const shareOnTwitter = () => {
-    const text = `我剛剛鑄造了 #Rootstock愛你3000 紀念 SBT！\n\n慶祝 Rootstock 主網運行 3000 天 🧡\n\n@RootstockCN`;
+    const text = `我剛剛鑄造了 #Rootstock愛你3000 紀念 SBT！\n\n慶祝 Rootstock 主網運行 3000 天\n\n@RootstockCN`;
     const url = 'https://frontend-green-delta-12.vercel.app';
     const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`;
     window.open(twitterUrl, '_blank', 'width=550,height=420');
@@ -53,7 +53,6 @@ export const MintButton: React.FC<MintButtonProps> = ({
     return (
       <div className="text-center animate-fade-in">
         <div className="bg-green-500/10 border border-green-500 rounded-2xl p-8 mb-4">
-          <div className="text-6xl mb-4">🎉</div>
           <div className="text-2xl font-bold text-green-500 mb-2">
             Successfully Minted!
           </div>
@@ -94,7 +93,6 @@ export const MintButton: React.FC<MintButtonProps> = ({
     return (
       <div className="text-center animate-fade-in">
         <div className="bg-red-500/10 border border-red-500 rounded-2xl p-8 mb-4">
-          <div className="text-6xl mb-4">❌</div>
           <div className="text-2xl font-bold text-red-500 mb-2">
             Transaction Failed
           </div>
@@ -114,24 +112,19 @@ export const MintButton: React.FC<MintButtonProps> = ({
   const isDisabled = !isConnected || isPaused || hasUserMinted || minting;
 
   let buttonText = 'Mint Your SBT';
-  let statusIcon = '🎟️';
   let statusMessage = 'Free mint • Only gas fee • One per wallet';
 
   if (!isConnected) {
     buttonText = 'Connect Wallet First';
-    statusIcon = '🔌';
     statusMessage = 'Connect your wallet to mint';
   } else if (hasUserMinted) {
     buttonText = 'Already Minted';
-    statusIcon = '✅';
     statusMessage = 'You have already claimed your SBT';
   } else if (isPaused) {
     buttonText = 'Minting Paused';
-    statusIcon = '⏸️';
     statusMessage = 'Minting will open soon. Check back later.';
   } else if (minting) {
     buttonText = 'Minting...';
-    statusIcon = '⏳';
     statusMessage = 'Transaction in progress...';
   }
 
@@ -152,10 +145,7 @@ export const MintButton: React.FC<MintButtonProps> = ({
             <span>{buttonText}</span>
           </span>
         ) : (
-          <span className="flex items-center gap-3">
-            <span>{statusIcon}</span>
-            <span>{buttonText}</span>
-          </span>
+          <span>{buttonText}</span>
         )}
 
         {/* Glow effect */}

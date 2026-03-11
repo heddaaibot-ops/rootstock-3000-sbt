@@ -7,7 +7,7 @@ export const CampaignInfo: React.FC = () => {
       <div className="text-center mb-12">
         <div className="inline-block bg-rsk-orange/10 border border-rsk-orange/30 rounded-2xl px-8 py-4">
           <h3 className="text-3xl font-bold text-rsk-orange mb-2">
-            🧡 Rootstock 愛你 3000
+            Rootstock 愛你 3000
           </h3>
           <p className="text-gray-400">
             紀念 Rootstock 主網運行 3000 天
@@ -18,7 +18,7 @@ export const CampaignInfo: React.FC = () => {
       {/* 活動說明 */}
       <div className="bg-rsk-gray/50 border border-rsk-orange/20 rounded-2xl p-8 mb-8">
         <h3 className="text-2xl font-bold text-rsk-orange mb-6 text-center">
-          🎯 如何參與
+          如何參與
         </h3>
         <div className="space-y-4 text-gray-300">
           <div className="flex items-start gap-4">
@@ -83,16 +83,14 @@ export const CampaignInfo: React.FC = () => {
       {/* 獎勵說明 */}
       <div className="bg-gradient-to-r from-rsk-orange/10 to-orange-400/10 border border-rsk-orange/30 rounded-2xl p-8 mb-8">
         <h3 className="text-2xl font-bold text-rsk-orange mb-6 text-center">
-          🎁 活動獎勵
+          活動獎勵
         </h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div className="text-center">
-            <div className="text-4xl mb-2">💰</div>
             <div className="text-3xl font-bold text-rsk-orange mb-2">$5,000</div>
             <div className="text-sm text-gray-400">USDT 隨機分配</div>
           </div>
           <div className="text-center">
-            <div className="text-4xl mb-2">🎁</div>
             <div className="text-3xl font-bold text-rsk-orange mb-2">10 份</div>
             <div className="text-sm text-gray-400">Rootstock 限定周邊</div>
           </div>
@@ -105,7 +103,7 @@ export const CampaignInfo: React.FC = () => {
       {/* 活動時間線 */}
       <div className="bg-rsk-gray/50 border border-rsk-orange/20 rounded-2xl p-8">
         <h3 className="text-2xl font-bold text-rsk-orange mb-6 text-center">
-          📅 活動時間線
+          活動時間線
         </h3>
         <div className="space-y-6">
           <div className="flex items-center gap-4">
@@ -123,7 +121,7 @@ export const CampaignInfo: React.FC = () => {
               <div className="text-2xl font-bold text-rsk-orange">3/22</div>
             </div>
             <div className="flex-1 border-l-4 border-rsk-orange pl-6 pb-2">
-              <p className="font-semibold text-rsk-light">🎉 3000 天紀念日</p>
+              <p className="font-semibold text-rsk-light">3000 天紀念日</p>
               <p className="text-sm text-gray-400">Rootstock 主網運行 3000 天慶祝</p>
             </div>
           </div>
