@@ -124,9 +124,10 @@ export const useContract = () => {
         launchDate: launchDate as bigint,
         milestoneDate: milestoneDate as bigint,
       });
-    } catch (err) {
+    } catch (err: any) {
       console.error('Failed to fetch contract data:', err);
-      setError('Failed to load contract data');
+      const errorMsg = err.message || err.toString();
+      setError(`Failed to load contract data: ${errorMsg.slice(0, 200)}`);
     } finally {
       setLoading(false);
     }
