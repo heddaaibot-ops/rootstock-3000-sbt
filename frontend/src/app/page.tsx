@@ -37,9 +37,9 @@ export default function Home() {
 
         {/* Countdown Section */}
         <section className="container mx-auto px-4 py-12">
-          {contractData && (
-            <Countdown milestoneTimestamp={Number(contractData.milestoneDate)} />
-          )}
+          <Countdown
+            milestoneTimestamp={contractData ? Number(contractData.milestoneDate) : 1743724800}
+          />
         </section>
 
         {/* About Section */}
@@ -127,52 +127,50 @@ export default function Home() {
 
             {/* Mint Button */}
             <div className="mb-12">
-              {contractData && (
-                <MintButton
-                  isPaused={contractData.isPaused}
-                  hasUserMinted={contractData.hasUserMinted}
-                  onMint={mint}
-                  chainId={chainId}
-                />
-              )}
+              <MintButton
+                isPaused={contractData?.isPaused ?? true}
+                hasUserMinted={contractData?.hasUserMinted ?? false}
+                onMint={mint}
+                chainId={chainId}
+              />
             </div>
 
             {/* Stats Grid */}
-            {contractData && (
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                <div className="bg-rsk-gray border border-rsk-orange/30 rounded-xl p-4 text-center">
-                  <div className="text-sm text-gray-400 mb-1">Launch Date</div>
-                  <div className="text-lg font-bold text-rsk-light font-mono">
-                    Jan 16, 2018
-                  </div>
-                </div>
-
-                <div className="bg-rsk-gray border border-rsk-orange/30 rounded-xl p-4 text-center">
-                  <div className="text-sm text-gray-400 mb-1">Milestone Date</div>
-                  <div className="text-lg font-bold text-rsk-orange font-mono">
-                    Apr 4, 2026
-                  </div>
-                </div>
-
-                <div className="bg-rsk-gray border border-rsk-orange/30 rounded-xl p-4 text-center">
-                  <div className="text-sm text-gray-400 mb-1">Chain ID</div>
-                  <div className="text-lg font-bold text-rsk-light font-mono">
-                    {chainId || 31}
-                  </div>
-                </div>
-
-                <div className="bg-rsk-gray border border-rsk-orange/30 rounded-xl p-4 text-center">
-                  <div className="text-sm text-gray-400 mb-1">Status</div>
-                  <div className="text-lg font-bold text-rsk-light">
-                    {contractData.isPaused ? (
-                      <span className="text-yellow-500">⏸️ Paused</span>
-                    ) : (
-                      <span className="text-green-500">▶️ Live</span>
-                    )}
-                  </div>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              <div className="bg-rsk-gray border border-rsk-orange/30 rounded-xl p-4 text-center">
+                <div className="text-sm text-gray-400 mb-1">Launch Date</div>
+                <div className="text-lg font-bold text-rsk-light font-mono">
+                  Jan 16, 2018
                 </div>
               </div>
-            )}
+
+              <div className="bg-rsk-gray border border-rsk-orange/30 rounded-xl p-4 text-center">
+                <div className="text-sm text-gray-400 mb-1">Milestone Date</div>
+                <div className="text-lg font-bold text-rsk-orange font-mono">
+                  Apr 4, 2026
+                </div>
+              </div>
+
+              <div className="bg-rsk-gray border border-rsk-orange/30 rounded-xl p-4 text-center">
+                <div className="text-sm text-gray-400 mb-1">Chain ID</div>
+                <div className="text-lg font-bold text-rsk-light font-mono">
+                  {chainId || 31}
+                </div>
+              </div>
+
+              <div className="bg-rsk-gray border border-rsk-orange/30 rounded-xl p-4 text-center">
+                <div className="text-sm text-gray-400 mb-1">Status</div>
+                <div className="text-lg font-bold text-rsk-light">
+                  {!contractData ? (
+                    <span className="text-gray-500">⏳ Loading...</span>
+                  ) : contractData.isPaused ? (
+                    <span className="text-yellow-500">⏸️ Paused</span>
+                  ) : (
+                    <span className="text-green-500">▶️ Live</span>
+                  )}
+                </div>
+              </div>
+            </div>
           </div>
         </section>
 
