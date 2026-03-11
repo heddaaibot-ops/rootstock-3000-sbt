@@ -1,11 +1,11 @@
-import { defineChain } from 'viem';
+import { defineChain, parseAbi } from 'viem';
 
 export const CONTRACT_ADDRESS = {
   testnet: process.env.NEXT_PUBLIC_CONTRACT_ADDRESS_TESTNET || '',
   mainnet: process.env.NEXT_PUBLIC_CONTRACT_ADDRESS_MAINNET || '',
 } as const;
 
-export const CONTRACT_ABI = [
+export const CONTRACT_ABI = parseAbi([
   // Read functions
   'function name() view returns (string)',
   'function symbol() view returns (string)',
@@ -31,7 +31,7 @@ export const CONTRACT_ABI = [
   // Events
   'event SBTMinted(address indexed minter, uint256 indexed tokenId, uint256 timestamp, uint256 blockNumber)',
   'event Transfer(address indexed from, address indexed to, uint256 indexed tokenId)',
-] as const;
+]);
 
 export const ROOTSTOCK_CHAINS = {
   testnet: defineChain({

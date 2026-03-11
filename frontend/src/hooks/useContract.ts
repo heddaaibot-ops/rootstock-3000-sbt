@@ -45,7 +45,7 @@ export const useContract = () => {
       // This works even when user hasn't connected their wallet
       const chain = chainId === 31 ? ROOTSTOCK_CHAINS.testnet : ROOTSTOCK_CHAINS.mainnet;
       const client = publicClient || createPublicClient({
-        chain: chain as any,
+        chain,
         transport: http(chain.rpcUrls.default.http[0]),
       });
 
