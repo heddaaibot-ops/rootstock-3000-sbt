@@ -87,57 +87,37 @@ export const MintButton: React.FC<MintButtonProps> = ({
     );
   }
 
-  // 未連接錢包
+  // 確定按鈕狀態和文字
+  const isDisabled = !isConnected || isPaused || hasUserMinted || minting;
+
+  let buttonText = 'Mint Your SBT';
+  let statusIcon = '🎟️';
+  let statusMessage = 'Free mint • Only gas fee • One per wallet';
+
   if (!isConnected) {
-    return (
-      <div className="text-center">
-        <div className="text-gray-400 mb-4">
-          Connect your wallet to mint your SBT
-        </div>
-      </div>
-    );
+    buttonText = 'Connect Wallet First';
+    statusIcon = '🔌';
+    statusMessage = 'Connect your wallet to mint';
+  } else if (hasUserMinted) {
+    buttonText = 'Already Minted';
+    statusIcon = '✅';
+    statusMessage = 'You have already claimed your SBT';
+  } else if (isPaused) {
+    buttonText = 'Minting Paused';
+    statusIcon = '⏸️';
+    statusMessage = 'Minting will open soon. Check back later.';
+  } else if (minting) {
+    buttonText = 'Minting...';
+    statusIcon = '⏳';
+    statusMessage = 'Transaction in progress...';
   }
 
-  // 已鑄造
-  if (hasUserMinted) {
-    return (
-      <div className="text-center">
-        <div className="bg-rsk-gray border border-rsk-orange/50 rounded-2xl p-8">
-          <div className="text-6xl mb-4">✅</div>
-          <div className="text-2xl font-bold text-rsk-orange mb-2">
-            Already Minted
-          </div>
-          <div className="text-gray-400">
-            You have already claimed your Soul Bound Token
-          </div>
-        </div>
-      </div>
-    );
-  }
-
-  // 暫停中
-  if (isPaused) {
-    return (
-      <div className="text-center">
-        <div className="bg-yellow-500/10 border border-yellow-500 rounded-2xl p-8">
-          <div className="text-6xl mb-4">⏸️</div>
-          <div className="text-2xl font-bold text-yellow-500 mb-2">
-            Minting Paused
-          </div>
-          <div className="text-gray-400">
-            Minting will open soon. Please check back later.
-          </div>
-        </div>
-      </div>
-    );
-  }
-
-  // 可以鑄造
+  // 始終顯示按鈕
   return (
     <div className="text-center">
       <button
         onClick={handleMint}
-        disabled={minting}
+        disabled={isDisabled}
         className="group relative px-12 py-6 bg-gradient-to-r from-rsk-orange to-orange-400 hover:from-orange-400 hover:to-rsk-orange text-white font-bold text-xl rounded-2xl transition-all duration-300 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none shadow-lg shadow-rsk-orange/50"
       >
         {minting ? (
@@ -146,23 +126,23 @@ export const MintButton: React.FC<MintButtonProps> = ({
               <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none"></circle>
               <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
             </svg>
-            <span>Minting...</span>
+            <span>{buttonText}</span>
           </span>
         ) : (
           <span className="flex items-center gap-3">
-            <span>🎟️</span>
-            <span>Mint Your SBT</span>
+            <span>{statusIcon}</span>
+            <span>{buttonText}</span>
           </span>
         )}
 
         {/* Glow effect */}
-        {!minting && (
+        {!isDisabled && !minting && (
           <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-rsk-orange to-orange-400 blur-xl opacity-50 group-hover:opacity-75 transition-opacity -z-10"></div>
         )}
       </button>
 
       <div className="text-sm text-gray-400 mt-4">
-        Free mint • Only gas fee • One per wallet
+        {statusMessage}
       </div>
     </div>
   );
