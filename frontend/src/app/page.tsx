@@ -7,6 +7,7 @@ import { Footer } from '@/components/Footer';
 import { Countdown } from '@/components/Countdown';
 import { ProgressBar } from '@/components/ProgressBar';
 import { MintButton } from '@/components/MintButton';
+import { CampaignInfo } from '@/components/CampaignInfo';
 import { useContract } from '@/hooks/useContract';
 
 export default function Home() {
@@ -33,6 +34,11 @@ export default function Home() {
               This non-transferable NFT marks your participation in Rootstock's journey.
             </p>
           </div>
+        </section>
+
+        {/* Campaign Info Section */}
+        <section className="container mx-auto px-4 py-12">
+          <CampaignInfo />
         </section>
 
         {/* Countdown Section */}

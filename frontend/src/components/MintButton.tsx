@@ -40,6 +40,14 @@ export const MintButton: React.FC<MintButtonProps> = ({
     }
   };
 
+  // Twitter 分享函數
+  const shareOnTwitter = () => {
+    const text = `我剛剛鑄造了 #Rootstock愛你3000 紀念 SBT！\n\n慶祝 Rootstock 主網運行 3000 天 🧡\n\n@RootstockCN`;
+    const url = 'https://frontend-green-delta-12.vercel.app';
+    const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`;
+    window.open(twitterUrl, '_blank', 'width=550,height=420');
+  };
+
   // 成功狀態
   if (txHash) {
     return (
@@ -49,18 +57,33 @@ export const MintButton: React.FC<MintButtonProps> = ({
           <div className="text-2xl font-bold text-green-500 mb-2">
             Successfully Minted!
           </div>
-          <div className="text-gray-400 mb-4">
+          <div className="text-gray-400 mb-6">
             Your Soul Bound Token has been minted
           </div>
-          <button
-            onClick={() => openInExplorer('tx', txHash, chainId || 31)}
-            className="inline-flex items-center gap-2 px-6 py-3 bg-green-500/20 hover:bg-green-500/30 text-green-500 rounded-lg transition-colors"
-          >
-            <span>View Transaction</span>
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-            </svg>
-          </button>
+
+          <div className="flex flex-col sm:flex-row gap-3 justify-center">
+            {/* View Transaction Button */}
+            <button
+              onClick={() => openInExplorer('tx', txHash, chainId || 31)}
+              className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-green-500/20 hover:bg-green-500/30 text-green-500 rounded-lg transition-colors"
+            >
+              <span>View Transaction</span>
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+              </svg>
+            </button>
+
+            {/* Twitter Share Button */}
+            <button
+              onClick={shareOnTwitter}
+              className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-[#1DA1F2]/20 hover:bg-[#1DA1F2]/30 text-[#1DA1F2] rounded-lg transition-colors"
+            >
+              <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+              </svg>
+              <span>分享到 Twitter</span>
+            </button>
+          </div>
         </div>
       </div>
     );
