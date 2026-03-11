@@ -22,3 +22,7 @@ deployments/*.json
 # OS
 .DS_Store
 Thumbs.db
+
+# Frontend environment
+frontend/.env.local
+frontend/.env

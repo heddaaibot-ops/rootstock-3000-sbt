@@ -33,14 +33,14 @@ describe("Rootstock3000SBT", function () {
     });
 
     it("應該正確設置常量", async function () {
-      expect(await sbt.MAX_SUPPLY()).to.equal(100000);
+      expect(await sbt.MAX_SUPPLY()).to.equal(10000);
       expect(await sbt.LAUNCH_DATE()).to.equal(1516060800);
       expect(await sbt.MILESTONE_DATE()).to.equal(1743609600);
     });
 
     it("應該初始 totalSupply 為 0", async function () {
       expect(await sbt.totalSupply()).to.equal(0);
-      expect(await sbt.remainingSupply()).to.equal(100000);
+      expect(await sbt.remainingSupply()).to.equal(10000);
     });
   });
 
@@ -107,7 +107,7 @@ describe("Rootstock3000SBT", function () {
       await sbt.connect(user1).mint();
 
       await expect(sbt.connect(user1).mint())
-        .to.be.revertedWith("Already minted");
+        .to.be.revertedWithCustomError(sbt, "AlreadyMinted");
 
       expect(await sbt.totalSupply()).to.equal(1);
     });
@@ -142,7 +142,7 @@ describe("Rootstock3000SBT", function () {
       }
 
       expect(await sbt.totalSupply()).to.equal(maxSigners);
-      expect(await sbt.remainingSupply()).to.equal(100000 - maxSigners);
+      expect(await sbt.remainingSupply()).to.equal(10000 - maxSigners);
     });
 
     it("hasMinted 應該正確追蹤", async function () {
@@ -164,7 +164,7 @@ describe("Rootstock3000SBT", function () {
     it("不能轉移 Token", async function () {
       await expect(
         sbt.connect(user1).transferFrom(user1.address, user2.address, 0)
-      ).to.be.revertedWith("Soul Bound: Token cannot be transferred or burned");
+      ).to.be.revertedWithCustomError(sbt, "SoulBoundToken");
 
       expect(await sbt.ownerOf(0)).to.equal(user1.address);
     });
@@ -176,7 +176,7 @@ describe("Rootstock3000SBT", function () {
           user2.address,
           0
         )
-      ).to.be.revertedWith("Soul Bound: Token cannot be transferred or burned");
+      ).to.be.revertedWithCustomError(sbt, "SoulBoundToken");
     });
 
     it("approve 後也不能轉移", async function () {
@@ -184,7 +184,7 @@ describe("Rootstock3000SBT", function () {
 
       await expect(
         sbt.connect(user2).transferFrom(user1.address, user2.address, 0)
-      ).to.be.revertedWith("Soul Bound: Token cannot be transferred or burned");
+      ).to.be.revertedWithCustomError(sbt, "SoulBoundToken");
     });
 
     it("setApprovalForAll 後也不能轉移", async function () {
@@ -192,7 +192,7 @@ describe("Rootstock3000SBT", function () {
 
       await expect(
         sbt.connect(user2).transferFrom(user1.address, user2.address, 0)
-      ).to.be.revertedWith("Soul Bound: Token cannot be transferred or burned");
+      ).to.be.revertedWithCustomError(sbt, "SoulBoundToken");
     });
 
     it("不能銷毀 Token", async function () {
@@ -252,13 +252,13 @@ describe("Rootstock3000SBT", function () {
     });
 
     it("remainingSupply 應該正確減少", async function () {
-      expect(await sbt.remainingSupply()).to.equal(100000);
+      expect(await sbt.remainingSupply()).to.equal(10000);
 
       await sbt.connect(user1).mint();
-      expect(await sbt.remainingSupply()).to.equal(99999);
+      expect(await sbt.remainingSupply()).to.equal(9999);
 
       await sbt.connect(user2).mint();
-      expect(await sbt.remainingSupply()).to.equal(99998);
+      expect(await sbt.remainingSupply()).to.equal(9998);
     });
 
     it("getMintProgressBasisPoints 應該正確計算進度", async function () {
@@ -266,15 +266,15 @@ describe("Rootstock3000SBT", function () {
 
       // 鑄造 1 個
       await sbt.connect(user1).mint();
-      expect(await sbt.getMintProgressBasisPoints()).to.equal(0); // 小於 1 basis point
+      expect(await sbt.getMintProgressBasisPoints()).to.equal(1); // 1/10000 = 1 basis point
 
       // 再鑄造更多
       await sbt.connect(user2).mint();
       await sbt.connect(user3).mint();
 
-      // 3/100000 = 0.003% = 0.3 basis points (向下取整 = 0)
+      // 3/10000 = 0.03% = 3 basis points
       const progress = await sbt.getMintProgressBasisPoints();
-      expect(progress).to.be.gte(0);
+      expect(progress).to.equal(3);
     });
 
     it("isMintedAfterMilestone 應該正確判斷", async function () {

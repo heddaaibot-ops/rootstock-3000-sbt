@@ -66,7 +66,7 @@ export default function Home() {
                 <div className="text-4xl mb-4">🎟️</div>
                 <h3 className="text-lg font-bold text-rsk-light mb-2">Limited Supply</h3>
                 <p className="text-sm text-gray-400">
-                  Only 100,000 tokens available, one per wallet
+                  Only 10,000 tokens available, one per wallet
                 </p>
               </div>
             </div>
