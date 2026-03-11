@@ -11,7 +11,7 @@ import { useContract } from '@/hooks/useContract';
 
 export default function Home() {
   const { chainId } = useAccount();
-  const { contractData, loading, mint } = useContract();
+  const { contractData, loading, error, refresh, mint } = useContract();
 
   return (
     <div className="min-h-screen flex flex-col bg-rsk-dark">
@@ -100,7 +100,19 @@ export default function Home() {
 
             {/* Progress Bar */}
             <div className="mb-16">
-              {loading || !contractData ? (
+              {error ? (
+                <div className="bg-red-500/10 border border-red-500/30 rounded-xl p-8 text-center">
+                  <div className="text-4xl mb-4">⚠️</div>
+                  <h3 className="text-xl font-bold text-red-500 mb-2">Failed to Load Data</h3>
+                  <p className="text-gray-400 mb-6">{error}</p>
+                  <button
+                    onClick={refresh}
+                    className="px-6 py-3 bg-rsk-orange hover:bg-rsk-orange/80 rounded-xl font-bold transition-colors"
+                  >
+                    🔄 Retry
+                  </button>
+                </div>
+              ) : loading || !contractData ? (
                 <div className="animate-pulse">
                   <div className="h-8 bg-rsk-gray rounded mb-4"></div>
                   <div className="h-16 bg-rsk-gray rounded"></div>
