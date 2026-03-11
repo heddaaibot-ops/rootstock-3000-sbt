@@ -23,7 +23,7 @@ export const ProgressBar: React.FC<ProgressBarProps> = ({ current, total, loadin
   return (
     <div className="w-full">
       {/* 統計數字 */}
-      <div className="grid grid-cols-3 gap-4 mb-6">
+      <div className="grid grid-cols-3 gap-4 mb-4">
         <div className="text-center">
           <div className="text-3xl font-bold text-rsk-orange font-mono">
             {formatNumber(Number(current))}
@@ -44,6 +44,15 @@ export const ProgressBar: React.FC<ProgressBarProps> = ({ current, total, loadin
         </div>
       </div>
 
+      {/* 百分比標籤 - 移到統計數字下方 */}
+      <div className="text-center mb-6">
+        <div className="inline-block bg-rsk-dark border border-rsk-orange px-6 py-3 rounded-lg">
+          <span className="text-2xl font-bold text-rsk-orange font-mono">
+            {formatPercentage(percentage, 3)}
+          </span>
+        </div>
+      </div>
+
       {/* 進度條 */}
       <div className="relative">
         <div className="h-4 bg-rsk-gray rounded-full overflow-hidden">
@@ -54,15 +63,6 @@ export const ProgressBar: React.FC<ProgressBarProps> = ({ current, total, loadin
             {percentage > 5 && (
               <div className="absolute inset-0 shimmer"></div>
             )}
-          </div>
-        </div>
-
-        {/* 百分比標籤 */}
-        <div className="absolute -top-8 left-1/2 -translate-x-1/2">
-          <div className="bg-rsk-dark border border-rsk-orange px-4 py-2 rounded-lg">
-            <span className="text-2xl font-bold text-rsk-orange font-mono">
-              {formatPercentage(percentage, 3)}
-            </span>
           </div>
         </div>
       </div>
