@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const TOTAL_SUPPLY = 100000;
+const TOTAL_SUPPLY = 10000;
 const IMAGE_CID = process.env.IMAGE_CID || 'QmYourImageCID'; // 從環境變量讀取或使用默認值
 const OUTPUT_DIR = './metadata';
 

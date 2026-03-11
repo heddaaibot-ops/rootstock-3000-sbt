@@ -31,7 +31,7 @@ node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"
 1. 註冊 https://pinata.cloud
 2. 創建免費賬戶（提供 1GB 免費存儲）
 3. 上傳 SBT 圖片
-4. 生成 100,000 個 JSON 文件（見下方腳本）
+4. 生成 10,000 個 JSON 文件（見下方腳本）
 5. 上傳 JSON 文件夾
 6. 獲取 IPFS CID
 
@@ -50,7 +50,7 @@ node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"
 const fs = require('fs');
 const path = require('path');
 
-const TOTAL_SUPPLY = 100000;
+const TOTAL_SUPPLY = 10000;
 const IMAGE_CID = 'QmYourImageCID'; // 替換為您的圖片 CID
 const OUTPUT_DIR = './metadata';
 
@@ -154,7 +154,7 @@ npm run deploy:testnet
 📋 合約資訊:
   - 名稱: Rootstock 3000 Days
   - 符號: RSK3K
-  - 最大供應量: 100000
+  - 最大供應量: 10000
   - 當前供應量: 0
   - 暫停狀態: 是 ⏸️
   - Owner: 0x...
