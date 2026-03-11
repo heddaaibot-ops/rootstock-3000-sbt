@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react';
 import { useAccount, usePublicClient, useWalletClient } from 'wagmi';
+import { createPublicClient, http } from 'viem';
 import { Contract } from 'ethers';
 import { BrowserProvider } from 'ethers';
-import { CONTRACT_ADDRESS, CONTRACT_ABI } from '@/utils/contract';
+import { CONTRACT_ADDRESS, CONTRACT_ABI, ROOTSTOCK_CHAINS } from '@/utils/contract';
 
 export interface ContractData {
   totalSupply: bigint;
@@ -17,7 +18,7 @@ export interface ContractData {
 }
 
 export const useContract = () => {
-  const { address, chainId } = useAccount();
+  const { address, chainId: userChainId } = useAccount();
   const publicClient = usePublicClient();
   const { data: walletClient } = useWalletClient();
 
@@ -25,17 +26,28 @@ export const useContract = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
+  // Default to Rootstock Testnet if user hasn't connected wallet
+  const chainId = userChainId || 31;
+
   const contractAddress = chainId === 31
     ? CONTRACT_ADDRESS.testnet
     : CONTRACT_ADDRESS.mainnet;
 
   // 讀取合約數據
   const fetchContractData = async () => {
-    if (!publicClient || !contractAddress) return;
+    if (!contractAddress) return;
 
     try {
       setLoading(true);
       setError(null);
+
+      // Create a standalone public client for reading contract data
+      // This works even when user hasn't connected their wallet
+      const chain = chainId === 31 ? ROOTSTOCK_CHAINS.testnet : ROOTSTOCK_CHAINS.mainnet;
+      const client = publicClient || createPublicClient({
+        chain: chain as any,
+        transport: http(chain.rpcUrls.default.http[0]),
+      });
 
       const [
         totalSupply,
@@ -48,28 +60,28 @@ export const useContract = () => {
         launchDate,
         milestoneDate,
       ] = await Promise.all([
-        publicClient.readContract({
+        client.readContract({
           address: contractAddress as `0x${string}`,
           abi: CONTRACT_ABI,
           functionName: 'totalSupply',
         }),
-        publicClient.readContract({
+        client.readContract({
           address: contractAddress as `0x${string}`,
           abi: CONTRACT_ABI,
           functionName: 'remainingSupply',
         }),
-        publicClient.readContract({
+        client.readContract({
           address: contractAddress as `0x${string}`,
           abi: CONTRACT_ABI,
           functionName: 'MAX_SUPPLY',
         }),
-        publicClient.readContract({
+        client.readContract({
           address: contractAddress as `0x${string}`,
           abi: CONTRACT_ABI,
           functionName: 'paused',
         }),
         address
-          ? publicClient.readContract({
+          ? client.readContract({
               address: contractAddress as `0x${string}`,
               abi: CONTRACT_ABI,
               functionName: 'hasUserMinted',
@@ -77,24 +89,24 @@ export const useContract = () => {
             })
           : false,
         address
-          ? publicClient.readContract({
+          ? client.readContract({
               address: contractAddress as `0x${string}`,
               abi: CONTRACT_ABI,
               functionName: 'balanceOf',
               args: [address],
             })
           : 0n,
-        publicClient.readContract({
+        client.readContract({
           address: contractAddress as `0x${string}`,
           abi: CONTRACT_ABI,
           functionName: 'getMintProgressBasisPoints',
         }),
-        publicClient.readContract({
+        client.readContract({
           address: contractAddress as `0x${string}`,
           abi: CONTRACT_ABI,
           functionName: 'LAUNCH_DATE',
         }),
-        publicClient.readContract({
+        client.readContract({
           address: contractAddress as `0x${string}`,
           abi: CONTRACT_ABI,
           functionName: 'MILESTONE_DATE',
@@ -191,7 +203,7 @@ export const useContract = () => {
     const interval = setInterval(fetchContractData, 10000); // 每 10 秒刷新
 
     return () => clearInterval(interval);
-  }, [publicClient, address, chainId]);
+  }, [address, chainId]); // Removed publicClient dependency - we create our own client
 
   return {
     contractData,
