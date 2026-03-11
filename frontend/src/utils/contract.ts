@@ -31,11 +31,12 @@ export const CONTRACT_ABI = [
   'event Transfer(address indexed from, address indexed to, uint256 indexed tokenId)',
 ] as const;
 
+import { defineChain } from 'viem';
+
 export const ROOTSTOCK_CHAINS = {
-  testnet: {
+  testnet: defineChain({
     id: 31,
     name: 'Rootstock Testnet',
-    network: 'rsk-testnet',
     nativeCurrency: {
       name: 'Test RBTC',
       symbol: 'tRBTC',
@@ -43,7 +44,6 @@ export const ROOTSTOCK_CHAINS = {
     },
     rpcUrls: {
       default: { http: ['https://public-node.testnet.rsk.co'] },
-      public: { http: ['https://public-node.testnet.rsk.co'] },
     },
     blockExplorers: {
       default: {
@@ -52,11 +52,10 @@ export const ROOTSTOCK_CHAINS = {
       },
     },
     testnet: true,
-  },
-  mainnet: {
+  }),
+  mainnet: defineChain({
     id: 30,
     name: 'Rootstock',
-    network: 'rsk',
     nativeCurrency: {
       name: 'RBTC',
       symbol: 'RBTC',
@@ -64,7 +63,6 @@ export const ROOTSTOCK_CHAINS = {
     },
     rpcUrls: {
       default: { http: ['https://public-node.rsk.co'] },
-      public: { http: ['https://public-node.rsk.co'] },
     },
     blockExplorers: {
       default: {
@@ -72,5 +70,5 @@ export const ROOTSTOCK_CHAINS = {
         url: 'https://rootstock.blockscout.com'
       },
     },
-  },
+  }),
 } as const;
