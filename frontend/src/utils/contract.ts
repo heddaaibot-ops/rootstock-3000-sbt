@@ -1,3 +1,5 @@
+import { defineChain } from 'viem';
+
 export const CONTRACT_ADDRESS = {
   testnet: process.env.NEXT_PUBLIC_CONTRACT_ADDRESS_TESTNET || '',
   mainnet: process.env.NEXT_PUBLIC_CONTRACT_ADDRESS_MAINNET || '',
@@ -30,8 +32,6 @@ export const CONTRACT_ABI = [
   'event SBTMinted(address indexed minter, uint256 indexed tokenId, uint256 timestamp, uint256 blockNumber)',
   'event Transfer(address indexed from, address indexed to, uint256 indexed tokenId)',
 ] as const;
-
-import { defineChain } from 'viem';
 
 export const ROOTSTOCK_CHAINS = {
   testnet: defineChain({
