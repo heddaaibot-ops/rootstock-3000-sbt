@@ -1,56 +1,108 @@
 import { defineChain } from 'viem';
 
 // 硬編碼地址確保在 Vercel 上也能正常工作
-// Testnet 地址已驗證 checksum
 export const CONTRACT_ADDRESS = {
   testnet: '0x3fcD4cf80017bb7d90d9E67cd1E2fe539D985d8D' as `0x${string}`,
   mainnet: '' as `0x${string}`,
 } as const;
 
+// 使用標準 JSON ABI 格式（最穩定）
 export const CONTRACT_ABI = [
-  // Read functions
-  'function name() view returns (string)',
-  'function symbol() view returns (string)',
-  'function totalSupply() view returns (uint256)',
-  'function remainingSupply() view returns (uint256)',
-  'function MAX_SUPPLY() view returns (uint256)',
-  'function LAUNCH_DATE() view returns (uint256)',
-  'function MILESTONE_DATE() view returns (uint256)',
-  'function paused() view returns (bool)',
-  'function hasUserMinted(address) view returns (bool)',
-  'function hasMinted(address) view returns (bool)',
-  'function balanceOf(address) view returns (uint256)',
-  'function ownerOf(uint256) view returns (address)',
-  'function tokenURI(uint256) view returns (string)',
-  'function getMintTimestamp(uint256) view returns (uint256)',
-  'function getMintBlockNumber(uint256) view returns (uint256)',
-  'function getMintProgressBasisPoints() view returns (uint256)',
-  'function isMintedAfterMilestone(uint256) view returns (bool)',
-
-  // Write functions
-  'function mint()',
-
-  // Events
-  'event SBTMinted(address indexed minter, uint256 indexed tokenId, uint256 timestamp, uint256 blockNumber)',
-  'event Transfer(address indexed from, address indexed to, uint256 indexed tokenId)',
+  {
+    inputs: [],
+    name: 'totalSupply',
+    outputs: [{ name: '', type: 'uint256' }],
+    stateMutability: 'view',
+    type: 'function',
+  },
+  {
+    inputs: [],
+    name: 'MAX_SUPPLY',
+    outputs: [{ name: '', type: 'uint256' }],
+    stateMutability: 'view',
+    type: 'function',
+  },
+  {
+    inputs: [],
+    name: 'paused',
+    outputs: [{ name: '', type: 'bool' }],
+    stateMutability: 'view',
+    type: 'function',
+  },
+  {
+    inputs: [],
+    name: 'remainingSupply',
+    outputs: [{ name: '', type: 'uint256' }],
+    stateMutability: 'view',
+    type: 'function',
+  },
+  {
+    inputs: [{ name: 'account', type: 'address' }],
+    name: 'hasUserMinted',
+    outputs: [{ name: '', type: 'bool' }],
+    stateMutability: 'view',
+    type: 'function',
+  },
+  {
+    inputs: [{ name: 'owner', type: 'address' }],
+    name: 'balanceOf',
+    outputs: [{ name: '', type: 'uint256' }],
+    stateMutability: 'view',
+    type: 'function',
+  },
+  {
+    inputs: [],
+    name: 'getMintProgressBasisPoints',
+    outputs: [{ name: '', type: 'uint256' }],
+    stateMutability: 'view',
+    type: 'function',
+  },
+  {
+    inputs: [],
+    name: 'LAUNCH_DATE',
+    outputs: [{ name: '', type: 'uint256' }],
+    stateMutability: 'view',
+    type: 'function',
+  },
+  {
+    inputs: [],
+    name: 'MILESTONE_DATE',
+    outputs: [{ name: '', type: 'uint256' }],
+    stateMutability: 'view',
+    type: 'function',
+  },
+  {
+    inputs: [],
+    name: 'mint',
+    outputs: [],
+    stateMutability: 'nonpayable',
+    type: 'function',
+  },
 ] as const;
 
+// 完整的 chain 定義
 export const ROOTSTOCK_CHAINS = {
   testnet: defineChain({
     id: 31,
     name: 'Rootstock Testnet',
+    network: 'rootstock-testnet',
     nativeCurrency: {
       name: 'Test RBTC',
       symbol: 'tRBTC',
       decimals: 18,
     },
     rpcUrls: {
-      default: { http: ['https://public-node.testnet.rsk.co'] },
+      default: {
+        http: ['https://public-node.testnet.rsk.co'],
+      },
+      public: {
+        http: ['https://public-node.testnet.rsk.co'],
+      },
     },
     blockExplorers: {
       default: {
         name: 'RSK Testnet Explorer',
-        url: 'https://rootstock-testnet.blockscout.com'
+        url: 'https://rootstock-testnet.blockscout.com',
       },
     },
     testnet: true,
@@ -58,18 +110,24 @@ export const ROOTSTOCK_CHAINS = {
   mainnet: defineChain({
     id: 30,
     name: 'Rootstock',
+    network: 'rootstock',
     nativeCurrency: {
       name: 'RBTC',
       symbol: 'RBTC',
       decimals: 18,
     },
     rpcUrls: {
-      default: { http: ['https://public-node.rsk.co'] },
+      default: {
+        http: ['https://public-node.rsk.co'],
+      },
+      public: {
+        http: ['https://public-node.rsk.co'],
+      },
     },
     blockExplorers: {
       default: {
         name: 'RSK Explorer',
-        url: 'https://rootstock.blockscout.com'
+        url: 'https://rootstock.blockscout.com',
       },
     },
   }),
