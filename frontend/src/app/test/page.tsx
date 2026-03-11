@@ -55,7 +55,7 @@ export default function TestPage() {
           address: CONTRACT_ADDRESS as `0x${string}`,
           abi: CONTRACT_ABI,
           functionName: 'totalSupply',
-        });
+        }) as bigint;
         addLog(`✅ totalSupply: ${totalSupply.toString()}`);
 
         addLog('📞 Reading MAX_SUPPLY...');
@@ -63,7 +63,7 @@ export default function TestPage() {
           address: CONTRACT_ADDRESS as `0x${string}`,
           abi: CONTRACT_ABI,
           functionName: 'MAX_SUPPLY',
-        });
+        }) as bigint;
         addLog(`✅ MAX_SUPPLY: ${maxSupply.toString()}`);
 
         addLog('📞 Reading paused...');
@@ -71,7 +71,7 @@ export default function TestPage() {
           address: CONTRACT_ADDRESS as `0x${string}`,
           abi: CONTRACT_ABI,
           functionName: 'paused',
-        });
+        }) as boolean;
         addLog(`✅ paused: ${isPaused}`);
 
         setData({
