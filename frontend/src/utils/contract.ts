@@ -1,11 +1,13 @@
-import { defineChain, parseAbi } from 'viem';
+import { defineChain } from 'viem';
 
+// 硬編碼地址確保在 Vercel 上也能正常工作
+// Testnet 地址已驗證 checksum
 export const CONTRACT_ADDRESS = {
-  testnet: process.env.NEXT_PUBLIC_CONTRACT_ADDRESS_TESTNET || '',
-  mainnet: process.env.NEXT_PUBLIC_CONTRACT_ADDRESS_MAINNET || '',
+  testnet: '0x3fcD4cf80017bb7d90d9E67cd1E2fe539D985d8D' as `0x${string}`,
+  mainnet: '' as `0x${string}`,
 } as const;
 
-export const CONTRACT_ABI = parseAbi([
+export const CONTRACT_ABI = [
   // Read functions
   'function name() view returns (string)',
   'function symbol() view returns (string)',
@@ -31,7 +33,7 @@ export const CONTRACT_ABI = parseAbi([
   // Events
   'event SBTMinted(address indexed minter, uint256 indexed tokenId, uint256 timestamp, uint256 blockNumber)',
   'event Transfer(address indexed from, address indexed to, uint256 indexed tokenId)',
-]);
+] as const;
 
 export const ROOTSTOCK_CHAINS = {
   testnet: defineChain({
