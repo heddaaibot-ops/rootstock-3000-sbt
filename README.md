@@ -2,6 +2,12 @@
 
 紀念 Rootstock 主網運行 3000 天的 Soul Bound Token 項目，包含智能合約和前端應用。
 
+## 🌐 在線演示
+
+**前端部署**: https://frontend-green-delta-12.vercel.app
+
+部署在 Vercel 上，連接到 Rootstock Testnet。
+
 ## 📅 重要日期
 
 - **Rootstock 主網上線**：2018-01-16
