@@ -2,24 +2,10 @@
 
 import { useEffect, useState } from 'react';
 import { createPublicClient, http } from 'viem';
+import { ROOTSTOCK_CHAINS, CONTRACT_ADDRESS as CONTRACT_ADDR } from '@/utils/contract';
 
-const ROOTSTOCK_TESTNET = {
-  id: 31,
-  name: 'Rootstock Testnet',
-  network: 'rsk-testnet',
-  nativeCurrency: {
-    name: 'Test RBTC',
-    symbol: 'tRBTC',
-    decimals: 18,
-  },
-  rpcUrls: {
-    default: { http: ['https://public-node.testnet.rsk.co'] },
-    public: { http: ['https://public-node.testnet.rsk.co'] },
-  },
-  testnet: true,
-};
-
-const CONTRACT_ADDRESS = '0x3fcD4cf80017bb7d90d9E67cd1E2fe539D985d8D';
+const ROOTSTOCK_TESTNET = ROOTSTOCK_CHAINS.testnet;
+const CONTRACT_ADDRESS = CONTRACT_ADDR.testnet;
 const CONTRACT_ABI = [
   'function totalSupply() view returns (uint256)',
   'function MAX_SUPPLY() view returns (uint256)',
