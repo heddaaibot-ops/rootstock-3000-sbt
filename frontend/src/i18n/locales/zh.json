@@ -1,0 +1,149 @@
+{
+  "hero": {
+    "title": "Rootstock 3000 天",
+    "subtitle": "紀念比特幣智能合約平台運行 3000 天",
+    "description": "領取你的靈魂綁定代幣，成為這個歷史里程碑的一部分。這個不可轉移的 NFT 標誌著你參與 Rootstock 的旅程。"
+  },
+  "mint": {
+    "title": "鑄造進度",
+    "button": {
+      "mint": "鑄造你的 SBT",
+      "connectWallet": "請先連接錢包",
+      "alreadyMinted": "已鑄造",
+      "paused": "鑄造已暫停",
+      "minting": "鑄造中..."
+    },
+    "status": {
+      "free": "免費鑄造 • 僅需 Gas 費 • 每個錢包限鑄一個",
+      "connect": "連接你的錢包以鑄造",
+      "claimed": "你已經領取了你的 SBT",
+      "pausedMessage": "鑄造即將開放，請稍後回來查看。",
+      "inProgress": "交易進行中..."
+    },
+    "success": {
+      "title": "鑄造成功！",
+      "description": "你的靈魂綁定代幣已鑄造完成",
+      "viewTx": "查看交易",
+      "shareTwitter": "分享到 Twitter"
+    },
+    "error": {
+      "title": "交易失敗",
+      "retry": "重試",
+      "failedToLoad": "載入數據失敗",
+      "retryButton": "重試"
+    },
+    "stats": {
+      "launchDate": "啟動日期",
+      "milestoneDate": "里程碑日期",
+      "chainId": "鏈 ID",
+      "status": "狀態",
+      "loading": "載入中...",
+      "paused": "已暫停",
+      "live": "進行中"
+    }
+  },
+  "rootstock": {
+    "title": "關於 Rootstock",
+    "paragraph1": "2015 年，當大多數人還在爭論比特幣能否支持智能合約時，Rootstock 選擇了行動。我們相信比特幣不僅是數字黃金，更應該成為完整的金融基礎設施。",
+    "paragraph2": "今天，Rootstock 主網已經運行了 3000 天。3000 天裡，我們沒有重大安全事故，沒有停機，穩定地為用戶提供服務。這份堅持來自於對技術的信仰，也來自於社區的支持。",
+    "paragraph3": "Rootstock 通過與比特幣合併挖礦，讓智能合約擁有與比特幣相同的安全級別。開發者可以在這裡構建 DeFi 協議和去中心化金融應用，用戶則可以在不離開比特幣生態的前提下，體驗 Web3 的全部可能性。",
+    "closing": "3000 天，只是一個開始。"
+  },
+  "campaign": {
+    "title": "Rootstock 愛你 3000",
+    "subtitle": "紀念 Rootstock 主網運行 3000 天",
+    "howToParticipate": "如何參與",
+    "step1": {
+      "title": "關注 @RootstockCN",
+      "description": "前往 Twitter 關注 @RootstockCN 並轉發活動推文"
+    },
+    "step2": {
+      "title": "鑄造你的專屬 SBT",
+      "description": "連接錢包，免費鑄造你的「愛你 3000」紀念 SBT"
+    },
+    "step3": {
+      "title": "分享到 Twitter",
+      "description": "在 Twitter 上分享你的 NFT，告訴大家你為什麼愛 Rootstock"
+    },
+    "step4": {
+      "title": "參加抽獎",
+      "description": "完成以上步驟，即有機會贏取豐厚獎勵！"
+    },
+    "rewards": {
+      "title": "活動獎勵",
+      "usdt": "$5,000",
+      "usdtDescription": "USDT 隨機分配",
+      "merch": "10 份",
+      "merchDescription": "Rootstock 限定周邊",
+      "announcement": "3月31日公布得獎名單"
+    },
+    "timeline": {
+      "title": "活動時間線",
+      "launch": {
+        "date": "3/8",
+        "title": "活動啟動",
+        "description": "開放鑄造，KOL 推廣開始"
+      },
+      "milestone": {
+        "date": "3/22",
+        "title": "3000 天紀念日",
+        "description": "Rootstock 主網運行 3000 天慶祝"
+      },
+      "deadline": {
+        "date": "3/31",
+        "title": "活動截止",
+        "description": "鑄造結束，公布得獎者"
+      }
+    }
+  },
+  "about": {
+    "soulBound": {
+      "title": "靈魂綁定",
+      "description": "不可轉移，永久綁定你的錢包"
+    },
+    "freeMint": {
+      "title": "免費鑄造",
+      "description": "只需支付網絡 Gas 費，無鑄造成本"
+    },
+    "limitedSupply": {
+      "title": "限量供應",
+      "description": "僅 10,000 個代幣，每個錢包限一個"
+    },
+    "whatIsRootstock": {
+      "title": "什麼是 Rootstock？",
+      "paragraph1": "Rootstock (RSK) 是世界上最安全的智能合約平台，由比特幣網絡的強大算力保護。自 2018 年 1 月 16 日啟動以來，Rootstock 一直在開創比特幣 DeFi，已運行超過 3000 天。",
+      "paragraph2": "這個紀念靈魂綁定代幣慶祝這一里程碑，並向所有參與這一旅程的人致敬。通過鑄造此 SBT，你將永久成為 Rootstock 歷史的一部分。"
+    }
+  },
+  "countdown": {
+    "milestoneReached": "已達成里程碑！",
+    "countdown": "距離 3000 天倒數",
+    "days": "天",
+    "hours": "小時",
+    "minutes": "分鐘",
+    "seconds": "秒"
+  },
+  "faq": {
+    "title": "常見問題",
+    "q1": {
+      "question": "什麼是靈魂綁定代幣？",
+      "answer": "靈魂綁定代幣（SBT）是一種不可轉移的 NFT，永久綁定到你的錢包地址。它不能被出售、轉移或贈送。它作為參與的永久證明。"
+    },
+    "q2": {
+      "question": "鑄造需要多少費用？",
+      "answer": "鑄造完全免費！你只需要支付網絡 Gas 費，在 Rootstock 上通常非常低。Gas 費支付給網絡驗證者，而不是我們。"
+    },
+    "q3": {
+      "question": "我可以鑄造多個嗎？",
+      "answer": "不可以，每個錢包地址只能鑄造一個 SBT。這確保了公平分配，並保持代幣的紀念性質。"
+    },
+    "q4": {
+      "question": "我應該使用哪個網絡？",
+      "answer": "你需要連接到 Rootstock 網絡（主網鏈 ID 為 30，測試網為 31）。確保你的錢包在鑄造前配置了正確的網絡。"
+    }
+  },
+  "footer": {
+    "madeWith": "由",
+    "by": "Rootstock 社區製作"
+  }
+}
