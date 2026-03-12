@@ -37,68 +37,6 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Rootstock Introduction Section */}
-        <section className="container mx-auto px-4 py-12">
-          <RootstockIntro />
-        </section>
-
-        {/* Campaign Info Section */}
-        <section className="container mx-auto px-4 py-12">
-          <CampaignInfo />
-        </section>
-
-        {/* Countdown Section */}
-        <section className="container mx-auto px-4 py-12">
-          <Countdown
-            milestoneTimestamp={contractData ? Number(contractData.milestoneDate) : 1743724800}
-          />
-        </section>
-
-        {/* About Section */}
-        <section id="about" className="container mx-auto px-4 py-16">
-          <div className="max-w-4xl mx-auto">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
-              <div className="bg-rsk-gray border border-rsk-orange/30 rounded-2xl p-6 text-center hover:border-rsk-orange transition-colors">
-                <h3 className="text-lg font-bold text-rsk-light mb-2">Soul Bound</h3>
-                <p className="text-sm text-gray-400">
-                  Non-transferable and permanently bound to your wallet
-                </p>
-              </div>
-
-              <div className="bg-rsk-gray border border-rsk-orange/30 rounded-2xl p-6 text-center hover:border-rsk-orange transition-colors">
-                <h3 className="text-lg font-bold text-rsk-light mb-2">Free Mint</h3>
-                <p className="text-sm text-gray-400">
-                  Only pay network gas fees, no minting cost
-                </p>
-              </div>
-
-              <div className="bg-rsk-gray border border-rsk-orange/30 rounded-2xl p-6 text-center hover:border-rsk-orange transition-colors">
-                <h3 className="text-lg font-bold text-rsk-light mb-2">Limited Supply</h3>
-                <p className="text-sm text-gray-400">
-                  Only 10,000 tokens available, one per wallet
-                </p>
-              </div>
-            </div>
-
-            <div className="bg-rsk-gray/50 border border-rsk-orange/20 rounded-2xl p-8">
-              <h2 className="text-3xl font-bold text-rsk-orange mb-6">What is Rootstock?</h2>
-              <div className="space-y-4 text-gray-400">
-                <p>
-                  Rootstock (RSK) is the most secure smart contract platform in the world,
-                  secured by the Bitcoin network's immense hashpower. Launched on{' '}
-                  <span className="text-rsk-orange font-semibold">January 16, 2018</span>,
-                  Rootstock has been pioneering Bitcoin DeFi for over 3000 days.
-                </p>
-                <p>
-                  This commemorative Soul Bound Token celebrates this milestone and honors
-                  everyone who has been part of this journey. By minting this SBT, you become
-                  a permanent part of Rootstock's history.
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
-
         {/* Mint Section */}
         <section id="mint" className="container mx-auto px-4 py-16">
           <div className="max-w-4xl mx-auto">
@@ -177,6 +115,68 @@ export default function Home() {
                     <span className="text-green-500">Live</span>
                   )}
                 </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Rootstock Introduction Section */}
+        <section className="container mx-auto px-4 py-12">
+          <RootstockIntro />
+        </section>
+
+        {/* Campaign Info Section */}
+        <section className="container mx-auto px-4 py-12">
+          <CampaignInfo />
+        </section>
+
+        {/* Countdown Section */}
+        <section className="container mx-auto px-4 py-12">
+          <Countdown
+            milestoneTimestamp={contractData ? Number(contractData.milestoneDate) : 1743724800}
+          />
+        </section>
+
+        {/* About Section */}
+        <section id="about" className="container mx-auto px-4 py-16">
+          <div className="max-w-4xl mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+              <div className="bg-rsk-gray border border-rsk-orange/30 rounded-2xl p-6 text-center hover:border-rsk-orange transition-colors">
+                <h3 className="text-lg font-bold text-rsk-light mb-2">Soul Bound</h3>
+                <p className="text-sm text-gray-400">
+                  Non-transferable and permanently bound to your wallet
+                </p>
+              </div>
+
+              <div className="bg-rsk-gray border border-rsk-orange/30 rounded-2xl p-6 text-center hover:border-rsk-orange transition-colors">
+                <h3 className="text-lg font-bold text-rsk-light mb-2">Free Mint</h3>
+                <p className="text-sm text-gray-400">
+                  Only pay network gas fees, no minting cost
+                </p>
+              </div>
+
+              <div className="bg-rsk-gray border border-rsk-orange/30 rounded-2xl p-6 text-center hover:border-rsk-orange transition-colors">
+                <h3 className="text-lg font-bold text-rsk-light mb-2">Limited Supply</h3>
+                <p className="text-sm text-gray-400">
+                  Only 10,000 tokens available, one per wallet
+                </p>
+              </div>
+            </div>
+
+            <div className="bg-rsk-gray/50 border border-rsk-orange/20 rounded-2xl p-8">
+              <h2 className="text-3xl font-bold text-rsk-orange mb-6">What is Rootstock?</h2>
+              <div className="space-y-4 text-gray-400">
+                <p>
+                  Rootstock (RSK) is the most secure smart contract platform in the world,
+                  secured by the Bitcoin network's immense hashpower. Launched on{' '}
+                  <span className="text-rsk-orange font-semibold">January 16, 2018</span>,
+                  Rootstock has been pioneering Bitcoin DeFi for over 3000 days.
+                </p>
+                <p>
+                  This commemorative Soul Bound Token celebrates this milestone and honors
+                  everyone who has been part of this journey. By minting this SBT, you become
+                  a permanent part of Rootstock's history.
+                </p>
               </div>
             </div>
           </div>
