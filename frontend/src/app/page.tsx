@@ -10,10 +10,12 @@ import { MintButton } from '@/components/MintButton';
 import { CampaignInfo } from '@/components/CampaignInfo';
 import { RootstockIntro } from '@/components/RootstockIntro';
 import { useContract } from '@/hooks/useContract';
+import { useI18n } from '@/i18n/provider';
 
 export default function Home() {
   const { chainId } = useAccount();
   const { contractData, loading, error, refresh, mint } = useContract();
+  const { t } = useI18n();
 
   return (
     <div className="min-h-screen flex flex-col bg-rsk-dark">
@@ -25,14 +27,13 @@ export default function Home() {
           <div className="animate-fade-in">
             <h1 className="text-5xl md:text-7xl font-bold mb-6">
               <span className="text-rsk-orange">Rootstock</span>{' '}
-              <span className="text-rsk-light">3000 Days</span>
+              <span className="text-rsk-light">{t('hero.title').split('Rootstock ')[1]}</span>
             </h1>
             <p className="text-xl md:text-2xl text-gray-400 mb-4">
-              Commemorating 3000 Days of Bitcoin-Powered Smart Contracts
+              {t('hero.subtitle')}
             </p>
             <p className="text-sm text-gray-500 max-w-2xl mx-auto">
-              Claim your Soul Bound Token to be part of this historic milestone.
-              This non-transferable NFT marks your participation in Rootstock's journey.
+              {t('hero.description')}
             </p>
           </div>
         </section>
@@ -41,21 +42,21 @@ export default function Home() {
         <section id="mint" className="container mx-auto px-4 py-16">
           <div className="max-w-4xl mx-auto">
             <h2 className="text-4xl font-bold text-center mb-12">
-              <span className="text-rsk-orange">Mint</span>{' '}
-              <span className="text-rsk-light">Progress</span>
+              <span className="text-rsk-orange">{t('mint.title').split(' ')[0]}</span>{' '}
+              <span className="text-rsk-light">{t('mint.title').split(' ')[1]}</span>
             </h2>
 
             {/* Progress Bar */}
             <div className="mb-16">
               {error ? (
                 <div className="bg-red-500/10 border border-red-500/30 rounded-xl p-8 text-center">
-                  <h3 className="text-xl font-bold text-red-500 mb-2">Failed to Load Data</h3>
+                  <h3 className="text-xl font-bold text-red-500 mb-2">{t('mint.error.failedToLoad')}</h3>
                   <p className="text-gray-400 mb-6">{error}</p>
                   <button
                     onClick={refresh}
                     className="px-6 py-3 bg-rsk-orange hover:bg-rsk-orange/80 rounded-xl font-bold transition-colors"
                   >
-                    Retry
+                    {t('mint.error.retryButton')}
                   </button>
                 </div>
               ) : loading || !contractData ? (
@@ -84,35 +85,35 @@ export default function Home() {
             {/* Stats Grid */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               <div className="bg-rsk-gray border border-rsk-orange/30 rounded-xl p-4 text-center">
-                <div className="text-sm text-gray-400 mb-1">Launch Date</div>
+                <div className="text-sm text-gray-400 mb-1">{t('mint.stats.launchDate')}</div>
                 <div className="text-lg font-bold text-rsk-light font-mono">
                   Jan 16, 2018
                 </div>
               </div>
 
               <div className="bg-rsk-gray border border-rsk-orange/30 rounded-xl p-4 text-center">
-                <div className="text-sm text-gray-400 mb-1">Milestone Date</div>
+                <div className="text-sm text-gray-400 mb-1">{t('mint.stats.milestoneDate')}</div>
                 <div className="text-lg font-bold text-rsk-orange font-mono">
                   Apr 4, 2026
                 </div>
               </div>
 
               <div className="bg-rsk-gray border border-rsk-orange/30 rounded-xl p-4 text-center">
-                <div className="text-sm text-gray-400 mb-1">Chain ID</div>
+                <div className="text-sm text-gray-400 mb-1">{t('mint.stats.chainId')}</div>
                 <div className="text-lg font-bold text-rsk-light font-mono">
                   {chainId || 31}
                 </div>
               </div>
 
               <div className="bg-rsk-gray border border-rsk-orange/30 rounded-xl p-4 text-center">
-                <div className="text-sm text-gray-400 mb-1">Status</div>
+                <div className="text-sm text-gray-400 mb-1">{t('mint.stats.status')}</div>
                 <div className="text-lg font-bold text-rsk-light">
                   {!contractData ? (
-                    <span className="text-gray-500">Loading...</span>
+                    <span className="text-gray-500">{t('mint.stats.loading')}</span>
                   ) : contractData.isPaused ? (
-                    <span className="text-yellow-500">Paused</span>
+                    <span className="text-yellow-500">{t('mint.stats.paused')}</span>
                   ) : (
-                    <span className="text-green-500">Live</span>
+                    <span className="text-green-500">{t('mint.stats.live')}</span>
                   )}
                 </div>
               </div>
@@ -142,41 +143,32 @@ export default function Home() {
           <div className="max-w-4xl mx-auto">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
               <div className="bg-rsk-gray border border-rsk-orange/30 rounded-2xl p-6 text-center hover:border-rsk-orange transition-colors">
-                <h3 className="text-lg font-bold text-rsk-light mb-2">Soul Bound</h3>
+                <h3 className="text-lg font-bold text-rsk-light mb-2">{t('about.soulBound.title')}</h3>
                 <p className="text-sm text-gray-400">
-                  Non-transferable and permanently bound to your wallet
+                  {t('about.soulBound.description')}
                 </p>
               </div>
 
               <div className="bg-rsk-gray border border-rsk-orange/30 rounded-2xl p-6 text-center hover:border-rsk-orange transition-colors">
-                <h3 className="text-lg font-bold text-rsk-light mb-2">Free Mint</h3>
+                <h3 className="text-lg font-bold text-rsk-light mb-2">{t('about.freeMint.title')}</h3>
                 <p className="text-sm text-gray-400">
-                  Only pay network gas fees, no minting cost
+                  {t('about.freeMint.description')}
                 </p>
               </div>
 
               <div className="bg-rsk-gray border border-rsk-orange/30 rounded-2xl p-6 text-center hover:border-rsk-orange transition-colors">
-                <h3 className="text-lg font-bold text-rsk-light mb-2">Limited Supply</h3>
+                <h3 className="text-lg font-bold text-rsk-light mb-2">{t('about.limitedSupply.title')}</h3>
                 <p className="text-sm text-gray-400">
-                  Only 10,000 tokens available, one per wallet
+                  {t('about.limitedSupply.description')}
                 </p>
               </div>
             </div>
 
             <div className="bg-rsk-gray/50 border border-rsk-orange/20 rounded-2xl p-8">
-              <h2 className="text-3xl font-bold text-rsk-orange mb-6">What is Rootstock?</h2>
+              <h2 className="text-3xl font-bold text-rsk-orange mb-6">{t('about.whatIsRootstock.title')}</h2>
               <div className="space-y-4 text-gray-400">
-                <p>
-                  Rootstock (RSK) is the most secure smart contract platform in the world,
-                  secured by the Bitcoin network's immense hashpower. Launched on{' '}
-                  <span className="text-rsk-orange font-semibold">January 16, 2018</span>,
-                  Rootstock has been pioneering Bitcoin DeFi for over 3000 days.
-                </p>
-                <p>
-                  This commemorative Soul Bound Token celebrates this milestone and honors
-                  everyone who has been part of this journey. By minting this SBT, you become
-                  a permanent part of Rootstock's history.
-                </p>
+                <p>{t('about.whatIsRootstock.paragraph1')}</p>
+                <p>{t('about.whatIsRootstock.paragraph2')}</p>
               </div>
             </div>
           </div>
@@ -186,58 +178,55 @@ export default function Home() {
         <section className="container mx-auto px-4 py-16">
           <div className="max-w-3xl mx-auto">
             <h2 className="text-4xl font-bold text-center mb-12">
-              <span className="text-rsk-orange">FAQ</span>
+              <span className="text-rsk-orange">{t('faq.title')}</span>
             </h2>
 
             <div className="space-y-4">
               <details className="bg-rsk-gray border border-rsk-orange/30 rounded-xl p-6 hover:border-rsk-orange transition-colors group">
                 <summary className="cursor-pointer text-lg font-bold text-rsk-light flex items-center justify-between">
-                  <span>What is a Soul Bound Token?</span>
+                  <span>{t('faq.q1.question')}</span>
                   <svg className="w-5 h-5 transform group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                   </svg>
                 </summary>
                 <p className="mt-4 text-gray-400">
-                  A Soul Bound Token (SBT) is a non-transferable NFT that is permanently bound to your wallet address.
-                  It cannot be sold, transferred, or given away. It serves as a permanent proof of participation.
+                  {t('faq.q1.answer')}
                 </p>
               </details>
 
               <details className="bg-rsk-gray border border-rsk-orange/30 rounded-xl p-6 hover:border-rsk-orange transition-colors group">
                 <summary className="cursor-pointer text-lg font-bold text-rsk-light flex items-center justify-between">
-                  <span>How much does it cost to mint?</span>
+                  <span>{t('faq.q2.question')}</span>
                   <svg className="w-5 h-5 transform group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                   </svg>
                 </summary>
                 <p className="mt-4 text-gray-400">
-                  Minting is completely free! You only need to pay the network gas fee, which is typically very low on Rootstock.
-                  The gas fee goes to the network validators, not to us.
+                  {t('faq.q2.answer')}
                 </p>
               </details>
 
               <details className="bg-rsk-gray border border-rsk-orange/30 rounded-xl p-6 hover:border-rsk-orange transition-colors group">
                 <summary className="cursor-pointer text-lg font-bold text-rsk-light flex items-center justify-between">
-                  <span>Can I mint more than one?</span>
+                  <span>{t('faq.q3.question')}</span>
                   <svg className="w-5 h-5 transform group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                   </svg>
                 </summary>
                 <p className="mt-4 text-gray-400">
-                  No, each wallet address can only mint one SBT. This ensures fair distribution and maintains the commemorative nature of the token.
+                  {t('faq.q3.answer')}
                 </p>
               </details>
 
               <details className="bg-rsk-gray border border-rsk-orange/30 rounded-xl p-6 hover:border-rsk-orange transition-colors group">
                 <summary className="cursor-pointer text-lg font-bold text-rsk-light flex items-center justify-between">
-                  <span>What network should I use?</span>
+                  <span>{t('faq.q4.question')}</span>
                   <svg className="w-5 h-5 transform group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                   </svg>
                 </summary>
                 <p className="mt-4 text-gray-400">
-                  You need to connect to the Rootstock network (Chain ID 30 for mainnet, or 31 for testnet).
-                  Make sure your wallet is configured with the correct network before minting.
+                  {t('faq.q4.answer')}
                 </p>
               </details>
             </div>
