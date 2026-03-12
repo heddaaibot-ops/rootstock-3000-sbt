@@ -1,6 +1,9 @@
+'use client';
+
 import React, { useState } from 'react';
 import { useAccount } from 'wagmi';
 import { openInExplorer } from '@/utils/helpers';
+import { useI18n } from '@/i18n/provider';
 
 interface MintButtonProps {
   isPaused: boolean;
@@ -16,6 +19,7 @@ export const MintButton: React.FC<MintButtonProps> = ({
   chainId,
 }) => {
   const { isConnected } = useAccount();
+  const { t } = useI18n();
   const [minting, setMinting] = useState(false);
   const [txHash, setTxHash] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -54,10 +58,10 @@ export const MintButton: React.FC<MintButtonProps> = ({
       <div className="text-center animate-fade-in">
         <div className="bg-green-500/10 border border-green-500 rounded-2xl p-8 mb-4">
           <div className="text-2xl font-bold text-green-500 mb-2">
-            Successfully Minted!
+            {t('mint.success.title')}
           </div>
           <div className="text-gray-400 mb-6">
-            Your Soul Bound Token has been minted
+            {t('mint.success.description')}
           </div>
 
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
@@ -66,7 +70,7 @@ export const MintButton: React.FC<MintButtonProps> = ({
               onClick={() => openInExplorer('tx', txHash, chainId || 31)}
               className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-green-500/20 hover:bg-green-500/30 text-green-500 rounded-lg transition-colors"
             >
-              <span>View Transaction</span>
+              <span>{t('mint.success.viewTx')}</span>
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
               </svg>
@@ -80,7 +84,7 @@ export const MintButton: React.FC<MintButtonProps> = ({
               <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
               </svg>
-              <span>分享到 Twitter</span>
+              <span>{t('mint.success.shareTwitter')}</span>
             </button>
           </div>
         </div>
@@ -94,14 +98,14 @@ export const MintButton: React.FC<MintButtonProps> = ({
       <div className="text-center animate-fade-in">
         <div className="bg-red-500/10 border border-red-500 rounded-2xl p-8 mb-4">
           <div className="text-2xl font-bold text-red-500 mb-2">
-            Transaction Failed
+            {t('mint.error.title')}
           </div>
           <div className="text-gray-400 mb-4">{error}</div>
           <button
             onClick={() => setError(null)}
             className="px-6 py-3 bg-red-500/20 hover:bg-red-500/30 text-red-500 rounded-lg transition-colors"
           >
-            Try Again
+            {t('mint.error.retry')}
           </button>
         </div>
       </div>
@@ -111,21 +115,21 @@ export const MintButton: React.FC<MintButtonProps> = ({
   // 確定按鈕狀態和文字
   const isDisabled = !isConnected || isPaused || hasUserMinted || minting;
 
-  let buttonText = 'Mint Your SBT';
-  let statusMessage = 'Free mint • Only gas fee • One per wallet';
+  let buttonText = t('mint.button.mint');
+  let statusMessage = t('mint.status.free');
 
   if (!isConnected) {
-    buttonText = 'Connect Wallet First';
-    statusMessage = 'Connect your wallet to mint';
+    buttonText = t('mint.button.connectWallet');
+    statusMessage = t('mint.status.connect');
   } else if (hasUserMinted) {
-    buttonText = 'Already Minted';
-    statusMessage = 'You have already claimed your SBT';
+    buttonText = t('mint.button.alreadyMinted');
+    statusMessage = t('mint.status.claimed');
   } else if (isPaused) {
-    buttonText = 'Minting Paused';
-    statusMessage = 'Minting will open soon. Check back later.';
+    buttonText = t('mint.button.paused');
+    statusMessage = t('mint.status.pausedMessage');
   } else if (minting) {
-    buttonText = 'Minting...';
-    statusMessage = 'Transaction in progress...';
+    buttonText = t('mint.button.minting');
+    statusMessage = t('mint.status.inProgress');
   }
 
   // 始終顯示按鈕
