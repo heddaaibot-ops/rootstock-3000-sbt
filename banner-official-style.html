@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rootstock 3000 Days - Official Style</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .banner {
+            width: 2500px;
+            height: 1000px;
+            background: #faf9f5;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Rootstock Logo */
+        .logo {
+            position: absolute;
+            top: 50px;
+            left: 60px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-icon {
+            width: 50px;
+            height: 50px;
+        }
+
+        .logo-text {
+            font-size: 42px;
+            font-weight: 700;
+            color: #ff9100;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        }
+
+        /* 插画装饰 - 右侧 */
+        .illustration {
+            position: absolute;
+            right: -50px;
+            top: 50px;
+            width: 900px;
+            height: 800px;
+        }
+
+        /* 等距区块 */
+        .block {
+            position: absolute;
+            width: 350px;
+            height: 280px;
+            border: 3px solid #ff9100;
+            border-radius: 20px;
+            transform: rotateX(60deg) rotateZ(45deg);
+        }
+
+        .block1 {
+            top: 50px;
+            right: 200px;
+        }
+
+        .block2 {
+            top: 280px;
+            right: 100px;
+        }
+
+        /* 硬币 */
+        .coin {
+            position: absolute;
+            width: 120px;
+            height: 120px;
+            border: 3px solid #ff9100;
+            border-radius: 50%;
+            background: #faf9f5;
+        }
+
+        .coin::before,
+        .coin::after {
+            content: '';
+            position: absolute;
+            border: 2px solid #ff9100;
+            border-radius: 50%;
+        }
+
+        .coin::before {
+            width: 80%;
+            height: 80%;
+            top: 10%;
+            left: 10%;
+        }
+
+        .coin::after {
+            width: 60%;
+            height: 60%;
+            top: 20%;
+            left: 20%;
+        }
+
+        .coin1 { top: 50px; right: 500px; }
+        .coin2 { top: 50px; right: 320px; }
+        .coin3 { top: 180px; right: 400px; }
+        .coin4 { top: 400px; right: 600px; }
+        .coin5 { top: 500px; right: 450px; }
+
+        /* 装饰线条 */
+        .line {
+            position: absolute;
+            background: #ff9100;
+            opacity: 0.3;
+        }
+
+        .line-v {
+            width: 2px;
+            height: 400px;
+        }
+
+        .line1 { top: 150px; right: 250px; }
+        .line2 { top: 200px; right: 550px; }
+        .line3 { top: 100px; right: 400px; height: 500px; }
+
+        /* 主文字区域 */
+        .content {
+            position: absolute;
+            left: 60px;
+            top: 280px;
+        }
+
+        /* 中文标题 */
+        .chinese-title {
+            font-size: 140px;
+            font-weight: 900;
+            color: #1a1a1a;
+            margin-bottom: -20px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', sans-serif;
+            letter-spacing: -4px;
+        }
+
+        /* 3000 大数字 */
+        .number {
+            font-size: 380px;
+            font-weight: 900;
+            color: #1a1a1a;
+            line-height: 0.9;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            letter-spacing: -20px;
+        }
+
+        /* 底部橙条 */
+        .orange-bar {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 80px;
+            background: #ff9100;
+        }
+
+        /* 日期信息 */
+        .dates {
+            position: absolute;
+            bottom: 110px;
+            left: 60px;
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            font-size: 32px;
+            color: #666;
+            font-family: 'Monaco', 'Courier New', monospace;
+        }
+
+        .dates .arrow {
+            color: #ff9100;
+            font-size: 40px;
+        }
+
+        /* 小标签 */
+        .badge {
+            position: absolute;
+            top: 50px;
+            right: 60px;
+            padding: 12px 28px;
+            background: #ff9100;
+            color: #faf9f5;
+            font-size: 24px;
+            font-weight: 700;
+            border-radius: 8px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <div class="banner">
+        <!-- Logo -->
+        <div class="logo">
+            <svg class="logo-icon" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="50" cy="50" r="45" fill="none" stroke="#ff9100" stroke-width="4"/>
+                <circle cx="50" cy="50" r="30" fill="none" stroke="#ff9100" stroke-width="4"/>
+                <circle cx="50" cy="50" r="15" fill="#ff9100"/>
+                <line x1="50" y1="5" x2="50" y2="25" stroke="#ff9100" stroke-width="4"/>
+                <line x1="50" y1="75" x2="50" y2="95" stroke="#ff9100" stroke-width="4"/>
+                <line x1="5" y1="50" x2="25" y2="50" stroke="#ff9100" stroke-width="4"/>
+                <line x1="75" y1="50" x2="95" y2="50" stroke="#ff9100" stroke-width="4"/>
+            </svg>
+            <span class="logo-text">Rootstock</span>
+        </div>
+
+        <!-- 插画装饰 -->
+        <div class="illustration">
+            <!-- 区块 -->
+            <div class="block block1"></div>
+            <div class="block block2"></div>
+
+            <!-- 硬币 -->
+            <div class="coin coin1"></div>
+            <div class="coin coin2"></div>
+            <div class="coin coin3"></div>
+            <div class="coin coin4"></div>
+            <div class="coin coin5"></div>
+
+            <!-- 装饰线 -->
+            <div class="line line-v line1"></div>
+            <div class="line line-v line2"></div>
+            <div class="line line-v line3"></div>
+        </div>
+
+        <!-- 主文字 -->
+        <div class="content">
+            <div class="chinese-title">爱你</div>
+            <div class="number">3000</div>
+        </div>
+
+        <!-- 日期 -->
+        <div class="dates">
+            <span>2018.01.16</span>
+            <span class="arrow">→</span>
+            <span>2026.04.04</span>
+        </div>
+
+        <!-- 小徽章 -->
+        <div class="badge">DAYS</div>
+
+        <!-- 底部橙条 -->
+        <div class="orange-bar"></div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rootstock 3000 Days Banner</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .banner {
+            width: 2500px;
+            height: 1000px;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* 背景网格效果 */
+        .banner::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image:
+                linear-gradient(rgba(255, 138, 0, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 138, 0, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+        }
+
+        /* 橙色光晕 */
+        .glow {
+            position: absolute;
+            width: 800px;
+            height: 800px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255, 138, 0, 0.15) 0%, transparent 70%);
+            filter: blur(80px);
+        }
+
+        .glow-1 {
+            top: -200px;
+            right: -200px;
+        }
+
+        .glow-2 {
+            bottom: -300px;
+            left: -100px;
+            opacity: 0.5;
+        }
+
+        /* 内容容器 */
+        .content {
+            position: relative;
+            z-index: 10;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 0 120px;
+        }
+
+        /* Logo 区域 */
+        .logo {
+            font-size: 48px;
+            font-weight: 700;
+            color: #ff8a00;
+            margin-bottom: 40px;
+            letter-spacing: -1px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        }
+
+        /* 主标题 */
+        .title {
+            font-size: 180px;
+            font-weight: 900;
+            line-height: 1;
+            margin-bottom: 30px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            letter-spacing: -6px;
+        }
+
+        .title .number {
+            color: #ff8a00;
+            text-shadow: 0 0 60px rgba(255, 138, 0, 0.5);
+        }
+
+        .title .text {
+            color: #ffffff;
+        }
+
+        /* 副标题 */
+        .subtitle {
+            font-size: 42px;
+            color: rgba(255, 255, 255, 0.6);
+            font-weight: 400;
+            margin-bottom: 50px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            letter-spacing: -0.5px;
+        }
+
+        /* 日期信息 */
+        .date-info {
+            display: flex;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .date-box {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .date-label {
+            font-size: 20px;
+            color: rgba(255, 255, 255, 0.4);
+            margin-bottom: 8px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 500;
+        }
+
+        .date-value {
+            font-size: 36px;
+            color: #ffffff;
+            font-weight: 600;
+            font-family: 'Monaco', 'Courier New', monospace;
+            letter-spacing: 1px;
+        }
+
+        .arrow {
+            font-size: 48px;
+            color: #ff8a00;
+            opacity: 0.6;
+        }
+
+        /* 装饰元素 */
+        .decoration {
+            position: absolute;
+            bottom: 80px;
+            right: 120px;
+            width: 400px;
+            height: 4px;
+            background: linear-gradient(90deg, transparent 0%, #ff8a00 50%, transparent 100%);
+            opacity: 0.3;
+        }
+
+        /* SBT 标签 */
+        .sbt-badge {
+            position: absolute;
+            top: 80px;
+            right: 120px;
+            padding: 16px 32px;
+            background: rgba(255, 138, 0, 0.1);
+            border: 2px solid rgba(255, 138, 0, 0.3);
+            border-radius: 12px;
+            font-size: 24px;
+            color: #ff8a00;
+            font-weight: 700;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            letter-spacing: 2px;
+        }
+    </style>
+</head>
+<body>
+    <div class="banner">
+        <!-- 背景光晕 -->
+        <div class="glow glow-1"></div>
+        <div class="glow glow-2"></div>
+
+        <!-- 内容 -->
+        <div class="content">
+            <div class="logo">ROOTSTOCK</div>
+
+            <h1 class="title">
+                <span class="number">3000</span>
+                <span class="text"> DAYS</span>
+            </h1>
+
+            <p class="subtitle">Commemorating Bitcoin Smart Contracts</p>
+
+            <div class="date-info">
+                <div class="date-box">
+                    <div class="date-label">Launch</div>
+                    <div class="date-value">2018.01.16</div>
+                </div>
+
+                <div class="arrow">→</div>
+
+                <div class="date-box">
+                    <div class="date-label">Milestone</div>
+                    <div class="date-value">2026.04.04</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SBT 徽章 -->
+        <div class="sbt-badge">SOUL BOUND TOKEN</div>
+
+        <!-- 装饰线 -->
+        <div class="decoration"></div>
+    </div>
+</body>
+</html>
