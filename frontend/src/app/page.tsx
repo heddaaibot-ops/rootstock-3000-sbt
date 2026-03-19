@@ -10,7 +10,6 @@ import { MintButton } from '@/components/MintButton';
 import { CampaignInfo } from '@/components/CampaignInfo';
 import { RootstockIntro } from '@/components/RootstockIntro';
 import { GridBackground } from '@/components/GridBackground';
-import { ColorfulRectangles } from '@/components/ColorfulRectangles';
 import { BitcoinIcon, BitcoinSymbol } from '@/components/BitcoinIcon';
 import { RootstockIcon } from '@/components/RootstockLogo';
 import { useContract } from '@/hooks/useContract';
@@ -26,9 +25,13 @@ export default function Home() {
       {/* 网格背景系统 */}
       <GridBackground />
 
-      {/* 彩色矩形装饰 */}
-      <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
-        <ColorfulRectangles />
+      {/* Figma GRID 背景素材 */}
+      <div className="fixed inset-0 pointer-events-none z-0 opacity-5">
+        <img
+          src="/images/figma/grid.png"
+          alt=""
+          className="w-full h-full object-cover"
+        />
       </div>
 
       {/* 主要内容 - 提升 z-index */}
@@ -38,7 +41,10 @@ export default function Home() {
       <main className="flex-1 pt-24 pb-16">
         {/* Countdown Section - 倒数到 3000 天纪念日 */}
         <section className="container mx-auto px-4 py-12 relative">
-          <div className="max-w-4xl mx-auto">
+          {/* 色块背景 - 绿黄色 */}
+          <div className="absolute inset-0 bg-rsk-neon-green/10 rounded-3xl"></div>
+
+          <div className="max-w-4xl mx-auto relative z-10">
             <h2 className="text-3xl md:text-4xl font-bold text-center mb-8">
               <span className="text-rsk-orange">距离 Rootstock 3000 天纪念日</span>
             </h2>
@@ -48,6 +54,9 @@ export default function Home() {
 
         {/* Hero Section */}
         <section className="container mx-auto px-4 py-16 text-center relative">
+          {/* 色块背景 - 粉色 */}
+          <div className="absolute inset-0 bg-rsk-pink/10 rounded-3xl"></div>
+
           {/* Bitcoin Icon - Floating Decorations from Figma */}
           <div className="absolute top-10 left-10 animate-float opacity-20 hidden lg:block">
             <img src="/images/figma/bitcoin.png" alt="Bitcoin" className="w-32 h-auto" />
@@ -88,11 +97,14 @@ export default function Home() {
         </section>
 
         {/* Mint Section */}
-        <section id="mint" className="container mx-auto px-4 py-16">
-          <div className="max-w-4xl mx-auto">
+        <section id="mint" className="container mx-auto px-4 py-16 relative">
+          {/* 色块背景 - 橙色 */}
+          <div className="absolute inset-0 bg-rsk-orange/10 rounded-3xl"></div>
+
+          <div className="max-w-4xl mx-auto relative z-10">
             <h2 className="text-4xl font-bold text-center mb-12">
-              <span className="text-rsk-orange">{t('mint.title').split(' ')[0]}</span>{' '}
-              <span className="text-rsk-dark">{t('mint.title').split(' ')[1]}</span>
+              <span className="text-rsk-orange">免费铸造</span>{' '}
+              <span className="text-rsk-dark">SBT</span>
             </h2>
 
             {/* SBT Preview */}
@@ -118,6 +130,11 @@ export default function Home() {
 
             {/* Progress Bar */}
             <div className="mb-16">
+              <h3 className="text-2xl font-bold text-center mb-6">
+                <span className="text-rsk-orange">鑄造</span>
+                <span className="text-rsk-dark">進度</span>
+              </h3>
+
               {error ? (
                 <div className="bg-red-500/10 border border-red-500/30 rounded-xl p-8 text-center">
                   <h3 className="text-xl font-bold text-red-500 mb-2">{t('mint.error.failedToLoad')}</h3>
@@ -192,17 +209,30 @@ export default function Home() {
         </section>
 
         {/* Rootstock Introduction Section */}
-        <section className="container mx-auto px-4 py-12">
-          <RootstockIntro />
+        <section className="container mx-auto px-4 py-12 relative">
+          {/* 色块背景 - 黑色 */}
+          <div className="absolute inset-0 bg-rsk-dark/5 rounded-3xl"></div>
+
+          <div className="relative z-10">
+            <RootstockIntro />
+          </div>
         </section>
 
         {/* Campaign Info Section */}
-        <section className="container mx-auto px-4 py-12">
-          <CampaignInfo />
+        <section className="container mx-auto px-4 py-12 relative">
+          {/* 色块背景 - 绿黄色 */}
+          <div className="absolute inset-0 bg-rsk-neon-green/10 rounded-3xl"></div>
+
+          <div className="relative z-10">
+            <CampaignInfo />
+          </div>
         </section>
 
         {/* About Section */}
         <section id="about" className="container mx-auto px-4 py-16 relative">
+          {/* 色块背景 - 粉色 */}
+          <div className="absolute inset-0 bg-rsk-pink/10 rounded-3xl"></div>
+
           {/* Figma Decoration - Background */}
           <div className="absolute top-0 right-0 opacity-5 hidden lg:block pointer-events-none">
             <img src="/images/figma/group-decoration.png" alt="" className="w-96 h-auto" />
@@ -244,6 +274,9 @@ export default function Home() {
 
         {/* FAQ Section */}
         <section className="container mx-auto px-4 py-16 relative">
+          {/* 色块背景 - 橙色 */}
+          <div className="absolute inset-0 bg-rsk-orange/10 rounded-3xl"></div>
+
           {/* Figma Dark Texture - Background */}
           <div className="absolute bottom-0 left-0 opacity-3 hidden lg:block pointer-events-none">
             <img src="/images/figma/dark-texture.png" alt="" className="w-64 h-auto" />

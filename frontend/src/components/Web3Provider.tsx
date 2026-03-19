@@ -36,14 +36,20 @@ export const Web3Provider: React.FC<Web3ProviderProps> = ({ children }) => {
     <WagmiProvider config={config}>
       <QueryClientProvider client={queryClient}>
         <ConnectKitProvider
-          theme="midnight"
+          theme="soft"
           customTheme={{
-            '--ck-font-family': '"Inter", system-ui, sans-serif',
-            '--ck-border-radius': '16px',
-            '--ck-connectbutton-background': '#FF6B00',
-            '--ck-connectbutton-hover-background': '#ff8533',
-            '--ck-primary-button-background': '#FF6B00',
-            '--ck-primary-button-hover-background': '#ff8533',
+            '--ck-font-family': '"Space Grotesk", system-ui, sans-serif',
+            '--ck-border-radius': '12px',
+            '--ck-connectbutton-background': '#FF9100',
+            '--ck-connectbutton-color': '#FFFFFF',
+            '--ck-connectbutton-hover-background': '#FFA833',
+            '--ck-connectbutton-active-background': '#E58200',
+            '--ck-primary-button-background': '#FF9100',
+            '--ck-primary-button-color': '#FFFFFF',
+            '--ck-primary-button-hover-background': '#FFA833',
+            '--ck-body-background': '#FDF8F0',
+            '--ck-body-background-secondary': '#F5EFE6',
+            '--ck-overlay-background': 'rgba(0, 0, 0, 0.3)',
           }}
         >
           {children}
