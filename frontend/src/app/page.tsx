@@ -87,14 +87,14 @@ export default function Home() {
               <div className="bg-rsk-gray border border-rsk-orange/30 rounded-xl p-4 text-center">
                 <div className="text-sm text-gray-400 mb-1">{t('mint.stats.launchDate')}</div>
                 <div className="text-lg font-bold text-rsk-light font-mono">
-                  Jan 16, 2018
+                  2018年1月16日
                 </div>
               </div>
 
               <div className="bg-rsk-gray border border-rsk-orange/30 rounded-xl p-4 text-center">
                 <div className="text-sm text-gray-400 mb-1">{t('mint.stats.milestoneDate')}</div>
                 <div className="text-lg font-bold text-rsk-orange font-mono">
-                  Apr 4, 2026
+                  2026年4月4日
                 </div>
               </div>
 
