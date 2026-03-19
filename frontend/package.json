@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "prebuild": "rm -f src/i18n/locales/en.json",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
