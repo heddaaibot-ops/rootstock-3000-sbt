@@ -28,7 +28,7 @@ export default function Home() {
             <h2 className="text-3xl md:text-4xl font-bold text-center mb-8">
               <span className="text-rsk-orange">距离 Rootstock 3000 天纪念日</span>
             </h2>
-            <Countdown milestoneTimestamp={1742601600} />
+            <Countdown milestoneTimestamp={1774137600} />
           </div>
         </section>
 

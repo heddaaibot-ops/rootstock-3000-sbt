@@ -21,7 +21,7 @@ export const calculateProgress = (current: bigint, total: bigint): number => {
 };
 
 export const formatDate = (timestamp: number): string => {
-  return new Date(timestamp * 1000).toLocaleDateString('en-US', {
+  return new Date(timestamp * 1000).toLocaleDateString('zh-CN', {
     year: 'numeric',
     month: 'long',
     day: 'numeric',
@@ -29,7 +29,7 @@ export const formatDate = (timestamp: number): string => {
 };
 
 export const formatDateTime = (timestamp: number): string => {
-  return new Date(timestamp * 1000).toLocaleString('en-US', {
+  return new Date(timestamp * 1000).toLocaleString('zh-CN', {
     year: 'numeric',
     month: 'long',
     day: 'numeric',
