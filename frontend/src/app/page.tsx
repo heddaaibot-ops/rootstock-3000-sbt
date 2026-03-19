@@ -22,6 +22,16 @@ export default function Home() {
       <Header />
 
       <main className="flex-1 pt-24 pb-16">
+        {/* Countdown Section - 倒数到 3000 天纪念日 */}
+        <section className="container mx-auto px-4 py-12">
+          <div className="max-w-4xl mx-auto">
+            <h2 className="text-3xl md:text-4xl font-bold text-center mb-8">
+              <span className="text-rsk-orange">距离 Rootstock 3000 天纪念日</span>
+            </h2>
+            <Countdown milestoneTimestamp={1742601600} />
+          </div>
+        </section>
+
         {/* Hero Section */}
         <section className="container mx-auto px-4 py-16 text-center">
           <div className="animate-fade-in">
@@ -94,7 +104,7 @@ export default function Home() {
               <div className="bg-rsk-gray border border-rsk-orange/30 rounded-xl p-4 text-center">
                 <div className="text-sm text-gray-400 mb-1">{t('mint.stats.milestoneDate')}</div>
                 <div className="text-lg font-bold text-rsk-orange font-mono">
-                  2026年4月4日
+                  2026年3月22日
                 </div>
               </div>
 
@@ -129,13 +139,6 @@ export default function Home() {
         {/* Campaign Info Section */}
         <section className="container mx-auto px-4 py-12">
           <CampaignInfo />
-        </section>
-
-        {/* Countdown Section */}
-        <section className="container mx-auto px-4 py-12">
-          <Countdown
-            milestoneTimestamp={contractData ? Number(contractData.milestoneDate) : 1743724800}
-          />
         </section>
 
         {/* About Section */}
