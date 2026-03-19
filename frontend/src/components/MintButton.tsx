@@ -60,7 +60,7 @@ export const MintButton: React.FC<MintButtonProps> = ({
           <div className="text-2xl font-bold text-green-500 mb-2">
             {t('mint.success.title')}
           </div>
-          <div className="text-gray-400 mb-6">
+          <div className="text-rsk-text/70 mb-6">
             {t('mint.success.description')}
           </div>
 
@@ -100,7 +100,7 @@ export const MintButton: React.FC<MintButtonProps> = ({
           <div className="text-2xl font-bold text-red-500 mb-2">
             {t('mint.error.title')}
           </div>
-          <div className="text-gray-400 mb-4">{error}</div>
+          <div className="text-rsk-text/70 mb-4">{error}</div>
           <button
             onClick={() => setError(null)}
             className="px-6 py-3 bg-red-500/20 hover:bg-red-500/30 text-red-500 rounded-lg transition-colors"
@@ -158,7 +158,7 @@ export const MintButton: React.FC<MintButtonProps> = ({
         )}
       </button>
 
-      <div className="text-sm text-gray-400 mt-4">
+      <div className="text-sm text-rsk-text/70 mt-4">
         {statusMessage}
       </div>
     </div>

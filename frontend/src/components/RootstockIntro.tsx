@@ -13,7 +13,7 @@ export const RootstockIntro: React.FC = () => {
           {t('rootstock.title')}
         </h2>
 
-        <div className="space-y-6 text-gray-300 leading-relaxed">
+        <div className="space-y-6 text-rsk-text/70 leading-relaxed">
           <p>{t('rootstock.paragraph1')}</p>
           <p>{t('rootstock.paragraph2')}</p>
           <p>{t('rootstock.paragraph3')}</p>

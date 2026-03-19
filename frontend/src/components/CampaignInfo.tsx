@@ -25,7 +25,7 @@ export const CampaignInfo: React.FC = () => {
         <h3 className="text-2xl font-bold text-rsk-orange mb-6 text-center">
           {t('campaign.howToParticipate')}
         </h3>
-        <div className="space-y-4 text-gray-300">
+        <div className="space-y-4 text-rsk-text/70">
           <div className="flex items-start gap-4">
             <div className="flex-shrink-0 w-8 h-8 bg-rsk-orange rounded-full flex items-center justify-center font-bold text-rsk-dark">
               1

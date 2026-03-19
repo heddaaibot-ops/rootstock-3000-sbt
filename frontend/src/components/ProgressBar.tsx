@@ -37,7 +37,7 @@ export const ProgressBar: React.FC<ProgressBarProps> = ({ current, total, loadin
           <div className="text-sm text-rsk-text/70 mt-1">总供应量</div>
         </div>
         <div className="text-center">
-          <div className="text-3xl font-bold text-gray-300 font-mono">
+          <div className="text-3xl font-bold text-rsk-text/70 font-mono">
             {formatNumber(Number(remaining))}
           </div>
           <div className="text-sm text-rsk-text/70 mt-1">剩余</div>
@@ -46,7 +46,7 @@ export const ProgressBar: React.FC<ProgressBarProps> = ({ current, total, loadin
 
       {/* 百分比標籤 - 移到統計數字下方 */}
       <div className="text-center mb-6">
-        <div className="inline-block bg-rsk-dark border border-rsk-orange px-6 py-3 rounded-lg">
+        <div className="inline-block bg-rsk-orange/10 border border-rsk-orange px-6 py-3 rounded-lg">
           <span className="text-2xl font-bold text-rsk-orange font-mono">
             {formatPercentage(percentage, 3)}
           </span>
