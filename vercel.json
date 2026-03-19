@@ -1,13 +1,12 @@
 {
-  "buildCommand": "rm -rf .next node_modules/.cache && rm -f src/i18n/locales/en.json && npm install && npm run build",
+  "buildCommand": "rm -f src/i18n/locales/en.json && npm run build",
   "outputDirectory": ".next",
   "devCommand": "npm run dev",
   "installCommand": "npm install",
   "framework": "nextjs",
   "regions": ["hkg1"],
   "env": {
-    "NEXT_PUBLIC_LOCALE": "zh",
-    "NEXT_PUBLIC_FORCE_REBUILD": "true"
+    "NEXT_PUBLIC_LOCALE": "zh"
   },
   "build": {
     "env": {
