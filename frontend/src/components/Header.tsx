@@ -5,7 +5,7 @@ import { ConnectKitButton } from 'connectkit';
 
 export const Header: React.FC = () => {
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-rsk-light/95 backdrop-blur-lg border-b border-rsk-border shadow-sm">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-rsk-cream/95 backdrop-blur-lg border-b border-rsk-orange/20 shadow-sm">
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
@@ -20,16 +20,16 @@ export const Header: React.FC = () => {
           </div>
 
           {/* Navigation */}
-          <nav className="hidden md:flex items-center gap-6 text-sm">
+          <nav className="hidden md:flex items-center gap-6 text-sm font-medium">
             <a
               href="#about"
-              className="text-rsk-text/70 hover:text-rsk-orange transition-colors"
+              className="text-rsk-dark hover:text-rsk-pink transition-colors"
             >
               关于
             </a>
             <a
               href="#mint"
-              className="text-rsk-text/70 hover:text-rsk-orange transition-colors"
+              className="text-rsk-dark hover:text-rsk-orange transition-colors"
             >
               铸造
             </a>
@@ -37,7 +37,7 @@ export const Header: React.FC = () => {
               href="https://rootstock.io"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-rsk-text/70 hover:text-rsk-orange transition-colors flex items-center gap-1"
+              className="text-rsk-dark hover:text-rsk-neon-green transition-colors flex items-center gap-1"
             >
               <span>Rootstock 官网</span>
               <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">

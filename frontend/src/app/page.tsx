@@ -40,46 +40,25 @@ export default function Home() {
         <section className="container mx-auto px-4 py-12 relative">
           <div className="max-w-4xl mx-auto">
             <h2 className="text-3xl md:text-4xl font-bold text-center mb-8">
-              <span className="bg-gradient-to-r from-rsk-orange via-rsk-pink to-rsk-neon-green bg-clip-text text-transparent">
-                距离 Rootstock 3000 天纪念日
-              </span>
+              <span className="text-rsk-orange">距离 Rootstock 3000 天纪念日</span>
             </h2>
             <Countdown milestoneTimestamp={1774137600} />
           </div>
         </section>
 
-        {/* SBT Preview Section */}
-        <section className="container mx-auto px-4 py-12 relative">
-          <div className="max-w-2xl mx-auto">
-            <div className="bg-rsk-gray/50 border-2 border-rsk-pink/30 rounded-3xl p-8 hover:border-rsk-pink transition-all duration-300 shadow-lg hover:shadow-rsk-pink/20 relative overflow-hidden">
-              {/* 装饰性渐变背景 */}
-              <div className="absolute inset-0 bg-gradient-to-br from-rsk-neon-green/5 via-transparent to-rsk-pink/5 pointer-events-none" />
-
-              <h3 className="text-2xl font-bold text-rsk-orange mb-6 text-center relative z-10">
-                SBT 预览
-              </h3>
-              <div className="relative aspect-square w-full max-w-md mx-auto z-10">
-                <img
-                  src="/images/sbt-preview.png"
-                  alt="Rootstock 爱你 3000 SBT"
-                  className="w-full h-full object-contain rounded-2xl"
-                />
-              </div>
-              <p className="text-center text-rsk-text/70 mt-6 text-sm relative z-10">
-                独一无二的纪念 NFT，永久绑定你的钱包地址
-              </p>
-            </div>
-          </div>
-        </section>
-
         {/* Hero Section */}
         <section className="container mx-auto px-4 py-16 text-center relative">
-          {/* Bitcoin Icon - Floating Decorations */}
-          <div className="absolute top-10 left-10 animate-float opacity-30 hidden lg:block">
-            <BitcoinIcon size={100} />
+          {/* Bitcoin Icon - Floating Decorations from Figma */}
+          <div className="absolute top-10 left-10 animate-float opacity-20 hidden lg:block">
+            <img src="/images/figma/bitcoin.png" alt="Bitcoin" className="w-32 h-auto" />
           </div>
-          <div className="absolute bottom-10 right-10 animate-float-delayed opacity-25 hidden lg:block">
-            <BitcoinIcon size={80} />
+          <div className="absolute bottom-10 right-10 animate-float-delayed opacity-15 hidden lg:block">
+            <img src="/images/figma/bitcoin.png" alt="Bitcoin" className="w-24 h-auto" />
+          </div>
+
+          {/* Rootstock Logo - Floating Decoration from Figma */}
+          <div className="absolute top-1/2 right-20 animate-float opacity-15 hidden xl:block">
+            <img src="/images/figma/rootstock-logo.png" alt="Rootstock" className="w-28 h-auto" />
           </div>
 
           <div className="animate-fade-in">
@@ -115,6 +94,27 @@ export default function Home() {
               <span className="text-rsk-orange">{t('mint.title').split(' ')[0]}</span>{' '}
               <span className="text-rsk-dark">{t('mint.title').split(' ')[1]}</span>
             </h2>
+
+            {/* SBT Preview */}
+            <div className="mb-16">
+              <div className="max-w-2xl mx-auto">
+                <div className="bg-rsk-gray/50 border border-rsk-orange/20 rounded-3xl p-8 hover:border-rsk-orange transition-all duration-300 shadow-lg hover:shadow-rsk-orange/20">
+                  <h3 className="text-2xl font-bold text-rsk-orange mb-6 text-center">
+                    SBT 预览
+                  </h3>
+                  <div className="relative aspect-square w-full max-w-md mx-auto">
+                    <img
+                      src="/images/sbt-preview.png"
+                      alt="Rootstock 爱你 3000 SBT"
+                      className="w-full h-full object-contain rounded-2xl"
+                    />
+                  </div>
+                  <p className="text-center text-rsk-text/70 mt-6 text-sm">
+                    独一无二的纪念 NFT，永久绑定你的钱包地址
+                  </p>
+                </div>
+              </div>
+            </div>
 
             {/* Progress Bar */}
             <div className="mb-16">
@@ -154,28 +154,28 @@ export default function Home() {
 
             {/* Stats Grid */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-              <div className="bg-rsk-gray border border-rsk-orange/20 rounded-xl p-4 text-center">
+              <div className="bg-rsk-gray border-2 border-rsk-orange rounded-xl p-4 text-center hover:shadow-lg hover:shadow-rsk-orange/20 transition-all">
                 <div className="text-sm text-rsk-text/70 mb-1">{t('mint.stats.launchDate')}</div>
                 <div className="text-lg font-bold text-rsk-dark font-mono">
-                  2018年1月16日
+                  2018年1月3日
                 </div>
               </div>
 
-              <div className="bg-rsk-gray border border-rsk-orange/20 rounded-xl p-4 text-center">
+              <div className="bg-rsk-gray border-2 border-rsk-pink rounded-xl p-4 text-center hover:shadow-lg hover:shadow-rsk-pink/20 transition-all">
                 <div className="text-sm text-rsk-text/70 mb-1">{t('mint.stats.milestoneDate')}</div>
                 <div className="text-lg font-bold text-rsk-orange font-mono">
                   2026年3月22日
                 </div>
               </div>
 
-              <div className="bg-rsk-gray border border-rsk-orange/20 rounded-xl p-4 text-center">
+              <div className="bg-rsk-gray border-2 border-rsk-neon-green rounded-xl p-4 text-center hover:shadow-lg hover:shadow-rsk-neon-green/20 transition-all">
                 <div className="text-sm text-rsk-text/70 mb-1">{t('mint.stats.chainId')}</div>
                 <div className="text-lg font-bold text-rsk-dark font-mono">
                   {chainId || 31}
                 </div>
               </div>
 
-              <div className="bg-rsk-gray border border-rsk-orange/20 rounded-xl p-4 text-center">
+              <div className="bg-rsk-gray border-2 border-rsk-orange rounded-xl p-4 text-center hover:shadow-lg hover:shadow-rsk-orange/20 transition-all">
                 <div className="text-sm text-rsk-text/70 mb-1">{t('mint.stats.status')}</div>
                 <div className="text-lg font-bold text-rsk-dark">
                   {!contractData ? (
@@ -202,8 +202,13 @@ export default function Home() {
         </section>
 
         {/* About Section */}
-        <section id="about" className="container mx-auto px-4 py-16">
-          <div className="max-w-4xl mx-auto">
+        <section id="about" className="container mx-auto px-4 py-16 relative">
+          {/* Figma Decoration - Background */}
+          <div className="absolute top-0 right-0 opacity-5 hidden lg:block pointer-events-none">
+            <img src="/images/figma/group-decoration.png" alt="" className="w-96 h-auto" />
+          </div>
+
+          <div className="max-w-4xl mx-auto relative z-10">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
               <div className="bg-rsk-gray border border-rsk-orange/20 rounded-2xl p-6 text-center hover:border-rsk-orange transition-colors">
                 <h3 className="text-lg font-bold text-rsk-dark mb-2">{t('about.soulBound.title')}</h3>
@@ -238,8 +243,13 @@ export default function Home() {
         </section>
 
         {/* FAQ Section */}
-        <section className="container mx-auto px-4 py-16">
-          <div className="max-w-3xl mx-auto">
+        <section className="container mx-auto px-4 py-16 relative">
+          {/* Figma Dark Texture - Background */}
+          <div className="absolute bottom-0 left-0 opacity-3 hidden lg:block pointer-events-none">
+            <img src="/images/figma/dark-texture.png" alt="" className="w-64 h-auto" />
+          </div>
+
+          <div className="max-w-3xl mx-auto relative z-10">
             <h2 className="text-4xl font-bold text-center mb-12">
               <span className="text-rsk-orange">{t('faq.title')}</span>
             </h2>
