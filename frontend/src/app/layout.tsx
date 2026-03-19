@@ -7,20 +7,20 @@ import { I18nProvider } from '@/i18n/provider';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'Rootstock 3000 Days | Commemorative Soul Bound Token',
-  description: 'Claim your Soul Bound Token celebrating 3000 days of Rootstock - the most secure smart contract platform powered by Bitcoin.',
-  keywords: 'Rootstock, RSK, Bitcoin, Smart Contracts, SBT, Soul Bound Token, NFT, Blockchain',
-  authors: [{ name: 'Rootstock Community' }],
+  title: 'Rootstock 爱你 3000 | 纪念灵魂绑定代币',
+  description: '领取纪念 Rootstock 3000 天的灵魂绑定代币 - 由比特币驱动的最安全智能合约平台。',
+  keywords: 'Rootstock, RSK, 比特币, 智能合约, SBT, 灵魂绑定代币, NFT, 区块链',
+  authors: [{ name: 'Rootstock 社区' }],
   openGraph: {
-    title: 'Rootstock 3000 Days SBT',
-    description: 'Commemorating 3000 days of Bitcoin-powered smart contracts',
+    title: 'Rootstock 爱你 3000 SBT',
+    description: '纪念比特币智能合约 3000 天',
     type: 'website',
-    locale: 'en_US',
+    locale: 'zh_CN',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Rootstock 3000 Days SBT',
-    description: 'Commemorating 3000 days of Bitcoin-powered smart contracts',
+    title: 'Rootstock 爱你 3000 SBT',
+    description: '纪念比特币智能合约 3000 天',
   },
   viewport: 'width=device-width, initial-scale=1',
   themeColor: '#FF6B00',
@@ -32,7 +32,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="zh">
       <body className={inter.className}>
         <I18nProvider>
           <Web3Provider>

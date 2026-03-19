@@ -12,10 +12,10 @@ export const Header: React.FC = () => {
           <div className="flex items-center gap-4">
             <div className="text-2xl font-bold">
               <span className="text-rsk-orange">Rootstock</span>
-              <span className="text-rsk-light"> 3000</span>
+              <span className="text-rsk-light"> 爱你 3000</span>
             </div>
             <div className="hidden md:block text-sm text-gray-400">
-              Commemorating 3000 Days
+              纪念 3000 天
             </div>
           </div>
 
@@ -25,13 +25,13 @@ export const Header: React.FC = () => {
               href="#about"
               className="text-gray-400 hover:text-rsk-orange transition-colors"
             >
-              About
+              关于
             </a>
             <a
               href="#mint"
               className="text-gray-400 hover:text-rsk-orange transition-colors"
             >
-              Mint
+              铸造
             </a>
             <a
               href="https://rootstock.io"
@@ -39,7 +39,7 @@ export const Header: React.FC = () => {
               rel="noopener noreferrer"
               className="text-gray-400 hover:text-rsk-orange transition-colors flex items-center gap-1"
             >
-              <span>Rootstock</span>
+              <span>Rootstock 官网</span>
               <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
               </svg>
