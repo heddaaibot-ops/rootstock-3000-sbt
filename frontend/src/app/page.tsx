@@ -32,6 +32,27 @@ export default function Home() {
           </div>
         </section>
 
+        {/* SBT Preview Section */}
+        <section className="container mx-auto px-4 py-12">
+          <div className="max-w-2xl mx-auto">
+            <div className="bg-rsk-gray/50 border border-rsk-orange/30 rounded-3xl p-8 hover:border-rsk-orange transition-all duration-300 shadow-lg hover:shadow-rsk-orange/20">
+              <h3 className="text-2xl font-bold text-rsk-orange mb-6 text-center">
+                SBT 预览
+              </h3>
+              <div className="relative aspect-square w-full max-w-md mx-auto">
+                <img
+                  src="/images/sbt-preview.png"
+                  alt="Rootstock 爱你 3000 SBT"
+                  className="w-full h-full object-contain rounded-2xl"
+                />
+              </div>
+              <p className="text-center text-gray-400 mt-6 text-sm">
+                独一无二的纪念 NFT，永久绑定你的钱包地址
+              </p>
+            </div>
+          </div>
+        </section>
+
         {/* Hero Section */}
         <section className="container mx-auto px-4 py-16 text-center">
           <div className="animate-fade-in">
