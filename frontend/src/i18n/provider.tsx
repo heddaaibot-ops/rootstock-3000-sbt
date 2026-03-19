@@ -21,17 +21,15 @@ const I18nContext = createContext<I18nContextType | undefined>(undefined);
 export function I18nProvider({ children }: { children: React.ReactNode }) {
   const [locale, setLocaleState] = useState<Locale>(defaultLocale);
 
-  // Load locale from localStorage on mount
+  // Clear any old locale from localStorage and force Chinese
   useEffect(() => {
-    const savedLocale = localStorage.getItem('locale') as Locale;
-    if (savedLocale && savedLocale === 'zh') {
-      setLocaleState(savedLocale);
-    }
+    localStorage.removeItem('locale');
+    setLocaleState('zh');
   }, []);
 
   const setLocale = (newLocale: Locale) => {
-    setLocaleState(newLocale);
-    localStorage.setItem('locale', newLocale);
+    // Force Chinese only
+    setLocaleState('zh');
   };
 
   const t = (key: string): string => {
