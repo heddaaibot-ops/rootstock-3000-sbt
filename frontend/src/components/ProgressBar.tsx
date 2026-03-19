@@ -28,19 +28,19 @@ export const ProgressBar: React.FC<ProgressBarProps> = ({ current, total, loadin
           <div className="text-3xl font-bold text-rsk-orange font-mono">
             {formatNumber(Number(current))}
           </div>
-          <div className="text-sm text-gray-400 mt-1">已铸造</div>
+          <div className="text-sm text-rsk-text/70 mt-1">已铸造</div>
         </div>
         <div className="text-center">
-          <div className="text-3xl font-bold text-rsk-light font-mono">
+          <div className="text-3xl font-bold text-rsk-dark font-mono">
             {formatNumber(Number(total))}
           </div>
-          <div className="text-sm text-gray-400 mt-1">总供应量</div>
+          <div className="text-sm text-rsk-text/70 mt-1">总供应量</div>
         </div>
         <div className="text-center">
           <div className="text-3xl font-bold text-gray-300 font-mono">
             {formatNumber(Number(remaining))}
           </div>
-          <div className="text-sm text-gray-400 mt-1">剩余</div>
+          <div className="text-sm text-rsk-text/70 mt-1">剩余</div>
         </div>
       </div>
 
@@ -68,7 +68,7 @@ export const ProgressBar: React.FC<ProgressBarProps> = ({ current, total, loadin
       </div>
 
       {/* 刻度線 */}
-      <div className="flex justify-between mt-2 text-xs text-gray-500 font-mono">
+      <div className="flex justify-between mt-2 text-xs text-rsk-text/60 font-mono">
         <span>0</span>
         <span>25K</span>
         <span>50K</span>

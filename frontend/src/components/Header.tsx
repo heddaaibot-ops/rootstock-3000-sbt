@@ -5,16 +5,16 @@ import { ConnectKitButton } from 'connectkit';
 
 export const Header: React.FC = () => {
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-rsk-dark/80 backdrop-blur-lg border-b border-rsk-gray">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-rsk-light/95 backdrop-blur-lg border-b border-rsk-border shadow-sm">
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
           <div className="flex items-center gap-4">
             <div className="text-2xl font-bold">
               <span className="text-rsk-orange">Rootstock</span>
-              <span className="text-rsk-light"> 爱你 3000</span>
+              <span className="text-rsk-dark"> 爱你 3000</span>
             </div>
-            <div className="hidden md:block text-sm text-gray-400">
+            <div className="hidden md:block text-sm text-rsk-text/70">
               纪念 3000 天
             </div>
           </div>
@@ -23,13 +23,13 @@ export const Header: React.FC = () => {
           <nav className="hidden md:flex items-center gap-6 text-sm">
             <a
               href="#about"
-              className="text-gray-400 hover:text-rsk-orange transition-colors"
+              className="text-rsk-text/70 hover:text-rsk-orange transition-colors"
             >
               关于
             </a>
             <a
               href="#mint"
-              className="text-gray-400 hover:text-rsk-orange transition-colors"
+              className="text-rsk-text/70 hover:text-rsk-orange transition-colors"
             >
               铸造
             </a>
@@ -37,7 +37,7 @@ export const Header: React.FC = () => {
               href="https://rootstock.io"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-gray-400 hover:text-rsk-orange transition-colors flex items-center gap-1"
+              className="text-rsk-text/70 hover:text-rsk-orange transition-colors flex items-center gap-1"
             >
               <span>Rootstock 官网</span>
               <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">

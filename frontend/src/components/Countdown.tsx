@@ -27,7 +27,7 @@ export const Countdown: React.FC<CountdownProps> = ({ milestoneTimestamp }) => {
           <div className="text-2xl font-bold text-rsk-orange mb-2">
             {t('countdown.milestoneReached')}
           </div>
-          <div className="text-gray-400">
+          <div className="text-rsk-text/70">
             {formatDate(milestoneTimestamp)}
           </div>
         </div>
@@ -37,41 +37,41 @@ export const Countdown: React.FC<CountdownProps> = ({ milestoneTimestamp }) => {
 
   return (
     <div className="text-center py-8">
-      <div className="text-sm text-gray-400 mb-4 uppercase tracking-wide">
+      <div className="text-sm text-rsk-text/70 mb-4 uppercase tracking-wide">
         {t('countdown.countdown')}
       </div>
 
       <div className="grid grid-cols-4 gap-4 max-w-2xl mx-auto">
-        <div className="bg-rsk-gray border border-rsk-orange/30 rounded-2xl p-6 hover:border-rsk-orange transition-colors">
+        <div className="bg-rsk-gray border border-rsk-orange/20 rounded-2xl p-6 hover:border-rsk-orange transition-colors">
           <div className="text-5xl font-bold text-rsk-orange font-mono">
             {String(timeLeft.days).padStart(2, '0')}
           </div>
-          <div className="text-sm text-gray-400 mt-2 uppercase tracking-wide">{t('countdown.days')}</div>
+          <div className="text-sm text-rsk-text/70 mt-2 uppercase tracking-wide">{t('countdown.days')}</div>
         </div>
 
-        <div className="bg-rsk-gray border border-rsk-orange/30 rounded-2xl p-6 hover:border-rsk-orange transition-colors">
-          <div className="text-5xl font-bold text-rsk-light font-mono">
+        <div className="bg-rsk-gray border border-rsk-orange/20 rounded-2xl p-6 hover:border-rsk-orange transition-colors">
+          <div className="text-5xl font-bold text-rsk-dark font-mono">
             {String(timeLeft.hours).padStart(2, '0')}
           </div>
-          <div className="text-sm text-gray-400 mt-2 uppercase tracking-wide">{t('countdown.hours')}</div>
+          <div className="text-sm text-rsk-text/70 mt-2 uppercase tracking-wide">{t('countdown.hours')}</div>
         </div>
 
-        <div className="bg-rsk-gray border border-rsk-orange/30 rounded-2xl p-6 hover:border-rsk-orange transition-colors">
-          <div className="text-5xl font-bold text-rsk-light font-mono">
+        <div className="bg-rsk-gray border border-rsk-orange/20 rounded-2xl p-6 hover:border-rsk-orange transition-colors">
+          <div className="text-5xl font-bold text-rsk-dark font-mono">
             {String(timeLeft.minutes).padStart(2, '0')}
           </div>
-          <div className="text-sm text-gray-400 mt-2 uppercase tracking-wide">{t('countdown.minutes')}</div>
+          <div className="text-sm text-rsk-text/70 mt-2 uppercase tracking-wide">{t('countdown.minutes')}</div>
         </div>
 
-        <div className="bg-rsk-gray border border-rsk-orange/30 rounded-2xl p-6 hover:border-rsk-orange transition-colors">
-          <div className="text-5xl font-bold text-rsk-light font-mono">
+        <div className="bg-rsk-gray border border-rsk-orange/20 rounded-2xl p-6 hover:border-rsk-orange transition-colors">
+          <div className="text-5xl font-bold text-rsk-dark font-mono">
             {String(timeLeft.seconds).padStart(2, '0')}
           </div>
-          <div className="text-sm text-gray-400 mt-2 uppercase tracking-wide">{t('countdown.seconds')}</div>
+          <div className="text-sm text-rsk-text/70 mt-2 uppercase tracking-wide">{t('countdown.seconds')}</div>
         </div>
       </div>
 
-      <div className="text-gray-400 mt-6">
+      <div className="text-rsk-text/70 mt-6">
         Milestone Date: <span className="text-rsk-orange font-semibold">{formatDate(milestoneTimestamp)}</span>
       </div>
     </div>

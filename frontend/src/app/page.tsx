@@ -18,7 +18,7 @@ export default function Home() {
   const { t } = useI18n();
 
   return (
-    <div className="min-h-screen flex flex-col bg-rsk-dark">
+    <div className="min-h-screen flex flex-col bg-rsk-cream">
       <Header />
 
       <main className="flex-1 pt-24 pb-16">
@@ -35,7 +35,7 @@ export default function Home() {
         {/* SBT Preview Section */}
         <section className="container mx-auto px-4 py-12">
           <div className="max-w-2xl mx-auto">
-            <div className="bg-rsk-gray/50 border border-rsk-orange/30 rounded-3xl p-8 hover:border-rsk-orange transition-all duration-300 shadow-lg hover:shadow-rsk-orange/20">
+            <div className="bg-rsk-gray/50 border border-rsk-orange/20 rounded-3xl p-8 hover:border-rsk-orange transition-all duration-300 shadow-lg hover:shadow-rsk-orange/20">
               <h3 className="text-2xl font-bold text-rsk-orange mb-6 text-center">
                 SBT 预览
               </h3>
@@ -46,7 +46,7 @@ export default function Home() {
                   className="w-full h-full object-contain rounded-2xl"
                 />
               </div>
-              <p className="text-center text-gray-400 mt-6 text-sm">
+              <p className="text-center text-rsk-text/70 mt-6 text-sm">
                 独一无二的纪念 NFT，永久绑定你的钱包地址
               </p>
             </div>
@@ -58,12 +58,12 @@ export default function Home() {
           <div className="animate-fade-in">
             <h1 className="text-5xl md:text-7xl font-bold mb-6">
               <span className="text-rsk-orange">Rootstock</span>{' '}
-              <span className="text-rsk-light">{t('hero.title').split('Rootstock ')[1]}</span>
+              <span className="text-rsk-dark">{t('hero.title').split('Rootstock ')[1]}</span>
             </h1>
-            <p className="text-xl md:text-2xl text-gray-400 mb-4">
+            <p className="text-xl md:text-2xl text-rsk-text/70 mb-4">
               {t('hero.subtitle')}
             </p>
-            <p className="text-sm text-gray-500 max-w-2xl mx-auto">
+            <p className="text-sm text-rsk-text/60 max-w-2xl mx-auto">
               {t('hero.description')}
             </p>
           </div>
@@ -74,7 +74,7 @@ export default function Home() {
           <div className="max-w-4xl mx-auto">
             <h2 className="text-4xl font-bold text-center mb-12">
               <span className="text-rsk-orange">{t('mint.title').split(' ')[0]}</span>{' '}
-              <span className="text-rsk-light">{t('mint.title').split(' ')[1]}</span>
+              <span className="text-rsk-dark">{t('mint.title').split(' ')[1]}</span>
             </h2>
 
             {/* Progress Bar */}
@@ -82,7 +82,7 @@ export default function Home() {
               {error ? (
                 <div className="bg-red-500/10 border border-red-500/30 rounded-xl p-8 text-center">
                   <h3 className="text-xl font-bold text-red-500 mb-2">{t('mint.error.failedToLoad')}</h3>
-                  <p className="text-gray-400 mb-6">{error}</p>
+                  <p className="text-rsk-text/70 mb-6">{error}</p>
                   <button
                     onClick={refresh}
                     className="px-6 py-3 bg-rsk-orange hover:bg-rsk-orange/80 rounded-xl font-bold transition-colors"
@@ -115,36 +115,36 @@ export default function Home() {
 
             {/* Stats Grid */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-              <div className="bg-rsk-gray border border-rsk-orange/30 rounded-xl p-4 text-center">
-                <div className="text-sm text-gray-400 mb-1">{t('mint.stats.launchDate')}</div>
-                <div className="text-lg font-bold text-rsk-light font-mono">
+              <div className="bg-rsk-gray border border-rsk-orange/20 rounded-xl p-4 text-center">
+                <div className="text-sm text-rsk-text/70 mb-1">{t('mint.stats.launchDate')}</div>
+                <div className="text-lg font-bold text-rsk-dark font-mono">
                   2018年1月16日
                 </div>
               </div>
 
-              <div className="bg-rsk-gray border border-rsk-orange/30 rounded-xl p-4 text-center">
-                <div className="text-sm text-gray-400 mb-1">{t('mint.stats.milestoneDate')}</div>
+              <div className="bg-rsk-gray border border-rsk-orange/20 rounded-xl p-4 text-center">
+                <div className="text-sm text-rsk-text/70 mb-1">{t('mint.stats.milestoneDate')}</div>
                 <div className="text-lg font-bold text-rsk-orange font-mono">
                   2026年3月22日
                 </div>
               </div>
 
-              <div className="bg-rsk-gray border border-rsk-orange/30 rounded-xl p-4 text-center">
-                <div className="text-sm text-gray-400 mb-1">{t('mint.stats.chainId')}</div>
-                <div className="text-lg font-bold text-rsk-light font-mono">
+              <div className="bg-rsk-gray border border-rsk-orange/20 rounded-xl p-4 text-center">
+                <div className="text-sm text-rsk-text/70 mb-1">{t('mint.stats.chainId')}</div>
+                <div className="text-lg font-bold text-rsk-dark font-mono">
                   {chainId || 31}
                 </div>
               </div>
 
-              <div className="bg-rsk-gray border border-rsk-orange/30 rounded-xl p-4 text-center">
-                <div className="text-sm text-gray-400 mb-1">{t('mint.stats.status')}</div>
-                <div className="text-lg font-bold text-rsk-light">
+              <div className="bg-rsk-gray border border-rsk-orange/20 rounded-xl p-4 text-center">
+                <div className="text-sm text-rsk-text/70 mb-1">{t('mint.stats.status')}</div>
+                <div className="text-lg font-bold text-rsk-dark">
                   {!contractData ? (
-                    <span className="text-gray-500">{t('mint.stats.loading')}</span>
+                    <span className="text-rsk-text/60">{t('mint.stats.loading')}</span>
                   ) : contractData.isPaused ? (
-                    <span className="text-yellow-500">{t('mint.stats.paused')}</span>
+                    <span className="text-orange-600">{t('mint.stats.paused')}</span>
                   ) : (
-                    <span className="text-green-500">{t('mint.stats.live')}</span>
+                    <span className="text-green-600">{t('mint.stats.live')}</span>
                   )}
                 </div>
               </div>
@@ -166,23 +166,23 @@ export default function Home() {
         <section id="about" className="container mx-auto px-4 py-16">
           <div className="max-w-4xl mx-auto">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
-              <div className="bg-rsk-gray border border-rsk-orange/30 rounded-2xl p-6 text-center hover:border-rsk-orange transition-colors">
-                <h3 className="text-lg font-bold text-rsk-light mb-2">{t('about.soulBound.title')}</h3>
-                <p className="text-sm text-gray-400">
+              <div className="bg-rsk-gray border border-rsk-orange/20 rounded-2xl p-6 text-center hover:border-rsk-orange transition-colors">
+                <h3 className="text-lg font-bold text-rsk-dark mb-2">{t('about.soulBound.title')}</h3>
+                <p className="text-sm text-rsk-text/70">
                   {t('about.soulBound.description')}
                 </p>
               </div>
 
-              <div className="bg-rsk-gray border border-rsk-orange/30 rounded-2xl p-6 text-center hover:border-rsk-orange transition-colors">
-                <h3 className="text-lg font-bold text-rsk-light mb-2">{t('about.freeMint.title')}</h3>
-                <p className="text-sm text-gray-400">
+              <div className="bg-rsk-gray border border-rsk-orange/20 rounded-2xl p-6 text-center hover:border-rsk-orange transition-colors">
+                <h3 className="text-lg font-bold text-rsk-dark mb-2">{t('about.freeMint.title')}</h3>
+                <p className="text-sm text-rsk-text/70">
                   {t('about.freeMint.description')}
                 </p>
               </div>
 
-              <div className="bg-rsk-gray border border-rsk-orange/30 rounded-2xl p-6 text-center hover:border-rsk-orange transition-colors">
-                <h3 className="text-lg font-bold text-rsk-light mb-2">{t('about.limitedSupply.title')}</h3>
-                <p className="text-sm text-gray-400">
+              <div className="bg-rsk-gray border border-rsk-orange/20 rounded-2xl p-6 text-center hover:border-rsk-orange transition-colors">
+                <h3 className="text-lg font-bold text-rsk-dark mb-2">{t('about.limitedSupply.title')}</h3>
+                <p className="text-sm text-rsk-text/70">
                   {t('about.limitedSupply.description')}
                 </p>
               </div>
@@ -190,7 +190,7 @@ export default function Home() {
 
             <div className="bg-rsk-gray/50 border border-rsk-orange/20 rounded-2xl p-8">
               <h2 className="text-3xl font-bold text-rsk-orange mb-6">{t('about.whatIsRootstock.title')}</h2>
-              <div className="space-y-4 text-gray-400">
+              <div className="space-y-4 text-rsk-text/70">
                 <p>{t('about.whatIsRootstock.paragraph1')}</p>
                 <p>{t('about.whatIsRootstock.paragraph2')}</p>
               </div>
@@ -206,50 +206,50 @@ export default function Home() {
             </h2>
 
             <div className="space-y-4">
-              <details className="bg-rsk-gray border border-rsk-orange/30 rounded-xl p-6 hover:border-rsk-orange transition-colors group">
-                <summary className="cursor-pointer text-lg font-bold text-rsk-light flex items-center justify-between">
+              <details className="bg-rsk-gray border border-rsk-orange/20 rounded-xl p-6 hover:border-rsk-orange transition-colors group">
+                <summary className="cursor-pointer text-lg font-bold text-rsk-dark flex items-center justify-between">
                   <span>{t('faq.q1.question')}</span>
                   <svg className="w-5 h-5 transform group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                   </svg>
                 </summary>
-                <p className="mt-4 text-gray-400">
+                <p className="mt-4 text-rsk-text/70">
                   {t('faq.q1.answer')}
                 </p>
               </details>
 
-              <details className="bg-rsk-gray border border-rsk-orange/30 rounded-xl p-6 hover:border-rsk-orange transition-colors group">
-                <summary className="cursor-pointer text-lg font-bold text-rsk-light flex items-center justify-between">
+              <details className="bg-rsk-gray border border-rsk-orange/20 rounded-xl p-6 hover:border-rsk-orange transition-colors group">
+                <summary className="cursor-pointer text-lg font-bold text-rsk-dark flex items-center justify-between">
                   <span>{t('faq.q2.question')}</span>
                   <svg className="w-5 h-5 transform group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                   </svg>
                 </summary>
-                <p className="mt-4 text-gray-400">
+                <p className="mt-4 text-rsk-text/70">
                   {t('faq.q2.answer')}
                 </p>
               </details>
 
-              <details className="bg-rsk-gray border border-rsk-orange/30 rounded-xl p-6 hover:border-rsk-orange transition-colors group">
-                <summary className="cursor-pointer text-lg font-bold text-rsk-light flex items-center justify-between">
+              <details className="bg-rsk-gray border border-rsk-orange/20 rounded-xl p-6 hover:border-rsk-orange transition-colors group">
+                <summary className="cursor-pointer text-lg font-bold text-rsk-dark flex items-center justify-between">
                   <span>{t('faq.q3.question')}</span>
                   <svg className="w-5 h-5 transform group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                   </svg>
                 </summary>
-                <p className="mt-4 text-gray-400">
+                <p className="mt-4 text-rsk-text/70">
                   {t('faq.q3.answer')}
                 </p>
               </details>
 
-              <details className="bg-rsk-gray border border-rsk-orange/30 rounded-xl p-6 hover:border-rsk-orange transition-colors group">
-                <summary className="cursor-pointer text-lg font-bold text-rsk-light flex items-center justify-between">
+              <details className="bg-rsk-gray border border-rsk-orange/20 rounded-xl p-6 hover:border-rsk-orange transition-colors group">
+                <summary className="cursor-pointer text-lg font-bold text-rsk-dark flex items-center justify-between">
                   <span>{t('faq.q4.question')}</span>
                   <svg className="w-5 h-5 transform group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                   </svg>
                 </summary>
-                <p className="mt-4 text-gray-400">
+                <p className="mt-4 text-rsk-text/70">
                   {t('faq.q4.answer')}
                 </p>
               </details>
