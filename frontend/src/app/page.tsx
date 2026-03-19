@@ -41,10 +41,7 @@ export default function Home() {
       <main className="flex-1 pt-24 pb-16">
         {/* Countdown Section - 倒数到 3000 天纪念日 */}
         <section className="container mx-auto px-4 py-12 relative">
-          {/* 色块背景 - 绿黄色 */}
-          <div className="absolute inset-0 bg-rsk-neon-green/10 rounded-3xl"></div>
-
-          <div className="max-w-4xl mx-auto relative z-10">
+          <div className="max-w-4xl mx-auto">
             <h2 className="text-3xl md:text-4xl font-bold text-center mb-8">
               <span className="text-rsk-orange">距离 Rootstock 3000 天纪念日</span>
             </h2>
@@ -54,9 +51,6 @@ export default function Home() {
 
         {/* Hero Section */}
         <section className="container mx-auto px-4 py-16 text-center relative">
-          {/* 色块背景 - 粉色 */}
-          <div className="absolute inset-0 bg-rsk-pink/10 rounded-3xl"></div>
-
           {/* Bitcoin Icon - Floating Decorations from Figma */}
           <div className="absolute top-10 left-10 animate-float opacity-20 hidden lg:block">
             <img src="/images/figma/bitcoin.png" alt="Bitcoin" className="w-32 h-auto" />
@@ -98,10 +92,7 @@ export default function Home() {
 
         {/* Mint Section */}
         <section id="mint" className="container mx-auto px-4 py-16 relative">
-          {/* 色块背景 - 橙色 */}
-          <div className="absolute inset-0 bg-rsk-orange/10 rounded-3xl"></div>
-
-          <div className="max-w-4xl mx-auto relative z-10">
+          <div className="max-w-4xl mx-auto">
             <h2 className="text-4xl font-bold text-center mb-12">
               <span className="text-rsk-orange">免费铸造</span>{' '}
               <span className="text-rsk-dark">SBT</span>
@@ -209,52 +200,39 @@ export default function Home() {
         </section>
 
         {/* Rootstock Introduction Section */}
-        <section className="container mx-auto px-4 py-12 relative">
-          {/* 色块背景 - 黑色 */}
-          <div className="absolute inset-0 bg-rsk-dark/5 rounded-3xl"></div>
-
-          <div className="relative z-10">
-            <RootstockIntro />
-          </div>
+        <section className="container mx-auto px-4 py-12">
+          <RootstockIntro />
         </section>
 
         {/* Campaign Info Section */}
-        <section className="container mx-auto px-4 py-12 relative">
-          {/* 色块背景 - 绿黄色 */}
-          <div className="absolute inset-0 bg-rsk-neon-green/10 rounded-3xl"></div>
-
-          <div className="relative z-10">
-            <CampaignInfo />
-          </div>
+        <section className="container mx-auto px-4 py-12">
+          <CampaignInfo />
         </section>
 
         {/* About Section */}
         <section id="about" className="container mx-auto px-4 py-16 relative">
-          {/* 色块背景 - 粉色 */}
-          <div className="absolute inset-0 bg-rsk-pink/10 rounded-3xl"></div>
-
           {/* Figma Decoration - Background */}
           <div className="absolute top-0 right-0 opacity-5 hidden lg:block pointer-events-none">
             <img src="/images/figma/group-decoration.png" alt="" className="w-96 h-auto" />
           </div>
 
-          <div className="max-w-4xl mx-auto relative z-10">
+          <div className="max-w-4xl mx-auto">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
-              <div className="bg-rsk-gray border border-rsk-orange/20 rounded-2xl p-6 text-center hover:border-rsk-orange transition-colors">
+              <div className="bg-rsk-gray border-2 border-rsk-orange rounded-2xl p-6 text-center hover:shadow-lg hover:shadow-rsk-orange/20 transition-all">
                 <h3 className="text-lg font-bold text-rsk-dark mb-2">{t('about.soulBound.title')}</h3>
                 <p className="text-sm text-rsk-text/70">
                   {t('about.soulBound.description')}
                 </p>
               </div>
 
-              <div className="bg-rsk-gray border border-rsk-orange/20 rounded-2xl p-6 text-center hover:border-rsk-orange transition-colors">
+              <div className="bg-rsk-gray border-2 border-rsk-pink rounded-2xl p-6 text-center hover:shadow-lg hover:shadow-rsk-pink/20 transition-all">
                 <h3 className="text-lg font-bold text-rsk-dark mb-2">{t('about.freeMint.title')}</h3>
                 <p className="text-sm text-rsk-text/70">
                   {t('about.freeMint.description')}
                 </p>
               </div>
 
-              <div className="bg-rsk-gray border border-rsk-orange/20 rounded-2xl p-6 text-center hover:border-rsk-orange transition-colors">
+              <div className="bg-rsk-gray border-2 border-rsk-neon-green rounded-2xl p-6 text-center hover:shadow-lg hover:shadow-rsk-neon-green/20 transition-all">
                 <h3 className="text-lg font-bold text-rsk-dark mb-2">{t('about.limitedSupply.title')}</h3>
                 <p className="text-sm text-rsk-text/70">
                   {t('about.limitedSupply.description')}
@@ -262,7 +240,7 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="bg-rsk-gray/50 border border-rsk-orange/20 rounded-2xl p-8">
+            <div className="bg-rsk-gray/50 border-2 border-rsk-orange rounded-2xl p-8 hover:shadow-lg hover:shadow-rsk-orange/20 transition-all">
               <h2 className="text-3xl font-bold text-rsk-orange mb-6">{t('about.whatIsRootstock.title')}</h2>
               <div className="space-y-4 text-rsk-text/70">
                 <p>{t('about.whatIsRootstock.paragraph1')}</p>
@@ -274,21 +252,18 @@ export default function Home() {
 
         {/* FAQ Section */}
         <section className="container mx-auto px-4 py-16 relative">
-          {/* 色块背景 - 橙色 */}
-          <div className="absolute inset-0 bg-rsk-orange/10 rounded-3xl"></div>
-
           {/* Figma Dark Texture - Background */}
           <div className="absolute bottom-0 left-0 opacity-3 hidden lg:block pointer-events-none">
             <img src="/images/figma/dark-texture.png" alt="" className="w-64 h-auto" />
           </div>
 
-          <div className="max-w-3xl mx-auto relative z-10">
+          <div className="max-w-3xl mx-auto">
             <h2 className="text-4xl font-bold text-center mb-12">
               <span className="text-rsk-orange">{t('faq.title')}</span>
             </h2>
 
             <div className="space-y-4">
-              <details className="bg-rsk-gray border border-rsk-orange/20 rounded-xl p-6 hover:border-rsk-orange transition-colors group">
+              <details className="bg-rsk-gray border-2 border-rsk-orange rounded-xl p-6 hover:shadow-lg hover:shadow-rsk-orange/20 transition-all group">
                 <summary className="cursor-pointer text-lg font-bold text-rsk-dark flex items-center justify-between">
                   <span>{t('faq.q1.question')}</span>
                   <svg className="w-5 h-5 transform group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -300,7 +275,7 @@ export default function Home() {
                 </p>
               </details>
 
-              <details className="bg-rsk-gray border border-rsk-orange/20 rounded-xl p-6 hover:border-rsk-orange transition-colors group">
+              <details className="bg-rsk-gray border-2 border-rsk-pink rounded-xl p-6 hover:shadow-lg hover:shadow-rsk-pink/20 transition-all group">
                 <summary className="cursor-pointer text-lg font-bold text-rsk-dark flex items-center justify-between">
                   <span>{t('faq.q2.question')}</span>
                   <svg className="w-5 h-5 transform group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -312,7 +287,7 @@ export default function Home() {
                 </p>
               </details>
 
-              <details className="bg-rsk-gray border border-rsk-orange/20 rounded-xl p-6 hover:border-rsk-orange transition-colors group">
+              <details className="bg-rsk-gray border-2 border-rsk-neon-green rounded-xl p-6 hover:shadow-lg hover:shadow-rsk-neon-green/20 transition-all group">
                 <summary className="cursor-pointer text-lg font-bold text-rsk-dark flex items-center justify-between">
                   <span>{t('faq.q3.question')}</span>
                   <svg className="w-5 h-5 transform group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -324,7 +299,7 @@ export default function Home() {
                 </p>
               </details>
 
-              <details className="bg-rsk-gray border border-rsk-orange/20 rounded-xl p-6 hover:border-rsk-orange transition-colors group">
+              <details className="bg-rsk-gray border-2 border-rsk-orange rounded-xl p-6 hover:shadow-lg hover:shadow-rsk-orange/20 transition-all group">
                 <summary className="cursor-pointer text-lg font-bold text-rsk-dark flex items-center justify-between">
                   <span>{t('faq.q4.question')}</span>
                   <svg className="w-5 h-5 transform group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">

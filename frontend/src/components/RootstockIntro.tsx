@@ -8,7 +8,7 @@ export const RootstockIntro: React.FC = () => {
 
   return (
     <div className="w-full">
-      <div className="bg-rsk-gray/50 border border-rsk-orange/20 rounded-2xl p-8 md:p-12">
+      <div className="bg-rsk-gray/50 border-2 border-rsk-dark rounded-2xl p-8 md:p-12 hover:shadow-lg hover:shadow-rsk-dark/20 transition-all">
         <h2 className="text-3xl md:text-4xl font-bold text-rsk-orange mb-6">
           {t('rootstock.title')}
         </h2>
