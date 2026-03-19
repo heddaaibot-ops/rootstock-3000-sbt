@@ -1,0 +1,5 @@
+# Ignore English locale file
+frontend/src/i18n/locales/en.json
+
+# Ignore LanguageSwitcher component
+frontend/src/components/LanguageSwitcher.tsx
