@@ -2,7 +2,6 @@
 
 import React from 'react';
 import { ConnectKitButton } from 'connectkit';
-import { LanguageSwitcher } from './LanguageSwitcher';
 
 export const Header: React.FC = () => {
   return (
@@ -47,9 +46,8 @@ export const Header: React.FC = () => {
             </a>
           </nav>
 
-          {/* Language Switcher and Connect Wallet */}
+          {/* Connect Wallet */}
           <div className="flex items-center gap-4">
-            <LanguageSwitcher />
             <ConnectKitButton />
           </div>
         </div>

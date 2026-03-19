@@ -4,11 +4,9 @@ import React, { createContext, useContext, useState, useEffect } from 'react';
 import type { Locale } from './config';
 import { defaultLocale } from './config';
 
-import enTranslations from './locales/en.json';
 import zhTranslations from './locales/zh.json';
 
 const translations = {
-  en: enTranslations,
   zh: zhTranslations,
 };
 
@@ -26,7 +24,7 @@ export function I18nProvider({ children }: { children: React.ReactNode }) {
   // Load locale from localStorage on mount
   useEffect(() => {
     const savedLocale = localStorage.getItem('locale') as Locale;
-    if (savedLocale && (savedLocale === 'en' || savedLocale === 'zh')) {
+    if (savedLocale && savedLocale === 'zh') {
       setLocaleState(savedLocale);
     }
   }, []);
