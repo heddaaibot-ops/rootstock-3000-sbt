@@ -21,7 +21,7 @@ export const CampaignInfo: React.FC = () => {
       </div>
 
       {/* 活動說明 */}
-      <div className="bg-rsk-gray/50 border-2 border-rsk-pink rounded-2xl p-8 mb-8 hover:shadow-lg hover:shadow-rsk-pink/20 transition-all">
+      <div className="bg-rsk-gray/50 border border-rsk-orange/20 rounded-2xl p-8 mb-8">
         <h3 className="text-2xl font-bold text-rsk-orange mb-6 text-center">
           {t('campaign.howToParticipate')}
         </h3>
@@ -80,7 +80,7 @@ export const CampaignInfo: React.FC = () => {
       </div>
 
       {/* 獎勵說明 */}
-      <div className="bg-gradient-to-r from-rsk-orange/10 to-orange-400/10 border-2 border-rsk-neon-green rounded-2xl p-8 mb-8 hover:shadow-lg hover:shadow-rsk-neon-green/20 transition-all">
+      <div className="bg-gradient-to-r from-rsk-orange/10 to-orange-400/10 border border-rsk-orange/20 rounded-2xl p-8 mb-8">
         <h3 className="text-2xl font-bold text-rsk-orange mb-6 text-center">
           {t('campaign.rewards.title')}
         </h3>
@@ -100,7 +100,7 @@ export const CampaignInfo: React.FC = () => {
       </div>
 
       {/* 活動時間線 */}
-      <div className="bg-rsk-gray/50 border-2 border-rsk-orange rounded-2xl p-8 hover:shadow-lg hover:shadow-rsk-orange/20 transition-all">
+      <div className="bg-rsk-gray/50 border border-rsk-orange/20 rounded-2xl p-8">
         <h3 className="text-2xl font-bold text-rsk-orange mb-6 text-center">
           {t('campaign.timeline.title')}
         </h3>

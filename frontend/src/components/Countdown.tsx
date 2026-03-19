@@ -42,28 +42,28 @@ export const Countdown: React.FC<CountdownProps> = ({ milestoneTimestamp }) => {
       </div>
 
       <div className="grid grid-cols-4 gap-4 max-w-2xl mx-auto">
-        <div className="bg-rsk-gray border-2 border-rsk-orange rounded-2xl p-6 hover:shadow-lg hover:shadow-rsk-orange/20 transition-all">
+        <div className="bg-rsk-gray border border-rsk-orange/20 rounded-2xl p-6 hover:border-rsk-orange transition-colors">
           <div className="text-5xl font-bold text-rsk-orange font-mono">
             {String(timeLeft.days).padStart(2, '0')}
           </div>
           <div className="text-sm text-rsk-text/70 mt-2 uppercase tracking-wide">{t('countdown.days')}</div>
         </div>
 
-        <div className="bg-rsk-gray border-2 border-rsk-dark rounded-2xl p-6 hover:shadow-lg hover:shadow-rsk-dark/20 transition-all">
+        <div className="bg-rsk-gray border border-rsk-orange/20 rounded-2xl p-6 hover:border-rsk-orange transition-colors">
           <div className="text-5xl font-bold text-rsk-dark font-mono">
             {String(timeLeft.hours).padStart(2, '0')}
           </div>
           <div className="text-sm text-rsk-text/70 mt-2 uppercase tracking-wide">{t('countdown.hours')}</div>
         </div>
 
-        <div className="bg-rsk-gray border-2 border-rsk-pink rounded-2xl p-6 hover:shadow-lg hover:shadow-rsk-pink/20 transition-all">
+        <div className="bg-rsk-gray border border-rsk-orange/20 rounded-2xl p-6 hover:border-rsk-orange transition-colors">
           <div className="text-5xl font-bold text-rsk-dark font-mono">
             {String(timeLeft.minutes).padStart(2, '0')}
           </div>
           <div className="text-sm text-rsk-text/70 mt-2 uppercase tracking-wide">{t('countdown.minutes')}</div>
         </div>
 
-        <div className="bg-rsk-gray border-2 border-rsk-neon-green rounded-2xl p-6 hover:shadow-lg hover:shadow-rsk-neon-green/20 transition-all">
+        <div className="bg-rsk-gray border border-rsk-orange/20 rounded-2xl p-6 hover:border-rsk-orange transition-colors">
           <div className="text-5xl font-bold text-rsk-dark font-mono">
             {String(timeLeft.seconds).padStart(2, '0')}
           </div>
