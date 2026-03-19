@@ -1,10 +1,14 @@
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
+import { Space_Grotesk } from 'next/font/google';
 import '@/styles/globals.css';
 import { Web3Provider } from '@/components/Web3Provider';
 import { I18nProvider } from '@/i18n/provider';
 
-const inter = Inter({ subsets: ['latin'] });
+const spaceGrotesk = Space_Grotesk({
+  subsets: ['latin'],
+  variable: '--font-space-grotesk',
+  display: 'swap',
+});
 
 export const metadata: Metadata = {
   title: 'Rootstock 爱你 3000 | 纪念灵魂绑定代币',
@@ -33,7 +37,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="zh">
-      <body className={inter.className}>
+      <body className={`${spaceGrotesk.variable} font-sans antialiased`}>
         <I18nProvider>
           <Web3Provider>
             {children}

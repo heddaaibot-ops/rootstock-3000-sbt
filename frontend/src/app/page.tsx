@@ -9,6 +9,10 @@ import { ProgressBar } from '@/components/ProgressBar';
 import { MintButton } from '@/components/MintButton';
 import { CampaignInfo } from '@/components/CampaignInfo';
 import { RootstockIntro } from '@/components/RootstockIntro';
+import { GridBackground } from '@/components/GridBackground';
+import { ColorfulRectangles } from '@/components/ColorfulRectangles';
+import { BitcoinIcon, BitcoinSymbol } from '@/components/BitcoinIcon';
+import { RootstockIcon } from '@/components/RootstockLogo';
 import { useContract } from '@/hooks/useContract';
 import { useI18n } from '@/i18n/provider';
 
@@ -18,35 +22,50 @@ export default function Home() {
   const { t } = useI18n();
 
   return (
-    <div className="min-h-screen flex flex-col bg-rsk-cream">
-      <Header />
+    <div className="min-h-screen flex flex-col bg-rsk-cream relative overflow-hidden">
+      {/* 网格背景系统 */}
+      <GridBackground />
+
+      {/* 彩色矩形装饰 */}
+      <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+        <ColorfulRectangles />
+      </div>
+
+      {/* 主要内容 - 提升 z-index */}
+      <div className="relative z-10">
+        <Header />
 
       <main className="flex-1 pt-24 pb-16">
         {/* Countdown Section - 倒数到 3000 天纪念日 */}
-        <section className="container mx-auto px-4 py-12">
+        <section className="container mx-auto px-4 py-12 relative">
           <div className="max-w-4xl mx-auto">
             <h2 className="text-3xl md:text-4xl font-bold text-center mb-8">
-              <span className="text-rsk-orange">距离 Rootstock 3000 天纪念日</span>
+              <span className="bg-gradient-to-r from-rsk-orange via-rsk-pink to-rsk-neon-green bg-clip-text text-transparent">
+                距离 Rootstock 3000 天纪念日
+              </span>
             </h2>
             <Countdown milestoneTimestamp={1774137600} />
           </div>
         </section>
 
         {/* SBT Preview Section */}
-        <section className="container mx-auto px-4 py-12">
+        <section className="container mx-auto px-4 py-12 relative">
           <div className="max-w-2xl mx-auto">
-            <div className="bg-rsk-gray/50 border border-rsk-orange/20 rounded-3xl p-8 hover:border-rsk-orange transition-all duration-300 shadow-lg hover:shadow-rsk-orange/20">
-              <h3 className="text-2xl font-bold text-rsk-orange mb-6 text-center">
+            <div className="bg-rsk-gray/50 border-2 border-rsk-pink/30 rounded-3xl p-8 hover:border-rsk-pink transition-all duration-300 shadow-lg hover:shadow-rsk-pink/20 relative overflow-hidden">
+              {/* 装饰性渐变背景 */}
+              <div className="absolute inset-0 bg-gradient-to-br from-rsk-neon-green/5 via-transparent to-rsk-pink/5 pointer-events-none" />
+
+              <h3 className="text-2xl font-bold text-rsk-orange mb-6 text-center relative z-10">
                 SBT 预览
               </h3>
-              <div className="relative aspect-square w-full max-w-md mx-auto">
+              <div className="relative aspect-square w-full max-w-md mx-auto z-10">
                 <img
                   src="/images/sbt-preview.png"
                   alt="Rootstock 爱你 3000 SBT"
                   className="w-full h-full object-contain rounded-2xl"
                 />
               </div>
-              <p className="text-center text-rsk-text/70 mt-6 text-sm">
+              <p className="text-center text-rsk-text/70 mt-6 text-sm relative z-10">
                 独一无二的纪念 NFT，永久绑定你的钱包地址
               </p>
             </div>
@@ -54,18 +73,38 @@ export default function Home() {
         </section>
 
         {/* Hero Section */}
-        <section className="container mx-auto px-4 py-16 text-center">
+        <section className="container mx-auto px-4 py-16 text-center relative">
+          {/* Bitcoin Icon - Floating Decorations */}
+          <div className="absolute top-10 left-10 animate-float opacity-30 hidden lg:block">
+            <BitcoinIcon size={100} />
+          </div>
+          <div className="absolute bottom-10 right-10 animate-float-delayed opacity-25 hidden lg:block">
+            <BitcoinIcon size={80} />
+          </div>
+
           <div className="animate-fade-in">
-            <h1 className="text-5xl md:text-7xl font-bold mb-6">
-              <span className="text-rsk-orange">Rootstock</span>{' '}
+            {/* Rootstock Icon + Title */}
+            <div className="flex items-center justify-center gap-4 mb-6">
+              <RootstockIcon size={50} />
+              <h1 className="text-5xl md:text-7xl font-bold">
+                <span className="text-rsk-orange">Rootstock</span>
+              </h1>
+            </div>
+
+            {/* Main Title */}
+            <h2 className="text-4xl md:text-6xl font-bold mb-4">
               <span className="text-rsk-dark">{t('hero.title').split('Rootstock ')[1]}</span>
-            </h1>
+            </h2>
+
             <p className="text-xl md:text-2xl text-rsk-text/70 mb-4">
               {t('hero.subtitle')}
             </p>
-            <p className="text-sm text-rsk-text/60 max-w-2xl mx-auto">
-              {t('hero.description')}
-            </p>
+
+            {/* Bitcoin Symbol + Description */}
+            <div className="flex items-center justify-center gap-2 text-sm text-rsk-text/60 max-w-2xl mx-auto">
+              <BitcoinSymbol className="text-rsk-orange text-2xl" />
+              <span>{t('hero.description')}</span>
+            </div>
           </div>
         </section>
 
@@ -259,6 +298,7 @@ export default function Home() {
       </main>
 
       <Footer />
+      </div>
     </div>
   );
 }
