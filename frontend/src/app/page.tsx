@@ -40,8 +40,13 @@ export default function Home() {
 
       <main className="flex-1 pt-24 pb-16">
         {/* Countdown Section - 倒数到 3000 天纪念日 */}
-        <section className="container mx-auto px-4 py-12">
-          <div className="max-w-4xl mx-auto">
+        <section className="container mx-auto px-4 py-12 relative">
+          {/* Figma Group Decoration */}
+          <div className="absolute top-0 left-0 opacity-8 hidden lg:block pointer-events-none">
+            <img src="/images/figma/group-decoration.png" alt="" className="w-96 h-auto" />
+          </div>
+
+          <div className="max-w-4xl mx-auto relative z-10">
             <h2 className="text-3xl md:text-4xl font-bold text-center mb-8">
               <span className="text-rsk-orange">距离 Rootstock 3000 天纪念日</span>
             </h2>
@@ -91,8 +96,13 @@ export default function Home() {
         </section>
 
         {/* Mint Section */}
-        <section id="mint" className="container mx-auto px-4 py-16">
-          <div className="max-w-4xl mx-auto">
+        <section id="mint" className="container mx-auto px-4 py-16 relative">
+          {/* Figma Group Decoration */}
+          <div className="absolute bottom-0 right-0 opacity-8 hidden lg:block pointer-events-none transform scale-x-[-1]">
+            <img src="/images/figma/group-decoration.png" alt="" className="w-[500px] h-auto" />
+          </div>
+
+          <div className="max-w-4xl mx-auto relative z-10">
             <h2 className="text-4xl font-bold text-center mb-12">
               <span className="text-rsk-orange">免费铸造</span>{' '}
               <span className="text-rsk-dark">SBT</span>
@@ -200,23 +210,37 @@ export default function Home() {
         </section>
 
         {/* Rootstock Introduction Section */}
-        <section className="container mx-auto px-4 py-12">
-          <RootstockIntro />
+        <section className="container mx-auto px-4 py-12 relative">
+          {/* Figma Group Decoration */}
+          <div className="absolute top-1/2 left-0 opacity-6 hidden lg:block pointer-events-none">
+            <img src="/images/figma/group-decoration.png" alt="" className="w-80 h-auto" />
+          </div>
+
+          <div className="relative z-10">
+            <RootstockIntro />
+          </div>
         </section>
 
         {/* Campaign Info Section */}
-        <section className="container mx-auto px-4 py-12">
-          <CampaignInfo />
+        <section className="container mx-auto px-4 py-12 relative">
+          {/* Figma Group Decoration */}
+          <div className="absolute top-0 right-0 opacity-8 hidden xl:block pointer-events-none">
+            <img src="/images/figma/group-decoration.png" alt="" className="w-[600px] h-auto" />
+          </div>
+
+          <div className="relative z-10">
+            <CampaignInfo />
+          </div>
         </section>
 
         {/* About Section */}
         <section id="about" className="container mx-auto px-4 py-16 relative">
           {/* Figma Decoration - Background */}
-          <div className="absolute top-0 right-0 opacity-5 hidden lg:block pointer-events-none">
-            <img src="/images/figma/group-decoration.png" alt="" className="w-96 h-auto" />
+          <div className="absolute bottom-0 left-0 opacity-8 hidden lg:block pointer-events-none transform scale-x-[-1]">
+            <img src="/images/figma/group-decoration.png" alt="" className="w-[450px] h-auto" />
           </div>
 
-          <div className="max-w-4xl mx-auto">
+          <div className="max-w-4xl mx-auto relative z-10">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
               <div className="bg-rsk-gray border border-rsk-orange/20 rounded-2xl p-6 text-center hover:border-rsk-orange transition-colors">
                 <h3 className="text-lg font-bold text-rsk-dark mb-2">{t('about.soulBound.title')}</h3>
@@ -252,12 +276,12 @@ export default function Home() {
 
         {/* FAQ Section */}
         <section className="container mx-auto px-4 py-16 relative">
-          {/* Figma Dark Texture - Background */}
-          <div className="absolute bottom-0 left-0 opacity-3 hidden lg:block pointer-events-none">
-            <img src="/images/figma/dark-texture.png" alt="" className="w-64 h-auto" />
+          {/* Figma Group Decoration */}
+          <div className="absolute top-1/4 right-0 opacity-8 hidden lg:block pointer-events-none">
+            <img src="/images/figma/group-decoration.png" alt="" className="w-96 h-auto" />
           </div>
 
-          <div className="max-w-3xl mx-auto">
+          <div className="max-w-3xl mx-auto relative z-10">
             <h2 className="text-4xl font-bold text-center mb-12">
               <span className="text-rsk-orange">{t('faq.title')}</span>
             </h2>
