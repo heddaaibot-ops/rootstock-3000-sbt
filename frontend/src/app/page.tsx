@@ -60,12 +60,6 @@ export default function Home() {
             <div className="flex flex-col items-center justify-center mb-6 gap-4">
               <img
                 src="/images/figma/rootstock-logo.png"
-                alt="Rootstock Official Logo"
-                className="w-40 md:w-56 h-auto"
-                style={{ filter: 'brightness(0) saturate(100%) invert(48%) sepia(79%) saturate(2476%) hue-rotate(0deg) brightness(118%) contrast(119%)' }}
-              />
-              <img
-                src="/images/figma/rootstock-logo.png"
                 alt="Rootstock"
                 className="h-12 md:h-20 w-auto"
                 style={{ filter: 'brightness(0) saturate(100%) invert(48%) sepia(79%) saturate(2476%) hue-rotate(0deg) brightness(118%) contrast(119%)' }}
