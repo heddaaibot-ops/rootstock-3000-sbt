@@ -75,22 +75,17 @@
       "usdtDescription": "USDT 随机分配",
       "merch": "10 份",
       "merchDescription": "Rootstock 限定周边",
-      "announcement": "3月31日公布得奖名单"
+      "announcement": "4月22日公布得奖名单"
     },
     "timeline": {
       "title": "活动时间线",
-      "launch": {
-        "date": "3/8",
-        "title": "活动启动",
-        "description": "开放铸造，KOL 推广开始"
-      },
       "milestone": {
         "date": "3/22",
         "title": "3000 天纪念日",
         "description": "Rootstock 主网运行 3000 天庆祝"
       },
       "deadline": {
-        "date": "3/31",
+        "date": "4/22",
         "title": "活动截止",
         "description": "铸造结束，公布得奖者"
       }

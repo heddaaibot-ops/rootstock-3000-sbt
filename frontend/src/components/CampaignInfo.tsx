@@ -113,16 +113,6 @@ export const CampaignInfo: React.FC = () => {
         <div className="space-y-6">
           <div className="flex items-center gap-4">
             <div className="flex-shrink-0 w-20 text-center">
-              <div className="text-2xl font-bold text-rsk-orange">{t('campaign.timeline.launch.date')}</div>
-            </div>
-            <div className="flex-1 border-l-4 border-rsk-border-dark pl-6 pb-2">
-              <p className="font-semibold text-rsk-text-dark">{t('campaign.timeline.launch.title')}</p>
-              <p className="text-sm text-rsk-text-dark">{t('campaign.timeline.launch.description')}</p>
-            </div>
-          </div>
-
-          <div className="flex items-center gap-4">
-            <div className="flex-shrink-0 w-20 text-center">
               <div className="text-2xl font-bold text-rsk-orange">{t('campaign.timeline.milestone.date')}</div>
             </div>
             <div className="flex-1 border-l-4 border-rsk-orange pl-6 pb-2">
