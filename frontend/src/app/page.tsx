@@ -57,15 +57,20 @@ export default function Home() {
 
           <div className="animate-fade-in">
             {/* Rootstock Logo + Title */}
-            <div className="flex flex-col items-center justify-center mb-6">
+            <div className="flex flex-col items-center justify-center mb-6 gap-4">
               <img
                 src="/images/figma/rootstock-logo.png"
                 alt="Rootstock Official Logo"
-                className="w-40 md:w-56 h-auto mb-4"
+                className="w-40 md:w-56 h-auto"
+                style={{ filter: 'brightness(0) saturate(100%) invert(48%) sepia(79%) saturate(2476%) hue-rotate(0deg) brightness(118%) contrast(119%)' }}
+              />
+              <img
+                src="/images/figma/rootstock-logo.png"
+                alt="Rootstock"
+                className="h-12 md:h-20 w-auto"
                 style={{ filter: 'brightness(0) saturate(100%) invert(48%) sepia(79%) saturate(2476%) hue-rotate(0deg) brightness(118%) contrast(119%)' }}
               />
               <h1 className="text-5xl md:text-7xl font-bold uppercase leading-tight text-center">
-                <div className="text-rsk-orange">rootstock</div>
                 <div className="text-rsk-text-dark">爱你 3000</div>
               </h1>
             </div>
