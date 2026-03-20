@@ -88,14 +88,8 @@ export default function Home() {
         </section>
 
         {/* Mint Section */}
-        <section id="mint" className="relative py-16">
-          {/* Figma Group Decoration - 满版横幅 */}
-          <div className="absolute inset-x-0 bottom-0 h-40 pointer-events-none z-0">
-            <img src="/images/figma/group-decoration.png" alt="" className="w-full h-full object-cover object-center transform scale-x-[-1]" style={{display: 'block'}} />
-          </div>
-
-          <div className="container mx-auto px-4 relative z-10">
-            <div className="max-w-4xl mx-auto">
+        <section id="mint" className="container mx-auto px-4 py-16">
+          <div className="max-w-4xl mx-auto">
             <h2 className="text-4xl font-bold text-center mb-12">
               <span className="text-rsk-orange">免费铸造</span>{' '}
               <span className="text-rsk-dark">SBT</span>
@@ -199,43 +193,22 @@ export default function Home() {
                 </div>
               </div>
             </div>
-            </div>
           </div>
         </section>
 
         {/* Rootstock Introduction Section */}
-        <section className="relative py-12">
-          {/* Figma Group Decoration - 满版横幅 */}
-          <div className="absolute inset-x-0 top-0 h-32 pointer-events-none z-0">
-            <img src="/images/figma/group-decoration.png" alt="" className="w-full h-full object-cover object-center" style={{display: 'block'}} />
-          </div>
-
-          <div className="container mx-auto px-4 relative z-10">
-            <RootstockIntro />
-          </div>
+        <section className="container mx-auto px-4 py-12">
+          <RootstockIntro />
         </section>
 
         {/* Campaign Info Section */}
-        <section className="relative py-12">
-          {/* Figma Group Decoration - 满版横幅 */}
-          <div className="absolute inset-x-0 bottom-0 h-36 pointer-events-none z-0">
-            <img src="/images/figma/group-decoration.png" alt="" className="w-full h-full object-cover object-center transform scale-x-[-1]" style={{display: 'block'}} />
-          </div>
-
-          <div className="container mx-auto px-4 relative z-10">
-            <CampaignInfo />
-          </div>
+        <section className="container mx-auto px-4 py-12">
+          <CampaignInfo />
         </section>
 
         {/* About Section */}
-        <section id="about" className="relative py-16">
-          {/* Figma Decoration - 满版横幅 */}
-          <div className="absolute inset-x-0 top-0 h-36 pointer-events-none z-0">
-            <img src="/images/figma/group-decoration.png" alt="" className="w-full h-full object-cover object-center" style={{display: 'block'}} />
-          </div>
-
-          <div className="container mx-auto px-4 relative z-10">
-            <div className="max-w-4xl mx-auto">
+        <section id="about" className="container mx-auto px-4 py-16">
+          <div className="max-w-4xl mx-auto">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
               <div className="bg-rsk-gray border border-rsk-orange/20 rounded-2xl p-6 text-center hover:border-rsk-orange transition-colors">
                 <h3 className="text-lg font-bold text-rsk-dark mb-2">{t('about.soulBound.title')}</h3>
