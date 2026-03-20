@@ -11,11 +11,20 @@ export const Header: React.FC = () => {
           {/* Logo */}
           <div className="flex items-center gap-4">
             <div className="flex flex-col items-start leading-tight">
-              <img
-                src="/images/figma/rootstock-logo.png"
-                alt="Rootstock"
-                className="h-8 w-auto mb-1"
-                style={{ filter: 'brightness(0) saturate(100%) invert(60%) sepia(97%) saturate(1651%) hue-rotate(0deg) brightness(101%) contrast(106%)' }}
+              <div
+                className="h-8 mb-1"
+                style={{
+                  width: '120px',
+                  backgroundColor: '#FF9100',
+                  WebkitMaskImage: 'url(/images/figma/rootstock-logo.png)',
+                  WebkitMaskSize: 'contain',
+                  WebkitMaskRepeat: 'no-repeat',
+                  WebkitMaskPosition: 'left center',
+                  maskImage: 'url(/images/figma/rootstock-logo.png)',
+                  maskSize: 'contain',
+                  maskRepeat: 'no-repeat',
+                  maskPosition: 'left center'
+                }}
               />
               <div className="text-lg font-bold text-rsk-text-dark">
                 爱你 3000<span className="hidden md:inline"> | 纪念 3000 天</span>
