@@ -275,7 +275,6 @@ export default function Home() {
                 <p>{t('about.whatIsRootstock.paragraph2')}</p>
               </div>
             </div>
-            </div>
           </div>
         </section>
 
