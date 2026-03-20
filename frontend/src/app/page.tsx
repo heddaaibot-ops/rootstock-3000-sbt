@@ -30,8 +30,8 @@ export default function Home() {
         {/* Countdown Section - 倒数到 3000 天纪念日 */}
         <section className="relative py-12">
           {/* Figma Group Decoration - 满版横幅 */}
-          <div className="absolute inset-x-0 top-0 h-32 pointer-events-none z-0 overflow-hidden">
-            <img src="/images/figma/group-decoration.png" alt="" className="w-full h-full object-cover" />
+          <div className="absolute inset-x-0 top-0 h-32 pointer-events-none z-0">
+            <img src="/images/figma/group-decoration.png" alt="" className="w-full h-full object-cover object-center" style={{display: 'block'}} />
           </div>
 
           <div className="container mx-auto px-4 relative z-10">
@@ -90,8 +90,8 @@ export default function Home() {
         {/* Mint Section */}
         <section id="mint" className="relative py-16">
           {/* Figma Group Decoration - 满版横幅 */}
-          <div className="absolute inset-x-0 bottom-0 h-40 pointer-events-none z-0 overflow-hidden">
-            <img src="/images/figma/group-decoration.png" alt="" className="w-full h-full object-cover transform scale-x-[-1]" />
+          <div className="absolute inset-x-0 bottom-0 h-40 pointer-events-none z-0">
+            <img src="/images/figma/group-decoration.png" alt="" className="w-full h-full object-cover object-center transform scale-x-[-1]" style={{display: 'block'}} />
           </div>
 
           <div className="container mx-auto px-4 relative z-10">
@@ -206,8 +206,8 @@ export default function Home() {
         {/* Rootstock Introduction Section */}
         <section className="relative py-12">
           {/* Figma Group Decoration - 满版横幅 */}
-          <div className="absolute inset-x-0 top-0 h-32 pointer-events-none z-0 overflow-hidden">
-            <img src="/images/figma/group-decoration.png" alt="" className="w-full h-full object-cover" />
+          <div className="absolute inset-x-0 top-0 h-32 pointer-events-none z-0">
+            <img src="/images/figma/group-decoration.png" alt="" className="w-full h-full object-cover object-center" style={{display: 'block'}} />
           </div>
 
           <div className="container mx-auto px-4 relative z-10">
@@ -218,8 +218,8 @@ export default function Home() {
         {/* Campaign Info Section */}
         <section className="relative py-12">
           {/* Figma Group Decoration - 满版横幅 */}
-          <div className="absolute inset-x-0 bottom-0 h-36 pointer-events-none z-0 overflow-hidden">
-            <img src="/images/figma/group-decoration.png" alt="" className="w-full h-full object-cover transform scale-x-[-1]" />
+          <div className="absolute inset-x-0 bottom-0 h-36 pointer-events-none z-0">
+            <img src="/images/figma/group-decoration.png" alt="" className="w-full h-full object-cover object-center transform scale-x-[-1]" style={{display: 'block'}} />
           </div>
 
           <div className="container mx-auto px-4 relative z-10">
@@ -230,8 +230,8 @@ export default function Home() {
         {/* About Section */}
         <section id="about" className="relative py-16">
           {/* Figma Decoration - 满版横幅 */}
-          <div className="absolute inset-x-0 top-0 h-36 pointer-events-none z-0 overflow-hidden">
-            <img src="/images/figma/group-decoration.png" alt="" className="w-full h-full object-cover" />
+          <div className="absolute inset-x-0 top-0 h-36 pointer-events-none z-0">
+            <img src="/images/figma/group-decoration.png" alt="" className="w-full h-full object-cover object-center" style={{display: 'block'}} />
           </div>
 
           <div className="container mx-auto px-4 relative z-10">
@@ -273,8 +273,8 @@ export default function Home() {
         {/* FAQ Section */}
         <section className="relative py-16">
           {/* Figma Group Decoration - 满版横幅 */}
-          <div className="absolute inset-x-0 bottom-0 h-32 pointer-events-none z-0 overflow-hidden">
-            <img src="/images/figma/group-decoration.png" alt="" className="w-full h-full object-cover transform scale-x-[-1]" />
+          <div className="absolute inset-x-0 bottom-0 h-32 pointer-events-none z-0">
+            <img src="/images/figma/group-decoration.png" alt="" className="w-full h-full object-cover object-center transform scale-x-[-1]" style={{display: 'block'}} />
           </div>
 
           <div className="container mx-auto px-4 relative z-10">
