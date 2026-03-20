@@ -155,46 +155,58 @@ export default function Home() {
             </div>
 
             {/* Stats Grid */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-              <div className="bg-black/95 border-2 border-white/10 rounded-2xl p-5 text-center hover:border-rsk-neon-green transition-all">
-                <div className="inline-block bg-rsk-neon-green rounded-lg px-3 py-1 mb-2">
-                  <div className="text-xs font-black text-black uppercase">{t('mint.stats.launchDate')}</div>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+              {/* Stat 1 - Launch Date */}
+              <div className="relative">
+                <div className="bg-rsk-neon-green rounded-xl p-6 mb-3">
+                  <div className="text-4xl font-black text-black font-mono leading-tight">
+                    2018
+                  </div>
                 </div>
-                <div className="text-lg font-black text-white/90 font-mono">
-                  2018年1月3日
-                </div>
-              </div>
-
-              <div className="bg-black/95 border-2 border-white/10 rounded-2xl p-5 text-center hover:border-rsk-pink transition-all">
-                <div className="inline-block bg-rsk-pink rounded-lg px-3 py-1 mb-2">
-                  <div className="text-xs font-black text-black uppercase">{t('mint.stats.milestoneDate')}</div>
-                </div>
-                <div className="text-lg font-black text-white/90 font-mono">
-                  2026年3月22日
+                <div className="inline-block bg-rsk-neon-green rounded-full px-4 py-1">
+                  <div className="text-xs font-black text-black uppercase tracking-wide">{t('mint.stats.launchDate')}</div>
                 </div>
               </div>
 
-              <div className="bg-black/95 border-2 border-white/10 rounded-2xl p-5 text-center hover:border-purple-400 transition-all">
-                <div className="inline-block bg-purple-400 rounded-lg px-3 py-1 mb-2">
-                  <div className="text-xs font-black text-black uppercase">{t('mint.stats.chainId')}</div>
+              {/* Stat 2 - Milestone Date */}
+              <div className="relative">
+                <div className="bg-rsk-pink rounded-xl p-6 mb-3">
+                  <div className="text-4xl font-black text-black font-mono leading-tight">
+                    3000
+                  </div>
                 </div>
-                <div className="text-lg font-black text-white/90 font-mono">
-                  {chainId || 31}
+                <div className="inline-block bg-rsk-pink rounded-full px-4 py-1">
+                  <div className="text-xs font-black text-black uppercase tracking-wide">天数</div>
                 </div>
               </div>
 
-              <div className="bg-black/95 border-2 border-white/10 rounded-2xl p-5 text-center hover:border-rsk-orange transition-all">
-                <div className="inline-block bg-rsk-orange rounded-lg px-3 py-1 mb-2">
-                  <div className="text-xs font-black text-black uppercase">{t('mint.stats.status')}</div>
+              {/* Stat 3 - Chain ID */}
+              <div className="relative">
+                <div className="bg-purple-400 rounded-xl p-6 mb-3">
+                  <div className="text-4xl font-black text-black font-mono leading-tight">
+                    {chainId || 31}
+                  </div>
                 </div>
-                <div className="text-lg font-black text-white/90">
-                  {!contractData ? (
-                    <span className="text-white/60">{t('mint.stats.loading')}</span>
-                  ) : contractData.isPaused ? (
-                    <span className="text-rsk-orange">{t('mint.stats.paused')}</span>
-                  ) : (
-                    <span className="text-rsk-neon-green">{t('mint.stats.live')}</span>
-                  )}
+                <div className="inline-block bg-purple-400 rounded-full px-4 py-1">
+                  <div className="text-xs font-black text-black uppercase tracking-wide">{t('mint.stats.chainId')}</div>
+                </div>
+              </div>
+
+              {/* Stat 4 - Status */}
+              <div className="relative">
+                <div className="bg-cyan-400 rounded-xl p-6 mb-3">
+                  <div className="text-4xl font-black text-black font-mono leading-tight">
+                    {!contractData ? (
+                      <span>...</span>
+                    ) : contractData.isPaused ? (
+                      <span>暂停</span>
+                    ) : (
+                      <span>进行中</span>
+                    )}
+                  </div>
+                </div>
+                <div className="inline-block bg-cyan-400 rounded-full px-4 py-1">
+                  <div className="text-xs font-black text-black uppercase tracking-wide">{t('mint.stats.status')}</div>
                 </div>
               </div>
             </div>

@@ -40,9 +40,9 @@ export const Web3Provider: React.FC<Web3ProviderProps> = ({ children }) => {
           customTheme={{
             '--ck-font-family': '"Space Grotesk", system-ui, sans-serif',
             '--ck-border-radius': '9999px',
-            '--ck-connectbutton-background': 'transparent',
-            '--ck-connectbutton-color': '#FF70E0',
-            '--ck-connectbutton-border-color': '#FF70E0',
+            '--ck-connectbutton-background': '#FFFFFF',
+            '--ck-connectbutton-color': '#000000',
+            '--ck-connectbutton-border-color': '#000000',
             '--ck-connectbutton-border-width': '4px',
             '--ck-connectbutton-hover-background': '#FF70E0',
             '--ck-connectbutton-hover-color': '#000000',
