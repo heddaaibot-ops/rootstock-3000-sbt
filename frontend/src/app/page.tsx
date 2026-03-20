@@ -35,8 +35,8 @@ export default function Home() {
               <h2 className="inline-block bg-rsk-pink text-rsk-cream text-3xl md:text-4xl font-bold px-8 py-4 uppercase">
                 Rootstock
               </h2>
-              <h2 className="bg-rsk-purple text-rsk-cream text-3xl md:text-4xl font-bold px-8 py-4 uppercase w-full">
-                3000 天纪念日还有
+              <h2 className="bg-rsk-orange text-rsk-cream text-3xl md:text-4xl font-bold px-8 py-4 uppercase w-full">
+                距离 3000 天纪念日还有
               </h2>
             </div>
             <Countdown milestoneTimestamp={1774137600} />
