@@ -138,7 +138,7 @@ export const MintButton: React.FC<MintButtonProps> = ({
       <button
         onClick={handleMint}
         disabled={isDisabled}
-        className="group relative px-16 py-6 bg-rsk-pink hover:bg-rsk-pink/90 text-rsk-dark font-black text-2xl rounded-2xl transition-all duration-300 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none shadow-2xl uppercase tracking-wide"
+        className="group relative px-16 py-6 bg-rsk-pink hover:bg-rsk-pink/90 text-black font-black text-2xl rounded-full border-4 border-black/20 hover:border-black/40 transition-all duration-300 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none shadow-2xl uppercase tracking-wide"
       >
         {minting ? (
           <span className="flex items-center gap-3 justify-center">
@@ -153,7 +153,7 @@ export const MintButton: React.FC<MintButtonProps> = ({
         )}
       </button>
 
-      <div className="text-base text-rsk-dark mt-6 font-medium">
+      <div className="text-base text-rsk-dark mt-6 font-black">
         {statusMessage}
       </div>
     </div>

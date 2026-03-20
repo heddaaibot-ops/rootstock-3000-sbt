@@ -98,10 +98,12 @@ export default function Home() {
             {/* SBT Preview */}
             <div className="mb-16">
               <div className="max-w-2xl mx-auto">
-                <div className="bg-rsk-gray/50 border border-rsk-orange/20 rounded-3xl p-8 hover:border-rsk-orange transition-all duration-300 shadow-lg hover:shadow-rsk-orange/20">
-                  <h3 className="text-2xl font-bold text-rsk-orange mb-6 text-center">
-                    SBT 预览
-                  </h3>
+                <div className="bg-black/95 border-2 border-white/10 rounded-[32px] p-10 hover:border-rsk-orange transition-all duration-300">
+                  <div className="inline-block bg-rsk-orange rounded-2xl px-8 py-4 mb-6 mx-auto">
+                    <h3 className="text-2xl font-black text-black text-center">
+                      SBT 预览
+                    </h3>
+                  </div>
                   <div className="relative aspect-square w-full max-w-md mx-auto">
                     <img
                       src="/images/sbt-preview.png"
@@ -109,7 +111,7 @@ export default function Home() {
                       className="w-full h-full object-contain rounded-2xl"
                     />
                   </div>
-                  <p className="text-center text-rsk-text/70 mt-6 text-sm">
+                  <p className="text-center text-white/90 mt-6 text-sm font-semibold">
                     独一无二的纪念 NFT，永久绑定你的钱包地址
                   </p>
                 </div>
@@ -159,40 +161,40 @@ export default function Home() {
 
             {/* Stats Grid */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-              <div className="bg-rsk-dark/95 border-2 border-rsk-neon-green rounded-2xl p-5 text-center hover:scale-105 transition-transform">
+              <div className="bg-black/95 border-2 border-white/10 rounded-2xl p-5 text-center hover:border-rsk-neon-green transition-all">
                 <div className="inline-block bg-rsk-neon-green rounded-lg px-3 py-1 mb-2">
-                  <div className="text-xs font-bold text-rsk-dark uppercase">{t('mint.stats.launchDate')}</div>
+                  <div className="text-xs font-black text-black uppercase">{t('mint.stats.launchDate')}</div>
                 </div>
-                <div className="text-lg font-bold text-rsk-cream font-mono">
+                <div className="text-lg font-black text-white/90 font-mono">
                   2018年1月3日
                 </div>
               </div>
 
-              <div className="bg-rsk-dark/95 border-2 border-rsk-pink rounded-2xl p-5 text-center hover:scale-105 transition-transform">
+              <div className="bg-black/95 border-2 border-white/10 rounded-2xl p-5 text-center hover:border-rsk-pink transition-all">
                 <div className="inline-block bg-rsk-pink rounded-lg px-3 py-1 mb-2">
-                  <div className="text-xs font-bold text-rsk-dark uppercase">{t('mint.stats.milestoneDate')}</div>
+                  <div className="text-xs font-black text-black uppercase">{t('mint.stats.milestoneDate')}</div>
                 </div>
-                <div className="text-lg font-bold text-rsk-cream font-mono">
+                <div className="text-lg font-black text-white/90 font-mono">
                   2026年3月22日
                 </div>
               </div>
 
-              <div className="bg-rsk-dark/95 border-2 border-purple-400 rounded-2xl p-5 text-center hover:scale-105 transition-transform">
+              <div className="bg-black/95 border-2 border-white/10 rounded-2xl p-5 text-center hover:border-purple-400 transition-all">
                 <div className="inline-block bg-purple-400 rounded-lg px-3 py-1 mb-2">
-                  <div className="text-xs font-bold text-rsk-dark uppercase">{t('mint.stats.chainId')}</div>
+                  <div className="text-xs font-black text-black uppercase">{t('mint.stats.chainId')}</div>
                 </div>
-                <div className="text-lg font-bold text-rsk-cream font-mono">
+                <div className="text-lg font-black text-white/90 font-mono">
                   {chainId || 31}
                 </div>
               </div>
 
-              <div className="bg-rsk-dark/95 border-2 border-rsk-orange rounded-2xl p-5 text-center hover:scale-105 transition-transform">
+              <div className="bg-black/95 border-2 border-white/10 rounded-2xl p-5 text-center hover:border-rsk-orange transition-all">
                 <div className="inline-block bg-rsk-orange rounded-lg px-3 py-1 mb-2">
-                  <div className="text-xs font-bold text-rsk-dark uppercase">{t('mint.stats.status')}</div>
+                  <div className="text-xs font-black text-black uppercase">{t('mint.stats.status')}</div>
                 </div>
-                <div className="text-lg font-bold text-rsk-cream">
+                <div className="text-lg font-black text-white/90">
                   {!contractData ? (
-                    <span className="text-rsk-cream/60">{t('mint.stats.loading')}</span>
+                    <span className="text-white/60">{t('mint.stats.loading')}</span>
                   ) : contractData.isPaused ? (
                     <span className="text-rsk-orange">{t('mint.stats.paused')}</span>
                   ) : (
@@ -219,65 +221,56 @@ export default function Home() {
           <div className="max-w-7xl mx-auto">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
               {/* Card 01 - Soul Bound */}
-              <div className="bg-rsk-dark/95 border-2 border-rsk-cream/20 rounded-3xl p-8 hover:border-rsk-neon-green transition-all duration-300 relative">
-                {/* Title with colored background */}
-                <div className="mb-6">
-                  <div className="inline-block bg-rsk-neon-green rounded-xl px-6 py-3 mb-3">
-                    <h3 className="text-xl font-bold text-rsk-dark">{t('about.soulBound.title')}</h3>
+              <div className="bg-black/95 border-2 border-white/10 rounded-[32px] p-10 hover:border-rsk-neon-green transition-all duration-300 relative">
+                <div className="mb-8">
+                  <div className="inline-block bg-rsk-neon-green rounded-2xl px-8 py-4 mb-0">
+                    <h3 className="text-2xl font-black text-black leading-tight">{t('about.soulBound.title')}</h3>
                   </div>
-                  <div className="inline-flex items-center justify-center w-12 h-12 bg-rsk-neon-green rounded-full ml-3">
-                    <span className="text-lg font-bold text-rsk-dark">01</span>
+                  <div className="inline-flex items-center justify-center w-14 h-14 bg-rsk-neon-green rounded-full ml-4 align-top mt-1">
+                    <span className="text-xl font-black text-black">01</span>
                   </div>
                 </div>
-                <p className="text-rsk-cream/80 leading-relaxed">
+                <p className="text-white/90 leading-relaxed text-base mb-12">
                   {t('about.soulBound.description')}
                 </p>
-                {/* Icon placeholder */}
-                <div className="mt-8 text-rsk-neon-green opacity-50 text-6xl text-center">
-                  🔗
-                </div>
               </div>
 
               {/* Card 02 - Free Mint */}
-              <div className="bg-rsk-dark/95 border-2 border-rsk-cream/20 rounded-3xl p-8 hover:border-rsk-pink transition-all duration-300 relative">
-                <div className="mb-6">
-                  <div className="inline-block bg-rsk-pink rounded-xl px-6 py-3 mb-3">
-                    <h3 className="text-xl font-bold text-rsk-dark">{t('about.freeMint.title')}</h3>
+              <div className="bg-black/95 border-2 border-white/10 rounded-[32px] p-10 hover:border-rsk-pink transition-all duration-300 relative">
+                <div className="mb-8">
+                  <div className="inline-block bg-rsk-pink rounded-2xl px-8 py-4 mb-0">
+                    <h3 className="text-2xl font-black text-black leading-tight">{t('about.freeMint.title')}</h3>
                   </div>
-                  <div className="inline-flex items-center justify-center w-12 h-12 bg-rsk-pink rounded-full ml-3">
-                    <span className="text-lg font-bold text-rsk-dark">02</span>
+                  <div className="inline-flex items-center justify-center w-14 h-14 bg-rsk-pink rounded-full ml-4 align-top mt-1">
+                    <span className="text-xl font-black text-black">02</span>
                   </div>
                 </div>
-                <p className="text-rsk-cream/80 leading-relaxed">
+                <p className="text-white/90 leading-relaxed text-base mb-12">
                   {t('about.freeMint.description')}
                 </p>
-                <div className="mt-8 text-rsk-pink opacity-50 text-6xl text-center">
-                  💎
-                </div>
               </div>
 
               {/* Card 03 - Limited Supply */}
-              <div className="bg-rsk-dark/95 border-2 border-rsk-cream/20 rounded-3xl p-8 hover:border-purple-400 transition-all duration-300 relative">
-                <div className="mb-6">
-                  <div className="inline-block bg-purple-400 rounded-xl px-6 py-3 mb-3">
-                    <h3 className="text-xl font-bold text-rsk-dark">{t('about.limitedSupply.title')}</h3>
+              <div className="bg-black/95 border-2 border-white/10 rounded-[32px] p-10 hover:border-purple-400 transition-all duration-300 relative">
+                <div className="mb-8">
+                  <div className="inline-block bg-purple-400 rounded-2xl px-8 py-4 mb-0">
+                    <h3 className="text-2xl font-black text-black leading-tight">{t('about.limitedSupply.title')}</h3>
                   </div>
-                  <div className="inline-flex items-center justify-center w-12 h-12 bg-purple-400 rounded-full ml-3">
-                    <span className="text-lg font-bold text-rsk-dark">03</span>
+                  <div className="inline-flex items-center justify-center w-14 h-14 bg-purple-400 rounded-full ml-4 align-top mt-1">
+                    <span className="text-xl font-black text-black">03</span>
                   </div>
                 </div>
-                <p className="text-rsk-cream/80 leading-relaxed">
+                <p className="text-white/90 leading-relaxed text-base mb-12">
                   {t('about.limitedSupply.description')}
                 </p>
-                <div className="mt-8 text-purple-400 opacity-50 text-6xl text-center">
-                  🏆
-                </div>
               </div>
             </div>
 
-            <div className="bg-rsk-gray/50 border border-rsk-orange/20 rounded-2xl p-8">
-              <h2 className="text-3xl font-bold text-rsk-orange mb-6">{t('about.whatIsRootstock.title')}</h2>
-              <div className="space-y-4 text-rsk-text/70">
+            <div className="bg-black/95 border-2 border-white/10 rounded-[32px] p-10 hover:border-rsk-orange transition-all duration-300">
+              <div className="inline-block bg-rsk-orange rounded-2xl px-8 py-4 mb-6">
+                <h2 className="text-2xl font-black text-black">{t('about.whatIsRootstock.title')}</h2>
+              </div>
+              <div className="space-y-4 text-white/90 leading-relaxed">
                 <p>{t('about.whatIsRootstock.paragraph1')}</p>
                 <p>{t('about.whatIsRootstock.paragraph2')}</p>
               </div>
