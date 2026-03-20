@@ -42,7 +42,7 @@ export default function Home() {
         {/* Countdown Section - 倒数到 3000 天纪念日 */}
         <section className="container mx-auto px-4 py-12 relative">
           {/* Figma Group Decoration */}
-          <div className="absolute top-0 left-0 opacity-8 hidden lg:block pointer-events-none">
+          <div className="absolute top-0 left-0 opacity-20 hidden lg:block pointer-events-none">
             <img src="/images/figma/group-decoration.png" alt="" className="w-96 h-auto" />
           </div>
 
@@ -98,7 +98,7 @@ export default function Home() {
         {/* Mint Section */}
         <section id="mint" className="container mx-auto px-4 py-16 relative">
           {/* Figma Group Decoration */}
-          <div className="absolute bottom-0 right-0 opacity-8 hidden lg:block pointer-events-none transform scale-x-[-1]">
+          <div className="absolute bottom-0 right-0 opacity-25 hidden lg:block pointer-events-none transform scale-x-[-1]">
             <img src="/images/figma/group-decoration.png" alt="" className="w-[500px] h-auto" />
           </div>
 
@@ -212,7 +212,7 @@ export default function Home() {
         {/* Rootstock Introduction Section */}
         <section className="container mx-auto px-4 py-12 relative">
           {/* Figma Group Decoration */}
-          <div className="absolute top-1/2 left-0 opacity-6 hidden lg:block pointer-events-none">
+          <div className="absolute top-1/2 left-0 opacity-20 hidden lg:block pointer-events-none">
             <img src="/images/figma/group-decoration.png" alt="" className="w-80 h-auto" />
           </div>
 
@@ -224,7 +224,7 @@ export default function Home() {
         {/* Campaign Info Section */}
         <section className="container mx-auto px-4 py-12 relative">
           {/* Figma Group Decoration */}
-          <div className="absolute top-0 right-0 opacity-8 hidden xl:block pointer-events-none">
+          <div className="absolute top-0 right-0 opacity-30 hidden xl:block pointer-events-none">
             <img src="/images/figma/group-decoration.png" alt="" className="w-[600px] h-auto" />
           </div>
 
@@ -236,7 +236,7 @@ export default function Home() {
         {/* About Section */}
         <section id="about" className="container mx-auto px-4 py-16 relative">
           {/* Figma Decoration - Background */}
-          <div className="absolute bottom-0 left-0 opacity-8 hidden lg:block pointer-events-none transform scale-x-[-1]">
+          <div className="absolute bottom-0 left-0 opacity-25 hidden lg:block pointer-events-none transform scale-x-[-1]">
             <img src="/images/figma/group-decoration.png" alt="" className="w-[450px] h-auto" />
           </div>
 
@@ -277,7 +277,7 @@ export default function Home() {
         {/* FAQ Section */}
         <section className="container mx-auto px-4 py-16 relative">
           {/* Figma Group Decoration */}
-          <div className="absolute top-1/4 right-0 opacity-8 hidden lg:block pointer-events-none">
+          <div className="absolute top-1/4 right-0 opacity-25 hidden lg:block pointer-events-none">
             <img src="/images/figma/group-decoration.png" alt="" className="w-96 h-auto" />
           </div>
 
