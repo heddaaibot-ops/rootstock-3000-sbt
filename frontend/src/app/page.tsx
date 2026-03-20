@@ -58,7 +58,12 @@ export default function Home() {
           <div className="animate-fade-in">
             {/* Rootstock Logo + Title */}
             <div className="flex flex-col items-center justify-center mb-6">
-              <img src="/images/figma/rootstock-logo.png" alt="Rootstock Official Logo" className="w-40 md:w-56 h-auto mb-4" />
+              <img
+                src="/images/figma/rootstock-logo.png"
+                alt="Rootstock Official Logo"
+                className="w-40 md:w-56 h-auto mb-4"
+                style={{ filter: 'brightness(0) saturate(100%) invert(48%) sepia(79%) saturate(2476%) hue-rotate(0deg) brightness(118%) contrast(119%)' }}
+              />
               <h1 className="text-5xl md:text-7xl font-bold uppercase leading-tight text-center">
                 <div className="text-rsk-orange">rootstock</div>
                 <div className="text-rsk-text-dark">爱你 3000</div>
@@ -213,14 +218,14 @@ export default function Home() {
         {/* About Section - 米色主题 */}
         <section id="about" className="container mx-auto px-4 py-16">
           <div className="max-w-7xl mx-auto">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-12">
               {/* Card 01 - Soul Bound */}
               <div className="bg-rsk-offwhite border-3 border-rsk-border-dark rounded-xl p-8 hover:border-rsk-orange transition-all duration-300 relative min-h-[320px] flex flex-col">
                 <div className="mb-6">
                   <div className="inline-block bg-rsk-orange rounded-tag px-6 py-3">
                     <h3 className="text-lg font-bold text-white leading-tight uppercase">{t('about.soulBound.title')}</h3>
                   </div>
-                  <div className="inline-block bg-rsk-lime rounded-tag px-4 py-1 ml-3">
+                  <div className="inline-block bg-rsk-lime rounded-tag px-4 py-1 ml-2">
                     <span className="text-sm font-bold text-rsk-text-dark">01</span>
                   </div>
                 </div>
@@ -235,7 +240,7 @@ export default function Home() {
                   <div className="inline-block bg-rsk-orange rounded-tag px-6 py-3">
                     <h3 className="text-lg font-bold text-white leading-tight uppercase">{t('about.freeMint.title')}</h3>
                   </div>
-                  <div className="inline-block bg-rsk-lime rounded-tag px-4 py-1 ml-3">
+                  <div className="inline-block bg-rsk-lime rounded-tag px-4 py-1 ml-2">
                     <span className="text-sm font-bold text-rsk-text-dark">02</span>
                   </div>
                 </div>
@@ -250,7 +255,7 @@ export default function Home() {
                   <div className="inline-block bg-rsk-orange rounded-tag px-6 py-3">
                     <h3 className="text-lg font-bold text-white leading-tight uppercase">{t('about.limitedSupply.title')}</h3>
                   </div>
-                  <div className="inline-block bg-rsk-lime rounded-tag px-4 py-1 ml-3">
+                  <div className="inline-block bg-rsk-lime rounded-tag px-4 py-1 ml-2">
                     <span className="text-sm font-bold text-rsk-text-dark">03</span>
                   </div>
                 </div>
