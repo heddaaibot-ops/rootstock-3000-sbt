@@ -28,10 +28,10 @@ export default function Home() {
 
       <main className="flex-1 pt-24 pb-16">
         {/* Countdown Section - 倒数到 3000 天纪念日 */}
-        <section className="relative py-6">
+        <section className="relative py-4">
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto">
-            <div className="flex flex-col items-start gap-4 mb-8">
+            <div className="flex flex-col items-start gap-4 mb-6">
               <h2 className="inline-block bg-rsk-pink text-rsk-cream text-3xl md:text-4xl font-bold px-8 py-4 uppercase">
                 Rootstock
               </h2>
@@ -45,7 +45,7 @@ export default function Home() {
         </section>
 
         {/* Hero Section */}
-        <section className="relative py-4 text-center">
+        <section className="relative py-2 text-center">
           <div className="container mx-auto px-4 relative z-10">
           {/* Bitcoin Icon - Floating Decorations from Figma */}
           <div className="absolute top-10 left-10 animate-float opacity-20 hidden lg:block">
@@ -75,7 +75,7 @@ export default function Home() {
 
           <div className="animate-fade-in">
             {/* Rootstock Logo + Title */}
-            <div className="flex flex-col items-center justify-center mb-6 gap-4">
+            <div className="flex flex-col items-center justify-center mb-4 gap-2">
               <div
                 className="h-16 md:h-24 w-64 md:w-96"
                 style={{
@@ -109,16 +109,16 @@ export default function Home() {
         </section>
 
         {/* Mint Section */}
-        <section id="mint" className="container mx-auto px-4 py-8">
+        <section id="mint" className="container mx-auto px-4 py-4">
           <div className="max-w-4xl mx-auto">
-            <div className="text-center mb-12">
+            <div className="text-center mb-6">
               <h2 className="inline-block bg-rsk-orange text-rsk-cream text-4xl font-bold px-8 py-4 uppercase">
                 免费铸造 SBT
               </h2>
             </div>
 
             {/* SBT Preview - 米色主题 */}
-            <div className="mb-16">
+            <div className="mb-8">
               <div className="max-w-2xl mx-auto">
                 <div className="bg-rsk-offwhite border-3 border-rsk-border-dark rounded-xl p-10 hover:border-rsk-orange transition-all duration-300">
                   <div className="inline-block bg-rsk-orange rounded-tag px-8 py-4 mb-6 mx-auto">
@@ -141,8 +141,8 @@ export default function Home() {
             </div>
 
             {/* Progress Bar */}
-            <div className="mb-16">
-              <h3 className="text-2xl font-bold text-center mb-6 uppercase">
+            <div className="mb-8">
+              <h3 className="text-2xl font-bold text-center mb-4 uppercase">
                 <span className="text-rsk-orange">铸造进度</span>
               </h3>
 
