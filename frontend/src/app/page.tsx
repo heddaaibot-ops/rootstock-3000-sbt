@@ -9,7 +9,6 @@ import { ProgressBar } from '@/components/ProgressBar';
 import { MintButton } from '@/components/MintButton';
 import { CampaignInfo } from '@/components/CampaignInfo';
 import { RootstockIntro } from '@/components/RootstockIntro';
-import { GridBackground } from '@/components/GridBackground';
 import { BitcoinIcon, BitcoinSymbol } from '@/components/BitcoinIcon';
 import { RootstockIcon } from '@/components/RootstockLogo';
 import { useContract } from '@/hooks/useContract';
@@ -22,17 +21,6 @@ export default function Home() {
 
   return (
     <div className="min-h-screen flex flex-col bg-rsk-cream relative overflow-hidden">
-      {/* 网格背景系统 */}
-      <GridBackground />
-
-      {/* Figma GRID 背景素材 */}
-      <div className="fixed inset-0 pointer-events-none z-0 opacity-5">
-        <img
-          src="/images/figma/grid.png"
-          alt=""
-          className="w-full h-full object-cover"
-        />
-      </div>
 
       {/* 主要内容 - 提升 z-index */}
       <div className="relative z-10">
@@ -40,22 +28,25 @@ export default function Home() {
 
       <main className="flex-1 pt-24 pb-16">
         {/* Countdown Section - 倒数到 3000 天纪念日 */}
-        <section className="container mx-auto px-4 py-12 relative">
-          {/* Figma Group Decoration */}
-          <div className="absolute -top-20 -left-20 opacity-50 pointer-events-none z-0">
-            <img src="/images/figma/group-decoration.png" alt="" className="w-[600px] h-auto" />
+        <section className="relative py-12">
+          {/* Figma Group Decoration - 满版横幅 */}
+          <div className="absolute inset-x-0 top-0 h-32 pointer-events-none z-0 overflow-hidden">
+            <img src="/images/figma/group-decoration.png" alt="" className="w-full h-full object-cover" />
           </div>
 
-          <div className="max-w-4xl mx-auto relative z-10">
+          <div className="container mx-auto px-4 relative z-10">
+            <div className="max-w-4xl mx-auto">
             <h2 className="text-3xl md:text-4xl font-bold text-center mb-8">
               <span className="text-rsk-orange">距离 Rootstock 3000 天纪念日</span>
             </h2>
             <Countdown milestoneTimestamp={1774137600} />
+            </div>
           </div>
         </section>
 
         {/* Hero Section */}
-        <section className="container mx-auto px-4 py-16 text-center relative">
+        <section className="relative py-16 text-center">
+          <div className="container mx-auto px-4 relative z-10">
           {/* Bitcoin Icon - Floating Decorations from Figma */}
           <div className="absolute top-10 left-10 animate-float opacity-20 hidden lg:block">
             <img src="/images/figma/bitcoin.png" alt="Bitcoin" className="w-32 h-auto" />
@@ -92,17 +83,19 @@ export default function Home() {
               <BitcoinSymbol className="text-rsk-orange text-2xl" />
               <span>{t('hero.description')}</span>
             </div>
+            </div>
           </div>
         </section>
 
         {/* Mint Section */}
-        <section id="mint" className="container mx-auto px-4 py-16 relative">
-          {/* Figma Group Decoration */}
-          <div className="absolute -bottom-20 -right-20 opacity-50 pointer-events-none transform scale-x-[-1] z-0">
-            <img src="/images/figma/group-decoration.png" alt="" className="w-[700px] h-auto" />
+        <section id="mint" className="relative py-16">
+          {/* Figma Group Decoration - 满版横幅 */}
+          <div className="absolute inset-x-0 bottom-0 h-40 pointer-events-none z-0 overflow-hidden">
+            <img src="/images/figma/group-decoration.png" alt="" className="w-full h-full object-cover transform scale-x-[-1]" />
           </div>
 
-          <div className="max-w-4xl mx-auto relative z-10">
+          <div className="container mx-auto px-4 relative z-10">
+            <div className="max-w-4xl mx-auto">
             <h2 className="text-4xl font-bold text-center mb-12">
               <span className="text-rsk-orange">免费铸造</span>{' '}
               <span className="text-rsk-dark">SBT</span>
@@ -206,41 +199,43 @@ export default function Home() {
                 </div>
               </div>
             </div>
+            </div>
           </div>
         </section>
 
         {/* Rootstock Introduction Section */}
-        <section className="container mx-auto px-4 py-12 relative">
-          {/* Figma Group Decoration */}
-          <div className="absolute top-0 -left-32 opacity-40 pointer-events-none z-0">
-            <img src="/images/figma/group-decoration.png" alt="" className="w-[500px] h-auto" />
+        <section className="relative py-12">
+          {/* Figma Group Decoration - 满版横幅 */}
+          <div className="absolute inset-x-0 top-0 h-32 pointer-events-none z-0 overflow-hidden">
+            <img src="/images/figma/group-decoration.png" alt="" className="w-full h-full object-cover" />
           </div>
 
-          <div className="relative z-10">
+          <div className="container mx-auto px-4 relative z-10">
             <RootstockIntro />
           </div>
         </section>
 
         {/* Campaign Info Section */}
-        <section className="container mx-auto px-4 py-12 relative">
-          {/* Figma Group Decoration */}
-          <div className="absolute -top-20 -right-32 opacity-60 pointer-events-none z-0">
-            <img src="/images/figma/group-decoration.png" alt="" className="w-[800px] h-auto" />
+        <section className="relative py-12">
+          {/* Figma Group Decoration - 满版横幅 */}
+          <div className="absolute inset-x-0 bottom-0 h-36 pointer-events-none z-0 overflow-hidden">
+            <img src="/images/figma/group-decoration.png" alt="" className="w-full h-full object-cover transform scale-x-[-1]" />
           </div>
 
-          <div className="relative z-10">
+          <div className="container mx-auto px-4 relative z-10">
             <CampaignInfo />
           </div>
         </section>
 
         {/* About Section */}
-        <section id="about" className="container mx-auto px-4 py-16 relative">
-          {/* Figma Decoration - Background */}
-          <div className="absolute -bottom-20 -left-20 opacity-50 pointer-events-none transform scale-x-[-1] z-0">
-            <img src="/images/figma/group-decoration.png" alt="" className="w-[600px] h-auto" />
+        <section id="about" className="relative py-16">
+          {/* Figma Decoration - 满版横幅 */}
+          <div className="absolute inset-x-0 top-0 h-36 pointer-events-none z-0 overflow-hidden">
+            <img src="/images/figma/group-decoration.png" alt="" className="w-full h-full object-cover" />
           </div>
 
-          <div className="max-w-4xl mx-auto relative z-10">
+          <div className="container mx-auto px-4 relative z-10">
+            <div className="max-w-4xl mx-auto">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
               <div className="bg-rsk-gray border border-rsk-orange/20 rounded-2xl p-6 text-center hover:border-rsk-orange transition-colors">
                 <h3 className="text-lg font-bold text-rsk-dark mb-2">{t('about.soulBound.title')}</h3>
@@ -271,17 +266,19 @@ export default function Home() {
                 <p>{t('about.whatIsRootstock.paragraph2')}</p>
               </div>
             </div>
+            </div>
           </div>
         </section>
 
         {/* FAQ Section */}
-        <section className="container mx-auto px-4 py-16 relative">
-          {/* Figma Group Decoration */}
-          <div className="absolute top-0 -right-20 opacity-50 pointer-events-none z-0">
-            <img src="/images/figma/group-decoration.png" alt="" className="w-[500px] h-auto" />
+        <section className="relative py-16">
+          {/* Figma Group Decoration - 满版横幅 */}
+          <div className="absolute inset-x-0 bottom-0 h-32 pointer-events-none z-0 overflow-hidden">
+            <img src="/images/figma/group-decoration.png" alt="" className="w-full h-full object-cover transform scale-x-[-1]" />
           </div>
 
-          <div className="max-w-3xl mx-auto relative z-10">
+          <div className="container mx-auto px-4 relative z-10">
+            <div className="max-w-3xl mx-auto">
             <h2 className="text-4xl font-bold text-center mb-12">
               <span className="text-rsk-orange">{t('faq.title')}</span>
             </h2>
@@ -334,6 +331,7 @@ export default function Home() {
                   {t('faq.q4.answer')}
                 </p>
               </details>
+            </div>
             </div>
           </div>
         </section>
