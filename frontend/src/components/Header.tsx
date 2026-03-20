@@ -10,15 +10,14 @@ export const Header: React.FC = () => {
         <div className="flex items-center justify-between">
           {/* Logo */}
           <div className="flex items-center gap-4">
-            <img
-              src="/images/figma/rootstock-logo.png"
-              alt="Rootstock"
-              className="h-10 w-auto brightness-0 saturate-100"
-              style={{ filter: 'brightness(0) saturate(100%) invert(48%) sepia(79%) saturate(2476%) hue-rotate(0deg) brightness(118%) contrast(119%)' }}
-            />
-            <div className="text-xl font-bold uppercase leading-tight">
-              <div className="text-rsk-orange">rootstock</div>
-              <div className="text-rsk-text-dark">爱你 3000</div>
+            <div className="flex flex-col items-start leading-tight">
+              <img
+                src="/images/figma/rootstock-logo.png"
+                alt="Rootstock"
+                className="h-8 w-auto mb-1"
+                style={{ filter: 'brightness(0) saturate(100%) invert(48%) sepia(79%) saturate(2476%) hue-rotate(0deg) brightness(118%) contrast(119%)' }}
+              />
+              <div className="text-lg font-bold text-rsk-text-dark">爱你 3000</div>
             </div>
             <div className="hidden md:block text-sm text-rsk-text-dark font-semibold">
               纪念 3000 天
