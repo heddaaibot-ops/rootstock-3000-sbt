@@ -45,7 +45,7 @@ export default function Home() {
         </section>
 
         {/* Hero Section */}
-        <section className="relative py-16 text-center">
+        <section className="relative py-8 text-center">
           <div className="container mx-auto px-4 relative z-10">
           {/* Bitcoin Icon - Floating Decorations from Figma */}
           <div className="absolute top-10 left-10 animate-float opacity-20 hidden lg:block">
