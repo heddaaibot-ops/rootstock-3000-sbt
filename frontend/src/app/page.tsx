@@ -29,12 +29,7 @@ export default function Home() {
       <main className="flex-1 pt-24 pb-16">
         {/* Countdown Section - 倒数到 3000 天纪念日 */}
         <section className="relative py-12">
-          {/* Figma Group Decoration - 满版横幅 */}
-          <div className="absolute inset-x-0 top-0 h-32 pointer-events-none z-0">
-            <img src="/images/figma/group-decoration.png" alt="" className="w-full h-full object-cover object-center" style={{display: 'block'}} />
-          </div>
-
-          <div className="container mx-auto px-4 relative z-10">
+          <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto">
             <h2 className="text-3xl md:text-4xl font-bold text-center mb-8">
               <span className="text-rsk-orange">距离 Rootstock 3000 天纪念日</span>
@@ -51,13 +46,13 @@ export default function Home() {
           <div className="absolute top-10 left-10 animate-float opacity-20 hidden lg:block">
             <img src="/images/figma/bitcoin.png" alt="Bitcoin" className="w-32 h-auto" />
           </div>
-          <div className="absolute bottom-10 right-10 animate-float-delayed opacity-15 hidden lg:block">
-            <img src="/images/figma/bitcoin.png" alt="Bitcoin" className="w-24 h-auto" />
+          <div className="absolute top-10 right-10 animate-float-delayed opacity-20 hidden lg:block">
+            <img src="/images/figma/bitcoin.png" alt="Bitcoin" className="w-32 h-auto" />
           </div>
 
           {/* Rootstock Logo - Floating Decoration from Figma */}
-          <div className="absolute top-1/2 right-20 animate-float opacity-15 hidden xl:block">
-            <img src="/images/figma/rootstock-logo.png" alt="Rootstock" className="w-28 h-auto" />
+          <div className="absolute bottom-10 left-1/2 -translate-x-1/2 animate-float opacity-25 hidden xl:block">
+            <img src="/images/figma/rootstock-logo.png" alt="Rootstock Official Logo" className="w-40 h-auto" />
           </div>
 
           <div className="animate-fade-in">
@@ -280,12 +275,7 @@ export default function Home() {
 
         {/* FAQ Section */}
         <section className="relative py-16">
-          {/* Figma Group Decoration - 满版横幅 */}
-          <div className="absolute inset-x-0 bottom-0 h-32 pointer-events-none z-0">
-            <img src="/images/figma/group-decoration.png" alt="" className="w-full h-full object-cover object-center transform scale-x-[-1]" style={{display: 'block'}} />
-          </div>
-
-          <div className="container mx-auto px-4 relative z-10">
+          <div className="container mx-auto px-4">
             <div className="max-w-3xl mx-auto">
             <h2 className="text-4xl font-bold text-center mb-12">
               <span className="text-rsk-orange">{t('faq.title')}</span>
