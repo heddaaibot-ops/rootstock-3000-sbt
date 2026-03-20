@@ -22,9 +22,11 @@ export const CampaignInfo: React.FC = () => {
 
       {/* 活動說明 */}
       <div className="bg-rsk-offwhite border-3 border-rsk-border-dark rounded-xl p-8 mb-8">
-        <h3 className="text-2xl font-bold text-rsk-orange mb-6 text-center uppercase">
-          {t('campaign.howToParticipate')}
-        </h3>
+        <div className="text-center mb-6">
+          <h3 className="inline-block bg-rsk-lime text-rsk-text-dark text-2xl font-bold px-8 py-4 uppercase">
+            {t('campaign.howToParticipate')}
+          </h3>
+        </div>
         <div className="space-y-4 text-rsk-text-dark">
           <div className="flex items-start gap-4">
             <div className="flex-shrink-0 w-8 h-8 bg-rsk-orange rounded-full flex items-center justify-center font-bold text-white">
@@ -81,9 +83,11 @@ export const CampaignInfo: React.FC = () => {
 
       {/* 奖励说明 */}
       <div className="bg-rsk-offwhite border-3 border-rsk-orange rounded-xl p-8 mb-8">
-        <h3 className="text-2xl font-bold text-rsk-orange mb-6 text-center uppercase">
-          {t('campaign.rewards.title')}
-        </h3>
+        <div className="text-center mb-6">
+          <h3 className="inline-block bg-rsk-purple text-rsk-cream text-2xl font-bold px-8 py-4 uppercase">
+            {t('campaign.rewards.title')}
+          </h3>
+        </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div className="text-center">
             <div className="text-3xl font-bold text-rsk-orange mb-2">{t('campaign.rewards.usdt')}</div>
@@ -101,9 +105,11 @@ export const CampaignInfo: React.FC = () => {
 
       {/* 活動時間線 */}
       <div className="bg-rsk-offwhite border-3 border-rsk-border-dark rounded-xl p-8">
-        <h3 className="text-2xl font-bold text-rsk-orange mb-6 text-center uppercase">
-          {t('campaign.timeline.title')}
-        </h3>
+        <div className="text-center mb-6">
+          <h3 className="inline-block bg-rsk-pink text-rsk-cream text-2xl font-bold px-8 py-4 uppercase">
+            {t('campaign.timeline.title')}
+          </h3>
+        </div>
         <div className="space-y-6">
           <div className="flex items-center gap-4">
             <div className="flex-shrink-0 w-20 text-center">

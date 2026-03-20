@@ -31,9 +31,11 @@ export default function Home() {
         <section className="relative py-12">
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-bold text-center mb-8 uppercase">
-              <span className="text-rsk-orange">距离 Rootstock 3000 天纪念日</span>
-            </h2>
+            <div className="text-center mb-8">
+              <h2 className="inline-block bg-rsk-green text-rsk-text-dark text-3xl md:text-4xl font-bold px-8 py-4 uppercase">
+                距离 Rootstock 3000 天纪念日
+              </h2>
+            </div>
             <Countdown milestoneTimestamp={1774137600} />
             </div>
           </div>
@@ -85,9 +87,11 @@ export default function Home() {
         {/* Mint Section */}
         <section id="mint" className="container mx-auto px-4 py-16">
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-4xl font-bold text-center mb-12 uppercase">
-              <span className="text-rsk-orange">免费铸造 SBT</span>
-            </h2>
+            <div className="text-center mb-12">
+              <h2 className="inline-block bg-rsk-orange text-rsk-cream text-4xl font-bold px-8 py-4 uppercase">
+                免费铸造 SBT
+              </h2>
+            </div>
 
             {/* SBT Preview - 米色主题 */}
             <div className="mb-16">

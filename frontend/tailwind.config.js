@@ -23,8 +23,11 @@ module.exports = {
           'text-dark': '#5C2E00',    // 深橙棕色文字（9.8:1 对比度）
           'border-dark': '#4A1942',  // 深紫棕色边框（8.2:1 对比度）
 
-          // 保留的 Figma 配色（备用）
-          pink: '#FF70E0',           // 粉色强调
+          // 官方品牌配色（实色底标题使用）
+          pink: '#FF70E0',           // Rootstock Pink
+          purple: '#9E75FF',         // Purple
+          green: '#78C700',          // Rootstock Green
+          cyan: '#08FFD1',           // Cyan
         },
       },
       fontFamily: {

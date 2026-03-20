@@ -6,18 +6,20 @@ import { Footer } from '@/components/Footer';
 
 export default function PrivacyPage() {
   return (
-    <div className="min-h-screen flex flex-col bg-rsk-dark">
+    <div className="min-h-screen flex flex-col bg-rsk-cream">
       <Header />
 
       <main className="flex-1 pt-24 pb-16">
         <div className="container mx-auto px-4 py-16">
-          <div className="max-w-4xl mx-auto bg-rsk-gray border border-rsk-orange/20 rounded-2xl p-8 md:p-12">
-            <h1 className="text-4xl font-bold text-rsk-orange mb-4">
-              隐私政策
-            </h1>
-            <p className="text-gray-400 mb-8">最后更新：2026年3月16日</p>
+          <div className="max-w-4xl mx-auto bg-rsk-offwhite border-3 border-rsk-border-dark p-8 md:p-12">
+            <div className="mb-4">
+              <h1 className="inline-block bg-rsk-purple text-rsk-cream text-4xl font-bold px-8 py-4 uppercase">
+                隐私政策
+              </h1>
+            </div>
+            <p className="text-rsk-text-dark/60 mb-8">最后更新：2026年3月16日</p>
 
-            <div className="prose prose-invert max-w-none space-y-6 text-gray-300">
+            <div className="prose max-w-none space-y-6 text-rsk-text-dark">
               <p>
                 本隐私政策描述了 RootstockLabs Limited 如何收集、使用和保护您的个人信息。
               </p>
@@ -26,12 +28,12 @@ export default function PrivacyPage() {
                 <p className="text-rsk-orange font-semibold mb-2">
                   📝 内容待更新
                 </p>
-                <p className="text-gray-400 text-sm">
+                <p className="text-rsk-text-dark/60 text-sm">
                   隐私政策的详细内容正在准备中，将很快更新。如有任何疑问，请联系我们。
                 </p>
               </div>
 
-              <h2 className="text-2xl font-bold text-rsk-light mt-8 mb-4">联系我们</h2>
+              <h2 className="text-2xl font-bold text-rsk-orange mt-8 mb-4">联系我们</h2>
               <p>
                 如果您对本隐私政策有任何疑问或顾虑，请通过以下方式联系我们：
               </p>
@@ -41,7 +43,7 @@ export default function PrivacyPage() {
               </p>
             </div>
 
-            <div className="mt-12 pt-8 border-t border-rsk-orange/20">
+            <div className="mt-12 pt-8 border-t-3 border-rsk-orange">
               <a
                 href="/"
                 className="inline-flex items-center gap-2 text-rsk-orange hover:text-rsk-orange/80 transition-colors"
