@@ -77,9 +77,8 @@ export default function Home() {
             {/* Rootstock Logo + Title */}
             <div className="flex flex-col items-center justify-center mb-6 gap-4">
               <div
-                className="h-12 md:h-20"
+                className="h-16 md:h-24 w-64 md:w-96"
                 style={{
-                  width: '200px',
                   backgroundColor: '#FF9100',
                   WebkitMaskImage: 'url(/images/figma/rootstock-logo.png)',
                   WebkitMaskSize: 'contain',
