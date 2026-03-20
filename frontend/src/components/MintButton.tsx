@@ -138,11 +138,11 @@ export const MintButton: React.FC<MintButtonProps> = ({
       <button
         onClick={handleMint}
         disabled={isDisabled}
-        className="group relative px-12 py-6 bg-gradient-to-r from-rsk-orange to-orange-400 hover:from-orange-400 hover:to-rsk-orange text-white font-bold text-xl rounded-2xl transition-all duration-300 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none shadow-lg shadow-rsk-orange/50"
+        className="group relative px-16 py-6 bg-rsk-pink hover:bg-rsk-pink/90 text-rsk-dark font-black text-2xl rounded-2xl transition-all duration-300 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none shadow-2xl uppercase tracking-wide"
       >
         {minting ? (
-          <span className="flex items-center gap-3">
-            <svg className="animate-spin h-6 w-6" viewBox="0 0 24 24">
+          <span className="flex items-center gap-3 justify-center">
+            <svg className="animate-spin h-7 w-7" viewBox="0 0 24 24">
               <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none"></circle>
               <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
             </svg>
@@ -151,14 +151,9 @@ export const MintButton: React.FC<MintButtonProps> = ({
         ) : (
           <span>{buttonText}</span>
         )}
-
-        {/* Glow effect */}
-        {!isDisabled && !minting && (
-          <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-rsk-orange to-orange-400 blur-xl opacity-50 group-hover:opacity-75 transition-opacity -z-10"></div>
-        )}
       </button>
 
-      <div className="text-sm text-rsk-text/70 mt-4">
+      <div className="text-base text-rsk-dark mt-6 font-medium">
         {statusMessage}
       </div>
     </div>

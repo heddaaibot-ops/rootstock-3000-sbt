@@ -208,27 +208,62 @@ export default function Home() {
 
         {/* About Section */}
         <section id="about" className="container mx-auto px-4 py-16">
-          <div className="max-w-4xl mx-auto">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
-              <div className="bg-rsk-gray border border-rsk-orange/20 rounded-2xl p-6 text-center hover:border-rsk-orange transition-colors">
-                <h3 className="text-lg font-bold text-rsk-dark mb-2">{t('about.soulBound.title')}</h3>
-                <p className="text-sm text-rsk-text/70">
+          <div className="max-w-7xl mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+              {/* Card 01 - Soul Bound */}
+              <div className="bg-rsk-dark/95 border-2 border-rsk-cream/20 rounded-3xl p-8 hover:border-rsk-neon-green transition-all duration-300 relative">
+                {/* Title with colored background */}
+                <div className="mb-6">
+                  <div className="inline-block bg-rsk-neon-green rounded-xl px-6 py-3 mb-3">
+                    <h3 className="text-xl font-bold text-rsk-dark">{t('about.soulBound.title')}</h3>
+                  </div>
+                  <div className="inline-flex items-center justify-center w-12 h-12 bg-rsk-neon-green rounded-full ml-3">
+                    <span className="text-lg font-bold text-rsk-dark">01</span>
+                  </div>
+                </div>
+                <p className="text-rsk-cream/80 leading-relaxed">
                   {t('about.soulBound.description')}
                 </p>
+                {/* Icon placeholder */}
+                <div className="mt-8 text-rsk-neon-green opacity-50 text-6xl text-center">
+                  🔗
+                </div>
               </div>
 
-              <div className="bg-rsk-gray border border-rsk-orange/20 rounded-2xl p-6 text-center hover:border-rsk-orange transition-colors">
-                <h3 className="text-lg font-bold text-rsk-dark mb-2">{t('about.freeMint.title')}</h3>
-                <p className="text-sm text-rsk-text/70">
+              {/* Card 02 - Free Mint */}
+              <div className="bg-rsk-dark/95 border-2 border-rsk-cream/20 rounded-3xl p-8 hover:border-rsk-pink transition-all duration-300 relative">
+                <div className="mb-6">
+                  <div className="inline-block bg-rsk-pink rounded-xl px-6 py-3 mb-3">
+                    <h3 className="text-xl font-bold text-rsk-dark">{t('about.freeMint.title')}</h3>
+                  </div>
+                  <div className="inline-flex items-center justify-center w-12 h-12 bg-rsk-pink rounded-full ml-3">
+                    <span className="text-lg font-bold text-rsk-dark">02</span>
+                  </div>
+                </div>
+                <p className="text-rsk-cream/80 leading-relaxed">
                   {t('about.freeMint.description')}
                 </p>
+                <div className="mt-8 text-rsk-pink opacity-50 text-6xl text-center">
+                  💎
+                </div>
               </div>
 
-              <div className="bg-rsk-gray border border-rsk-orange/20 rounded-2xl p-6 text-center hover:border-rsk-orange transition-colors">
-                <h3 className="text-lg font-bold text-rsk-dark mb-2">{t('about.limitedSupply.title')}</h3>
-                <p className="text-sm text-rsk-text/70">
+              {/* Card 03 - Limited Supply */}
+              <div className="bg-rsk-dark/95 border-2 border-rsk-cream/20 rounded-3xl p-8 hover:border-purple-400 transition-all duration-300 relative">
+                <div className="mb-6">
+                  <div className="inline-block bg-purple-400 rounded-xl px-6 py-3 mb-3">
+                    <h3 className="text-xl font-bold text-rsk-dark">{t('about.limitedSupply.title')}</h3>
+                  </div>
+                  <div className="inline-flex items-center justify-center w-12 h-12 bg-purple-400 rounded-full ml-3">
+                    <span className="text-lg font-bold text-rsk-dark">03</span>
+                  </div>
+                </div>
+                <p className="text-rsk-cream/80 leading-relaxed">
                   {t('about.limitedSupply.description')}
                 </p>
+                <div className="mt-8 text-purple-400 opacity-50 text-6xl text-center">
+                  🏆
+                </div>
               </div>
             </div>
 
