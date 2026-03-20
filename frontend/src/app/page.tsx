@@ -159,36 +159,44 @@ export default function Home() {
 
             {/* Stats Grid */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-              <div className="bg-rsk-gray border border-rsk-orange/20 rounded-xl p-4 text-center hover:border-rsk-orange transition-colors">
-                <div className="text-sm text-rsk-text/70 mb-1">{t('mint.stats.launchDate')}</div>
-                <div className="text-lg font-bold text-rsk-dark font-mono">
+              <div className="bg-rsk-dark/95 border-2 border-rsk-neon-green rounded-2xl p-5 text-center hover:scale-105 transition-transform">
+                <div className="inline-block bg-rsk-neon-green rounded-lg px-3 py-1 mb-2">
+                  <div className="text-xs font-bold text-rsk-dark uppercase">{t('mint.stats.launchDate')}</div>
+                </div>
+                <div className="text-lg font-bold text-rsk-cream font-mono">
                   2018年1月3日
                 </div>
               </div>
 
-              <div className="bg-rsk-gray border border-rsk-orange/20 rounded-xl p-4 text-center hover:border-rsk-orange transition-colors">
-                <div className="text-sm text-rsk-text/70 mb-1">{t('mint.stats.milestoneDate')}</div>
-                <div className="text-lg font-bold text-rsk-orange font-mono">
+              <div className="bg-rsk-dark/95 border-2 border-rsk-pink rounded-2xl p-5 text-center hover:scale-105 transition-transform">
+                <div className="inline-block bg-rsk-pink rounded-lg px-3 py-1 mb-2">
+                  <div className="text-xs font-bold text-rsk-dark uppercase">{t('mint.stats.milestoneDate')}</div>
+                </div>
+                <div className="text-lg font-bold text-rsk-cream font-mono">
                   2026年3月22日
                 </div>
               </div>
 
-              <div className="bg-rsk-gray border border-rsk-orange/20 rounded-xl p-4 text-center hover:border-rsk-orange transition-colors">
-                <div className="text-sm text-rsk-text/70 mb-1">{t('mint.stats.chainId')}</div>
-                <div className="text-lg font-bold text-rsk-dark font-mono">
+              <div className="bg-rsk-dark/95 border-2 border-purple-400 rounded-2xl p-5 text-center hover:scale-105 transition-transform">
+                <div className="inline-block bg-purple-400 rounded-lg px-3 py-1 mb-2">
+                  <div className="text-xs font-bold text-rsk-dark uppercase">{t('mint.stats.chainId')}</div>
+                </div>
+                <div className="text-lg font-bold text-rsk-cream font-mono">
                   {chainId || 31}
                 </div>
               </div>
 
-              <div className="bg-rsk-gray border border-rsk-orange/20 rounded-xl p-4 text-center hover:border-rsk-orange transition-colors">
-                <div className="text-sm text-rsk-text/70 mb-1">{t('mint.stats.status')}</div>
-                <div className="text-lg font-bold text-rsk-dark">
+              <div className="bg-rsk-dark/95 border-2 border-rsk-orange rounded-2xl p-5 text-center hover:scale-105 transition-transform">
+                <div className="inline-block bg-rsk-orange rounded-lg px-3 py-1 mb-2">
+                  <div className="text-xs font-bold text-rsk-dark uppercase">{t('mint.stats.status')}</div>
+                </div>
+                <div className="text-lg font-bold text-rsk-cream">
                   {!contractData ? (
-                    <span className="text-rsk-text/60">{t('mint.stats.loading')}</span>
+                    <span className="text-rsk-cream/60">{t('mint.stats.loading')}</span>
                   ) : contractData.isPaused ? (
-                    <span className="text-orange-600">{t('mint.stats.paused')}</span>
+                    <span className="text-rsk-orange">{t('mint.stats.paused')}</span>
                   ) : (
-                    <span className="text-green-600">{t('mint.stats.live')}</span>
+                    <span className="text-rsk-neon-green">{t('mint.stats.live')}</span>
                   )}
                 </div>
               </div>
@@ -291,51 +299,63 @@ export default function Home() {
               <span className="text-rsk-orange">{t('faq.title')}</span>
             </h2>
 
-            <div className="space-y-4">
-              <details className="bg-rsk-gray border border-rsk-orange/20 rounded-xl p-6 hover:border-rsk-orange transition-colors group">
-                <summary className="cursor-pointer text-lg font-bold text-rsk-dark flex items-center justify-between">
-                  <span>{t('faq.q1.question')}</span>
-                  <svg className="w-5 h-5 transform group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+            <div className="space-y-6">
+              <details className="bg-rsk-dark/95 border-2 border-rsk-neon-green/50 rounded-2xl p-6 hover:border-rsk-neon-green transition-all group">
+                <summary className="cursor-pointer text-lg font-bold text-rsk-cream flex items-center justify-between">
+                  <span className="flex items-center gap-3">
+                    <span className="inline-block bg-rsk-neon-green rounded-full w-8 h-8 flex items-center justify-center text-sm font-black text-rsk-dark">Q</span>
+                    {t('faq.q1.question')}
+                  </span>
+                  <svg className="w-6 h-6 text-rsk-neon-green transform group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M19 9l-7 7-7-7" />
                   </svg>
                 </summary>
-                <p className="mt-4 text-rsk-text/70">
+                <p className="mt-4 text-rsk-cream/80 leading-relaxed ml-11">
                   {t('faq.q1.answer')}
                 </p>
               </details>
 
-              <details className="bg-rsk-gray border border-rsk-orange/20 rounded-xl p-6 hover:border-rsk-orange transition-colors group">
-                <summary className="cursor-pointer text-lg font-bold text-rsk-dark flex items-center justify-between">
-                  <span>{t('faq.q2.question')}</span>
-                  <svg className="w-5 h-5 transform group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              <details className="bg-rsk-dark/95 border-2 border-rsk-pink/50 rounded-2xl p-6 hover:border-rsk-pink transition-all group">
+                <summary className="cursor-pointer text-lg font-bold text-rsk-cream flex items-center justify-between">
+                  <span className="flex items-center gap-3">
+                    <span className="inline-block bg-rsk-pink rounded-full w-8 h-8 flex items-center justify-center text-sm font-black text-rsk-dark">Q</span>
+                    {t('faq.q2.question')}
+                  </span>
+                  <svg className="w-6 h-6 text-rsk-pink transform group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M19 9l-7 7-7-7" />
                   </svg>
                 </summary>
-                <p className="mt-4 text-rsk-text/70">
+                <p className="mt-4 text-rsk-cream/80 leading-relaxed ml-11">
                   {t('faq.q2.answer')}
                 </p>
               </details>
 
-              <details className="bg-rsk-gray border border-rsk-orange/20 rounded-xl p-6 hover:border-rsk-orange transition-colors group">
-                <summary className="cursor-pointer text-lg font-bold text-rsk-dark flex items-center justify-between">
-                  <span>{t('faq.q3.question')}</span>
-                  <svg className="w-5 h-5 transform group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              <details className="bg-rsk-dark/95 border-2 border-purple-400/50 rounded-2xl p-6 hover:border-purple-400 transition-all group">
+                <summary className="cursor-pointer text-lg font-bold text-rsk-cream flex items-center justify-between">
+                  <span className="flex items-center gap-3">
+                    <span className="inline-block bg-purple-400 rounded-full w-8 h-8 flex items-center justify-center text-sm font-black text-rsk-dark">Q</span>
+                    {t('faq.q3.question')}
+                  </span>
+                  <svg className="w-6 h-6 text-purple-400 transform group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M19 9l-7 7-7-7" />
                   </svg>
                 </summary>
-                <p className="mt-4 text-rsk-text/70">
+                <p className="mt-4 text-rsk-cream/80 leading-relaxed ml-11">
                   {t('faq.q3.answer')}
                 </p>
               </details>
 
-              <details className="bg-rsk-gray border border-rsk-orange/20 rounded-xl p-6 hover:border-rsk-orange transition-colors group">
-                <summary className="cursor-pointer text-lg font-bold text-rsk-dark flex items-center justify-between">
-                  <span>{t('faq.q4.question')}</span>
-                  <svg className="w-5 h-5 transform group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              <details className="bg-rsk-dark/95 border-2 border-rsk-orange/50 rounded-2xl p-6 hover:border-rsk-orange transition-all group">
+                <summary className="cursor-pointer text-lg font-bold text-rsk-cream flex items-center justify-between">
+                  <span className="flex items-center gap-3">
+                    <span className="inline-block bg-rsk-orange rounded-full w-8 h-8 flex items-center justify-center text-sm font-black text-rsk-dark">Q</span>
+                    {t('faq.q4.question')}
+                  </span>
+                  <svg className="w-6 h-6 text-rsk-orange transform group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M19 9l-7 7-7-7" />
                   </svg>
                 </summary>
-                <p className="mt-4 text-rsk-text/70">
+                <p className="mt-4 text-rsk-cream/80 leading-relaxed ml-11">
                   {t('faq.q4.answer')}
                 </p>
               </details>
