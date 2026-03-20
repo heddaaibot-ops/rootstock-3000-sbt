@@ -158,55 +158,71 @@ export default function Home() {
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
               {/* Stat 1 - Launch Date */}
               <div className="relative">
-                <div className="bg-rsk-neon-green rounded-xl p-6 mb-3">
-                  <div className="text-4xl font-black text-black font-mono leading-tight">
+                <div className="bg-rsk-neon-green p-8 mb-3 relative">
+                  {/* 右上角圆形标签 */}
+                  <div className="absolute -top-3 -right-3 w-12 h-12 bg-rsk-neon-green rounded-full flex items-center justify-center border-4 border-black">
+                    <span className="text-xs font-black text-black">年</span>
+                  </div>
+                  <div className="text-5xl font-black text-black font-mono leading-none">
                     2018
                   </div>
                 </div>
-                <div className="inline-block bg-rsk-neon-green rounded-full px-4 py-1">
-                  <div className="text-xs font-black text-black uppercase tracking-wide">{t('mint.stats.launchDate')}</div>
+                <div className="inline-block bg-rsk-neon-green rounded-full px-5 py-2">
+                  <div className="text-xs font-black text-black uppercase tracking-wider">{t('mint.stats.launchDate')}</div>
                 </div>
               </div>
 
               {/* Stat 2 - Milestone Date */}
               <div className="relative">
-                <div className="bg-rsk-pink rounded-xl p-6 mb-3">
-                  <div className="text-4xl font-black text-black font-mono leading-tight">
+                <div className="bg-rsk-pink p-8 mb-3 relative">
+                  {/* 右上角圆形标签 */}
+                  <div className="absolute -top-3 -right-3 w-12 h-12 bg-rsk-pink rounded-full flex items-center justify-center border-4 border-black">
+                    <span className="text-xs font-black text-black">天</span>
+                  </div>
+                  <div className="text-5xl font-black text-black font-mono leading-none">
                     3000
                   </div>
                 </div>
-                <div className="inline-block bg-rsk-pink rounded-full px-4 py-1">
-                  <div className="text-xs font-black text-black uppercase tracking-wide">天数</div>
+                <div className="inline-block bg-rsk-pink rounded-full px-5 py-2">
+                  <div className="text-xs font-black text-black uppercase tracking-wider">天数</div>
                 </div>
               </div>
 
               {/* Stat 3 - Chain ID */}
               <div className="relative">
-                <div className="bg-purple-400 rounded-xl p-6 mb-3">
-                  <div className="text-4xl font-black text-black font-mono leading-tight">
+                <div className="bg-purple-400 p-8 mb-3 relative">
+                  {/* 右上角圆形标签 */}
+                  <div className="absolute -top-3 -right-3 w-12 h-12 bg-purple-400 rounded-full flex items-center justify-center border-4 border-black">
+                    <span className="text-xs font-black text-black">ID</span>
+                  </div>
+                  <div className="text-5xl font-black text-black font-mono leading-none">
                     {chainId || 31}
                   </div>
                 </div>
-                <div className="inline-block bg-purple-400 rounded-full px-4 py-1">
-                  <div className="text-xs font-black text-black uppercase tracking-wide">{t('mint.stats.chainId')}</div>
+                <div className="inline-block bg-purple-400 rounded-full px-5 py-2">
+                  <div className="text-xs font-black text-black uppercase tracking-wider">{t('mint.stats.chainId')}</div>
                 </div>
               </div>
 
               {/* Stat 4 - Status */}
               <div className="relative">
-                <div className="bg-cyan-400 rounded-xl p-6 mb-3">
-                  <div className="text-4xl font-black text-black font-mono leading-tight">
+                <div className="bg-cyan-400 p-8 mb-3 relative">
+                  {/* 右上角圆形标签 */}
+                  <div className="absolute -top-3 -right-3 w-12 h-12 bg-cyan-400 rounded-full flex items-center justify-center border-4 border-black">
+                    <span className="text-xs font-black text-black">✓</span>
+                  </div>
+                  <div className="text-5xl font-black text-black font-mono leading-none">
                     {!contractData ? (
                       <span>...</span>
                     ) : contractData.isPaused ? (
-                      <span>暂停</span>
+                      <span className="text-4xl">暂停</span>
                     ) : (
-                      <span>进行中</span>
+                      <span className="text-3xl">进行中</span>
                     )}
                   </div>
                 </div>
-                <div className="inline-block bg-cyan-400 rounded-full px-4 py-1">
-                  <div className="text-xs font-black text-black uppercase tracking-wide">{t('mint.stats.status')}</div>
+                <div className="inline-block bg-cyan-400 rounded-full px-5 py-2">
+                  <div className="text-xs font-black text-black uppercase tracking-wider">{t('mint.stats.status')}</div>
                 </div>
               </div>
             </div>
