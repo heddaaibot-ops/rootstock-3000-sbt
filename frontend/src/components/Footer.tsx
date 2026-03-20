@@ -98,22 +98,8 @@ export const Footer: React.FC = () => {
           </div>
         </div>
 
-        {/* Disclaimer */}
+        {/* Copyright */}
         <div className="border-t-2 border-rsk-border-dark pt-8">
-          <div className="bg-rsk-cream border-2 border-rsk-orange rounded-lg p-4 mb-6">
-            <h4 className="text-rsk-orange font-bold mb-2 flex items-center gap-2 uppercase">
-              <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                <path fillRule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
-              </svg>
-              <span>重要声明</span>
-            </h4>
-            <p className="text-sm text-rsk-text-dark">
-              这是一个纪念性的灵魂绑定代币（SBT），没有货币价值。
-              它不能被转移或出售。参与需自行承担风险。
-              请确保您使用的是正确的网络，并始终验证合约地址。
-            </p>
-          </div>
-
           <div className="text-center text-rsk-text-dark text-sm font-medium">
             <p>© {currentYear} Rootstock 3000 Days. 为 Rootstock 社区倾情打造。</p>
           </div>
