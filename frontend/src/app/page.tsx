@@ -221,7 +221,7 @@ export default function Home() {
                   <div className="inline-block bg-rsk-neon-green rounded-2xl px-8 py-4 mb-0">
                     <h3 className="text-2xl font-black text-black leading-tight">{t('about.soulBound.title')}</h3>
                   </div>
-                  <div className="inline-flex items-center justify-center w-14 h-14 bg-rsk-neon-green rounded-full ml-4 align-top mt-1">
+                  <div className="inline-flex items-center justify-center w-14 h-14 bg-rsk-neon-green rounded-lg ml-4 align-top mt-1">
                     <span className="text-xl font-black text-black">01</span>
                   </div>
                 </div>
@@ -236,7 +236,7 @@ export default function Home() {
                   <div className="inline-block bg-rsk-pink rounded-2xl px-8 py-4 mb-0">
                     <h3 className="text-2xl font-black text-black leading-tight">{t('about.freeMint.title')}</h3>
                   </div>
-                  <div className="inline-flex items-center justify-center w-14 h-14 bg-rsk-pink rounded-full ml-4 align-top mt-1">
+                  <div className="inline-flex items-center justify-center w-14 h-14 bg-rsk-pink rounded-lg ml-4 align-top mt-1">
                     <span className="text-xl font-black text-black">02</span>
                   </div>
                 </div>
@@ -251,7 +251,7 @@ export default function Home() {
                   <div className="inline-block bg-purple-400 rounded-2xl px-8 py-4 mb-0">
                     <h3 className="text-2xl font-black text-black leading-tight">{t('about.limitedSupply.title')}</h3>
                   </div>
-                  <div className="inline-flex items-center justify-center w-14 h-14 bg-purple-400 rounded-full ml-4 align-top mt-1">
+                  <div className="inline-flex items-center justify-center w-14 h-14 bg-purple-400 rounded-lg ml-4 align-top mt-1">
                     <span className="text-xl font-black text-black">03</span>
                   </div>
                 </div>
@@ -285,7 +285,7 @@ export default function Home() {
               <details className="bg-rsk-dark/95 border-2 border-rsk-neon-green/50 rounded-2xl p-6 hover:border-rsk-neon-green transition-all group">
                 <summary className="cursor-pointer text-lg font-bold text-rsk-cream flex items-center justify-between">
                   <span className="flex items-center gap-3">
-                    <span className="inline-block bg-rsk-neon-green rounded-full w-8 h-8 flex items-center justify-center text-sm font-black text-rsk-dark">Q</span>
+                    <span className="inline-block bg-rsk-neon-green rounded-lg w-8 h-8 flex items-center justify-center text-sm font-black text-rsk-dark">Q</span>
                     {t('faq.q1.question')}
                   </span>
                   <svg className="w-6 h-6 text-rsk-neon-green transform group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -300,7 +300,7 @@ export default function Home() {
               <details className="bg-rsk-dark/95 border-2 border-rsk-pink/50 rounded-2xl p-6 hover:border-rsk-pink transition-all group">
                 <summary className="cursor-pointer text-lg font-bold text-rsk-cream flex items-center justify-between">
                   <span className="flex items-center gap-3">
-                    <span className="inline-block bg-rsk-pink rounded-full w-8 h-8 flex items-center justify-center text-sm font-black text-rsk-dark">Q</span>
+                    <span className="inline-block bg-rsk-pink rounded-lg w-8 h-8 flex items-center justify-center text-sm font-black text-rsk-dark">Q</span>
                     {t('faq.q2.question')}
                   </span>
                   <svg className="w-6 h-6 text-rsk-pink transform group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -315,7 +315,7 @@ export default function Home() {
               <details className="bg-rsk-dark/95 border-2 border-purple-400/50 rounded-2xl p-6 hover:border-purple-400 transition-all group">
                 <summary className="cursor-pointer text-lg font-bold text-rsk-cream flex items-center justify-between">
                   <span className="flex items-center gap-3">
-                    <span className="inline-block bg-purple-400 rounded-full w-8 h-8 flex items-center justify-center text-sm font-black text-rsk-dark">Q</span>
+                    <span className="inline-block bg-purple-400 rounded-lg w-8 h-8 flex items-center justify-center text-sm font-black text-rsk-dark">Q</span>
                     {t('faq.q3.question')}
                   </span>
                   <svg className="w-6 h-6 text-purple-400 transform group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -330,7 +330,7 @@ export default function Home() {
               <details className="bg-rsk-dark/95 border-2 border-rsk-orange/50 rounded-2xl p-6 hover:border-rsk-orange transition-all group">
                 <summary className="cursor-pointer text-lg font-bold text-rsk-cream flex items-center justify-between">
                   <span className="flex items-center gap-3">
-                    <span className="inline-block bg-rsk-orange rounded-full w-8 h-8 flex items-center justify-center text-sm font-black text-rsk-dark">Q</span>
+                    <span className="inline-block bg-rsk-orange rounded-lg w-8 h-8 flex items-center justify-center text-sm font-black text-rsk-dark">Q</span>
                     {t('faq.q4.question')}
                   </span>
                   <svg className="w-6 h-6 text-rsk-orange transform group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
