@@ -57,17 +57,39 @@ export default function Home() {
 
           {/* Rootstock Logo - Floating Decoration from Figma */}
           <div className="absolute bottom-10 left-1/2 -translate-x-1/2 animate-float opacity-25 hidden xl:block">
-            <img src="/images/figma/rootstock-logo.png" alt="Rootstock Official Logo" className="w-40 h-auto" />
+            <div
+              className="w-40 h-10"
+              style={{
+                backgroundColor: '#FF9100',
+                WebkitMaskImage: 'url(/images/figma/rootstock-logo.png)',
+                WebkitMaskSize: 'contain',
+                WebkitMaskRepeat: 'no-repeat',
+                WebkitMaskPosition: 'center',
+                maskImage: 'url(/images/figma/rootstock-logo.png)',
+                maskSize: 'contain',
+                maskRepeat: 'no-repeat',
+                maskPosition: 'center'
+              }}
+            />
           </div>
 
           <div className="animate-fade-in">
             {/* Rootstock Logo + Title */}
             <div className="flex flex-col items-center justify-center mb-6 gap-4">
-              <img
-                src="/images/figma/rootstock-logo.png"
-                alt="Rootstock"
-                className="h-12 md:h-20 w-auto"
-                style={{ filter: 'brightness(0) saturate(100%) invert(48%) sepia(79%) saturate(2476%) hue-rotate(0deg) brightness(118%) contrast(119%)' }}
+              <div
+                className="h-12 md:h-20"
+                style={{
+                  width: '200px',
+                  backgroundColor: '#FF9100',
+                  WebkitMaskImage: 'url(/images/figma/rootstock-logo.png)',
+                  WebkitMaskSize: 'contain',
+                  WebkitMaskRepeat: 'no-repeat',
+                  WebkitMaskPosition: 'center',
+                  maskImage: 'url(/images/figma/rootstock-logo.png)',
+                  maskSize: 'contain',
+                  maskRepeat: 'no-repeat',
+                  maskPosition: 'center'
+                }}
               />
               <h1 className="text-5xl md:text-7xl font-bold uppercase leading-tight text-center">
                 <div className="text-rsk-text-dark">爱你 3000</div>
