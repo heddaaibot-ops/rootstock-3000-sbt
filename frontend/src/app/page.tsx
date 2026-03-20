@@ -31,11 +31,11 @@ export default function Home() {
         <section className="relative py-12">
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto">
-            <div className="flex flex-col items-center gap-0 mb-8">
+            <div className="flex flex-col items-center gap-4 mb-8">
               <h2 className="inline-block bg-rsk-pink text-rsk-cream text-3xl md:text-4xl font-bold px-8 py-4 uppercase">
                 距离 Rootstock
               </h2>
-              <h2 className="inline-block bg-rsk-purple text-rsk-cream text-3xl md:text-4xl font-bold px-8 py-4 uppercase">
+              <h2 className="bg-rsk-purple text-rsk-cream text-3xl md:text-4xl font-bold px-8 py-4 uppercase w-full text-center">
                 3000 天纪念日还有
               </h2>
             </div>
