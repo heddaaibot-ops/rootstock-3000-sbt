@@ -56,18 +56,14 @@ export default function Home() {
           </div>
 
           <div className="animate-fade-in">
-            {/* Rootstock Icon + Title */}
-            <div className="flex items-center justify-center gap-4 mb-6">
-              <RootstockIcon size={50} />
-              <h1 className="text-5xl md:text-7xl font-bold uppercase">
-                <span className="text-rsk-orange">Rootstock</span>
+            {/* Rootstock Logo + Title */}
+            <div className="flex flex-col items-center justify-center mb-6">
+              <img src="/images/figma/rootstock-logo.png" alt="Rootstock Official Logo" className="w-40 md:w-56 h-auto mb-4" />
+              <h1 className="text-5xl md:text-7xl font-bold uppercase leading-tight text-center">
+                <div className="text-rsk-orange">rootstock</div>
+                <div className="text-rsk-text-dark">爱你 3000</div>
               </h1>
             </div>
-
-            {/* Main Title */}
-            <h2 className="text-4xl md:text-6xl font-bold mb-4 uppercase">
-              <span className="text-rsk-orange">{t('hero.title').split('Rootstock ')[1]}</span>
-            </h2>
 
             <p className="text-xl md:text-2xl text-rsk-text/70 mb-4">
               {t('hero.subtitle')}

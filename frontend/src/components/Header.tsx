@@ -10,9 +10,10 @@ export const Header: React.FC = () => {
         <div className="flex items-center justify-between">
           {/* Logo */}
           <div className="flex items-center gap-4">
-            <div className="text-2xl font-bold uppercase">
-              <span className="text-rsk-orange">Rootstock</span>
-              <span className="text-rsk-text-dark"> 爱你 3000</span>
+            <img src="/images/figma/rootstock-logo.png" alt="Rootstock" className="h-10 w-auto" />
+            <div className="text-xl font-bold uppercase leading-tight">
+              <div className="text-rsk-orange">rootstock</div>
+              <div className="text-rsk-text-dark">爱你 3000</div>
             </div>
             <div className="hidden md:block text-sm text-rsk-text-dark font-semibold">
               纪念 3000 天
