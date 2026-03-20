@@ -70,10 +70,10 @@ export const ProgressBar: React.FC<ProgressBarProps> = ({ current, total, loadin
       {/* 刻度线 - 橙色字体 */}
       <div className="flex justify-between mt-3 text-xs text-rsk-orange font-mono font-semibold">
         <span>0</span>
-        <span>25K</span>
-        <span>50K</span>
-        <span>75K</span>
-        <span>100K</span>
+        <span>2.5k</span>
+        <span>5k</span>
+        <span>7.5k</span>
+        <span>10k</span>
       </div>
     </div>
   );

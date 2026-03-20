@@ -72,7 +72,7 @@ export const Countdown: React.FC<CountdownProps> = ({ milestoneTimestamp }) => {
       </div>
 
       <div className="text-rsk-text-dark mt-6 font-medium">
-        Milestone Date: <span className="text-rsk-orange font-bold">{formatDate(milestoneTimestamp)}</span>
+        里程碑日：<span className="text-rsk-orange font-bold">{formatDate(milestoneTimestamp)}</span>
       </div>
     </div>
   );
