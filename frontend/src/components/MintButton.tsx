@@ -52,23 +52,23 @@ export const MintButton: React.FC<MintButtonProps> = ({
     window.open(twitterUrl, '_blank', 'width=550,height=420');
   };
 
-  // 成功狀態
+  // 成功狀態 - 米色主題
   if (txHash) {
     return (
       <div className="text-center animate-fade-in">
-        <div className="bg-green-500/10 border border-green-500 rounded-2xl p-8 mb-4">
-          <div className="text-2xl font-bold text-green-500 mb-2">
+        <div className="bg-rsk-offwhite border-3 border-rsk-orange rounded-xl p-8 mb-4">
+          <div className="text-2xl font-bold text-rsk-orange mb-2 uppercase">
             {t('mint.success.title')}
           </div>
-          <div className="text-rsk-text/70 mb-6">
+          <div className="text-rsk-text-dark mb-6">
             {t('mint.success.description')}
           </div>
 
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
-            {/* View Transaction Button */}
+            {/* View Transaction Button - 橙色主題 */}
             <button
               onClick={() => openInExplorer('tx', txHash, chainId || 31)}
-              className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-green-500/20 hover:bg-green-500/30 text-green-500 rounded-lg transition-colors"
+              className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-rsk-orange hover:bg-[#FFA726] text-white rounded-tag font-semibold transition-all uppercase"
             >
               <span>{t('mint.success.viewTx')}</span>
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -76,10 +76,10 @@ export const MintButton: React.FC<MintButtonProps> = ({
               </svg>
             </button>
 
-            {/* Twitter Share Button */}
+            {/* Twitter Share Button - 輪廓按鈕 */}
             <button
               onClick={shareOnTwitter}
-              className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-[#1DA1F2]/20 hover:bg-[#1DA1F2]/30 text-[#1DA1F2] rounded-lg transition-colors"
+              className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-transparent border-2 border-rsk-text-dark hover:bg-rsk-text-dark text-rsk-text-dark hover:text-white rounded-tag font-semibold transition-all uppercase"
             >
               <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
@@ -92,18 +92,18 @@ export const MintButton: React.FC<MintButtonProps> = ({
     );
   }
 
-  // 錯誤狀態
+  // 錯誤狀態 - 米色主題
   if (error) {
     return (
       <div className="text-center animate-fade-in">
-        <div className="bg-red-500/10 border border-red-500 rounded-2xl p-8 mb-4">
-          <div className="text-2xl font-bold text-red-500 mb-2">
+        <div className="bg-rsk-offwhite border-3 border-red-500 rounded-xl p-8 mb-4">
+          <div className="text-2xl font-bold text-red-500 mb-2 uppercase">
             {t('mint.error.title')}
           </div>
-          <div className="text-rsk-text/70 mb-4">{error}</div>
+          <div className="text-rsk-text-dark mb-4">{error}</div>
           <button
             onClick={() => setError(null)}
-            className="px-6 py-3 bg-red-500/20 hover:bg-red-500/30 text-red-500 rounded-lg transition-colors"
+            className="px-6 py-3 bg-red-500 hover:bg-red-600 text-white rounded-tag font-semibold transition-all uppercase"
           >
             {t('mint.error.retry')}
           </button>
@@ -132,17 +132,17 @@ export const MintButton: React.FC<MintButtonProps> = ({
     statusMessage = t('mint.status.inProgress');
   }
 
-  // 始終顯示按鈕
+  // 始終顯示按鈕 - 官方 Nametag 風格
   return (
     <div className="text-center">
       <button
         onClick={handleMint}
         disabled={isDisabled}
-        className="group relative px-12 py-4 bg-black hover:bg-rsk-pink text-white hover:text-black font-semibold text-lg rounded-full border-2 border-white shadow-[3px_3px_0_0_white] transition-all duration-300 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none capitalize tracking-normal"
+        className="group relative px-10 py-4 min-w-[200px] h-[56px] bg-rsk-orange hover:bg-[#FFA726] text-white font-bold text-lg rounded-nametag transition-all duration-300 transform hover:scale-105 hover:shadow-[0_8px_24px_rgba(255,145,0,0.4)] disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none disabled:shadow-none uppercase tracking-wide"
       >
         {minting ? (
           <span className="flex items-center gap-3 justify-center">
-            <svg className="animate-spin h-7 w-7" viewBox="0 0 24 24">
+            <svg className="animate-spin h-6 w-6" viewBox="0 0 24 24">
               <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none"></circle>
               <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
             </svg>
@@ -153,7 +153,7 @@ export const MintButton: React.FC<MintButtonProps> = ({
         )}
       </button>
 
-      <div className="text-base text-rsk-dark mt-6 font-black">
+      <div className="text-base text-rsk-text-dark mt-6 font-semibold">
         {statusMessage}
       </div>
     </div>

@@ -31,7 +31,7 @@ export default function Home() {
         <section className="relative py-12">
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-bold text-center mb-8">
+            <h2 className="text-3xl md:text-4xl font-bold text-center mb-8 uppercase">
               <span className="text-rsk-orange">距离 Rootstock 3000 天纪念日</span>
             </h2>
             <Countdown milestoneTimestamp={1774137600} />
@@ -59,14 +59,14 @@ export default function Home() {
             {/* Rootstock Icon + Title */}
             <div className="flex items-center justify-center gap-4 mb-6">
               <RootstockIcon size={50} />
-              <h1 className="text-5xl md:text-7xl font-bold">
+              <h1 className="text-5xl md:text-7xl font-bold uppercase">
                 <span className="text-rsk-orange">Rootstock</span>
               </h1>
             </div>
 
             {/* Main Title */}
-            <h2 className="text-4xl md:text-6xl font-bold mb-4">
-              <span className="text-rsk-dark">{t('hero.title').split('Rootstock ')[1]}</span>
+            <h2 className="text-4xl md:text-6xl font-bold mb-4 uppercase">
+              <span className="text-rsk-orange">{t('hero.title').split('Rootstock ')[1]}</span>
             </h2>
 
             <p className="text-xl md:text-2xl text-rsk-text/70 mb-4">
@@ -85,17 +85,16 @@ export default function Home() {
         {/* Mint Section */}
         <section id="mint" className="container mx-auto px-4 py-16">
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-4xl font-bold text-center mb-12">
-              <span className="text-rsk-orange">免费铸造</span>{' '}
-              <span className="text-rsk-dark">SBT</span>
+            <h2 className="text-4xl font-bold text-center mb-12 uppercase">
+              <span className="text-rsk-orange">免费铸造 SBT</span>
             </h2>
 
-            {/* SBT Preview */}
+            {/* SBT Preview - 米色主题 */}
             <div className="mb-16">
               <div className="max-w-2xl mx-auto">
-                <div className="bg-black/95 border-2 border-white/10 rounded-[32px] p-10 hover:border-rsk-orange transition-all duration-300">
-                  <div className="inline-block bg-rsk-orange rounded-2xl px-8 py-4 mb-6 mx-auto">
-                    <h3 className="text-2xl font-black text-black text-center">
+                <div className="bg-rsk-offwhite border-3 border-rsk-border-dark rounded-xl p-10 hover:border-rsk-orange transition-all duration-300">
+                  <div className="inline-block bg-rsk-orange rounded-tag px-8 py-4 mb-6 mx-auto">
+                    <h3 className="text-2xl font-bold text-white text-center uppercase">
                       SBT 预览
                     </h3>
                   </div>
@@ -103,10 +102,10 @@ export default function Home() {
                     <img
                       src="/images/sbt-preview.png"
                       alt="Rootstock 爱你 3000 SBT"
-                      className="w-full h-full object-contain rounded-2xl"
+                      className="w-full h-full object-contain rounded-lg"
                     />
                   </div>
-                  <p className="text-center text-white/90 mt-6 text-sm font-semibold">
+                  <p className="text-center text-rsk-text-dark mt-6 text-sm font-semibold">
                     独一无二的纪念 NFT，永久绑定你的钱包地址
                   </p>
                 </div>
@@ -115,9 +114,8 @@ export default function Home() {
 
             {/* Progress Bar */}
             <div className="mb-16">
-              <h3 className="text-2xl font-bold text-center mb-6">
-                <span className="text-rsk-orange">鑄造</span>
-                <span className="text-rsk-dark">進度</span>
+              <h3 className="text-2xl font-bold text-center mb-6 uppercase">
+                <span className="text-rsk-orange">鑄造進度</span>
               </h3>
 
               {error ? (
@@ -154,75 +152,52 @@ export default function Home() {
               />
             </div>
 
-            {/* Stats Grid */}
+            {/* Stats Grid - 橙色主题，去除 emoji */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
               {/* Stat 1 - Launch Date */}
-              <div className="relative">
-                <div className="bg-rsk-neon-green p-8 mb-3 relative">
-                  {/* 右上角圆形标签 */}
-                  <div className="absolute -top-3 -right-3 w-12 h-12 bg-rsk-neon-green rounded-full flex items-center justify-center border-4 border-black">
-                    <span className="text-xs font-black text-black">年</span>
-                  </div>
-                  <div className="text-5xl font-black text-black font-mono leading-none">
-                    2018
-                  </div>
+              <div className="bg-rsk-offwhite border-3 border-rsk-border-dark rounded-xl p-6 hover:border-rsk-orange transition-all">
+                <div className="text-sm font-semibold text-rsk-text-dark mb-2 uppercase">
+                  {t('mint.stats.launchDate')}
                 </div>
-                <div className="inline-block bg-rsk-neon-green rounded-full px-5 py-2">
-                  <div className="text-xs font-black text-black uppercase tracking-wider">{t('mint.stats.launchDate')}</div>
+                <div className="text-5xl font-bold text-rsk-orange font-mono leading-none">
+                  2018
                 </div>
+                <div className="text-xs text-rsk-text-dark mt-2 font-medium">年</div>
               </div>
 
               {/* Stat 2 - Milestone Date */}
-              <div className="relative">
-                <div className="bg-rsk-pink p-8 mb-3 relative">
-                  {/* 右上角圆形标签 */}
-                  <div className="absolute -top-3 -right-3 w-12 h-12 bg-rsk-pink rounded-full flex items-center justify-center border-4 border-black">
-                    <span className="text-xs font-black text-black">天</span>
-                  </div>
-                  <div className="text-5xl font-black text-black font-mono leading-none">
-                    3000
-                  </div>
+              <div className="bg-rsk-offwhite border-3 border-rsk-border-dark rounded-xl p-6 hover:border-rsk-orange transition-all">
+                <div className="text-sm font-semibold text-rsk-text-dark mb-2 uppercase">天数</div>
+                <div className="text-5xl font-bold text-rsk-orange font-mono leading-none">
+                  3000
                 </div>
-                <div className="inline-block bg-rsk-pink rounded-full px-5 py-2">
-                  <div className="text-xs font-black text-black uppercase tracking-wider">天数</div>
-                </div>
+                <div className="text-xs text-rsk-text-dark mt-2 font-medium">天</div>
               </div>
 
               {/* Stat 3 - Chain ID */}
-              <div className="relative">
-                <div className="bg-purple-400 p-8 mb-3 relative">
-                  {/* 右上角圆形标签 */}
-                  <div className="absolute -top-3 -right-3 w-12 h-12 bg-purple-400 rounded-full flex items-center justify-center border-4 border-black">
-                    <span className="text-xs font-black text-black">ID</span>
-                  </div>
-                  <div className="text-5xl font-black text-black font-mono leading-none">
-                    {chainId || 31}
-                  </div>
+              <div className="bg-rsk-offwhite border-3 border-rsk-border-dark rounded-xl p-6 hover:border-rsk-orange transition-all">
+                <div className="text-sm font-semibold text-rsk-text-dark mb-2 uppercase">
+                  {t('mint.stats.chainId')}
                 </div>
-                <div className="inline-block bg-purple-400 rounded-full px-5 py-2">
-                  <div className="text-xs font-black text-black uppercase tracking-wider">{t('mint.stats.chainId')}</div>
+                <div className="text-5xl font-bold text-rsk-orange font-mono leading-none">
+                  {chainId || 31}
                 </div>
+                <div className="text-xs text-rsk-text-dark mt-2 font-medium">ID</div>
               </div>
 
-              {/* Stat 4 - Status */}
-              <div className="relative">
-                <div className="bg-cyan-400 p-8 mb-3 relative">
-                  {/* 右上角圆形标签 */}
-                  <div className="absolute -top-3 -right-3 w-12 h-12 bg-cyan-400 rounded-full flex items-center justify-center border-4 border-black">
-                    <span className="text-xs font-black text-black">✓</span>
-                  </div>
-                  <div className="text-5xl font-black text-black font-mono leading-none">
-                    {!contractData ? (
-                      <span>...</span>
-                    ) : contractData.isPaused ? (
-                      <span className="text-4xl">暂停</span>
-                    ) : (
-                      <span className="text-3xl">进行中</span>
-                    )}
-                  </div>
+              {/* Stat 4 - Status (去除 emoji ✓) */}
+              <div className="bg-rsk-offwhite border-3 border-rsk-border-dark rounded-xl p-6 hover:border-rsk-orange transition-all">
+                <div className="text-sm font-semibold text-rsk-text-dark mb-2 uppercase">
+                  {t('mint.stats.status')}
                 </div>
-                <div className="inline-block bg-cyan-400 rounded-full px-5 py-2">
-                  <div className="text-xs font-black text-black uppercase tracking-wider">{t('mint.stats.status')}</div>
+                <div className="text-4xl font-bold text-rsk-orange font-mono leading-none">
+                  {!contractData ? (
+                    <span>...</span>
+                  ) : contractData.isPaused ? (
+                    <span>暂停</span>
+                  ) : (
+                    <span>进行中</span>
+                  )}
                 </div>
               </div>
             </div>
@@ -239,61 +214,61 @@ export default function Home() {
           <CampaignInfo />
         </section>
 
-        {/* About Section */}
+        {/* About Section - 米色主题 */}
         <section id="about" className="container mx-auto px-4 py-16">
           <div className="max-w-7xl mx-auto">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
               {/* Card 01 - Soul Bound */}
-              <div className="bg-black border-2 border-white/40 rounded-[32px] p-8 hover:border-rsk-neon-green transition-all duration-300 relative min-h-[400px] flex flex-col">
-                <div className="mb-6 relative">
-                  <div className="inline-block bg-rsk-neon-green px-6 py-3 mb-0">
-                    <h3 className="text-xl font-black text-black leading-tight">{t('about.soulBound.title')}</h3>
+              <div className="bg-rsk-offwhite border-3 border-rsk-border-dark rounded-xl p-8 hover:border-rsk-orange transition-all duration-300 relative min-h-[320px] flex flex-col">
+                <div className="mb-6">
+                  <div className="inline-block bg-rsk-orange rounded-tag px-6 py-3">
+                    <h3 className="text-lg font-bold text-white leading-tight uppercase">{t('about.soulBound.title')}</h3>
                   </div>
-                  <div className="absolute -top-2 -right-2 w-12 h-12 bg-rsk-neon-green rounded-full flex items-center justify-center border-2 border-black">
-                    <span className="text-lg font-black text-black">01</span>
+                  <div className="inline-block bg-rsk-lime rounded-tag px-4 py-1 ml-3">
+                    <span className="text-sm font-bold text-rsk-text-dark">01</span>
                   </div>
                 </div>
-                <p className="text-white leading-relaxed text-sm flex-grow">
+                <p className="text-rsk-text-dark leading-relaxed text-base flex-grow">
                   {t('about.soulBound.description')}
                 </p>
               </div>
 
               {/* Card 02 - Free Mint */}
-              <div className="bg-black border-2 border-white/40 rounded-[32px] p-8 hover:border-rsk-pink transition-all duration-300 relative min-h-[400px] flex flex-col">
-                <div className="mb-6 relative">
-                  <div className="inline-block bg-rsk-pink px-6 py-3 mb-0">
-                    <h3 className="text-xl font-black text-black leading-tight">{t('about.freeMint.title')}</h3>
+              <div className="bg-rsk-offwhite border-3 border-rsk-border-dark rounded-xl p-8 hover:border-rsk-orange transition-all duration-300 relative min-h-[320px] flex flex-col">
+                <div className="mb-6">
+                  <div className="inline-block bg-rsk-orange rounded-tag px-6 py-3">
+                    <h3 className="text-lg font-bold text-white leading-tight uppercase">{t('about.freeMint.title')}</h3>
                   </div>
-                  <div className="absolute -top-2 -right-2 w-12 h-12 bg-rsk-pink rounded-full flex items-center justify-center border-2 border-black">
-                    <span className="text-lg font-black text-black">02</span>
+                  <div className="inline-block bg-rsk-lime rounded-tag px-4 py-1 ml-3">
+                    <span className="text-sm font-bold text-rsk-text-dark">02</span>
                   </div>
                 </div>
-                <p className="text-white leading-relaxed text-sm flex-grow">
+                <p className="text-rsk-text-dark leading-relaxed text-base flex-grow">
                   {t('about.freeMint.description')}
                 </p>
               </div>
 
               {/* Card 03 - Limited Supply */}
-              <div className="bg-black border-2 border-white/40 rounded-[32px] p-8 hover:border-purple-400 transition-all duration-300 relative min-h-[400px] flex flex-col">
-                <div className="mb-6 relative">
-                  <div className="inline-block bg-purple-400 px-6 py-3 mb-0">
-                    <h3 className="text-xl font-black text-black leading-tight">{t('about.limitedSupply.title')}</h3>
+              <div className="bg-rsk-offwhite border-3 border-rsk-border-dark rounded-xl p-8 hover:border-rsk-orange transition-all duration-300 relative min-h-[320px] flex flex-col">
+                <div className="mb-6">
+                  <div className="inline-block bg-rsk-orange rounded-tag px-6 py-3">
+                    <h3 className="text-lg font-bold text-white leading-tight uppercase">{t('about.limitedSupply.title')}</h3>
                   </div>
-                  <div className="absolute -top-2 -right-2 w-12 h-12 bg-purple-400 rounded-full flex items-center justify-center border-2 border-black">
-                    <span className="text-lg font-black text-black">03</span>
+                  <div className="inline-block bg-rsk-lime rounded-tag px-4 py-1 ml-3">
+                    <span className="text-sm font-bold text-rsk-text-dark">03</span>
                   </div>
                 </div>
-                <p className="text-white leading-relaxed text-sm flex-grow">
+                <p className="text-rsk-text-dark leading-relaxed text-base flex-grow">
                   {t('about.limitedSupply.description')}
                 </p>
               </div>
             </div>
 
-            <div className="bg-black border-2 border-white/40 rounded-[32px] p-8 hover:border-rsk-orange transition-all duration-300">
-              <div className="inline-block bg-rsk-orange px-6 py-3 mb-6">
-                <h2 className="text-xl font-black text-black">{t('about.whatIsRootstock.title')}</h2>
+            <div className="bg-rsk-offwhite border-3 border-rsk-border-dark rounded-xl p-8 hover:border-rsk-orange transition-all duration-300">
+              <div className="inline-block bg-rsk-orange rounded-tag px-8 py-4 mb-6">
+                <h2 className="text-xl font-bold text-white uppercase">{t('about.whatIsRootstock.title')}</h2>
               </div>
-              <div className="space-y-4 text-white leading-relaxed text-sm">
+              <div className="space-y-4 text-rsk-text-dark leading-relaxed text-base">
                 <p>{t('about.whatIsRootstock.paragraph1')}</p>
                 <p>{t('about.whatIsRootstock.paragraph2')}</p>
               </div>
@@ -301,71 +276,71 @@ export default function Home() {
           </div>
         </section>
 
-        {/* FAQ Section */}
+        {/* FAQ Section - 米色主题 */}
         <section className="relative py-16">
           <div className="container mx-auto px-4">
             <div className="max-w-3xl mx-auto">
-            <h2 className="text-4xl font-bold text-center mb-12">
+            <h2 className="text-4xl font-bold text-center mb-12 uppercase">
               <span className="text-rsk-orange">{t('faq.title')}</span>
             </h2>
 
             <div className="space-y-6">
-              <details className="bg-black border-2 border-white/40 rounded-[32px] p-6 hover:border-rsk-neon-green transition-all group">
-                <summary className="cursor-pointer text-lg font-bold text-white flex items-center justify-between">
+              <details className="bg-rsk-offwhite border-3 border-rsk-border-dark rounded-xl p-6 hover:border-rsk-orange transition-all group">
+                <summary className="cursor-pointer text-lg font-bold text-rsk-text-dark flex items-center justify-between uppercase">
                   <span className="flex items-center gap-3">
-                    <span className="inline-block bg-rsk-neon-green rounded-full w-8 h-8 flex items-center justify-center text-sm font-black text-black">Q</span>
+                    <span className="inline-block bg-rsk-orange rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold text-white">Q</span>
                     {t('faq.q1.question')}
                   </span>
-                  <svg className="w-6 h-6 text-rsk-neon-green transform group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-6 h-6 text-rsk-orange transform group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M19 9l-7 7-7-7" />
                   </svg>
                 </summary>
-                <p className="mt-4 text-white/80 leading-relaxed text-sm ml-11">
+                <p className="mt-4 text-rsk-text-dark leading-relaxed text-base ml-11">
                   {t('faq.q1.answer')}
                 </p>
               </details>
 
-              <details className="bg-black border-2 border-white/40 rounded-[32px] p-6 hover:border-rsk-pink transition-all group">
-                <summary className="cursor-pointer text-lg font-bold text-white flex items-center justify-between">
+              <details className="bg-rsk-offwhite border-3 border-rsk-border-dark rounded-xl p-6 hover:border-rsk-orange transition-all group">
+                <summary className="cursor-pointer text-lg font-bold text-rsk-text-dark flex items-center justify-between uppercase">
                   <span className="flex items-center gap-3">
-                    <span className="inline-block bg-rsk-pink rounded-full w-8 h-8 flex items-center justify-center text-sm font-black text-black">Q</span>
+                    <span className="inline-block bg-rsk-orange rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold text-white">Q</span>
                     {t('faq.q2.question')}
                   </span>
-                  <svg className="w-6 h-6 text-rsk-pink transform group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-6 h-6 text-rsk-orange transform group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M19 9l-7 7-7-7" />
                   </svg>
                 </summary>
-                <p className="mt-4 text-white/80 leading-relaxed text-sm ml-11">
+                <p className="mt-4 text-rsk-text-dark leading-relaxed text-base ml-11">
                   {t('faq.q2.answer')}
                 </p>
               </details>
 
-              <details className="bg-black border-2 border-white/40 rounded-[32px] p-6 hover:border-purple-400 transition-all group">
-                <summary className="cursor-pointer text-lg font-bold text-white flex items-center justify-between">
+              <details className="bg-rsk-offwhite border-3 border-rsk-border-dark rounded-xl p-6 hover:border-rsk-orange transition-all group">
+                <summary className="cursor-pointer text-lg font-bold text-rsk-text-dark flex items-center justify-between uppercase">
                   <span className="flex items-center gap-3">
-                    <span className="inline-block bg-purple-400 rounded-full w-8 h-8 flex items-center justify-center text-sm font-black text-black">Q</span>
+                    <span className="inline-block bg-rsk-orange rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold text-white">Q</span>
                     {t('faq.q3.question')}
                   </span>
-                  <svg className="w-6 h-6 text-purple-400 transform group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-6 h-6 text-rsk-orange transform group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M19 9l-7 7-7-7" />
                   </svg>
                 </summary>
-                <p className="mt-4 text-white/80 leading-relaxed text-sm ml-11">
+                <p className="mt-4 text-rsk-text-dark leading-relaxed text-base ml-11">
                   {t('faq.q3.answer')}
                 </p>
               </details>
 
-              <details className="bg-black border-2 border-white/40 rounded-[32px] p-6 hover:border-rsk-orange transition-all group">
-                <summary className="cursor-pointer text-lg font-bold text-white flex items-center justify-between">
+              <details className="bg-rsk-offwhite border-3 border-rsk-border-dark rounded-xl p-6 hover:border-rsk-orange transition-all group">
+                <summary className="cursor-pointer text-lg font-bold text-rsk-text-dark flex items-center justify-between uppercase">
                   <span className="flex items-center gap-3">
-                    <span className="inline-block bg-rsk-orange rounded-full w-8 h-8 flex items-center justify-center text-sm font-black text-black">Q</span>
+                    <span className="inline-block bg-rsk-orange rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold text-white">Q</span>
                     {t('faq.q4.question')}
                   </span>
                   <svg className="w-6 h-6 text-rsk-orange transform group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M19 9l-7 7-7-7" />
                   </svg>
                 </summary>
-                <p className="mt-4 text-white/80 leading-relaxed text-sm ml-11">
+                <p className="mt-4 text-rsk-text-dark leading-relaxed text-base ml-11">
                   {t('faq.q4.answer')}
                 </p>
               </details>

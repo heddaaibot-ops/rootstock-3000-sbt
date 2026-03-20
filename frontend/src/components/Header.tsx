@@ -10,26 +10,26 @@ export const Header: React.FC = () => {
         <div className="flex items-center justify-between">
           {/* Logo */}
           <div className="flex items-center gap-4">
-            <div className="text-2xl font-bold">
+            <div className="text-2xl font-bold uppercase">
               <span className="text-rsk-orange">Rootstock</span>
-              <span className="text-rsk-dark"> 爱你 3000</span>
+              <span className="text-rsk-text-dark"> 爱你 3000</span>
             </div>
-            <div className="hidden md:block text-sm text-rsk-text/70">
+            <div className="hidden md:block text-sm text-rsk-text-dark font-semibold">
               纪念 3000 天
             </div>
           </div>
 
           {/* Navigation */}
-          <nav className="hidden md:flex items-center gap-6 text-sm font-medium">
+          <nav className="hidden md:flex items-center gap-6 text-sm font-semibold">
             <a
               href="#about"
-              className="text-rsk-dark hover:text-rsk-pink transition-colors"
+              className="text-rsk-text-dark hover:text-rsk-orange transition-colors uppercase"
             >
               关于
             </a>
             <a
               href="#mint"
-              className="text-rsk-dark hover:text-rsk-orange transition-colors"
+              className="text-rsk-text-dark hover:text-rsk-orange transition-colors uppercase"
             >
               铸造
             </a>
@@ -37,7 +37,7 @@ export const Header: React.FC = () => {
               href="https://rootstock.io"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-rsk-dark hover:text-rsk-neon-green transition-colors flex items-center gap-1"
+              className="text-rsk-text-dark hover:text-rsk-orange transition-colors flex items-center gap-1 uppercase"
             >
               <span>Rootstock 官网</span>
               <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">

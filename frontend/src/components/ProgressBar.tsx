@@ -14,50 +14,50 @@ export const ProgressBar: React.FC<ProgressBarProps> = ({ current, total, loadin
   if (loading) {
     return (
       <div className="w-full animate-pulse">
-        <div className="h-8 bg-rsk-gray rounded mb-4"></div>
-        <div className="h-16 bg-rsk-gray rounded"></div>
+        <div className="h-8 bg-rsk-offwhite rounded mb-4"></div>
+        <div className="h-16 bg-rsk-offwhite rounded"></div>
       </div>
     );
   }
 
   return (
     <div className="w-full">
-      {/* 統計數字 */}
-      <div className="grid grid-cols-3 gap-4 mb-4">
+      {/* 統計數字 - 全部橙色主題 */}
+      <div className="grid grid-cols-3 gap-4 mb-6">
         <div className="text-center">
-          <div className="text-3xl font-bold text-rsk-orange font-mono">
+          <div className="text-4xl font-bold text-rsk-orange font-mono">
             {formatNumber(Number(current))}
           </div>
-          <div className="text-sm text-rsk-text/70 mt-1">已铸造</div>
+          <div className="text-sm text-rsk-text-dark font-semibold mt-2 uppercase">已铸造</div>
         </div>
         <div className="text-center">
-          <div className="text-3xl font-bold text-rsk-dark font-mono">
+          <div className="text-4xl font-bold text-rsk-orange font-mono">
             {formatNumber(Number(total))}
           </div>
-          <div className="text-sm text-rsk-text/70 mt-1">总供应量</div>
+          <div className="text-sm text-rsk-text-dark font-semibold mt-2 uppercase">总供应量</div>
         </div>
         <div className="text-center">
-          <div className="text-3xl font-bold text-rsk-text/70 font-mono">
+          <div className="text-4xl font-bold text-rsk-orange font-mono">
             {formatNumber(Number(remaining))}
           </div>
-          <div className="text-sm text-rsk-text/70 mt-1">剩余</div>
+          <div className="text-sm text-rsk-text-dark font-semibold mt-2 uppercase">剩余</div>
         </div>
       </div>
 
-      {/* 百分比標籤 - 移到統計數字下方 */}
+      {/* 百分比標籤 - 橙色背景 */}
       <div className="text-center mb-6">
-        <div className="inline-block bg-rsk-orange/10 border border-rsk-orange px-6 py-3 rounded-lg">
-          <span className="text-2xl font-bold text-rsk-orange font-mono">
+        <div className="inline-block bg-rsk-orange px-8 py-4 rounded-tag">
+          <span className="text-3xl font-bold text-white font-mono">
             {formatPercentage(percentage, 3)}
           </span>
         </div>
       </div>
 
-      {/* 進度條 */}
-      <div className="relative">
-        <div className="h-4 bg-rsk-gray rounded-full overflow-hidden">
+      {/* 進度條 - 米色背景軌道 */}
+      <div className="relative mb-3">
+        <div className="h-5 bg-rsk-offwhite rounded-full overflow-hidden border-2 border-rsk-border-dark">
           <div
-            className="h-full bg-gradient-to-r from-rsk-orange to-orange-400 transition-all duration-500 ease-out relative"
+            className="h-full bg-rsk-orange transition-all duration-500 ease-out relative"
             style={{ width: `${Math.min(percentage, 100)}%` }}
           >
             {percentage > 5 && (
@@ -67,8 +67,8 @@ export const ProgressBar: React.FC<ProgressBarProps> = ({ current, total, loadin
         </div>
       </div>
 
-      {/* 刻度線 */}
-      <div className="flex justify-between mt-2 text-xs text-rsk-text/60 font-mono">
+      {/* 刻度線 - 橙色字體 */}
+      <div className="flex justify-between mt-3 text-xs text-rsk-orange font-mono font-semibold">
         <span>0</span>
         <span>25K</span>
         <span>50K</span>
