@@ -28,7 +28,7 @@ export default function Home() {
 
       <main className="flex-1 pt-24 pb-16">
         {/* Countdown Section - 倒数到 3000 天纪念日 */}
-        <section className="relative py-12">
+        <section className="relative py-6">
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto">
             <div className="flex flex-col items-start gap-4 mb-8">
@@ -45,7 +45,7 @@ export default function Home() {
         </section>
 
         {/* Hero Section */}
-        <section className="relative py-8 text-center">
+        <section className="relative py-4 text-center">
           <div className="container mx-auto px-4 relative z-10">
           {/* Bitcoin Icon - Floating Decorations from Figma */}
           <div className="absolute top-10 left-10 animate-float opacity-20 hidden lg:block">
@@ -109,7 +109,7 @@ export default function Home() {
         </section>
 
         {/* Mint Section */}
-        <section id="mint" className="container mx-auto px-4 py-16">
+        <section id="mint" className="container mx-auto px-4 py-8">
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-12">
               <h2 className="inline-block bg-rsk-orange text-rsk-cream text-4xl font-bold px-8 py-4 uppercase">

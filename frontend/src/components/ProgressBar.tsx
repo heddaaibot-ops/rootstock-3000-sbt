@@ -46,8 +46,8 @@ export const ProgressBar: React.FC<ProgressBarProps> = ({ current, total, loadin
 
       {/* 百分比标签 - 橙色背景 */}
       <div className="text-center mb-6">
-        <div className="inline-block bg-rsk-orange px-8 py-4 rounded-tag">
-          <span className="text-xl font-bold text-white font-mono">
+        <div className="inline-block bg-rsk-orange px-6 py-3 rounded-tag">
+          <span className="text-base font-bold text-white font-mono">
             {formatPercentage(percentage, 3)}
           </span>
         </div>
