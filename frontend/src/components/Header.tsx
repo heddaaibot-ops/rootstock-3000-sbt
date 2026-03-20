@@ -15,7 +15,7 @@ export const Header: React.FC = () => {
                 src="/images/figma/rootstock-logo.png"
                 alt="Rootstock"
                 className="h-8 w-auto mb-1"
-                style={{ filter: 'brightness(0) saturate(100%) invert(48%) sepia(79%) saturate(2476%) hue-rotate(0deg) brightness(118%) contrast(119%)' }}
+                style={{ filter: 'brightness(0) saturate(100%) invert(56%) sepia(100%) saturate(3139%) hue-rotate(0deg) brightness(103%) contrast(105%)' }}
               />
               <div className="text-lg font-bold text-rsk-text-dark">
                 爱你 3000<span className="hidden md:inline"> | 纪念 3000 天</span>
