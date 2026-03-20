@@ -44,15 +44,15 @@ export const MintButton: React.FC<MintButtonProps> = ({
     }
   };
 
-  // Twitter 分享函數
+  // Twitter 分享函数
   const shareOnTwitter = () => {
-    const text = `我剛剛鑄造了 #Rootstock愛你3000 紀念 SBT！\n\n慶祝 Rootstock 主網運行 3000 天\n\n@RootstockCN`;
-    const url = 'https://frontend-green-delta-12.vercel.app';
+    const text = `我刚刚铸造了 #Rootstock爱你3000 纪念 SBT！\n\n庆祝 Rootstock 主网运行 3000 天\n\n@RootstockCN`;
+    const url = 'https://rootstock-3000-sbt.vercel.app';
     const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`;
     window.open(twitterUrl, '_blank', 'width=550,height=420');
   };
 
-  // 成功狀態 - 米色主題
+  // 成功状态 - 米色主题
   if (txHash) {
     return (
       <div className="text-center animate-fade-in">
@@ -92,7 +92,7 @@ export const MintButton: React.FC<MintButtonProps> = ({
     );
   }
 
-  // 錯誤狀態 - 米色主題
+  // 错误状态 - 米色主题
   if (error) {
     return (
       <div className="text-center animate-fade-in">
@@ -112,7 +112,7 @@ export const MintButton: React.FC<MintButtonProps> = ({
     );
   }
 
-  // 確定按鈕狀態和文字
+  // 确定按钮状态和文字
   const isDisabled = !isConnected || isPaused || hasUserMinted || minting;
 
   let buttonText = t('mint.button.mint');
@@ -132,7 +132,7 @@ export const MintButton: React.FC<MintButtonProps> = ({
     statusMessage = t('mint.status.inProgress');
   }
 
-  // 始終顯示按鈕 - 官方 Nametag 風格
+  // 始终显示按钮 - 官方 Nametag 风格
   return (
     <div className="text-center">
       <button

@@ -115,7 +115,7 @@ export default function Home() {
             {/* Progress Bar */}
             <div className="mb-16">
               <h3 className="text-2xl font-bold text-center mb-6 uppercase">
-                <span className="text-rsk-orange">鑄造進度</span>
+                <span className="text-rsk-orange">铸造进度</span>
               </h3>
 
               {error ? (

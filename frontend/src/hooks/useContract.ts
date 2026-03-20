@@ -133,7 +133,7 @@ export const useContract = () => {
     }
   };
 
-  // 鑄造 SBT
+  // 铸造 SBT
   const mint = async (): Promise<{ success: boolean; txHash?: string; error?: string }> => {
     if (!walletClient || !address || !contractAddress) {
       return { success: false, error: 'Wallet not connected' };
@@ -147,7 +147,7 @@ export const useContract = () => {
         args: [],
       });
 
-      // 等待交易確認
+      // 等待交易确认
       if (publicClient) {
         await publicClient.waitForTransactionReceipt({ hash });
       }
@@ -197,7 +197,7 @@ export const useContract = () => {
     }
   };
 
-  // 初始加載和定期刷新
+  // 初始加载和定期刷新
   useEffect(() => {
     fetchContractData();
 

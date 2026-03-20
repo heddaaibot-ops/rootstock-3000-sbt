@@ -1,12 +1,12 @@
 import { defineChain } from 'viem';
 
-// 硬編碼地址確保在 Vercel 上也能正常工作
+// 硬编码地址确保在 Vercel 上也能正常工作
 export const CONTRACT_ADDRESS = {
   testnet: '0x3fcD4cf80017bb7d90d9E67cd1E2fe539D985d8D' as `0x${string}`,
   mainnet: '' as `0x${string}`,
 } as const;
 
-// 使用標準 JSON ABI 格式（最穩定）
+// 使用标准 JSON ABI 格式（最稳定）
 export const CONTRACT_ABI = [
   {
     inputs: [],

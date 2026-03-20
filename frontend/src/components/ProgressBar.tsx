@@ -44,7 +44,7 @@ export const ProgressBar: React.FC<ProgressBarProps> = ({ current, total, loadin
         </div>
       </div>
 
-      {/* 百分比標籤 - 橙色背景 */}
+      {/* 百分比标签 - 橙色背景 */}
       <div className="text-center mb-6">
         <div className="inline-block bg-rsk-orange px-8 py-4 rounded-tag">
           <span className="text-3xl font-bold text-white font-mono">
@@ -53,7 +53,7 @@ export const ProgressBar: React.FC<ProgressBarProps> = ({ current, total, loadin
         </div>
       </div>
 
-      {/* 進度條 - 米色背景軌道 */}
+      {/* 进度条 - 米色背景轨道 */}
       <div className="relative mb-3">
         <div className="h-5 bg-rsk-offwhite rounded-full overflow-hidden border-2 border-rsk-border-dark">
           <div
@@ -67,7 +67,7 @@ export const ProgressBar: React.FC<ProgressBarProps> = ({ current, total, loadin
         </div>
       </div>
 
-      {/* 刻度線 - 橙色字體 */}
+      {/* 刻度线 - 橙色字体 */}
       <div className="flex justify-between mt-3 text-xs text-rsk-orange font-mono font-semibold">
         <span>0</span>
         <span>25K</span>

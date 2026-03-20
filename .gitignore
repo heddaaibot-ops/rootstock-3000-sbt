@@ -28,3 +28,4 @@ Thumbs.db
 # Frontend environment
 frontend/.env.local
 frontend/.env
+.vercel

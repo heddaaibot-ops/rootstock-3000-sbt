@@ -1,149 +1,149 @@
 {
   "hero": {
     "title": "Rootstock 3000 天",
-    "subtitle": "紀念比特幣智能合約平台運行 3000 天",
-    "description": "領取你的靈魂綁定代幣，成為這個歷史里程碑的一部分。這個不可轉移的 NFT 標誌著你參與 Rootstock 的旅程。"
+    "subtitle": "纪念比特币智能合约平台运行 3000 天",
+    "description": "领取你的灵魂绑定代币，成为这个历史里程碑的一部分。这个不可转移的 NFT 标志着你参与 Rootstock 的旅程。"
   },
   "mint": {
-    "title": "鑄造進度",
+    "title": "铸造进度",
     "button": {
-      "mint": "鑄造你的 SBT",
-      "connectWallet": "請先連接錢包",
-      "alreadyMinted": "已鑄造",
-      "paused": "鑄造已暫停",
-      "minting": "鑄造中..."
+      "mint": "铸造你的 SBT",
+      "connectWallet": "请先连接钱包",
+      "alreadyMinted": "已铸造",
+      "paused": "铸造已暂停",
+      "minting": "铸造中..."
     },
     "status": {
-      "free": "免費鑄造 • 僅需 Gas 費 • 每個錢包限鑄一個",
-      "connect": "連接你的錢包以鑄造",
-      "claimed": "你已經領取了你的 SBT",
-      "pausedMessage": "鑄造即將開放，請稍後回來查看。",
-      "inProgress": "交易進行中..."
+      "free": "免费铸造 • 仅需 Gas 费 • 每个钱包限铸一个",
+      "connect": "连接你的钱包以铸造",
+      "claimed": "你已经领取了你的 SBT",
+      "pausedMessage": "铸造即将开放，请稍后回来查看。",
+      "inProgress": "交易进行中..."
     },
     "success": {
-      "title": "鑄造成功！",
-      "description": "你的靈魂綁定代幣已鑄造完成",
+      "title": "铸造成功！",
+      "description": "你的灵魂绑定代币已铸造完成",
       "viewTx": "查看交易",
       "shareTwitter": "分享到 Twitter"
     },
     "error": {
-      "title": "交易失敗",
-      "retry": "重試",
-      "failedToLoad": "載入數據失敗",
-      "retryButton": "重試"
+      "title": "交易失败",
+      "retry": "重试",
+      "failedToLoad": "载入数据失败",
+      "retryButton": "重试"
     },
     "stats": {
-      "launchDate": "啟動日期",
+      "launchDate": "启动日期",
       "milestoneDate": "里程碑日期",
-      "chainId": "鏈 ID",
-      "status": "狀態",
-      "loading": "載入中...",
-      "paused": "已暫停",
-      "live": "進行中"
+      "chainId": "链 ID",
+      "status": "状态",
+      "loading": "载入中...",
+      "paused": "已暂停",
+      "live": "进行中"
     }
   },
   "rootstock": {
-    "title": "關於 Rootstock",
-    "paragraph1": "2015 年，當大多數人還在爭論比特幣能否支持智能合約時，Rootstock 選擇了行動。我們相信比特幣不僅是數字黃金，更應該成為完整的金融基礎設施。",
-    "paragraph2": "今天，Rootstock 主網已經運行了 3000 天。3000 天裡，我們沒有重大安全事故，沒有停機，穩定地為用戶提供服務。這份堅持來自於對技術的信仰，也來自於社區的支持。",
-    "paragraph3": "Rootstock 通過與比特幣合併挖礦，讓智能合約擁有與比特幣相同的安全級別。開發者可以在這裡構建 DeFi 協議和去中心化金融應用，用戶則可以在不離開比特幣生態的前提下，體驗 Web3 的全部可能性。",
-    "closing": "3000 天，只是一個開始。"
+    "title": "关于 Rootstock",
+    "paragraph1": "2015 年，当大多数人还在争论比特币能否支持智能合约时，Rootstock 选择了行动。我们相信比特币不仅是数字黄金，更应该成为完整的金融基础设施。",
+    "paragraph2": "今天，Rootstock 主网已经运行了 3000 天。3000 天里，我们没有重大安全事故，没有停机，稳定地为用户提供服务。这份坚持来自于对技术的信仰，也来自于社区的支持。",
+    "paragraph3": "Rootstock 通过与比特币合并挖矿，让智能合约拥有与比特币相同的安全级别。开发者可以在这里构建 DeFi 协议和去中心化金融应用，用户则可以在不离开比特币生态的前提下，体验 Web3 的全部可能性。",
+    "closing": "3000 天，只是一个开始。"
   },
   "campaign": {
-    "title": "Rootstock 愛你 3000",
-    "subtitle": "紀念 Rootstock 主網運行 3000 天",
-    "howToParticipate": "如何參與",
+    "title": "Rootstock 爱你 3000",
+    "subtitle": "纪念 Rootstock 主网运行 3000 天",
+    "howToParticipate": "如何参与",
     "step1": {
-      "title": "關注 @RootstockCN",
-      "description": "前往 Twitter 關注 @RootstockCN 並轉發活動推文"
+      "title": "关注 @RootstockCN",
+      "description": "前往 Twitter 关注 @RootstockCN 并转发活动推文"
     },
     "step2": {
-      "title": "鑄造你的專屬 SBT",
-      "description": "連接錢包，免費鑄造你的「愛你 3000」紀念 SBT"
+      "title": "铸造你的专属 SBT",
+      "description": "连接钱包，免费铸造你的「爱你 3000」纪念 SBT"
     },
     "step3": {
       "title": "分享到 Twitter",
-      "description": "在 Twitter 上分享你的 NFT，告訴大家你為什麼愛 Rootstock"
+      "description": "在 Twitter 上分享你的 NFT，告诉大家你为什么爱 Rootstock"
     },
     "step4": {
-      "title": "參加抽獎",
-      "description": "完成以上步驟，即有機會贏取豐厚獎勵！"
+      "title": "参加抽奖",
+      "description": "完成以上步骤，即有机会赢取丰厚奖励！"
     },
     "rewards": {
-      "title": "活動獎勵",
+      "title": "活动奖励",
       "usdt": "$5,000",
-      "usdtDescription": "USDT 隨機分配",
+      "usdtDescription": "USDT 随机分配",
       "merch": "10 份",
-      "merchDescription": "Rootstock 限定周邊",
-      "announcement": "3月31日公布得獎名單"
+      "merchDescription": "Rootstock 限定周边",
+      "announcement": "3月31日公布得奖名单"
     },
     "timeline": {
-      "title": "活動時間線",
+      "title": "活动时间线",
       "launch": {
         "date": "3/8",
-        "title": "活動啟動",
-        "description": "開放鑄造，KOL 推廣開始"
+        "title": "活动启动",
+        "description": "开放铸造，KOL 推广开始"
       },
       "milestone": {
         "date": "3/22",
-        "title": "3000 天紀念日",
-        "description": "Rootstock 主網運行 3000 天慶祝"
+        "title": "3000 天纪念日",
+        "description": "Rootstock 主网运行 3000 天庆祝"
       },
       "deadline": {
         "date": "3/31",
-        "title": "活動截止",
-        "description": "鑄造結束，公布得獎者"
+        "title": "活动截止",
+        "description": "铸造结束，公布得奖者"
       }
     }
   },
   "about": {
     "soulBound": {
-      "title": "靈魂綁定",
-      "description": "不可轉移，永久綁定你的錢包"
+      "title": "灵魂绑定",
+      "description": "不可转移，永久绑定你的钱包"
     },
     "freeMint": {
-      "title": "免費鑄造",
-      "description": "只需支付網絡 Gas 費，無鑄造成本"
+      "title": "免费铸造",
+      "description": "只需支付网络 Gas 费，无铸造成本"
     },
     "limitedSupply": {
-      "title": "限量供應",
-      "description": "僅 10,000 個代幣，每個錢包限一個"
+      "title": "限量供应",
+      "description": "仅 10,000 个代币，每个钱包限一个"
     },
     "whatIsRootstock": {
-      "title": "什麼是 Rootstock？",
-      "paragraph1": "Rootstock (RSK) 是世界上最安全的智能合約平台，由比特幣網絡的強大算力保護。自 2018 年 1 月 16 日啟動以來，Rootstock 一直在開創比特幣 DeFi，已運行超過 3000 天。",
-      "paragraph2": "這個紀念靈魂綁定代幣慶祝這一里程碑，並向所有參與這一旅程的人致敬。通過鑄造此 SBT，你將永久成為 Rootstock 歷史的一部分。"
+      "title": "什么是 Rootstock？",
+      "paragraph1": "Rootstock (RSK) 是世界上最安全的智能合约平台，由比特币网络的强大算力保护。自 2018 年 1 月 16 日启动以来，Rootstock 一直在开创比特币 DeFi，已运行超过 3000 天。",
+      "paragraph2": "这个纪念灵魂绑定代币庆祝这一里程碑，并向所有参与这一旅程的人致敬。通过铸造此 SBT，你将永久成为 Rootstock 历史的一部分。"
     }
   },
   "countdown": {
-    "milestoneReached": "已達成里程碑！",
-    "countdown": "距離 3000 天倒數",
+    "milestoneReached": "已达成里程碑！",
+    "countdown": "距离 3000 天倒数",
     "days": "天",
-    "hours": "小時",
-    "minutes": "分鐘",
+    "hours": "小时",
+    "minutes": "分钟",
     "seconds": "秒"
   },
   "faq": {
-    "title": "常見問題",
+    "title": "常见问题",
     "q1": {
-      "question": "什麼是靈魂綁定代幣？",
-      "answer": "靈魂綁定代幣（SBT）是一種不可轉移的 NFT，永久綁定到你的錢包地址。它不能被出售、轉移或贈送。它作為參與的永久證明。"
+      "question": "什么是灵魂绑定代币？",
+      "answer": "灵魂绑定代币（SBT）是一种不可转移的 NFT，永久绑定到你的钱包地址。它不能被出售、转移或赠送。它作为参与的永久证明。"
     },
     "q2": {
-      "question": "鑄造需要多少費用？",
-      "answer": "鑄造完全免費！你只需要支付網絡 Gas 費，在 Rootstock 上通常非常低。Gas 費支付給網絡驗證者，而不是我們。"
+      "question": "铸造需要多少费用？",
+      "answer": "铸造完全免费！你只需要支付网络 Gas 费，在 Rootstock 上通常非常低。Gas 费支付给网络验证者，而不是我们。"
     },
     "q3": {
-      "question": "我可以鑄造多個嗎？",
-      "answer": "不可以，每個錢包地址只能鑄造一個 SBT。這確保了公平分配，並保持代幣的紀念性質。"
+      "question": "我可以铸造多个吗？",
+      "answer": "不可以，每个钱包地址只能铸造一个 SBT。这确保了公平分配，并保持代币的纪念性质。"
     },
     "q4": {
-      "question": "我應該使用哪個網絡？",
-      "answer": "你需要連接到 Rootstock 網絡（主網鏈 ID 為 30，測試網為 31）。確保你的錢包在鑄造前配置了正確的網絡。"
+      "question": "我应该使用哪个网络？",
+      "answer": "你需要连接到 Rootstock 网络（主网链 ID 为 30，测试网为 31）。确保你的钱包在铸造前配置了正确的网络。"
     }
   },
   "footer": {
     "madeWith": "由",
-    "by": "Rootstock 社區製作"
+    "by": "Rootstock 社区制作"
   }
 }

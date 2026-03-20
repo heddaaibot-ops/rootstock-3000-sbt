@@ -79,7 +79,7 @@ export const CampaignInfo: React.FC = () => {
         </div>
       </div>
 
-      {/* 獎勵說明 */}
+      {/* 奖励说明 */}
       <div className="bg-rsk-offwhite border-3 border-rsk-orange rounded-xl p-8 mb-8">
         <h3 className="text-2xl font-bold text-rsk-orange mb-6 text-center uppercase">
           {t('campaign.rewards.title')}

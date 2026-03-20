@@ -9,7 +9,7 @@ import { ROOTSTOCK_CHAINS } from '@/utils/contract';
 // WalletConnect Project ID (optional - app will work without it for read-only features)
 const WALLETCONNECT_PROJECT_ID = process.env.NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID || 'demo';
 
-// 配置 Rootstock 網絡
+// 配置 Rootstock 网络
 const config = createConfig(
   getDefaultConfig({
     chains: [ROOTSTOCK_CHAINS.testnet as any, ROOTSTOCK_CHAINS.mainnet as any],
