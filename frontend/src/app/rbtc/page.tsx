@@ -93,6 +93,43 @@ export default function RBTCGuidePage() {
 
   return (
     <div className="min-h-screen bg-rsk-cream">
+      {/* Navigation Bar */}
+      <nav className="fixed top-0 left-0 right-0 bg-white border-b-4 border-rsk-orange z-50">
+        <div className="container mx-auto px-4">
+          <div className="flex items-center justify-between h-16">
+            {/* Logo/Brand */}
+            <Link href="/rbtc" className="flex items-center gap-2">
+              <span className="text-rsk-orange font-bold text-lg">Rootstock</span>
+              <span className="text-rsk-text-dark text-sm">rBTC 获取指南</span>
+            </Link>
+
+            {/* Navigation Links */}
+            <div className="hidden md:flex items-center gap-8">
+              <a href="#about" className="text-rsk-text-dark hover:text-rsk-orange transition-colors text-sm">
+                什么是 rBTC
+              </a>
+              <a href="#get-rbtc" className="text-rsk-text-dark hover:text-rsk-orange transition-colors text-sm">
+                获取方式
+              </a>
+              <a href="#wallet" className="text-rsk-text-dark hover:text-rsk-orange transition-colors text-sm">
+                钱包设置
+              </a>
+              <a href="#faq" className="text-rsk-text-dark hover:text-rsk-orange transition-colors text-sm">
+                FAQ
+              </a>
+            </div>
+
+            {/* CTA Button */}
+            <a
+              href="#get-rbtc"
+              className="bg-rsk-orange hover:bg-[#FFA726] text-rsk-cream font-bold px-6 py-2 text-sm transition-colors uppercase"
+            >
+              开始获取
+            </a>
+          </div>
+        </div>
+      </nav>
+
       {/* Hero Section */}
       <section className="min-h-[80vh] flex items-center justify-center bg-rsk-cream pt-24 pb-12">
         <div className="container mx-auto px-4 py-20 text-center">
