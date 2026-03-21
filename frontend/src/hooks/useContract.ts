@@ -43,8 +43,9 @@ export const useContract = () => {
 
       // Create a standalone public client for reading contract data
       // This works even when user hasn't connected their wallet
+      // IMPORTANT: Always create a new client to ensure we're using the correct chain
       const chain = chainId === 31 ? ROOTSTOCK_CHAINS.testnet : ROOTSTOCK_CHAINS.mainnet;
-      const client = publicClient || createPublicClient({
+      const client = createPublicClient({
         chain,
         transport: http(chain.rpcUrls.default.http[0]),
       });
