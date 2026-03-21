@@ -1,0 +1,14 @@
+{
+  "network": "rootstock-mainnet",
+  "chainId": 30,
+  "contractAddress": "0x60f5e90C2FFc92E1E729a286F03103314C2ac678",
+  "deployer": "0x22cd1c7b62a9cda1fc1868ae0deab62f6fd57800",
+  "owner": "0x22cd1c7b62a9cda1fc1868ae0deab62f6fd57800",
+  "baseURI": "ipfs://bafybeicto7ndawofhbjfylypipjz72tvs6ljkzypf4dicyciimtbsrlgc4/",
+  "name": "Rootstock 3000 Days",
+  "symbol": "RSK3000",
+  "maxSupply": "10000",
+  "paused": true,
+  "deployedAt": "2026-03-21T16:02:09.578Z",
+  "transactionHash": "0x3a48289d877333f8e5f1674409e60dd0726110c3c383c629a8dc0cac226c1465"
+}

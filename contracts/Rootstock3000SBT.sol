@@ -95,7 +95,7 @@ contract Rootstock3000SBT is ERC721, Ownable, Pausable, ReentrancyGuard {
     constructor(
         address initialOwner,
         string memory baseURI
-    ) ERC721("Rootstock 3000 Days", "RSK3K") Ownable(initialOwner) {
+    ) ERC721("Rootstock 3000 Days", "RSK3000") Ownable(initialOwner) {
         _baseTokenURI = baseURI;
         // 合約部署時處於暫停狀態，等待 owner 開放
         _pause();
