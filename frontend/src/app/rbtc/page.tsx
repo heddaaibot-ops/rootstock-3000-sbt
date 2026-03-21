@@ -23,19 +23,19 @@ const platforms = [
   },
   // 跨链资产获取
   {
-    name: 'Sushi Swap',
-    description: '社区驱动的去中心化交易所（DEX），面向交易者和流动性提供者',
-    url: 'https://www.sushi.com/rootstock/swap',
-    category: 'crypto',
-    type: 'DEX',
-    featured: true,
-  },
-  {
     name: 'Jumper',
     description: '真正的多链交易所。汇集最好的桥接、交换、入金服务',
     url: 'https://jumper.exchange/es/',
     category: 'crypto',
     type: '多链聚合器',
+    featured: true,
+  },
+  {
+    name: 'Sushi Swap',
+    description: '社区驱动的去中心化交易所（DEX），面向交易者和流动性提供者',
+    url: 'https://www.sushi.com/rootstock/swap',
+    category: 'crypto',
+    type: 'DEX',
   },
   {
     name: 'Orbiter',
