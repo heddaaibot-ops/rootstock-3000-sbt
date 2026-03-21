@@ -55,24 +55,6 @@ export default function Home() {
             <img src="/images/figma/bitcoin.png" alt="Bitcoin" className="w-32 h-auto" />
           </div>
 
-          {/* Rootstock Logo - Floating Decoration from Figma */}
-          <div className="absolute bottom-10 left-1/2 -translate-x-1/2 animate-float opacity-25 hidden xl:block">
-            <div
-              className="w-40 h-10"
-              style={{
-                backgroundColor: '#FF9100',
-                WebkitMaskImage: 'url(/images/figma/rootstock-logo.png)',
-                WebkitMaskSize: 'contain',
-                WebkitMaskRepeat: 'no-repeat',
-                WebkitMaskPosition: 'center',
-                maskImage: 'url(/images/figma/rootstock-logo.png)',
-                maskSize: 'contain',
-                maskRepeat: 'no-repeat',
-                maskPosition: 'center'
-              }}
-            />
-          </div>
-
           <div className="animate-fade-in">
             {/* Rootstock Logo + Title */}
             <div className="flex flex-col items-center justify-center mb-4 gap-2">
