@@ -82,19 +82,10 @@ export const Footer: React.FC = () => {
           {/* Contract Info */}
           <div>
             <h3 className="text-lg font-bold text-rsk-orange mb-4 uppercase">合约地址</h3>
-            <div className="text-sm space-y-2">
-              <div>
-                <div className="text-rsk-text-dark font-semibold">测试网：</div>
-                <code className="text-rsk-text-dark text-xs font-mono break-all">
-                  {CONTRACT_ADDRESS.testnet}
-                </code>
-              </div>
-              <div>
-                <div className="text-rsk-text-dark font-semibold">主网：</div>
-                <code className="text-rsk-text-dark text-xs font-mono break-all">
-                  {CONTRACT_ADDRESS.mainnet}
-                </code>
-              </div>
+            <div className="text-sm">
+              <code className="text-rsk-text-dark text-xs font-mono break-all">
+                {CONTRACT_ADDRESS.mainnet}
+              </code>
             </div>
           </div>
         </div>
