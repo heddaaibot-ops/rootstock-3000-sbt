@@ -6,7 +6,7 @@ import Link from 'next/link';
 const platforms = [
   // 跨链资产获取
   {
-    name: 'SUSHI SWAP',
+    name: 'Sushi Swap',
     tag: 'DEX',
     recommended: true,
     method: 'cross-chain',
@@ -14,15 +14,15 @@ const platforms = [
     url: 'https://www.sushi.com/rootstock/swap',
   },
   {
-    name: 'JUMPER',
+    name: 'Jumper',
     tag: '多链聚合器',
     method: 'cross-chain',
     description: '真正的多链交易所。汇集最好的桥接、交换、入金服务',
-    url: 'https://jumper.exchange/',
+    url: 'https://jumper.exchange/es/',
   },
   {
-    name: 'ORBITER',
-    tag: '跨 ROLLUP 桥',
+    name: 'Orbiter',
+    tag: '跨 Rollup 桥',
     method: 'cross-chain',
     description: '去中心化跨 Rollup 桥，作为 Layer 2 的基础设施',
     url: 'https://www.orbiter.finance/',
@@ -35,42 +35,42 @@ const platforms = [
     url: 'https://oku.trade/',
   },
   {
-    name: 'SYMBIOSIS',
+    name: 'Symbiosis',
     tag: '跨链 DEX',
     method: 'cross-chain',
-    description: '跨链 AMM DEX，汇集来自不同网络的流动性',
+    description: '跨链 AMM DEX，汇集来自不同网络的流动性：L1 和 L2、EVM 和非 EVM',
     url: 'https://symbiosis.finance/',
   },
   {
-    name: 'SMOLREFUEL',
-    tag: 'GAS 加油站',
+    name: 'SmolRefuel',
+    tag: 'Gas 加油站',
     method: 'cross-chain',
     description: '快速交换您需要的东西——SmolRefuel 为您提供足够的原生代币以保持运行',
     url: 'https://smolrefuel.com/?outboundChain=30',
   },
   {
-    name: 'GAS.ZIP',
-    tag: '多链 GAS 桥',
+    name: 'Gas.Zip',
+    tag: '多链 Gas 桥',
     method: 'cross-chain',
-    description: '最快的一站式 gas 加油桥，支持 200+ 链',
+    description: '最快的一站式 gas 加油桥，支持 200+ 链。用户可以通过单个入站交易立即桥接到多个目标区块链',
     url: 'https://www.gas.zip/',
   },
   // 用 BTC 获取
   {
-    name: 'BOLTZ',
+    name: 'Boltz',
     tag: '闪电网络桥',
     recommended: true,
     method: 'btc',
     description: '非托管比特币桥，可在不同比特币层（如 Rootstock 和闪电网络）之间交换',
-    url: 'https://boltz.exchange/',
+    url: 'https://boltz.exchange/?sendAsset=LN&receiveAsset=RBTC',
   },
   {
-    name: 'POWPEG',
+    name: 'PowPeg',
     tag: '官方双向锚定桥',
     recommended: true,
     method: 'btc',
     description: '使用 BTC 获取 rBTC 最直接和原生的机制',
-    url: 'https://app.2wp.rootstock.io/',
+    url: 'https://powpeg.rootstock.io/',
   },
 ];
 
@@ -224,20 +224,20 @@ export default function RBTCGuidePage() {
           <div className="flex flex-wrap gap-4 mb-12 justify-center md:justify-start">
             <button
               onClick={() => setSelectedMethod('cross-chain')}
-              className={`px-8 py-4 text-lg font-bold uppercase transition-all rounded-none ${
+              className={`px-6 py-3 text-base font-bold uppercase transition-all ${
                 selectedMethod === 'cross-chain'
-                  ? 'bg-rsk-orange text-rsk-cream'
-                  : 'bg-white text-rsk-text-dark hover:bg-gray-100'
+                  ? 'bg-rsk-purple text-rsk-cream'
+                  : 'bg-white text-rsk-text-dark'
               }`}
             >
               跨链资产获取
             </button>
             <button
               onClick={() => setSelectedMethod('btc')}
-              className={`px-8 py-4 text-lg font-bold uppercase transition-all rounded-none ${
+              className={`px-6 py-3 text-base font-bold uppercase transition-all ${
                 selectedMethod === 'btc'
                   ? 'bg-rsk-orange text-rsk-cream'
-                  : 'bg-white text-rsk-text-dark hover:bg-gray-100'
+                  : 'bg-white text-rsk-text-dark'
               }`}
             >
               用 BTC 获取
