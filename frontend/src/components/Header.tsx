@@ -14,6 +14,12 @@ export const Header: React.FC = () => {
     }
 
     try {
+      // 先确保有账户访问权限
+      await window.ethereum.request({
+        method: 'eth_requestAccounts',
+      });
+
+      // 然后添加网络
       await window.ethereum.request({
         method: 'wallet_addEthereumChain',
         params: [
@@ -31,12 +37,12 @@ export const Header: React.FC = () => {
         ],
       });
     } catch (error: any) {
-      console.error('添加网络失败:', error);
+      console.error('操作失败:', error);
       if (error.code === 4001) {
         // 用户拒绝
-        alert('您取消了添加网络');
+        alert('您取消了操作');
       } else {
-        alert('添加网络失败，请重试');
+        alert('操作失败，请重试');
       }
     }
   };
