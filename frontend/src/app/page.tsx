@@ -225,7 +225,7 @@ export default function Home() {
         </section>
 
         {/* About Section - 米色主题 */}
-        <section id="about" className="container mx-auto px-4 py-16">
+        <section id="about" className="container mx-auto px-4 py-8">
           <div className="max-w-7xl mx-auto">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-12">
               {/* Card 01 - Soul Bound */}
