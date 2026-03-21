@@ -397,6 +397,21 @@ export default function RBTCGuidePage() {
             </div>
           </div>
         </section>
+
+        {/* Back to SBT */}
+        <section className="py-12 bg-white text-center">
+          <div className="container mx-auto px-4">
+            <p className="text-lg text-rsk-text-dark mb-6 font-semibold">
+              已经有 rBTC 了？
+            </p>
+            <a
+              href="/"
+              className="inline-block bg-rsk-orange hover:bg-[#FFA726] text-rsk-cream font-bold px-10 py-3 text-lg transition-colors uppercase"
+            >
+              返回铸造 SBT →
+            </a>
+          </div>
+        </section>
       </main>
     </div>
   );
