@@ -271,7 +271,12 @@ export default function RBTCGuidePage() {
                 <div key={platform.name} className="bg-white p-6 hover:bg-rsk-cream transition-colors">
                   <div className="flex items-center gap-2 mb-3">
                     <h3 className="text-xl font-bold text-rsk-text-dark uppercase">{platform.name}</h3>
-                    {platform.featured && <span className="text-xl">⭐️</span>}
+                    {platform.featured && (
+                      <div className="flex items-center gap-1">
+                        <span className="text-xl">⭐️</span>
+                        <span className="text-sm font-bold text-rsk-orange">推荐</span>
+                      </div>
+                    )}
                   </div>
                   <span className="inline-block bg-rsk-green text-rsk-cream text-sm font-semibold px-3 py-1 mb-3 uppercase">
                     {platform.type}
