@@ -145,7 +145,7 @@ export default function RBTCGuidePage() {
           </p>
           <Link
             href="#get-rbtc"
-            className="inline-block bg-rsk-orange hover:bg-[#FFA726] text-rsk-cream font-bold px-10 py-3 text-lg transition-colors uppercase rounded-nametag"
+            className="inline-block bg-rsk-orange hover:bg-[#FFA726] text-rsk-cream font-bold px-10 py-3 text-lg transition-colors uppercase rounded-none"
           >
             开始获取 rBTC →
           </Link>
@@ -168,7 +168,7 @@ export default function RBTCGuidePage() {
             </p>
           </div>
           <div className="grid md:grid-cols-3 gap-8 mb-16">
-            <div className="bg-rsk-offwhite border-3 border-rsk-border-dark rounded-xl p-8 hover:border-rsk-orange transition-all">
+            <div className="bg-rsk-offwhite border-3 border-rsk-border-dark rounded-none p-8 hover:border-rsk-orange transition-all">
               <h3 className="text-lg font-bold text-rsk-text-dark mb-3 uppercase">
                 比特币算力保护
               </h3>
@@ -176,7 +176,7 @@ export default function RBTCGuidePage() {
                 通过合并挖矿，由 80% 的比特币算力保护，确保网络安全
               </p>
             </div>
-            <div className="bg-rsk-offwhite border-3 border-rsk-border-dark rounded-xl p-8 hover:border-rsk-orange transition-all">
+            <div className="bg-rsk-offwhite border-3 border-rsk-border-dark rounded-none p-8 hover:border-rsk-orange transition-all">
               <h3 className="text-lg font-bold text-rsk-text-dark mb-3 uppercase">
                 PowPeg 1:1 锚定
               </h3>
@@ -184,7 +184,7 @@ export default function RBTCGuidePage() {
                 通过 PowPeg（最安全的比特币桥）与 BTC 保持 1:1 锚定
               </p>
             </div>
-            <div className="bg-rsk-offwhite border-3 border-rsk-border-dark rounded-xl p-8 hover:border-rsk-orange transition-all">
+            <div className="bg-rsk-offwhite border-3 border-rsk-border-dark rounded-none p-8 hover:border-rsk-orange transition-all">
               <h3 className="text-lg font-bold text-rsk-text-dark mb-3 uppercase">
                 无需许可访问 DeFi
               </h3>
@@ -235,7 +235,7 @@ export default function RBTCGuidePage() {
               .map((platform) => (
               <div
                 key={platform.name}
-                className="bg-white border-3 border-rsk-border-dark rounded-xl p-6 hover:border-rsk-orange transition-all"
+                className="bg-white border-3 border-rsk-border-dark rounded-none p-6 hover:border-rsk-orange transition-all"
               >
                 <div className="flex items-center gap-2 mb-3">
                   <h3 className="text-xl font-bold text-rsk-text-dark uppercase">
@@ -243,7 +243,7 @@ export default function RBTCGuidePage() {
                   </h3>
                   {platform.recommended && <span className="text-xl">⭐️</span>}
                 </div>
-                <span className="inline-block bg-rsk-orange text-rsk-cream text-sm font-semibold px-3 py-1 mb-3 uppercase rounded-tag">
+                <span className="inline-block bg-rsk-orange text-rsk-cream text-sm font-semibold px-3 py-1 mb-3 uppercase rounded-none">
                   {platform.tag}
                 </span>
                 <p className="text-rsk-text-dark mb-4">{platform.description}</p>
@@ -251,7 +251,7 @@ export default function RBTCGuidePage() {
                   href={platform.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="block w-full bg-rsk-orange hover:bg-[#FFA726] text-rsk-cream font-bold py-3 text-center uppercase transition-colors rounded-nametag"
+                  className="block w-full bg-rsk-orange hover:bg-[#FFA726] text-rsk-cream font-bold py-3 text-center uppercase transition-colors rounded-none"
                 >
                   访问 {platform.name} →
                 </a>
@@ -280,11 +280,11 @@ export default function RBTCGuidePage() {
                   href={wallet.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="bg-rsk-offwhite border-3 border-rsk-border-dark rounded-xl p-4 text-center hover:border-rsk-orange transition-all"
+                  className="bg-rsk-offwhite border-3 border-rsk-border-dark rounded-none p-4 text-center hover:border-rsk-orange transition-all"
                 >
                   <div className="font-bold text-rsk-text-dark">{wallet.name}</div>
                   {wallet.recommended && (
-                    <span className="text-xs bg-rsk-orange text-rsk-cream px-2 py-1 uppercase rounded-tag inline-block mt-2">
+                    <span className="text-xs bg-rsk-orange text-rsk-cream px-2 py-1 uppercase rounded-none inline-block mt-2">
                       推荐
                     </span>
                   )}
@@ -305,7 +305,7 @@ export default function RBTCGuidePage() {
           </div>
           <div className="max-w-4xl mx-auto space-y-4">
             {faqs.map((faq, index) => (
-              <div key={index} className="bg-white border-3 border-rsk-border-dark rounded-xl overflow-hidden">
+              <div key={index} className="bg-white border-3 border-rsk-border-dark rounded-none overflow-hidden">
                 <button
                   onClick={() => setOpenFaqIndex(openFaqIndex === index ? null : index)}
                   className="w-full px-6 py-4 text-left font-bold text-base text-rsk-text-dark hover:bg-rsk-offwhite flex justify-between items-center transition-colors"
@@ -331,7 +331,7 @@ export default function RBTCGuidePage() {
               href="https://t.me/rootstockCNchat"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-block bg-rsk-purple text-rsk-cream font-bold px-6 py-3 hover:bg-[#B088FF] transition-colors uppercase rounded-nametag"
+              className="inline-block bg-rsk-purple text-rsk-cream font-bold px-6 py-3 hover:bg-[#B088FF] transition-colors uppercase rounded-none"
             >
               在 RootstockCN 提问 →
             </a>
@@ -347,7 +347,7 @@ export default function RBTCGuidePage() {
           </p>
           <Link
             href="/"
-            className="inline-block bg-rsk-orange hover:bg-[#FFA726] text-rsk-cream font-bold px-10 py-3 text-lg transition-colors uppercase rounded-nametag"
+            className="inline-block bg-rsk-orange hover:bg-[#FFA726] text-rsk-cream font-bold px-10 py-3 text-lg transition-colors uppercase rounded-none"
           >
             返回铸造 SBT →
           </Link>
