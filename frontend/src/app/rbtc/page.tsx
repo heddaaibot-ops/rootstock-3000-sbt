@@ -72,6 +72,14 @@ const platforms = [
   },
 ];
 
+const networkConfig = {
+  networkName: 'Rootstock Mainnet',
+  rpcUrl: 'https://mycrypto.rsk.co',
+  chainId: '30',
+  symbol: 'RBTC',
+  blockExplorer: 'https://explorer.rootstock.io/',
+};
+
 const faqs = [
   {
     question: '什么是 rBTC？',
@@ -106,12 +114,19 @@ const faqs = [
 export default function RBTCGuidePage() {
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
   const [activeTab, setActiveTab] = useState<'btc' | 'crypto'>('crypto');
+  const [copiedField, setCopiedField] = useState('');
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
     }
+  };
+
+  const copyToClipboard = (text: string, field: string) => {
+    navigator.clipboard.writeText(text);
+    setCopiedField(field);
+    setTimeout(() => setCopiedField(''), 2000);
   };
 
   const btcPlatforms = platforms.filter(p => p.category === 'btc');
@@ -136,6 +151,9 @@ export default function RBTCGuidePage() {
               </button>
               <button onClick={() => scrollToSection('get-rbtc')} className="text-rsk-text-dark hover:text-rsk-orange font-medium transition-colors">
                 获取方式
+              </button>
+              <button onClick={() => scrollToSection('network')} className="text-rsk-text-dark hover:text-rsk-orange font-medium transition-colors">
+                网络参数
               </button>
               <button onClick={() => scrollToSection('faq')} className="text-rsk-text-dark hover:text-rsk-orange font-medium transition-colors">
                 FAQ
@@ -233,6 +251,33 @@ export default function RBTCGuidePage() {
                   </a>
                 </div>
               ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Network Config */}
+        <section id="network" className="py-20 bg-white">
+          <div className="container mx-auto px-4">
+            <div className="mb-12">
+              <h2 className="inline-block bg-rsk-green text-rsk-cream text-2xl md:text-3xl font-bold px-6 py-3 uppercase">
+                网络参数
+              </h2>
+            </div>
+            <div className="max-w-3xl mx-auto bg-rsk-cream p-8">
+              <p className="text-rsk-text-dark mb-6 font-semibold">点击参数值即可复制到剪贴板</p>
+              <div className="space-y-3">
+                {Object.entries(networkConfig).map(([key, value]) => (
+                  <div key={key} className="flex justify-between items-center bg-white p-4 hover:bg-gray-50 transition-colors">
+                    <span className="font-semibold text-rsk-text-dark">{key}:</span>
+                    <button
+                      onClick={() => copyToClipboard(value, key)}
+                      className="text-rsk-orange hover:text-[#FFA726] font-mono text-sm break-all text-right ml-4"
+                    >
+                      {value} {copiedField === key && <span className="text-rsk-green font-bold ml-2">✓ 已复制</span>}
+                    </button>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </section>
