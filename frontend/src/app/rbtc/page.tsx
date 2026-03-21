@@ -11,7 +11,6 @@ const platforms = [
     url: 'https://boltz.exchange/?sendAsset=LN&receiveAsset=RBTC',
     category: 'btc',
     type: '闪电网络桥',
-    featured: true,
   },
   {
     name: 'PowPeg',
@@ -19,7 +18,6 @@ const platforms = [
     url: 'https://powpeg.rootstock.io/',
     category: 'btc',
     type: '官方双向锚定桥',
-    featured: true,
   },
   // 跨链资产获取
   {
