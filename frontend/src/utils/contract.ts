@@ -3,7 +3,7 @@ import { defineChain } from 'viem';
 // 硬编码地址确保在 Vercel 上也能正常工作
 export const CONTRACT_ADDRESS = {
   testnet: '0x3fcD4cf80017bb7d90d9E67cd1E2fe539D985d8D' as `0x${string}`,
-  mainnet: '0x60f5e90C2FFc92E1E729a286F03103314C2ac678' as `0x${string}`,
+  mainnet: '0xc4e7a1FB1bdf370CD187a50E0B6B360BCB4C3BEC' as `0x${string}`,
 } as const;
 
 // 使用完整的合约 ABI（从编译产物导出）
