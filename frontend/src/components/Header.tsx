@@ -9,7 +9,7 @@ export const Header: React.FC = () => {
 
   const addRootstockNetwork = async () => {
     if (typeof window.ethereum === 'undefined') {
-      alert('请先安装 MetaMask！\n\n您可以从 https://metamask.io 下载安装');
+      window.open('https://metamask.io/download', '_blank');
       return;
     }
 
@@ -32,9 +32,7 @@ export const Header: React.FC = () => {
         method: 'wallet_switchEthereumChain',
         params: [{ chainId: rootstockChainId }],
       });
-
-      // 切换成功
-      alert('✅ 已切换到 Rootstock 网络！');
+      // 切换成功，不需要提示（MetaMask 会有自己的提示）
     } catch (switchError: any) {
       // 如果网络不存在 (错误码 4902)，则添加网络
       if (switchError.code === 4902) {
@@ -43,24 +41,20 @@ export const Header: React.FC = () => {
             method: 'wallet_addEthereumChain',
             params: [networkParams],
           });
-          alert('✅ Rootstock 网络已成功添加！');
+          // 添加成功，MetaMask 会有提示
         } catch (addError: any) {
           console.error('添加网络失败:', addError);
-          if (addError.code === 4001) {
-            alert('❌ 您取消了添加网络');
-          } else {
-            alert('❌ 添加网络失败，请重试\n\n错误信息: ' + (addError.message || '未知错误'));
+          // 只有真正的错误才提示
+          if (addError.code !== 4001) {
+            console.error('Error details:', addError);
           }
         }
-      } else if (switchError.code === 4001) {
-        // 用户拒绝切换
-        alert('❌ 您取消了切换网络');
       } else if (switchError.code === -32002) {
         // 请求已挂起
         alert('⚠️ 请先处理 MetaMask 中的待处理请求');
-      } else {
+      } else if (switchError.code !== 4001) {
+        // 非用户取消的错误才记录
         console.error('切换网络失败:', switchError);
-        alert('❌ 操作失败，请重试\n\n错误信息: ' + (switchError.message || '未知错误'));
       }
     }
   };

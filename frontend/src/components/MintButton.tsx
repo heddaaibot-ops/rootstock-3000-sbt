@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useAccount } from 'wagmi';
 import { openInExplorer } from '@/utils/helpers';
 import { useI18n } from '@/i18n/provider';
@@ -43,7 +43,7 @@ export const MintButton: React.FC<MintButtonProps> = ({
     handleMint();
   };
 
-  const handleConfirmFollow = () => {
+  const handleConfirmFollow = useCallback(() => {
     setHasConfirmedFollow(true);
     // 保存到 localStorage
     if (typeof window !== 'undefined') {
@@ -52,9 +52,33 @@ export const MintButton: React.FC<MintButtonProps> = ({
     setShowFollowModal(false);
     // 确认后直接执行铸造
     handleMint();
-  };
+  }, [handleMint]);
 
-  const handleMint = async () => {
+  const closeModal = useCallback(() => {
+    setShowFollowModal(false);
+  }, []);
+
+  // ESC 键关闭模态框
+  useEffect(() => {
+    const handleEscape = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && showFollowModal) {
+        closeModal();
+      }
+    };
+
+    if (showFollowModal) {
+      document.addEventListener('keydown', handleEscape);
+      // 防止背景滚动
+      document.body.style.overflow = 'hidden';
+    }
+
+    return () => {
+      document.removeEventListener('keydown', handleEscape);
+      document.body.style.overflow = 'unset';
+    };
+  }, [showFollowModal, closeModal]);
+
+  const handleMint = useCallback(async () => {
     setMinting(true);
     setError(null);
     setTxHash(null);
@@ -72,7 +96,7 @@ export const MintButton: React.FC<MintButtonProps> = ({
     } finally {
       setMinting(false);
     }
-  };
+  }, [onMint]);
 
   // Twitter 分享函数
   const shareOnTwitter = () => {
@@ -191,9 +215,29 @@ export const MintButton: React.FC<MintButtonProps> = ({
 
       {/* Twitter 关注模态框 */}
       {showFollowModal && (
-        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-          <div className="bg-rsk-cream rounded-xl max-w-md w-full p-8 animate-fade-in border-4 border-rsk-orange">
-            <h3 className="text-2xl font-bold text-rsk-text-dark mb-4 uppercase text-center">
+        <div
+          className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4"
+          onClick={closeModal}
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="follow-modal-title"
+        >
+          <div
+            className="bg-rsk-cream rounded-xl max-w-md w-full p-8 animate-fade-in border-4 border-rsk-orange relative"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* 关闭按钮 */}
+            <button
+              onClick={closeModal}
+              className="absolute top-4 right-4 text-rsk-text-dark hover:text-rsk-orange transition-colors"
+              aria-label="关闭"
+            >
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+
+            <h3 id="follow-modal-title" className="text-2xl font-bold text-rsk-text-dark mb-4 uppercase text-center">
               🎉 铸造前请关注我们
             </h3>
             <p className="text-rsk-text-dark mb-6 text-center">
