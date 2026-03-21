@@ -273,7 +273,7 @@ export default function RBTCGuidePage() {
                     <h3 className="text-xl font-bold text-rsk-text-dark uppercase">{platform.name}</h3>
                     {platform.featured && <span className="text-xl">⭐️</span>}
                   </div>
-                  <span className="inline-block bg-rsk-orange text-rsk-cream text-sm font-semibold px-3 py-1 mb-3 uppercase">
+                  <span className="inline-block bg-rsk-green text-rsk-cream text-sm font-semibold px-3 py-1 mb-3 uppercase">
                     {platform.type}
                   </span>
                   <p className="text-rsk-text-dark mb-4">{platform.description}</p>
