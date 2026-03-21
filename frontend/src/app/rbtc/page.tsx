@@ -28,6 +28,20 @@ const platforms = [
     url: 'https://www.orbiter.finance/',
   },
   {
+    name: 'OKU',
+    tag: 'DEX 聚合器',
+    method: 'cross-chain',
+    description: '在每个 EVM 链上获得所有 DEX 交换的最佳汇率',
+    url: 'https://oku.trade/',
+  },
+  {
+    name: 'SYMBIOSIS',
+    tag: '跨链 DEX',
+    method: 'cross-chain',
+    description: '跨链 AMM DEX，汇集来自不同网络的流动性',
+    url: 'https://symbiosis.finance/',
+  },
+  {
     name: 'SMOLREFUEL',
     tag: 'GAS 加油站',
     method: 'cross-chain',
@@ -43,19 +57,20 @@ const platforms = [
   },
   // 用 BTC 获取
   {
-    name: 'POWPEG',
-    tag: '官方桥',
+    name: 'BOLTZ',
+    tag: '闪电网络桥',
     recommended: true,
     method: 'btc',
-    description: 'Rootstock 官方 BTC ⇄ rBTC 双向桥，最安全的比特币桥接方案',
-    url: 'https://app.2wp.rootstock.io/',
+    description: '非托管比特币桥，可在不同比特币层（如 Rootstock 和闪电网络）之间交换',
+    url: 'https://boltz.exchange/',
   },
   {
-    name: 'ROOTSTOCK POWPEG 指南',
-    tag: '教程',
+    name: 'POWPEG',
+    tag: '官方双向锚定桥',
+    recommended: true,
     method: 'btc',
-    description: '官方详细教程，了解如何使用 PowPeg 将 BTC 转换为 rBTC',
-    url: 'https://dev.rootstock.io/guides/two-way-peg-app/pegin/',
+    description: '使用 BTC 获取 rBTC 最直接和原生的机制',
+    url: 'https://app.2wp.rootstock.io/',
   },
 ];
 
@@ -209,20 +224,20 @@ export default function RBTCGuidePage() {
           <div className="flex flex-wrap gap-4 mb-12 justify-center md:justify-start">
             <button
               onClick={() => setSelectedMethod('cross-chain')}
-              className={`px-8 py-4 text-lg font-bold uppercase transition-all border-3 rounded-none ${
+              className={`px-8 py-4 text-lg font-bold uppercase transition-all rounded-none ${
                 selectedMethod === 'cross-chain'
-                  ? 'bg-rsk-purple text-rsk-cream border-rsk-purple'
-                  : 'bg-transparent text-rsk-text-dark border-rsk-purple hover:bg-rsk-purple/10'
+                  ? 'bg-rsk-orange text-rsk-cream'
+                  : 'bg-white text-rsk-text-dark hover:bg-gray-100'
               }`}
             >
               跨链资产获取
             </button>
             <button
               onClick={() => setSelectedMethod('btc')}
-              className={`px-8 py-4 text-lg font-bold uppercase transition-all border-3 rounded-none ${
+              className={`px-8 py-4 text-lg font-bold uppercase transition-all rounded-none ${
                 selectedMethod === 'btc'
-                  ? 'bg-rsk-purple text-rsk-cream border-rsk-purple'
-                  : 'bg-transparent text-rsk-text-dark border-rsk-purple hover:bg-rsk-purple/10'
+                  ? 'bg-rsk-orange text-rsk-cream'
+                  : 'bg-white text-rsk-text-dark hover:bg-gray-100'
               }`}
             >
               用 BTC 获取
