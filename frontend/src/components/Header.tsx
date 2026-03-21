@@ -2,8 +2,51 @@
 
 import React from 'react';
 import { ConnectKitButton } from 'connectkit';
+import { useAccount } from 'wagmi';
 
 export const Header: React.FC = () => {
+  const { isConnected } = useAccount();
+
+  const addRootstockNetwork = async () => {
+    if (typeof window.ethereum === 'undefined') {
+      alert('请先安装 MetaMask！');
+      return;
+    }
+
+    // 如果未连接，先连接钱包
+    if (!isConnected) {
+      alert('请先连接钱包！');
+      return;
+    }
+
+    try {
+      await window.ethereum.request({
+        method: 'wallet_addEthereumChain',
+        params: [
+          {
+            chainId: '0x1e', // 30 in hex
+            chainName: 'Rootstock Mainnet',
+            nativeCurrency: {
+              name: 'RBTC',
+              symbol: 'RBTC',
+              decimals: 18,
+            },
+            rpcUrls: ['https://mycrypto.rsk.co'],
+            blockExplorerUrls: ['https://explorer.rootstock.io/'],
+          },
+        ],
+      });
+    } catch (error: any) {
+      console.error('添加网络失败:', error);
+      if (error.code === 4001) {
+        // 用户拒绝
+        alert('您取消了添加网络');
+      } else {
+        alert('添加网络失败，请重试');
+      }
+    }
+  };
+
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-rsk-cream/95 backdrop-blur-lg border-b border-rsk-orange/20 shadow-sm">
       <div className="container mx-auto px-4 py-4">
@@ -66,7 +109,15 @@ export const Header: React.FC = () => {
           </nav>
 
           {/* Connect Wallet */}
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-3">
+            <button
+              onClick={addRootstockNetwork}
+              className="hidden md:flex items-center gap-2 bg-rsk-orange hover:bg-rsk-orange/90 text-white font-semibold px-4 py-2 rounded-lg transition-colors text-sm"
+              title="添加 Rootstock 到 MetaMask"
+            >
+              <span>🦊</span>
+              <span>添加 Rootstock</span>
+            </button>
             <ConnectKitButton />
           </div>
         </div>
