@@ -148,29 +148,7 @@ export default function RBTCGuidePage() {
         </div>
       </header>
 
-      <main>
-        {/* Hero Section */}
-        <section className="min-h-screen flex items-center justify-center bg-rsk-cream pt-16">
-          <div className="container mx-auto px-4 py-20 text-center">
-            <h1 className="text-4xl md:text-5xl font-bold text-rsk-text-dark mb-6">
-              轻松获取 <span className="text-rsk-orange">rBTC</span>
-            </h1>
-            <p className="text-lg md:text-xl text-rsk-pink mb-4">比特币 DeFi 的钥匙</p>
-            <p className="text-base text-rsk-text-dark max-w-2xl mx-auto mb-12">
-              rBTC 与比特币 1:1 锚定，由比特币算力保护。
-              在 Rootstock 上使用 rBTC 参与 DeFi、执行智能合约，享受比特币级别的安全性
-            </p>
-            <button onClick={() => scrollToSection('get-rbtc')} className="bg-rsk-orange hover:bg-[#FFA726] text-rsk-cream font-bold px-10 py-3 text-lg transition-colors uppercase">
-              开始获取 rBTC →
-            </button>
-            <div className="mt-16 animate-bounce">
-              <svg className="w-6 h-6 mx-auto text-rsk-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
-              </svg>
-            </div>
-          </div>
-        </section>
-
+      <main className="pt-16">
         {/* What is rBTC */}
         <section id="about" className="py-20 bg-white">
           <div className="container mx-auto px-4">
