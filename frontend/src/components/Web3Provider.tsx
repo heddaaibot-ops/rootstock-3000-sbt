@@ -36,7 +36,17 @@ export const Web3Provider: React.FC<Web3ProviderProps> = ({ children }) => {
     <WagmiProvider config={config}>
       <QueryClientProvider client={queryClient}>
         <ConnectKitProvider
+          mode="auto"
           theme="soft"
+          options={{
+            enforceSupportedChains: false,
+            walletConnectName: 'WalletConnect',
+            disclaimer: (
+              <div style={{ textAlign: 'center', fontSize: '14px', color: '#666' }}>
+                连接钱包即表示您同意使用 Rootstock 区块链
+              </div>
+            ),
+          }}
           customTheme={{
             '--ck-font-family': '"Space Grotesk", system-ui, sans-serif',
             '--ck-border-radius': '9999px',
