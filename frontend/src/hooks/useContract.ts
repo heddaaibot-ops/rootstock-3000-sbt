@@ -26,8 +26,8 @@ export const useContract = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  // Default to Rootstock Testnet if user hasn't connected wallet
-  const chainId = userChainId || 31;
+  // Default to Rootstock Mainnet if user hasn't connected wallet
+  const chainId = userChainId || 30;
 
   const contractAddress = chainId === 31
     ? CONTRACT_ADDRESS.testnet
