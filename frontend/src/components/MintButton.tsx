@@ -23,6 +23,25 @@ export const MintButton: React.FC<MintButtonProps> = ({
   const [minting, setMinting] = useState(false);
   const [txHash, setTxHash] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [showFollowModal, setShowFollowModal] = useState(false);
+  const [hasConfirmedFollow, setHasConfirmedFollow] = useState(false);
+
+  const handleMintClick = () => {
+    // 如果还没确认关注，先显示关注模态框
+    if (!hasConfirmedFollow) {
+      setShowFollowModal(true);
+      return;
+    }
+    // 已确认关注，执行铸造
+    handleMint();
+  };
+
+  const handleConfirmFollow = () => {
+    setHasConfirmedFollow(true);
+    setShowFollowModal(false);
+    // 确认后直接执行铸造
+    handleMint();
+  };
 
   const handleMint = async () => {
     setMinting(true);
@@ -134,28 +153,73 @@ export const MintButton: React.FC<MintButtonProps> = ({
 
   // 始终显示按钮 - 官方 Nametag 风格
   return (
-    <div className="text-center">
-      <button
-        onClick={handleMint}
-        disabled={isDisabled}
-        className={`group relative px-10 py-4 min-w-[200px] h-[56px] ${!isConnected ? 'bg-rsk-pink hover:bg-[#FF85E6]' : 'bg-rsk-orange hover:bg-[#FFA726]'} text-white font-bold text-lg rounded-nametag transition-all duration-300 transform hover:scale-105 hover:shadow-[0_8px_24px_rgba(255,145,0,0.4)] disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none disabled:shadow-none uppercase tracking-wide`}
-      >
-        {minting ? (
-          <span className="flex items-center gap-3 justify-center">
-            <svg className="animate-spin h-6 w-6" viewBox="0 0 24 24">
-              <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none"></circle>
-              <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-            </svg>
+    <>
+      <div className="text-center">
+        <button
+          onClick={handleMintClick}
+          disabled={isDisabled}
+          className={`group relative px-10 py-4 min-w-[200px] h-[56px] ${!isConnected ? 'bg-rsk-pink hover:bg-[#FF85E6]' : 'bg-rsk-orange hover:bg-[#FFA726]'} text-white font-bold text-lg rounded-nametag transition-all duration-300 transform hover:scale-105 hover:shadow-[0_8px_24px_rgba(255,145,0,0.4)] disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none disabled:shadow-none uppercase tracking-wide`}
+        >
+          {minting ? (
+            <span className="flex items-center gap-3 justify-center">
+              <svg className="animate-spin h-6 w-6" viewBox="0 0 24 24">
+                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none"></circle>
+                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+              </svg>
+              <span>{buttonText}</span>
+            </span>
+          ) : (
             <span>{buttonText}</span>
-          </span>
-        ) : (
-          <span>{buttonText}</span>
-        )}
-      </button>
+          )}
+        </button>
 
-      <div className="text-base text-rsk-text-dark mt-6 font-semibold">
-        {statusMessage}
+        <div className="text-base text-rsk-text-dark mt-6 font-semibold">
+          {statusMessage}
+        </div>
       </div>
-    </div>
+
+      {/* Twitter 关注模态框 */}
+      {showFollowModal && (
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+          <div className="bg-rsk-cream rounded-xl max-w-md w-full p-8 animate-fade-in border-4 border-rsk-orange">
+            <h3 className="text-2xl font-bold text-rsk-text-dark mb-4 uppercase text-center">
+              🎉 铸造前请关注我们
+            </h3>
+            <p className="text-rsk-text-dark mb-6 text-center">
+              请先关注 RootstockCN Twitter 账号，支持我们的社区！
+            </p>
+
+            <a
+              href="https://x.com/rootstockcn"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block w-full bg-black hover:bg-gray-800 text-white font-bold py-3 px-6 rounded-lg mb-4 text-center transition-colors uppercase"
+            >
+              <span className="flex items-center justify-center gap-2">
+                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+                </svg>
+                <span>前往关注 @RootstockCN</span>
+              </span>
+            </a>
+
+            <div className="flex gap-3">
+              <button
+                onClick={handleConfirmFollow}
+                className="flex-1 bg-rsk-orange hover:bg-[#FFA726] text-white font-bold py-3 px-6 rounded-lg transition-colors uppercase"
+              >
+                ✓ 我已经关注
+              </button>
+              <button
+                onClick={() => setShowFollowModal(false)}
+                className="flex-1 bg-gray-300 hover:bg-gray-400 text-gray-700 font-bold py-3 px-6 rounded-lg transition-colors uppercase"
+              >
+                稍后
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+    </>
   );
 };
