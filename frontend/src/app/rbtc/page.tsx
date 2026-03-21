@@ -172,7 +172,7 @@ export default function RBTCGuidePage() {
           <div className="flex flex-wrap gap-4 mb-12 justify-center md:justify-start">
             <button
               onClick={() => setSelectedMethod('cross-chain')}
-              className={`px-8 py-4 text-lg font-bold uppercase transition-all rounded-nametag ${
+              className={`px-8 py-4 text-lg font-bold uppercase transition-all ${
                 selectedMethod === 'cross-chain'
                   ? 'bg-rsk-purple text-rsk-cream'
                   : 'bg-white text-rsk-text-dark border-3 border-rsk-border-dark hover:border-rsk-purple'
@@ -182,7 +182,7 @@ export default function RBTCGuidePage() {
             </button>
             <button
               onClick={() => setSelectedMethod('btc')}
-              className={`px-8 py-4 text-lg font-bold uppercase transition-all rounded-nametag ${
+              className={`px-8 py-4 text-lg font-bold uppercase transition-all ${
                 selectedMethod === 'btc'
                   ? 'bg-rsk-purple text-rsk-cream'
                   : 'bg-white text-rsk-text-dark border-3 border-rsk-border-dark hover:border-rsk-purple'
