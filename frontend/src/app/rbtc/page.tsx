@@ -4,36 +4,58 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 
 const platforms = [
+  // 跨链资产获取
   {
     name: 'Sushi Swap',
     tag: 'DEX',
     recommended: true,
+    method: 'cross-chain',
     description: '社区驱动的去中心化交易所（DEX），面向交易者和流动性提供者',
     url: 'https://www.sushi.com/rootstock/swap',
   },
   {
     name: 'Jumper',
     tag: '多链聚合器',
+    method: 'cross-chain',
     description: '真正的多链交易所。汇集最好的桥接、交换、入金服务',
     url: 'https://jumper.exchange/',
   },
   {
     name: 'Orbiter',
     tag: '跨 Rollup 桥',
+    method: 'cross-chain',
     description: '去中心化跨 Rollup 桥，作为 Layer 2 的基础设施',
     url: 'https://www.orbiter.finance/',
   },
   {
     name: 'SmolRefuel',
     tag: 'Gas 加油站',
+    method: 'cross-chain',
     description: '快速交换您需要的东西——SmolRefuel 为您提供足够的原生代币以保持运行',
     url: 'https://smolrefuel.com/?outboundChain=30',
   },
   {
     name: 'Gas.Zip',
     tag: '多链 Gas 桥',
+    method: 'cross-chain',
     description: '最快的一站式 gas 加油桥，支持 200+ 链',
     url: 'https://www.gas.zip/',
+  },
+  // 用 BTC 获取
+  {
+    name: 'PowPeg',
+    tag: '官方桥',
+    recommended: true,
+    method: 'btc',
+    description: 'Rootstock 官方 BTC ↔ rBTC 双向桥，最安全的比特币桥接方案',
+    url: 'https://app.2wp.rootstock.io/',
+  },
+  {
+    name: 'Rootstock PowPeg 指南',
+    tag: '教程',
+    method: 'btc',
+    description: '官方详细教程，了解如何使用 PowPeg 将 BTC 转换为 rBTC',
+    url: 'https://dev.rootstock.io/guides/two-way-peg-app/pegin/',
   },
 ];
 
@@ -67,6 +89,7 @@ const faqs = [
 
 export default function RBTCGuidePage() {
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
+  const [selectedMethod, setSelectedMethod] = useState<'cross-chain' | 'btc'>('cross-chain');
 
   return (
     <div className="min-h-screen bg-rsk-cream">
@@ -144,8 +167,35 @@ export default function RBTCGuidePage() {
               如何获取 rBTC
             </h2>
           </div>
+
+          {/* Method Selection Buttons */}
+          <div className="flex flex-wrap gap-4 mb-12 justify-center md:justify-start">
+            <button
+              onClick={() => setSelectedMethod('cross-chain')}
+              className={`px-8 py-4 text-lg font-bold uppercase transition-all rounded-nametag ${
+                selectedMethod === 'cross-chain'
+                  ? 'bg-rsk-purple text-rsk-cream'
+                  : 'bg-white text-rsk-text-dark border-3 border-rsk-border-dark hover:border-rsk-purple'
+              }`}
+            >
+              跨链资产获取
+            </button>
+            <button
+              onClick={() => setSelectedMethod('btc')}
+              className={`px-8 py-4 text-lg font-bold uppercase transition-all rounded-nametag ${
+                selectedMethod === 'btc'
+                  ? 'bg-rsk-purple text-rsk-cream'
+                  : 'bg-white text-rsk-text-dark border-3 border-rsk-border-dark hover:border-rsk-purple'
+              }`}
+            >
+              用 BTC 获取
+            </button>
+          </div>
+
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {platforms.map((platform) => (
+            {platforms
+              .filter((platform) => platform.method === selectedMethod)
+              .map((platform) => (
               <div
                 key={platform.name}
                 className="bg-white border-3 border-rsk-border-dark rounded-xl p-6 hover:border-rsk-orange transition-all"
