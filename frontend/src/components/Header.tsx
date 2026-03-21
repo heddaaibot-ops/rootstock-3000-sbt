@@ -13,12 +13,6 @@ export const Header: React.FC = () => {
       return;
     }
 
-    // 如果未连接，先连接钱包
-    if (!isConnected) {
-      alert('请先连接钱包！');
-      return;
-    }
-
     try {
       await window.ethereum.request({
         method: 'wallet_addEthereumChain',
