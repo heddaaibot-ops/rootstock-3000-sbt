@@ -9,40 +9,58 @@ export const Header: React.FC = () => {
 
   const addRootstockNetwork = async () => {
     if (typeof window.ethereum === 'undefined') {
-      alert('请先安装 MetaMask！');
+      alert('请先安装 MetaMask！\n\n您可以从 https://metamask.io 下载安装');
       return;
     }
 
+    const rootstockChainId = '0x1e'; // 30 in hex
+    const networkParams = {
+      chainId: rootstockChainId,
+      chainName: 'Rootstock Mainnet',
+      nativeCurrency: {
+        name: 'RBTC',
+        symbol: 'RBTC',
+        decimals: 18,
+      },
+      rpcUrls: ['https://mycrypto.rsk.co'],
+      blockExplorerUrls: ['https://explorer.rootstock.io/'],
+    };
+
     try {
-      // 先确保有账户访问权限
+      // 先尝试切换到 Rootstock 网络
       await window.ethereum.request({
-        method: 'eth_requestAccounts',
+        method: 'wallet_switchEthereumChain',
+        params: [{ chainId: rootstockChainId }],
       });
 
-      // 然后添加网络
-      await window.ethereum.request({
-        method: 'wallet_addEthereumChain',
-        params: [
-          {
-            chainId: '0x1e', // 30 in hex
-            chainName: 'Rootstock Mainnet',
-            nativeCurrency: {
-              name: 'RBTC',
-              symbol: 'RBTC',
-              decimals: 18,
-            },
-            rpcUrls: ['https://mycrypto.rsk.co'],
-            blockExplorerUrls: ['https://explorer.rootstock.io/'],
-          },
-        ],
-      });
-    } catch (error: any) {
-      console.error('操作失败:', error);
-      if (error.code === 4001) {
-        // 用户拒绝
-        alert('您取消了操作');
+      // 切换成功
+      alert('✅ 已切换到 Rootstock 网络！');
+    } catch (switchError: any) {
+      // 如果网络不存在 (错误码 4902)，则添加网络
+      if (switchError.code === 4902) {
+        try {
+          await window.ethereum.request({
+            method: 'wallet_addEthereumChain',
+            params: [networkParams],
+          });
+          alert('✅ Rootstock 网络已成功添加！');
+        } catch (addError: any) {
+          console.error('添加网络失败:', addError);
+          if (addError.code === 4001) {
+            alert('❌ 您取消了添加网络');
+          } else {
+            alert('❌ 添加网络失败，请重试\n\n错误信息: ' + (addError.message || '未知错误'));
+          }
+        }
+      } else if (switchError.code === 4001) {
+        // 用户拒绝切换
+        alert('❌ 您取消了切换网络');
+      } else if (switchError.code === -32002) {
+        // 请求已挂起
+        alert('⚠️ 请先处理 MetaMask 中的待处理请求');
       } else {
-        alert('操作失败，请重试');
+        console.error('切换网络失败:', switchError);
+        alert('❌ 操作失败，请重试\n\n错误信息: ' + (switchError.message || '未知错误'));
       }
     }
   };

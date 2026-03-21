@@ -24,7 +24,14 @@ export const MintButton: React.FC<MintButtonProps> = ({
   const [txHash, setTxHash] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [showFollowModal, setShowFollowModal] = useState(false);
-  const [hasConfirmedFollow, setHasConfirmedFollow] = useState(false);
+
+  // 从 localStorage 读取确认状态
+  const [hasConfirmedFollow, setHasConfirmedFollow] = useState(() => {
+    if (typeof window !== 'undefined') {
+      return localStorage.getItem('rootstock_twitter_confirmed') === 'true';
+    }
+    return false;
+  });
 
   const handleMintClick = () => {
     // 如果还没确认关注，先显示关注模态框
@@ -38,6 +45,10 @@ export const MintButton: React.FC<MintButtonProps> = ({
 
   const handleConfirmFollow = () => {
     setHasConfirmedFollow(true);
+    // 保存到 localStorage
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('rootstock_twitter_confirmed', 'true');
+    }
     setShowFollowModal(false);
     // 确认后直接执行铸造
     handleMint();
