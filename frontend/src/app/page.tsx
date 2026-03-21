@@ -208,7 +208,7 @@ export default function Home() {
                   {t('mint.stats.chainId')}
                 </div>
                 <div className="text-5xl font-bold text-rsk-orange font-mono leading-none">
-                  {chainId || 31}
+                  {chainId || 30}
                 </div>
                 <div className="text-xs text-rsk-text-dark mt-2 font-medium">ID</div>
               </div>

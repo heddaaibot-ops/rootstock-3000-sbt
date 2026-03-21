@@ -1,4 +1,5 @@
 import React from 'react';
+import { CONTRACT_ADDRESS } from '@/utils/contract';
 
 export const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
@@ -85,13 +86,13 @@ export const Footer: React.FC = () => {
               <div>
                 <div className="text-rsk-text-dark font-semibold">测试网：</div>
                 <code className="text-rsk-text-dark text-xs font-mono break-all">
-                  {process.env.NEXT_PUBLIC_CONTRACT_ADDRESS_TESTNET || '待定'}
+                  {CONTRACT_ADDRESS.testnet}
                 </code>
               </div>
               <div>
                 <div className="text-rsk-text-dark font-semibold">主网：</div>
                 <code className="text-rsk-text-dark text-xs font-mono break-all">
-                  {process.env.NEXT_PUBLIC_CONTRACT_ADDRESS_MAINNET || '待定'}
+                  {CONTRACT_ADDRESS.mainnet}
                 </code>
               </div>
             </div>
