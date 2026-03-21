@@ -153,13 +153,26 @@ export default function Home() {
             </div>
 
             {/* Mint Button */}
-            <div className="mb-12">
+            <div className="mb-6">
               <MintButton
                 isPaused={contractData?.isPaused ?? true}
                 hasUserMinted={contractData?.hasUserMinted ?? false}
                 onMint={mint}
                 chainId={chainId}
               />
+            </div>
+
+            {/* Get rBTC Link */}
+            <div className="mb-12 text-center">
+              <p className="text-sm text-rsk-text-dark mb-3 font-semibold">
+                需要 rBTC 来支付 Gas 费？
+              </p>
+              <a
+                href="/rbtc"
+                className="inline-block bg-rsk-purple hover:bg-[#B088FF] text-rsk-cream font-bold px-6 py-2 transition-colors uppercase rounded-nametag"
+              >
+                获取 rBTC 指南 →
+              </a>
             </div>
 
             {/* Stats Grid - 橙色主题，去除 emoji */}

@@ -47,6 +47,12 @@ export const Header: React.FC = () => {
               铸造
             </a>
             <a
+              href="/rbtc"
+              className="text-rsk-text-dark hover:text-rsk-orange transition-colors uppercase"
+            >
+              获取 rBTC
+            </a>
+            <a
               href="https://rootstock.io"
               target="_blank"
               rel="noopener noreferrer"
