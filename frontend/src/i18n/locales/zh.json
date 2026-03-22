@@ -1,8 +1,7 @@
 {
   "hero": {
     "title": "Rootstock 3000 天",
-    "subtitle": "纪念比特币智能合约平台运行 3000 天",
-    "description": "领取你的灵魂绑定代币，成为这个历史里程碑的一部分。这个不可转移的 NFT 标志着你参与 Rootstock 的旅程。"
+    "subtitle": "纪念比特币智能合约平台运行 3000 天"
   },
   "mint": {
     "title": "铸造进度",
@@ -103,11 +102,6 @@
     "limitedSupply": {
       "title": "限量供应",
       "description": "仅 10,000 个代币，每个钱包限一个"
-    },
-    "whatIsRootstock": {
-      "title": "什么是 Rootstock？",
-      "paragraph1": "Rootstock (RSK) 是世界上最安全的智能合约平台，由比特币网络的强大算力保护。自 2018 年 1 月 16 日启动以来，Rootstock 一直在开创比特币 DeFi，已运行超过 3000 天。",
-      "paragraph2": "这个纪念灵魂绑定代币庆祝这一里程碑，并向所有参与这一旅程的人致敬。通过铸造此 SBT，你将永久成为 Rootstock 历史的一部分。"
     }
   },
   "countdown": {
@@ -134,7 +128,7 @@
     },
     "q4": {
       "question": "我应该使用哪个网络？",
-      "answer": "你需要连接到 Rootstock 网络（主网链 ID 为 30，测试网为 31）。确保你的钱包在铸造前配置了正确的网络。"
+      "answer": "你需要连接到 Rootstock Mainnet（链 ID 为 30）。确保你的钱包在铸造前配置了正确的网络。"
     }
   },
   "footer": {

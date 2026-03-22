@@ -80,12 +80,6 @@ export default function Home() {
             <p className="text-xl md:text-2xl text-rsk-text/70 mb-4">
               {t('hero.subtitle')}
             </p>
-
-            {/* Bitcoin Symbol + Description */}
-            <div className="flex items-center justify-center gap-2 text-sm text-rsk-text/60 max-w-2xl mx-auto">
-              <BitcoinSymbol className="text-rsk-orange text-2xl" />
-              <span>{t('hero.description')}</span>
-            </div>
             </div>
           </div>
         </section>
@@ -103,11 +97,6 @@ export default function Home() {
             <div className="mb-8">
               <div className="max-w-2xl mx-auto">
                 <div className="bg-rsk-offwhite border-3 border-rsk-border-dark rounded-xl p-10 hover:border-rsk-orange transition-all duration-300">
-                  <div className="inline-block bg-rsk-orange rounded-tag px-8 py-4 mb-6 mx-auto">
-                    <h3 className="text-2xl font-bold text-white text-center uppercase">
-                      SBT 预览
-                    </h3>
-                  </div>
                   <div className="relative aspect-square w-full max-w-md mx-auto">
                     <img
                       src="/images/sbt-preview.png"
@@ -139,15 +128,11 @@ export default function Home() {
                     {t('mint.error.retryButton')}
                   </button>
                 </div>
-              ) : loading || !contractData ? (
-                <div className="animate-pulse">
-                  <div className="h-8 bg-rsk-gray rounded mb-4"></div>
-                  <div className="h-16 bg-rsk-gray rounded"></div>
-                </div>
               ) : (
                 <ProgressBar
-                  current={contractData.totalSupply}
-                  total={contractData.maxSupply}
+                  current={contractData?.totalSupply ?? 0n}
+                  total={contractData?.maxSupply ?? 10000n}
+                  loading={loading || !contractData}
                 />
               )}
             </div>
@@ -238,9 +223,9 @@ export default function Home() {
         </section>
 
         {/* About Section - 米色主题 */}
-        <section id="about" className="container mx-auto px-4 py-8">
+        <section id="about" className="container mx-auto px-4 py-6">
           <div className="max-w-7xl mx-auto">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-12">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
               {/* Card 01 - Soul Bound */}
               <div className="bg-rsk-offwhite border-3 border-rsk-border-dark rounded-xl p-8 hover:border-rsk-orange transition-all duration-300 relative min-h-[320px] flex flex-col">
                 <div className="mb-6">
@@ -286,21 +271,11 @@ export default function Home() {
                 </p>
               </div>
             </div>
-
-            <div className="bg-rsk-offwhite border-3 border-rsk-border-dark rounded-xl p-8 hover:border-rsk-orange transition-all duration-300">
-              <div className="inline-block bg-rsk-orange rounded-tag px-8 py-4 mb-6">
-                <h2 className="text-xl font-bold text-white uppercase">{t('about.whatIsRootstock.title')}</h2>
-              </div>
-              <div className="space-y-4 text-rsk-text-dark leading-relaxed text-base">
-                <p>{t('about.whatIsRootstock.paragraph1')}</p>
-                <p>{t('about.whatIsRootstock.paragraph2')}</p>
-              </div>
-            </div>
           </div>
         </section>
 
         {/* FAQ Section - 米色主题 */}
-        <section className="relative py-16">
+        <section className="relative py-10">
           <div className="container mx-auto px-4">
             <div className="max-w-3xl mx-auto">
             <h2 className="text-4xl font-bold text-center mb-12 uppercase">
