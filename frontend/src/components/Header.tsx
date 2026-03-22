@@ -8,10 +8,16 @@ export const Header: React.FC = () => {
   const { isConnected } = useAccount();
 
   const addRootstockNetwork = async () => {
+    console.log('🔘 点击了添加 Rootstock 按钮');
+
     if (typeof window.ethereum === 'undefined') {
+      console.log('❌ 未检测到 MetaMask');
+      alert('请先安装 MetaMask 钱包扩展');
       window.open('https://metamask.io/download', '_blank');
       return;
     }
+
+    console.log('✅ 检测到 MetaMask，开始添加网络...');
 
     const rootstockChainId = '0x1e'; // 30 in hex
     const networkParams = {
@@ -22,39 +28,49 @@ export const Header: React.FC = () => {
         symbol: 'RBTC',
         decimals: 18,
       },
-      rpcUrls: ['https://mycrypto.rsk.co'],
-      blockExplorerUrls: ['https://explorer.rootstock.io/'],
+      rpcUrls: ['https://public-node.rsk.co'],
+      blockExplorerUrls: ['https://rootstock.blockscout.com'],
     };
 
     try {
+      console.log('🔄 尝试切换到 Rootstock 网络...');
       // 先尝试切换到 Rootstock 网络
       await window.ethereum.request({
         method: 'wallet_switchEthereumChain',
         params: [{ chainId: rootstockChainId }],
       });
-      // 切换成功，不需要提示（MetaMask 会有自己的提示）
+      console.log('✅ 切换到 Rootstock 网络成功！');
     } catch (switchError: any) {
+      console.log('切换失败，错误码:', switchError.code);
       // 如果网络不存在 (错误码 4902)，则添加网络
       if (switchError.code === 4902) {
         try {
+          console.log('📝 网络不存在，尝试添加...');
           await window.ethereum.request({
             method: 'wallet_addEthereumChain',
             params: [networkParams],
           });
-          // 添加成功，MetaMask 会有提示
+          console.log('✅ 添加 Rootstock 网络成功！');
         } catch (addError: any) {
-          console.error('添加网络失败:', addError);
+          console.error('❌ 添加网络失败:', addError);
           // 只有真正的错误才提示
           if (addError.code !== 4001) {
+            alert('添加 Rootstock 网络失败，请检查 MetaMask 设置');
             console.error('Error details:', addError);
+          } else {
+            console.log('用户取消了添加网络');
           }
         }
       } else if (switchError.code === -32002) {
         // 请求已挂起
-        alert('⚠️ 请先处理 MetaMask 中的待处理请求');
-      } else if (switchError.code !== 4001) {
+        console.log('⚠️ 有待处理的请求');
+        alert('请先处理 MetaMask 中的待处理请求');
+      } else if (switchError.code === 4001) {
+        console.log('用户取消了切换网络');
+      } else {
         // 非用户取消的错误才记录
-        console.error('切换网络失败:', switchError);
+        console.error('❌ 切换网络失败:', switchError);
+        alert('切换网络失败，请检查 MetaMask 设置');
       }
     }
   };
