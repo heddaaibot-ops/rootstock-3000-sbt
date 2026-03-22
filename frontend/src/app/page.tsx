@@ -28,7 +28,7 @@ export default function Home() {
 
       <main className="flex-1 pt-24 pb-16">
         {/* Countdown Section - 倒数到 3000 天纪念日 */}
-        <section className="relative py-4">
+        <section className="relative pt-4 pb-2">
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto">
             <div className="flex flex-col items-start gap-4 mb-6">
@@ -45,7 +45,7 @@ export default function Home() {
         </section>
 
         {/* Hero Section */}
-        <section className="relative py-2 text-center">
+        <section className="relative pt-6 pb-2 text-center">
           <div className="container mx-auto px-4 relative z-10">
           {/* Bitcoin Icon - Floating Decorations from Figma */}
           <div className="absolute top-10 left-10 animate-float opacity-20 hidden lg:block">
@@ -77,11 +77,11 @@ export default function Home() {
               </h1>
             </div>
 
-            <p className="text-xl md:text-2xl text-rsk-text/70 mb-4">
+            <p className="text-xl md:text-2xl text-rsk-text/70 mb-3">
               {t('hero.subtitle')}
             </p>
 
-            <p className="text-base md:text-lg text-rsk-text-dark/80 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-base md:text-lg text-rsk-text-dark/80 max-w-3xl mx-auto leading-relaxed mb-2">
               {t('hero.description')}
             </p>
             </div>
@@ -89,7 +89,7 @@ export default function Home() {
         </section>
 
         {/* Mint Section */}
-        <section id="mint" className="container mx-auto px-4 py-4">
+        <section id="mint" className="container mx-auto px-4 pt-2 pb-4">
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-6">
               <h2 className="inline-block bg-rsk-orange text-rsk-cream text-4xl font-bold px-8 py-4 uppercase">
