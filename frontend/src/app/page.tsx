@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import { useAccount } from 'wagmi';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
@@ -9,8 +9,6 @@ import { ProgressBar } from '@/components/ProgressBar';
 import { MintButton } from '@/components/MintButton';
 import { CampaignInfo } from '@/components/CampaignInfo';
 import { RootstockIntro } from '@/components/RootstockIntro';
-import { BitcoinIcon, BitcoinSymbol } from '@/components/BitcoinIcon';
-import { RootstockIcon } from '@/components/RootstockLogo';
 import { useContract } from '@/hooks/useContract';
 import { useI18n } from '@/i18n/provider';
 
@@ -18,6 +16,7 @@ export default function Home() {
   const { chainId } = useAccount();
   const { contractData, loading, error, refresh, mint } = useContract();
   const { t } = useI18n();
+  const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
 
   return (
     <div className="min-h-screen flex flex-col bg-rsk-cream relative overflow-hidden">
@@ -27,189 +26,188 @@ export default function Home() {
         <Header />
 
       <main className="flex-1 pt-24 pb-16">
-        {/* Countdown Section - 倒数到 3000 天纪念日 */}
-        <section className="relative pt-4 pb-2">
+        {/* Countdown Section */}
+        <section className="relative py-20 bg-white">
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto">
-            <div className="flex flex-col items-start gap-4 mb-6">
-              <h2 className="inline-block bg-rsk-pink text-rsk-cream text-3xl md:text-4xl font-bold px-8 py-4 uppercase">
-                Rootstock
-              </h2>
-              <h2 className="inline-block bg-rsk-orange text-rsk-cream text-3xl md:text-4xl font-bold px-8 py-4 uppercase">
-                距离 3000 天纪念日还有
-              </h2>
-            </div>
-            <Countdown milestoneTimestamp={1774137600} />
+              <div className="text-center mb-12">
+                <h2 className="inline-block bg-rsk-orange text-rsk-cream text-2xl md:text-3xl font-bold px-6 py-3 uppercase">
+                  已达成里程碑！
+                </h2>
+              </div>
+              <Countdown milestoneTimestamp={1774137600} />
             </div>
           </div>
         </section>
 
         {/* Hero Section */}
-        <section className="relative pt-6 pb-2 text-center">
-          <div className="container mx-auto px-4 relative z-10">
-          {/* Bitcoin Icon - Floating Decorations from Figma */}
-          <div className="absolute top-10 left-10 animate-float opacity-20 hidden lg:block">
-            <img src="/images/figma/bitcoin.png" alt="Bitcoin" className="w-32 h-auto" />
-          </div>
-          <div className="absolute top-10 right-10 animate-float-delayed opacity-20 hidden lg:block">
-            <img src="/images/figma/bitcoin.png" alt="Bitcoin" className="w-32 h-auto" />
-          </div>
+        <section className="relative py-20 bg-rsk-cream text-center">
+          <div className="container mx-auto px-4">
+            <div className="max-w-4xl mx-auto">
+              {/* Rootstock Logo + Title */}
+              <div className="flex flex-col items-center justify-center mb-6 gap-4">
+                <div
+                  className="h-20 md:h-28 w-64 md:w-96"
+                  style={{
+                    backgroundColor: '#FF9100',
+                    WebkitMaskImage: 'url(/images/figma/rootstock-logo.png)',
+                    WebkitMaskSize: 'contain',
+                    WebkitMaskRepeat: 'no-repeat',
+                    WebkitMaskPosition: 'center',
+                    maskImage: 'url(/images/figma/rootstock-logo.png)',
+                    maskSize: 'contain',
+                    maskRepeat: 'no-repeat',
+                    maskPosition: 'center'
+                  }}
+                />
+                <h1 className="text-5xl md:text-7xl font-bold uppercase leading-tight">
+                  <div className="text-rsk-text-dark">爱你 3000</div>
+                </h1>
+              </div>
 
-          <div className="animate-fade-in">
-            {/* Rootstock Logo + Title */}
-            <div className="flex flex-col items-center justify-center mb-4 gap-2">
-              <div
-                className="h-16 md:h-24 w-64 md:w-96"
-                style={{
-                  backgroundColor: '#FF9100',
-                  WebkitMaskImage: 'url(/images/figma/rootstock-logo.png)',
-                  WebkitMaskSize: 'contain',
-                  WebkitMaskRepeat: 'no-repeat',
-                  WebkitMaskPosition: 'center',
-                  maskImage: 'url(/images/figma/rootstock-logo.png)',
-                  maskSize: 'contain',
-                  maskRepeat: 'no-repeat',
-                  maskPosition: 'center'
-                }}
-              />
-              <h1 className="text-5xl md:text-7xl font-bold uppercase leading-tight text-center">
-                <div className="text-rsk-text-dark">爱你 3000</div>
-              </h1>
-            </div>
+              <p className="text-xl md:text-2xl text-rsk-text-dark/80 mb-4 leading-relaxed">
+                {t('hero.subtitle')}
+              </p>
 
-            <p className="text-xl md:text-2xl text-rsk-text/70 mb-3">
-              {t('hero.subtitle')}
-            </p>
-
-            <p className="text-base md:text-lg text-rsk-text-dark/80 max-w-3xl mx-auto leading-relaxed mb-2">
-              {t('hero.description')}
-            </p>
+              <p className="text-base md:text-lg text-rsk-text-dark/70 max-w-3xl mx-auto leading-relaxed">
+                {t('hero.description')}
+              </p>
             </div>
           </div>
         </section>
 
         {/* Mint Section */}
-        <section id="mint" className="container mx-auto px-4 pt-2 pb-4">
-          <div className="max-w-4xl mx-auto">
-            <div className="text-center mb-6">
-              <h2 className="inline-block bg-rsk-orange text-rsk-cream text-4xl font-bold px-8 py-4 uppercase">
-                免费铸造 SBT
-              </h2>
-            </div>
+        <section id="mint" className="relative py-20 bg-white">
+          <div className="container mx-auto px-4">
+            <div className="max-w-4xl mx-auto">
+              {/* 标题 */}
+              <div className="text-center mb-12">
+                <h2 className="inline-block bg-rsk-orange text-rsk-cream text-2xl md:text-3xl font-bold px-6 py-3 uppercase">
+                  免费铸造 SBT
+                </h2>
+              </div>
 
-            {/* SBT Preview - 米色主题 */}
-            <div className="mb-8">
-              <div className="max-w-2xl mx-auto">
-                <div className="bg-rsk-offwhite border-3 border-rsk-border-dark rounded-xl p-10 hover:border-rsk-orange transition-all duration-300">
-                  <div className="relative aspect-square w-full max-w-md mx-auto">
-                    <img
-                      src="/images/sbt-preview.png"
-                      alt="Rootstock 爱你 3000 SBT"
-                      className="w-full h-full object-contain rounded-lg"
-                    />
+              {/* SBT 预览 */}
+              <div className="mb-12">
+                <h3 className="inline-block bg-rsk-lime text-rsk-text-dark text-lg md:text-xl font-bold px-5 py-2 uppercase mb-6">
+                  NFT 预览
+                </h3>
+                <div className="max-w-2xl mx-auto">
+                  <div className="bg-rsk-cream border-3 border-rsk-border-dark rounded-xl p-10 hover:border-rsk-orange transition-all">
+                    <div className="relative aspect-square w-full max-w-md mx-auto">
+                      <img
+                        src="/images/sbt-preview.png"
+                        alt="Rootstock 爱你 3000 SBT"
+                        className="w-full h-full object-contain rounded-lg"
+                      />
+                    </div>
+                    <p className="text-center text-rsk-text-dark mt-6 text-sm font-semibold">
+                      独一无二的纪念 NFT，永久绑定你的钱包地址
+                    </p>
                   </div>
-                  <p className="text-center text-rsk-text-dark mt-6 text-sm font-semibold">
-                    独一无二的纪念 NFT，永久绑定你的钱包地址
-                  </p>
                 </div>
               </div>
-            </div>
 
-            {/* Progress Bar */}
-            <div className="mb-8">
-              <h3 className="text-2xl font-bold text-center mb-4 uppercase">
-                <span className="text-rsk-orange">铸造进度</span>
-              </h3>
+              {/* 铸造进度 */}
+              <div className="mb-12">
+                <h3 className="inline-block bg-rsk-lime text-rsk-text-dark text-lg md:text-xl font-bold px-5 py-2 uppercase mb-6">
+                  铸造进度
+                </h3>
+                {error ? (
+                  <div className="bg-red-500/10 border border-red-500/30 rounded-xl p-8 text-center">
+                    <h3 className="text-xl font-bold text-red-500 mb-2">{t('mint.error.failedToLoad')}</h3>
+                    <p className="text-rsk-text/70 mb-6">{error}</p>
+                    <button
+                      onClick={refresh}
+                      className="px-6 py-3 bg-rsk-orange hover:bg-[#FFA726] rounded-xl font-bold transition-colors"
+                    >
+                      {t('mint.error.retryButton')}
+                    </button>
+                  </div>
+                ) : (
+                  <ProgressBar
+                    current={contractData?.totalSupply ?? 0n}
+                    total={contractData?.maxSupply ?? 10000n}
+                    loading={loading || !contractData}
+                  />
+                )}
+              </div>
 
-              {error ? (
-                <div className="bg-red-500/10 border border-red-500/30 rounded-xl p-8 text-center">
-                  <h3 className="text-xl font-bold text-red-500 mb-2">{t('mint.error.failedToLoad')}</h3>
-                  <p className="text-rsk-text/70 mb-6">{error}</p>
-                  <button
-                    onClick={refresh}
-                    className="px-6 py-3 bg-rsk-orange hover:bg-rsk-orange/80 rounded-xl font-bold transition-colors"
-                  >
-                    {t('mint.error.retryButton')}
-                  </button>
-                </div>
-              ) : (
-                <ProgressBar
-                  current={contractData?.totalSupply ?? 0n}
-                  total={contractData?.maxSupply ?? 10000n}
-                  loading={loading || !contractData}
+              {/* 铸造按钮 */}
+              <div className="mb-12">
+                <MintButton
+                  isPaused={contractData?.isPaused ?? true}
+                  hasUserMinted={contractData?.hasUserMinted ?? false}
+                  onMint={mint}
+                  chainId={chainId}
                 />
-              )}
-            </div>
-
-            {/* Mint Button */}
-            <div className="mb-6">
-              <MintButton
-                isPaused={contractData?.isPaused ?? true}
-                hasUserMinted={contractData?.hasUserMinted ?? false}
-                onMint={mint}
-                chainId={chainId}
-              />
-            </div>
-
-            {/* Get rBTC Link */}
-            <div className="mb-12 text-center">
-              <p className="text-sm text-rsk-text-dark mb-3 font-semibold">
-                需要 rBTC 来支付 Gas 费？
-              </p>
-              <a
-                href="/rbtc"
-                className="inline-block bg-rsk-purple hover:bg-[#B088FF] text-rsk-cream font-bold px-6 py-2 transition-colors uppercase rounded-nametag"
-              >
-                获取 rBTC 指南 →
-              </a>
-            </div>
-
-            {/* Stats Grid - 橙色主题，去除 emoji */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-              {/* Stat 1 - Launch Date */}
-              <div className="bg-rsk-offwhite border-3 border-rsk-border-dark rounded-xl p-6 hover:border-rsk-orange transition-all">
-                <div className="text-sm font-semibold text-rsk-text-dark mb-2 uppercase">
-                  {t('mint.stats.launchDate')}
-                </div>
-                <div className="text-5xl font-bold text-rsk-orange font-mono leading-none">
-                  2018
-                </div>
-                <div className="text-xs text-rsk-text-dark mt-2 font-medium">年</div>
               </div>
 
-              {/* Stat 2 - Milestone Date */}
-              <div className="bg-rsk-offwhite border-3 border-rsk-border-dark rounded-xl p-6 hover:border-rsk-orange transition-all">
-                <div className="text-sm font-semibold text-rsk-text-dark mb-2 uppercase">天数</div>
-                <div className="text-5xl font-bold text-rsk-orange font-mono leading-none">
-                  3000
-                </div>
-                <div className="text-xs text-rsk-text-dark mt-2 font-medium">天</div>
+              {/* 获取 rBTC 链接 */}
+              <div className="mb-12 bg-rsk-cream p-8 rounded-xl text-center">
+                <p className="text-rsk-text-dark mb-4 text-lg font-semibold">
+                  需要 rBTC 来支付 Gas 费？
+                </p>
+                <a
+                  href="/rbtc"
+                  className="inline-block bg-rsk-purple hover:bg-[#B088FF] text-rsk-cream font-bold px-10 py-3 transition-colors uppercase text-lg"
+                >
+                  获取 rBTC 指南 →
+                </a>
               </div>
 
-              {/* Stat 3 - Chain ID */}
-              <div className="bg-rsk-offwhite border-3 border-rsk-border-dark rounded-xl p-6 hover:border-rsk-orange transition-all">
-                <div className="text-sm font-semibold text-rsk-text-dark mb-2 uppercase">
-                  {t('mint.stats.chainId')}
-                </div>
-                <div className="text-5xl font-bold text-rsk-orange font-mono leading-none">
-                  {chainId || 30}
-                </div>
-                <div className="text-xs text-rsk-text-dark mt-2 font-medium">ID</div>
-              </div>
+              {/* 项目数据 */}
+              <div>
+                <h3 className="inline-block bg-rsk-lime text-rsk-text-dark text-lg md:text-xl font-bold px-5 py-2 uppercase mb-6">
+                  项目数据
+                </h3>
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+                  {/* Stat 1 */}
+                  <div className="bg-rsk-cream p-6 hover:bg-white transition-colors text-center">
+                    <div className="text-sm font-semibold text-rsk-text-dark mb-2 uppercase">
+                      {t('mint.stats.launchDate')}
+                    </div>
+                    <div className="text-4xl md:text-5xl font-bold text-rsk-orange font-mono">
+                      2018
+                    </div>
+                    <div className="text-xs text-rsk-text-dark mt-2 font-medium">年</div>
+                  </div>
 
-              {/* Stat 4 - Status (去除 emoji ✓) */}
-              <div className="bg-rsk-offwhite border-3 border-rsk-border-dark rounded-xl p-6 hover:border-rsk-orange transition-all">
-                <div className="text-sm font-semibold text-rsk-text-dark mb-2 uppercase">
-                  {t('mint.stats.status')}
-                </div>
-                <div className="text-4xl font-bold text-rsk-orange font-mono leading-none">
-                  {!contractData ? (
-                    <span>...</span>
-                  ) : contractData.isPaused ? (
-                    <span>暂停</span>
-                  ) : (
-                    <span>进行中</span>
-                  )}
+                  {/* Stat 2 */}
+                  <div className="bg-rsk-cream p-6 hover:bg-white transition-colors text-center">
+                    <div className="text-sm font-semibold text-rsk-text-dark mb-2 uppercase">天数</div>
+                    <div className="text-4xl md:text-5xl font-bold text-rsk-orange font-mono">
+                      3000
+                    </div>
+                    <div className="text-xs text-rsk-text-dark mt-2 font-medium">天</div>
+                  </div>
+
+                  {/* Stat 3 */}
+                  <div className="bg-rsk-cream p-6 hover:bg-white transition-colors text-center">
+                    <div className="text-sm font-semibold text-rsk-text-dark mb-2 uppercase">
+                      {t('mint.stats.chainId')}
+                    </div>
+                    <div className="text-4xl md:text-5xl font-bold text-rsk-orange font-mono">
+                      {chainId || 30}
+                    </div>
+                    <div className="text-xs text-rsk-text-dark mt-2 font-medium">ID</div>
+                  </div>
+
+                  {/* Stat 4 */}
+                  <div className="bg-rsk-cream p-6 hover:bg-white transition-colors text-center">
+                    <div className="text-sm font-semibold text-rsk-text-dark mb-2 uppercase">
+                      {t('mint.stats.status')}
+                    </div>
+                    <div className="text-4xl font-bold text-rsk-orange font-mono">
+                      {!contractData ? (
+                        <span>...</span>
+                      ) : contractData.isPaused ? (
+                        <span>暂停</span>
+                      ) : (
+                        <span>进行中</span>
+                      )}
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -217,136 +215,116 @@ export default function Home() {
         </section>
 
         {/* Rootstock Introduction Section */}
-        <section className="container mx-auto px-4 py-12">
-          <RootstockIntro />
+        <section className="relative py-20 bg-rsk-cream">
+          <div className="container mx-auto px-4">
+            <RootstockIntro />
+          </div>
         </section>
 
         {/* Campaign Info Section */}
-        <section className="container mx-auto px-4 py-12">
-          <CampaignInfo />
+        <section className="relative py-20 bg-white">
+          <div className="container mx-auto px-4">
+            <CampaignInfo />
+          </div>
         </section>
 
-        {/* About Section - 米色主题 */}
-        <section id="about" className="container mx-auto px-4 py-6">
-          <div className="max-w-7xl mx-auto">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-              {/* Card 01 - Soul Bound */}
-              <div className="bg-rsk-offwhite border-3 border-rsk-border-dark rounded-xl p-8 hover:border-rsk-orange transition-all duration-300 relative min-h-[320px] flex flex-col">
-                <div className="mb-6">
-                  <div className="inline-block bg-rsk-orange rounded-tag px-6 py-3">
-                    <h3 className="text-lg font-bold text-white leading-tight uppercase">{t('about.soulBound.title')}</h3>
-                  </div>
-                  <div className="inline-block bg-rsk-lime rounded-tag px-4 py-1 ml-2">
-                    <span className="text-sm font-bold text-rsk-text-dark">01</span>
-                  </div>
-                </div>
-                <p className="text-rsk-text-dark leading-relaxed text-base flex-grow">
-                  {t('about.soulBound.description')}
-                </p>
+        {/* About Section */}
+        <section id="about" className="relative py-20 bg-rsk-cream">
+          <div className="container mx-auto px-4">
+            <div className="max-w-7xl mx-auto">
+              {/* 标题 */}
+              <div className="text-center mb-12">
+                <h2 className="inline-block bg-rsk-cyan text-rsk-text-dark text-2xl md:text-3xl font-bold px-6 py-3 uppercase">
+                  SBT 特性
+                </h2>
               </div>
 
-              {/* Card 02 - Free Mint */}
-              <div className="bg-rsk-offwhite border-3 border-rsk-border-dark rounded-xl p-8 hover:border-rsk-orange transition-all duration-300 relative min-h-[320px] flex flex-col">
-                <div className="mb-6">
-                  <div className="inline-block bg-rsk-orange rounded-tag px-6 py-3">
-                    <h3 className="text-lg font-bold text-white leading-tight uppercase">{t('about.freeMint.title')}</h3>
+              {/* 三个特性卡片 */}
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                {/* Card 01 - Soul Bound */}
+                <div className="bg-white border-3 border-rsk-border-dark rounded-xl p-8 hover:bg-rsk-cream transition-all relative min-h-[320px] flex flex-col">
+                  <div className="mb-6">
+                    <div className="inline-block bg-rsk-orange rounded-tag px-6 py-3">
+                      <h3 className="text-lg font-bold text-white leading-tight uppercase">{t('about.soulBound.title')}</h3>
+                    </div>
+                    <div className="inline-block bg-rsk-lime rounded-tag px-4 py-1 ml-2">
+                      <span className="text-sm font-bold text-rsk-text-dark">01</span>
+                    </div>
                   </div>
-                  <div className="inline-block bg-rsk-lime rounded-tag px-4 py-1 ml-2">
-                    <span className="text-sm font-bold text-rsk-text-dark">02</span>
-                  </div>
+                  <p className="text-rsk-text-dark leading-relaxed text-base flex-grow">
+                    {t('about.soulBound.description')}
+                  </p>
                 </div>
-                <p className="text-rsk-text-dark leading-relaxed text-base flex-grow">
-                  {t('about.freeMint.description')}
-                </p>
-              </div>
 
-              {/* Card 03 - Limited Supply */}
-              <div className="bg-rsk-offwhite border-3 border-rsk-border-dark rounded-xl p-8 hover:border-rsk-orange transition-all duration-300 relative min-h-[320px] flex flex-col">
-                <div className="mb-6">
-                  <div className="inline-block bg-rsk-orange rounded-tag px-6 py-3">
-                    <h3 className="text-lg font-bold text-white leading-tight uppercase">{t('about.limitedSupply.title')}</h3>
+                {/* Card 02 - Free Mint */}
+                <div className="bg-white border-3 border-rsk-border-dark rounded-xl p-8 hover:bg-rsk-cream transition-all relative min-h-[320px] flex flex-col">
+                  <div className="mb-6">
+                    <div className="inline-block bg-rsk-orange rounded-tag px-6 py-3">
+                      <h3 className="text-lg font-bold text-white leading-tight uppercase">{t('about.freeMint.title')}</h3>
+                    </div>
+                    <div className="inline-block bg-rsk-lime rounded-tag px-4 py-1 ml-2">
+                      <span className="text-sm font-bold text-rsk-text-dark">02</span>
+                    </div>
                   </div>
-                  <div className="inline-block bg-rsk-lime rounded-tag px-4 py-1 ml-2">
-                    <span className="text-sm font-bold text-rsk-text-dark">03</span>
-                  </div>
+                  <p className="text-rsk-text-dark leading-relaxed text-base flex-grow">
+                    {t('about.freeMint.description')}
+                  </p>
                 </div>
-                <p className="text-rsk-text-dark leading-relaxed text-base flex-grow">
-                  {t('about.limitedSupply.description')}
-                </p>
+
+                {/* Card 03 - Limited Supply */}
+                <div className="bg-white border-3 border-rsk-border-dark rounded-xl p-8 hover:bg-rsk-cream transition-all relative min-h-[320px] flex flex-col">
+                  <div className="mb-6">
+                    <div className="inline-block bg-rsk-orange rounded-tag px-6 py-3">
+                      <h3 className="text-lg font-bold text-white leading-tight uppercase">{t('about.limitedSupply.title')}</h3>
+                    </div>
+                    <div className="inline-block bg-rsk-lime rounded-tag px-4 py-1 ml-2">
+                      <span className="text-sm font-bold text-rsk-text-dark">03</span>
+                    </div>
+                  </div>
+                  <p className="text-rsk-text-dark leading-relaxed text-base flex-grow">
+                    {t('about.limitedSupply.description')}
+                  </p>
+                </div>
               </div>
             </div>
           </div>
         </section>
 
-        {/* FAQ Section - 米色主题 */}
-        <section className="relative py-10">
+        {/* FAQ Section */}
+        <section className="relative py-20 bg-white">
           <div className="container mx-auto px-4">
             <div className="max-w-3xl mx-auto">
-            <h2 className="text-4xl font-bold text-center mb-12 uppercase">
-              <span className="text-rsk-orange">{t('faq.title')}</span>
-            </h2>
+              <div className="text-center mb-12">
+                <h2 className="inline-block bg-rsk-green text-rsk-cream text-2xl md:text-3xl font-bold px-6 py-3 uppercase">
+                  {t('faq.title')}
+                </h2>
+              </div>
 
-            <div className="space-y-6">
-              <details className="bg-rsk-offwhite border-3 border-rsk-border-dark rounded-xl p-6 hover:border-rsk-orange transition-all group">
-                <summary className="cursor-pointer text-lg font-bold text-rsk-text-dark flex items-center justify-between uppercase">
-                  <span className="flex items-center gap-3">
-                    <span className="inline-block bg-rsk-orange rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold text-white">Q</span>
-                    {t('faq.q1.question')}
-                  </span>
-                  <svg className="w-6 h-6 text-rsk-orange transform group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M19 9l-7 7-7-7" />
-                  </svg>
-                </summary>
-                <p className="mt-4 text-rsk-text-dark leading-relaxed text-base ml-11">
-                  {t('faq.q1.answer')}
-                </p>
-              </details>
-
-              <details className="bg-rsk-offwhite border-3 border-rsk-border-dark rounded-xl p-6 hover:border-rsk-orange transition-all group">
-                <summary className="cursor-pointer text-lg font-bold text-rsk-text-dark flex items-center justify-between uppercase">
-                  <span className="flex items-center gap-3">
-                    <span className="inline-block bg-rsk-orange rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold text-white">Q</span>
-                    {t('faq.q2.question')}
-                  </span>
-                  <svg className="w-6 h-6 text-rsk-orange transform group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M19 9l-7 7-7-7" />
-                  </svg>
-                </summary>
-                <p className="mt-4 text-rsk-text-dark leading-relaxed text-base ml-11">
-                  {t('faq.q2.answer')}
-                </p>
-              </details>
-
-              <details className="bg-rsk-offwhite border-3 border-rsk-border-dark rounded-xl p-6 hover:border-rsk-orange transition-all group">
-                <summary className="cursor-pointer text-lg font-bold text-rsk-text-dark flex items-center justify-between uppercase">
-                  <span className="flex items-center gap-3">
-                    <span className="inline-block bg-rsk-orange rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold text-white">Q</span>
-                    {t('faq.q3.question')}
-                  </span>
-                  <svg className="w-6 h-6 text-rsk-orange transform group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M19 9l-7 7-7-7" />
-                  </svg>
-                </summary>
-                <p className="mt-4 text-rsk-text-dark leading-relaxed text-base ml-11">
-                  {t('faq.q3.answer')}
-                </p>
-              </details>
-
-              <details className="bg-rsk-offwhite border-3 border-rsk-border-dark rounded-xl p-6 hover:border-rsk-orange transition-all group">
-                <summary className="cursor-pointer text-lg font-bold text-rsk-text-dark flex items-center justify-between uppercase">
-                  <span className="flex items-center gap-3">
-                    <span className="inline-block bg-rsk-orange rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold text-white">Q</span>
-                    {t('faq.q4.question')}
-                  </span>
-                  <svg className="w-6 h-6 text-rsk-orange transform group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M19 9l-7 7-7-7" />
-                  </svg>
-                </summary>
-                <p className="mt-4 text-rsk-text-dark leading-relaxed text-base ml-11">
-                  {t('faq.q4.answer')}
-                </p>
-              </details>
-            </div>
+              <div className="space-y-4">
+                {[1, 2, 3, 4].map((index) => (
+                  <div key={index} className="bg-rsk-cream rounded-xl overflow-hidden">
+                    <button
+                      onClick={() => setOpenFaqIndex(openFaqIndex === index ? null : index)}
+                      className="w-full px-6 py-5 text-left font-bold text-base md:text-lg text-rsk-text-dark hover:bg-white flex justify-between items-center transition-colors uppercase"
+                    >
+                      <span className="flex items-center gap-3">
+                        <span className="inline-block bg-rsk-orange rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold text-white flex-shrink-0">Q</span>
+                        {t(`faq.q${index}.question`)}
+                      </span>
+                      <span className="text-rsk-orange text-3xl font-bold leading-none flex-shrink-0 ml-4">
+                        {openFaqIndex === index ? '−' : '+'}
+                      </span>
+                    </button>
+                    {openFaqIndex === index && (
+                      <div className="px-6 py-5 bg-white border-t-3 border-rsk-orange">
+                        <p className="text-rsk-text-dark leading-relaxed text-base ml-11">
+                          {t(`faq.q${index}.answer`)}
+                        </p>
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </section>
