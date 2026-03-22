@@ -196,7 +196,7 @@ export default function RBTCGuidePage() {
             <div className="grid md:grid-cols-3 gap-8 mb-16">
               <div className="bg-rsk-cream p-8">
                 <h3 className="text-lg font-bold text-rsk-text-dark mb-3 uppercase">比特币算力保护</h3>
-                <p className="text-rsk-text-dark">通过合并挖矿，由 80% 的比特币算力保护，确保网络安全</p>
+                <p className="text-rsk-text-dark">通过合并挖矿，由将近 90% 的比特币算力保护，确保网络安全</p>
               </div>
               <div className="bg-rsk-cream p-8">
                 <h3 className="text-lg font-bold text-rsk-text-dark mb-3 uppercase">PowPeg 1:1 锚定</h3>
@@ -268,8 +268,78 @@ export default function RBTCGuidePage() {
           </div>
         </section>
 
+        {/* Tutorial Steps - Jumper 示范 */}
+        <section className="py-20 bg-white">
+          <div className="container mx-auto px-4">
+            <div className="mb-12">
+              <h2 className="inline-block bg-rsk-purple text-rsk-cream text-2xl md:text-3xl font-bold px-6 py-3 uppercase">
+                操作步骤示范 - Jumper
+              </h2>
+            </div>
+            <div className="max-w-5xl mx-auto">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div className="bg-rsk-cream p-6">
+                  <div className="mb-4">
+                    <span className="inline-block bg-rsk-orange text-rsk-cream text-lg font-bold px-4 py-2 rounded-full">
+                      步骤 1
+                    </span>
+                  </div>
+                  <img
+                    src="/images/rbtc-steps/jumper-step1.png"
+                    alt="Jumper 步骤 1"
+                    className="w-full border-2 border-rsk-border-dark mb-4"
+                  />
+                  <p className="text-rsk-text-dark font-semibold">选择源链和目标链（Rootstock）</p>
+                </div>
+
+                <div className="bg-rsk-cream p-6">
+                  <div className="mb-4">
+                    <span className="inline-block bg-rsk-orange text-rsk-cream text-lg font-bold px-4 py-2 rounded-full">
+                      步骤 2
+                    </span>
+                  </div>
+                  <img
+                    src="/images/rbtc-steps/jumper-step2.png"
+                    alt="Jumper 步骤 2"
+                    className="w-full border-2 border-rsk-border-dark mb-4"
+                  />
+                  <p className="text-rsk-text-dark font-semibold">输入要转账的金额</p>
+                </div>
+
+                <div className="bg-rsk-cream p-6">
+                  <div className="mb-4">
+                    <span className="inline-block bg-rsk-orange text-rsk-cream text-lg font-bold px-4 py-2 rounded-full">
+                      步骤 3
+                    </span>
+                  </div>
+                  <img
+                    src="/images/rbtc-steps/jumper-step3.png"
+                    alt="Jumper 步骤 3"
+                    className="w-full border-2 border-rsk-border-dark mb-4"
+                  />
+                  <p className="text-rsk-text-dark font-semibold">确认交易详情和费用</p>
+                </div>
+
+                <div className="bg-rsk-cream p-6">
+                  <div className="mb-4">
+                    <span className="inline-block bg-rsk-orange text-rsk-cream text-lg font-bold px-4 py-2 rounded-full">
+                      步骤 4
+                    </span>
+                  </div>
+                  <img
+                    src="/images/rbtc-steps/jumper-step4.png"
+                    alt="Jumper 步骤 4"
+                    className="w-full border-2 border-rsk-border-dark mb-4"
+                  />
+                  <p className="text-rsk-text-dark font-semibold">完成跨链转账，接收 rBTC</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* Network Config */}
-        <section id="network" className="py-20 bg-white">
+        <section id="network" className="py-20 bg-rsk-cream">
           <div className="container mx-auto px-4">
             <div className="mb-12">
               <h2 className="inline-block bg-rsk-green text-rsk-cream text-2xl md:text-3xl font-bold px-6 py-3 uppercase">
