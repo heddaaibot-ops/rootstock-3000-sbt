@@ -43,11 +43,23 @@
     }
   },
   "rootstock": {
-    "title": "关于 Rootstock",
-    "paragraph1": "2015 年，当大多数人还在争论比特币能否支持智能合约时，Rootstock 选择了行动。我们相信比特币不仅是数字黄金，更应该成为完整的金融基础设施。",
-    "paragraph2": "今天，Rootstock 主网已经运行了 3000 天。3000 天里，我们没有重大安全事故，没有停机，稳定地为用户提供服务。这份坚持来自于对技术的信仰，也来自于社区的支持。",
-    "paragraph3": "Rootstock 通过与比特币合并挖矿，让智能合约拥有与比特币相同的安全级别。开发者可以在这里构建 DeFi 协议和去中心化金融应用，用户则可以在不离开比特币生态的前提下，体验 Web3 的全部可能性。",
-    "closing": "3000 天，只是一个开始。"
+    "title": "关于此项目",
+    "description": "Rootstock 是比特币的 DeFi 层，让比特币突破价值存储的局限，拥有智能合约和去中心化金融能力。通过与以太坊虚拟机兼容的设计，开发者可以轻松整合现有 dApp，或构建全新的应用，同时享受比特币工作量证明带来的安全保障。自 2018 年上线以来，Rootstock 一直保持 100% 正常运行时间。",
+    "links": {
+      "title": "加入社区",
+      "cnCommunity": {
+        "label": "中文社区",
+        "url": "https://t.me/rootstockCNchat"
+      },
+      "cnTwitter": {
+        "label": "官方中文推特",
+        "url": "https://x.com/RootstockCN"
+      },
+      "enTwitter": {
+        "label": "官方英文推特",
+        "url": "https://x.com/rootstock_io"
+      }
+    }
   },
   "campaign": {
     "title": "Rootstock 爱你 3000",
