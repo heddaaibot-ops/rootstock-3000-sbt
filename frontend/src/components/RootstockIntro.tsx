@@ -13,45 +13,10 @@ export const RootstockIntro: React.FC = () => {
           {t('rootstock.title')}
         </h2>
 
-        <div className="space-y-8 text-rsk-text-dark leading-relaxed text-base">
+        <div className="text-rsk-text-dark leading-relaxed text-base">
           <p className="text-lg leading-relaxed">
             {t('rootstock.description')}
           </p>
-
-          <div className="pt-4 border-t-2 border-rsk-orange/30">
-            <h3 className="text-xl font-bold text-rsk-orange mb-6 uppercase">
-              {t('rootstock.links.title')}
-            </h3>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              <a
-                href={t('rootstock.links.cnCommunity.url')}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center justify-center gap-2 bg-rsk-cream hover:bg-white border-2 border-rsk-border-dark hover:border-rsk-pink px-6 py-4 transition-all font-bold text-rsk-text-dark uppercase"
-              >
-                <span>💬</span>
-                <span>{t('rootstock.links.cnCommunity.label')}</span>
-              </a>
-              <a
-                href={t('rootstock.links.cnTwitter.url')}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center justify-center gap-2 bg-rsk-cream hover:bg-white border-2 border-rsk-border-dark hover:border-rsk-cyan px-6 py-4 transition-all font-bold text-rsk-text-dark uppercase"
-              >
-                <span>🐦</span>
-                <span>{t('rootstock.links.cnTwitter.label')}</span>
-              </a>
-              <a
-                href={t('rootstock.links.enTwitter.url')}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center justify-center gap-2 bg-rsk-cream hover:bg-white border-2 border-rsk-border-dark hover:border-rsk-purple px-6 py-4 transition-all font-bold text-rsk-text-dark uppercase"
-              >
-                <span>🌐</span>
-                <span>{t('rootstock.links.enTwitter.label')}</span>
-              </a>
-            </div>
-          </div>
         </div>
       </div>
     </div>

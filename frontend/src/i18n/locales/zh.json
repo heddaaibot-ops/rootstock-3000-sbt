@@ -44,22 +44,7 @@
   },
   "rootstock": {
     "title": "关于此项目",
-    "description": "Rootstock 是比特币的 DeFi 层，让比特币突破价值存储的局限，拥有智能合约和去中心化金融能力。通过与以太坊虚拟机兼容的设计，开发者可以轻松整合现有 dApp，或构建全新的应用，同时享受比特币工作量证明带来的安全保障。自 2018 年上线以来，Rootstock 一直保持 100% 正常运行时间。",
-    "links": {
-      "title": "加入社区",
-      "cnCommunity": {
-        "label": "中文社区",
-        "url": "https://t.me/rootstockCNchat"
-      },
-      "cnTwitter": {
-        "label": "官方中文推特",
-        "url": "https://x.com/RootstockCN"
-      },
-      "enTwitter": {
-        "label": "官方英文推特",
-        "url": "https://x.com/rootstock_io"
-      }
-    }
+    "description": "Rootstock 是比特币的 DeFi 层，让比特币突破价值存储的局限，拥有智能合约和去中心化金融能力。通过与以太坊虚拟机兼容的设计，开发者可以轻松整合现有 dApp，或构建全新的应用，同时享受比特币工作量证明带来的安全保障。自 2018 年上线以来，Rootstock 一直保持 100% 正常运行时间。"
   },
   "campaign": {
     "title": "Rootstock 爱你 3000",

@@ -12,8 +12,7 @@ export const Footer: React.FC = () => {
           <div>
             <h3 className="text-lg font-bold text-rsk-orange mb-4 uppercase">关于此项目</h3>
             <p className="text-rsk-text-dark text-sm leading-relaxed">
-              一个纪念 Rootstock 运行 3000 天里程碑的灵魂绑定代币。
-              这个不可转移的 NFT 标志着您参与这一历史时刻。
+              Rootstock 是比特币的 DeFi 层，让比特币突破价值存储的局限，拥有智能合约和去中心化金融能力。通过与以太坊虚拟机兼容的设计，开发者可以轻松整合现有 dApp，或构建全新的应用，同时享受比特币工作量证明带来的安全保障。自 2018 年上线以来，Rootstock 一直保持 100% 正常运行时间。
             </p>
           </div>
 
@@ -55,6 +54,45 @@ export const Footer: React.FC = () => {
                   className="text-rsk-text-dark hover:text-rsk-orange transition-colors flex items-center gap-1 font-medium"
                 >
                   <span>区块浏览器</span>
+                  <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://t.me/rootstockCNchat"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-rsk-text-dark hover:text-rsk-orange transition-colors flex items-center gap-1 font-medium"
+                >
+                  <span>中文社区</span>
+                  <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://x.com/RootstockCN"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-rsk-text-dark hover:text-rsk-orange transition-colors flex items-center gap-1 font-medium"
+                >
+                  <span>官方中文推特</span>
+                  <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://x.com/rootstock_io"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-rsk-text-dark hover:text-rsk-orange transition-colors flex items-center gap-1 font-medium"
+                >
+                  <span>官方英文推特</span>
                   <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                   </svg>
