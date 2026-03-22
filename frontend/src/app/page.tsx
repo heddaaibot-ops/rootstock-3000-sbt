@@ -80,6 +80,10 @@ export default function Home() {
             <p className="text-xl md:text-2xl text-rsk-text/70 mb-4">
               {t('hero.subtitle')}
             </p>
+
+            <p className="text-base md:text-lg text-rsk-text-dark/80 max-w-3xl mx-auto leading-relaxed">
+              {t('hero.description')}
+            </p>
             </div>
           </div>
         </section>
