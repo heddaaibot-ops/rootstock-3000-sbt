@@ -140,7 +140,20 @@ export default function RBTCGuidePage() {
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between h-16">
             <div className="flex items-center gap-3">
-              <div className="text-xl font-bold text-rsk-orange">Rootstock</div>
+              <div
+                className="h-8 w-36"
+                style={{
+                  backgroundColor: '#FF9100',
+                  WebkitMaskImage: 'url(/images/figma/rootstock-logo.png)',
+                  WebkitMaskSize: 'contain',
+                  WebkitMaskRepeat: 'no-repeat',
+                  WebkitMaskPosition: 'center',
+                  maskImage: 'url(/images/figma/rootstock-logo.png)',
+                  maskSize: 'contain',
+                  maskRepeat: 'no-repeat',
+                  maskPosition: 'center'
+                }}
+              />
               <div className="hidden md:block text-base font-semibold text-rsk-text-dark">
                 rBTC 获取指南
               </div>
