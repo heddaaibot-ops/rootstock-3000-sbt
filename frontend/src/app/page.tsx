@@ -4,7 +4,6 @@ import React, { useState } from 'react';
 import { useAccount } from 'wagmi';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
-import { Countdown } from '@/components/Countdown';
 import { ProgressBar } from '@/components/ProgressBar';
 import { MintButton } from '@/components/MintButton';
 import { CampaignInfo } from '@/components/CampaignInfo';
@@ -25,20 +24,6 @@ export default function Home() {
         <Header />
 
       <main className="flex-1 pt-24 pb-16">
-        {/* Countdown Section */}
-        <section className="relative py-20 bg-white">
-          <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto">
-              <div className="text-center mb-12">
-                <h2 className="inline-block bg-rsk-orange text-rsk-cream text-2xl md:text-3xl font-bold px-6 py-3 uppercase">
-                  已达成里程碑！
-                </h2>
-              </div>
-              <Countdown milestoneTimestamp={1774137600} />
-            </div>
-          </div>
-        </section>
-
         {/* Hero Section */}
         <section className="relative py-20 bg-rsk-cream text-center">
           <div className="container mx-auto px-4">
@@ -160,7 +145,7 @@ export default function Home() {
                 <h3 className="inline-block bg-rsk-lime text-rsk-text-dark text-lg md:text-xl font-bold px-5 py-2 uppercase mb-6">
                   项目数据
                 </h3>
-                <div className="grid grid-cols-2 gap-6">
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
                   {/* Stat 1 */}
                   <div className="bg-rsk-cream p-6 hover:bg-white transition-colors text-center">
                     <div className="text-sm font-semibold text-rsk-text-dark mb-2 uppercase">
@@ -179,6 +164,33 @@ export default function Home() {
                       3000
                     </div>
                     <div className="text-xs text-rsk-text-dark mt-2 font-medium">天</div>
+                  </div>
+
+                  {/* Stat 3 */}
+                  <div className="bg-rsk-cream p-6 hover:bg-white transition-colors text-center">
+                    <div className="text-sm font-semibold text-rsk-text-dark mb-2 uppercase">
+                      {t('mint.stats.chainId')}
+                    </div>
+                    <div className="text-4xl md:text-5xl font-bold text-rsk-orange font-mono">
+                      {chainId || 30}
+                    </div>
+                    <div className="text-xs text-rsk-text-dark mt-2 font-medium">ID</div>
+                  </div>
+
+                  {/* Stat 4 */}
+                  <div className="bg-rsk-cream p-6 hover:bg-white transition-colors text-center">
+                    <div className="text-sm font-semibold text-rsk-text-dark mb-2 uppercase">
+                      {t('mint.stats.status')}
+                    </div>
+                    <div className="text-4xl font-bold text-rsk-orange font-mono">
+                      {!contractData ? (
+                        <span>...</span>
+                      ) : contractData.isPaused ? (
+                        <span>暂停</span>
+                      ) : (
+                        <span>进行中</span>
+                      )}
+                    </div>
                   </div>
                 </div>
               </div>
