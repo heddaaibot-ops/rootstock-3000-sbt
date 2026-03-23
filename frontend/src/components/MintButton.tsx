@@ -33,6 +33,27 @@ export const MintButton: React.FC<MintButtonProps> = ({
     return false;
   });
 
+  // 铸造函数 - 必须先定义才能被其他函数使用
+  const handleMint = useCallback(async () => {
+    setMinting(true);
+    setError(null);
+    setTxHash(null);
+
+    try {
+      const result = await onMint();
+
+      if (result.success && result.txHash) {
+        setTxHash(result.txHash);
+      } else if (result.error) {
+        setError(result.error);
+      }
+    } catch (err) {
+      setError('An unexpected error occurred');
+    } finally {
+      setMinting(false);
+    }
+  }, [onMint]);
+
   const handleMintClick = () => {
     // 如果还没确认关注，先显示关注模态框
     if (!hasConfirmedFollow) {
@@ -78,30 +99,10 @@ export const MintButton: React.FC<MintButtonProps> = ({
     };
   }, [showFollowModal, closeModal]);
 
-  const handleMint = useCallback(async () => {
-    setMinting(true);
-    setError(null);
-    setTxHash(null);
-
-    try {
-      const result = await onMint();
-
-      if (result.success && result.txHash) {
-        setTxHash(result.txHash);
-      } else if (result.error) {
-        setError(result.error);
-      }
-    } catch (err) {
-      setError('An unexpected error occurred');
-    } finally {
-      setMinting(false);
-    }
-  }, [onMint]);
-
   // Twitter 分享函数
   const shareOnTwitter = () => {
-    const text = `我刚刚铸造了 #Rootstock爱你3000 纪念 SBT！\n\n庆祝 Rootstock 主网运行 3000 天\n\n@RootstockCN`;
-    const url = 'https://rootstock-3000-sbt.vercel.app';
+    const text = `我刚刚铸造了 Rootstock爱你3000 纪念 SBT！\n\n庆祝 Rootstock 主网运行 3000 天\n\n@RootstockCN @rootstock_io`;
+    const url = 'https://rootstockcn.com/';
     const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`;
     window.open(twitterUrl, '_blank', 'width=550,height=420');
   };
@@ -121,8 +122,8 @@ export const MintButton: React.FC<MintButtonProps> = ({
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             {/* View Transaction Button - 橙色主題 */}
             <button
-              onClick={() => openInExplorer('tx', txHash, chainId || 31)}
-              className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-rsk-orange hover:bg-[#FFA726] text-white rounded-tag font-semibold transition-all uppercase"
+              onClick={() => openInExplorer('tx', txHash, 30)}
+              className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-rsk-orange hover:bg-[#FFA726] text-white font-semibold transition-all uppercase"
             >
               <span>{t('mint.success.viewTx')}</span>
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -133,7 +134,7 @@ export const MintButton: React.FC<MintButtonProps> = ({
             {/* Twitter Share Button - 輪廓按鈕 */}
             <button
               onClick={shareOnTwitter}
-              className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-transparent border-2 border-rsk-text-dark hover:bg-rsk-text-dark text-rsk-text-dark hover:text-white rounded-tag font-semibold transition-all uppercase"
+              className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-transparent border-2 border-rsk-text-dark hover:bg-rsk-text-dark text-rsk-text-dark hover:text-white font-semibold transition-all uppercase"
             >
               <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
@@ -160,6 +161,67 @@ export const MintButton: React.FC<MintButtonProps> = ({
             className="px-6 py-3 bg-red-500 hover:bg-red-600 text-white rounded-tag font-semibold transition-all uppercase"
           >
             {t('mint.error.retry')}
+          </button>
+        </div>
+      </div>
+    );
+  }
+
+  // 网络检查 - 添加切换网络功能
+  const isWrongNetwork = isConnected && chainId !== 30;
+
+  const switchToRootstock = async () => {
+    if (typeof window.ethereum === 'undefined') return;
+
+    try {
+      await window.ethereum.request({
+        method: 'wallet_switchEthereumChain',
+        params: [{ chainId: '0x1e' }], // 30 in hex
+      });
+    } catch (switchError: any) {
+      // 如果网络不存在，添加网络
+      if (switchError.code === 4902) {
+        try {
+          await window.ethereum.request({
+            method: 'wallet_addEthereumChain',
+            params: [{
+              chainId: '0x1e',
+              chainName: 'Rootstock Mainnet',
+              nativeCurrency: {
+                name: 'RBTC',
+                symbol: 'RBTC',
+                decimals: 18,
+              },
+              rpcUrls: ['https://public-node.rsk.co', 'https://rpc.mainnet.rootstock.io/ZRjBSeG4PpiSLNO4zHgxSLIoAAQ_hIQC'],
+              blockExplorerUrls: ['https://rootstock.blockscout.com'],
+            }],
+          });
+        } catch (addError) {
+          console.error('添加网络失败:', addError);
+        }
+      }
+    }
+  };
+
+  // 如果在错误的网络上，显示切换网络按钮
+  if (isWrongNetwork) {
+    return (
+      <div className="text-center animate-fade-in">
+        <div className="bg-rsk-offwhite border-3 border-rsk-orange rounded-xl p-8 mb-4">
+          <div className="text-2xl font-bold text-rsk-orange mb-2 uppercase">
+            错误的网络
+          </div>
+          <div className="text-rsk-text-dark mb-6">
+            请切换到 Rootstock Mainnet
+            <div className="text-sm mt-2 text-rsk-text-dark/60">
+              当前网络: Chain ID {chainId}
+            </div>
+          </div>
+          <button
+            onClick={switchToRootstock}
+            className="px-8 py-3 bg-rsk-orange hover:bg-[#FFA726] text-white rounded-tag font-semibold transition-all uppercase"
+          >
+            切换到 Rootstock
           </button>
         </div>
       </div>
@@ -238,10 +300,10 @@ export const MintButton: React.FC<MintButtonProps> = ({
             </button>
 
             <h3 id="follow-modal-title" className="text-2xl font-bold text-rsk-text-dark mb-4 uppercase text-center">
-              🎉 铸造前请关注我们
+              🔶 关注 Rootstock 中文得到铸造资格
             </h3>
             <p className="text-rsk-text-dark mb-6 text-center">
-              请先关注 RootstockCN Twitter 账号，支持我们的社区！
+              请先关注 RootstockCN 官方账号
             </p>
 
             <a

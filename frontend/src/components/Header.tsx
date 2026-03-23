@@ -1,11 +1,42 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import { ConnectKitButton } from 'connectkit';
-import { useAccount } from 'wagmi';
+import { useAccount, useDisconnect } from 'wagmi';
 
 export const Header: React.FC = () => {
-  const { isConnected } = useAccount();
+  const { isConnected, address } = useAccount();
+  const { disconnect } = useDisconnect();
+
+  // 验证连接状态的有效性
+  useEffect(() => {
+    const verifyConnection = async () => {
+      if (isConnected && address && typeof window.ethereum !== 'undefined') {
+        try {
+          // 检查钱包是否真的连接
+          const accounts = await window.ethereum.request({ method: 'eth_accounts' });
+
+          // 如果钱包返回空数组但前端显示已连接，说明状态不同步
+          if (!accounts || accounts.length === 0) {
+            console.log('⚠️ 检测到连接状态不同步，正在清理...');
+            disconnect();
+          }
+        } catch (error) {
+          console.error('验证连接状态失败:', error);
+          // 如果验证失败，断开连接以确保状态一致
+          disconnect();
+        }
+      }
+    };
+
+    // 立即验证一次
+    verifyConnection();
+
+    // 每30秒验证一次连接状态
+    const interval = setInterval(verifyConnection, 30000);
+
+    return () => clearInterval(interval);
+  }, [isConnected, address, disconnect]);
 
   const addRootstockNetwork = async () => {
     console.log('🔘 点击了添加 Rootstock 按钮');
@@ -28,7 +59,7 @@ export const Header: React.FC = () => {
         symbol: 'RBTC',
         decimals: 18,
       },
-      rpcUrls: ['https://public-node.rsk.co'],
+      rpcUrls: ['https://public-node.rsk.co', 'https://rpc.mainnet.rootstock.io/ZRjBSeG4PpiSLNO4zHgxSLIoAAQ_hIQC'],
       blockExplorerUrls: ['https://rootstock.blockscout.com'],
     };
 
@@ -40,6 +71,7 @@ export const Header: React.FC = () => {
         params: [{ chainId: rootstockChainId }],
       });
       console.log('✅ 切换到 Rootstock 网络成功！');
+      alert('✅ 已切换到 Rootstock Mainnet 网络！');
     } catch (switchError: any) {
       console.log('切换失败，错误码:', switchError.code);
       // 如果网络不存在 (错误码 4902)，则添加网络
@@ -51,6 +83,7 @@ export const Header: React.FC = () => {
             params: [networkParams],
           });
           console.log('✅ 添加 Rootstock 网络成功！');
+          alert('✅ Rootstock Mainnet 网络添加成功！');
         } catch (addError: any) {
           console.error('❌ 添加网络失败:', addError);
           // 只有真正的错误才提示
@@ -137,16 +170,38 @@ export const Header: React.FC = () => {
           </nav>
 
           {/* Connect Wallet */}
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2 sm:gap-3">
             <button
               onClick={addRootstockNetwork}
-              className="hidden md:flex items-center gap-2 bg-rsk-orange hover:bg-rsk-orange/90 text-white font-semibold px-4 py-2 rounded-lg transition-colors text-sm"
+              className="flex items-center gap-1 sm:gap-2 bg-rsk-orange hover:bg-rsk-orange/90 text-white font-bold px-3 sm:px-6 py-2 transition-colors text-sm sm:text-base"
               title="添加 Rootstock 到 MetaMask"
             >
-              <span>🦊</span>
-              <span>添加 Rootstock</span>
+              <span className="text-base">🦊</span>
+              <span className="hidden sm:inline">添加 Rootstock</span>
+              <span className="sm:hidden">添加</span>
             </button>
-            <ConnectKitButton />
+            <ConnectKitButton.Custom>
+              {({ isConnected, show, truncatedAddress, ensName }) => {
+                return (
+                  <button
+                    onClick={show}
+                    className="bg-rsk-text-dark hover:bg-rsk-text-dark/90 text-white font-bold px-3 sm:px-6 py-2 transition-colors text-sm sm:text-base"
+                  >
+                    {isConnected ? (
+                      <>
+                        <span className="hidden sm:inline">{ensName ?? truncatedAddress}</span>
+                        <span className="sm:hidden">{truncatedAddress}</span>
+                      </>
+                    ) : (
+                      <>
+                        <span className="hidden sm:inline">连接钱包</span>
+                        <span className="sm:hidden">连接</span>
+                      </>
+                    )}
+                  </button>
+                );
+              }}
+            </ConnectKitButton.Custom>
           </div>
         </div>
       </div>

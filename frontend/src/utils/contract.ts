@@ -1,10 +1,7 @@
 import { defineChain } from 'viem';
 
-// 硬编码地址确保在 Vercel 上也能正常工作
-export const CONTRACT_ADDRESS = {
-  testnet: '0x3fcD4cf80017bb7d90d9E67cd1E2fe539D985d8D' as `0x${string}`,
-  mainnet: '0xc4e7a1FB1bdf370CD187a50E0B6B360BCB4C3BEC' as `0x${string}`,
-} as const;
+// v3 合约地址（Mainnet Only）
+export const CONTRACT_ADDRESS = '0x55471B1A060188B1BF85777Aa2Dd2C6A2876f188' as `0x${string}`;
 
 // 使用完整的合约 ABI（从编译产物导出）
 export const CONTRACT_ABI = [
@@ -94,55 +91,36 @@ export const CONTRACT_ABI = [
   },
 ] as const;
 
-// 完整的 chain 定義
-export const ROOTSTOCK_CHAINS = {
-  testnet: defineChain({
-    id: 31,
-    name: 'Rootstock Testnet',
-    network: 'rootstock-testnet',
-    nativeCurrency: {
-      name: 'Test RBTC',
-      symbol: 'tRBTC',
-      decimals: 18,
+// Rootstock Mainnet Chain 定义
+export const ROOTSTOCK_MAINNET = defineChain({
+  id: 30,
+  name: 'Rootstock',
+  network: 'rootstock',
+  nativeCurrency: {
+    name: 'RBTC',
+    symbol: 'RBTC',
+    decimals: 18,
+  },
+  rpcUrls: {
+    default: {
+      http: [
+        'https://public-node.rsk.co',
+        'https://rpc.mainnet.rootstock.io/ZRjBSeG4PpiSLNO4zHgxSLIoAAQ_hIQC',
+        'https://mycrypto.rsk.co',
+      ],
     },
-    rpcUrls: {
-      default: {
-        http: ['https://public-node.testnet.rsk.co'],
-      },
-      public: {
-        http: ['https://public-node.testnet.rsk.co'],
-      },
+    public: {
+      http: [
+        'https://public-node.rsk.co',
+        'https://rpc.mainnet.rootstock.io/ZRjBSeG4PpiSLNO4zHgxSLIoAAQ_hIQC',
+        'https://mycrypto.rsk.co',
+      ],
     },
-    blockExplorers: {
-      default: {
-        name: 'RSK Testnet Explorer',
-        url: 'https://rootstock-testnet.blockscout.com',
-      },
+  },
+  blockExplorers: {
+    default: {
+      name: 'RSK Explorer',
+      url: 'https://rootstock.blockscout.com',
     },
-    testnet: true,
-  }),
-  mainnet: defineChain({
-    id: 30,
-    name: 'Rootstock',
-    network: 'rootstock',
-    nativeCurrency: {
-      name: 'RBTC',
-      symbol: 'RBTC',
-      decimals: 18,
-    },
-    rpcUrls: {
-      default: {
-        http: ['https://public-node.rsk.co'],
-      },
-      public: {
-        http: ['https://public-node.rsk.co'],
-      },
-    },
-    blockExplorers: {
-      default: {
-        name: 'RSK Explorer',
-        url: 'https://rootstock.blockscout.com',
-      },
-    },
-  }),
-} as const;
+  },
+});

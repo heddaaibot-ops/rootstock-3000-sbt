@@ -3,7 +3,7 @@ import { useAccount, usePublicClient, useWalletClient } from 'wagmi';
 import { createPublicClient, http } from 'viem';
 import { Contract } from 'ethers';
 import { BrowserProvider } from 'ethers';
-import { CONTRACT_ADDRESS, CONTRACT_ABI, ROOTSTOCK_CHAINS } from '@/utils/contract';
+import { CONTRACT_ADDRESS, CONTRACT_ABI, ROOTSTOCK_MAINNET } from '@/utils/contract';
 
 export interface ContractData {
   totalSupply: bigint;
@@ -26,28 +26,20 @@ export const useContract = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  // Default to Rootstock Mainnet if user hasn't connected wallet
-  const chainId = userChainId || 30;
-
-  const contractAddress = chainId === 31
-    ? CONTRACT_ADDRESS.testnet
-    : CONTRACT_ADDRESS.mainnet;
-
   // 讀取合約數據
   const fetchContractData = async () => {
-    if (!contractAddress) return;
-
     try {
       setLoading(true);
       setError(null);
 
-      // Create a standalone public client for reading contract data
-      // This works even when user hasn't connected their wallet
-      // IMPORTANT: Always create a new client to ensure we're using the correct chain
-      const chain = chainId === 31 ? ROOTSTOCK_CHAINS.testnet : ROOTSTOCK_CHAINS.mainnet;
+      // Create a standalone public client for Rootstock Mainnet with retry logic
       const client = createPublicClient({
-        chain,
-        transport: http(chain.rpcUrls.default.http[0]),
+        chain: ROOTSTOCK_MAINNET,
+        transport: http(ROOTSTOCK_MAINNET.rpcUrls.default.http[0], {
+          timeout: 30_000, // 30 秒超时
+          retryCount: 3, // 重试 3 次
+          retryDelay: 1000, // 重试延迟 1 秒
+        }),
       });
 
       const [
@@ -62,28 +54,28 @@ export const useContract = () => {
         milestoneDate,
       ] = await Promise.all([
         client.readContract({
-          address: contractAddress as `0x${string}`,
+          address: CONTRACT_ADDRESS,
           abi: CONTRACT_ABI,
           functionName: 'totalSupply',
         }),
         client.readContract({
-          address: contractAddress as `0x${string}`,
+          address: CONTRACT_ADDRESS,
           abi: CONTRACT_ABI,
           functionName: 'remainingSupply',
         }),
         client.readContract({
-          address: contractAddress as `0x${string}`,
+          address: CONTRACT_ADDRESS,
           abi: CONTRACT_ABI,
           functionName: 'MAX_SUPPLY',
         }),
         client.readContract({
-          address: contractAddress as `0x${string}`,
+          address: CONTRACT_ADDRESS,
           abi: CONTRACT_ABI,
           functionName: 'paused',
         }),
         address
           ? client.readContract({
-              address: contractAddress as `0x${string}`,
+              address: CONTRACT_ADDRESS,
               abi: CONTRACT_ABI,
               functionName: 'hasUserMinted',
               args: [address],
@@ -91,24 +83,24 @@ export const useContract = () => {
           : false,
         address
           ? client.readContract({
-              address: contractAddress as `0x${string}`,
+              address: CONTRACT_ADDRESS,
               abi: CONTRACT_ABI,
               functionName: 'balanceOf',
               args: [address],
             })
           : 0n,
         client.readContract({
-          address: contractAddress as `0x${string}`,
+          address: CONTRACT_ADDRESS,
           abi: CONTRACT_ABI,
           functionName: 'getMintProgressBasisPoints',
         }),
         client.readContract({
-          address: contractAddress as `0x${string}`,
+          address: CONTRACT_ADDRESS,
           abi: CONTRACT_ABI,
           functionName: 'LAUNCH_DATE',
         }),
         client.readContract({
-          address: contractAddress as `0x${string}`,
+          address: CONTRACT_ADDRESS,
           abi: CONTRACT_ABI,
           functionName: 'MILESTONE_DATE',
         }),
@@ -136,13 +128,13 @@ export const useContract = () => {
 
   // 铸造 SBT
   const mint = async (): Promise<{ success: boolean; txHash?: string; error?: string }> => {
-    if (!walletClient || !address || !contractAddress) {
+    if (!walletClient || !address) {
       return { success: false, error: 'Wallet not connected' };
     }
 
     try {
       const hash = await walletClient.writeContract({
-        address: contractAddress as `0x${string}`,
+        address: CONTRACT_ADDRESS,
         abi: CONTRACT_ABI,
         functionName: 'mint',
         args: [],
@@ -167,8 +159,14 @@ export const useContract = () => {
         errorMessage = 'Maximum supply has been reached';
       } else if (err.message?.includes('Pausable: paused')) {
         errorMessage = 'Minting is currently paused';
-      } else if (err.message?.includes('User rejected')) {
+      } else if (err.message?.includes('User rejected') || err.message?.includes('User denied')) {
         errorMessage = 'Transaction was rejected';
+      } else if (err.message?.includes('timeout') || err.message?.includes('timed out')) {
+        errorMessage = 'Exception: 当前服务或节点响应异常，暂时无法完成操作，请稍后重试';
+      } else if (err.message?.includes('network') || err.message?.includes('fetch')) {
+        errorMessage = 'Exception: 当前服务或节点响应异常，暂时无法完成操作，请稍后重试';
+      } else if (err.message?.includes('insufficient funds')) {
+        errorMessage = 'Exception: 余额不足，请确保钱包中有足够的 rBTC 支付 Gas 费用';
       }
 
       return { success: false, error: errorMessage };
@@ -177,11 +175,11 @@ export const useContract = () => {
 
   // 查詢用戶的 Token ID
   const getUserTokenId = async (): Promise<bigint | null> => {
-    if (!publicClient || !address || !contractAddress) return null;
+    if (!publicClient || !address) return null;
 
     try {
       const balance = await publicClient.readContract({
-        address: contractAddress as `0x${string}`,
+        address: CONTRACT_ADDRESS,
         abi: CONTRACT_ABI,
         functionName: 'balanceOf',
         args: [address],
@@ -205,7 +203,7 @@ export const useContract = () => {
     const interval = setInterval(fetchContractData, 10000); // 每 10 秒刷新
 
     return () => clearInterval(interval);
-  }, [address, chainId]); // Removed publicClient dependency - we create our own client
+  }, [address]); // Mainnet only - no chain switching needed
 
   return {
     contractData,
