@@ -2,10 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { createPublicClient, http } from 'viem';
-import { ROOTSTOCK_CHAINS, CONTRACT_ADDRESS as CONTRACT_ADDR } from '@/utils/contract';
-
-const ROOTSTOCK_TESTNET = ROOTSTOCK_CHAINS.testnet;
-const CONTRACT_ADDRESS = CONTRACT_ADDR.testnet;
+import { ROOTSTOCK_MAINNET, CONTRACT_ADDRESS } from '@/utils/contract';
 const CONTRACT_ABI = [
   'function totalSupply() view returns (uint256)',
   'function MAX_SUPPLY() view returns (uint256)',
@@ -25,20 +22,20 @@ export default function TestPage() {
   useEffect(() => {
     const testContractRead = async () => {
       try {
-        addLog('🚀 Starting contract read test...');
+        addLog('🚀 Starting contract read test (Mainnet)...');
         addLog(`📍 Contract: ${CONTRACT_ADDRESS}`);
-        addLog(`🌐 RPC: ${ROOTSTOCK_TESTNET.rpcUrls.default.http[0]}`);
+        addLog(`🌐 RPC: ${ROOTSTOCK_MAINNET.rpcUrls.default.http[0]}`);
 
         addLog('🔧 Creating public client...');
         const client = createPublicClient({
-          chain: ROOTSTOCK_TESTNET as any,
-          transport: http(ROOTSTOCK_TESTNET.rpcUrls.default.http[0]),
+          chain: ROOTSTOCK_MAINNET as any,
+          transport: http(ROOTSTOCK_MAINNET.rpcUrls.default.http[0]),
         });
         addLog('✅ Public client created');
 
         addLog('📞 Reading totalSupply...');
         const totalSupply = await client.readContract({
-          address: CONTRACT_ADDRESS as `0x${string}`,
+          address: CONTRACT_ADDRESS,
           abi: CONTRACT_ABI,
           functionName: 'totalSupply',
         }) as bigint;
@@ -46,7 +43,7 @@ export default function TestPage() {
 
         addLog('📞 Reading MAX_SUPPLY...');
         const maxSupply = await client.readContract({
-          address: CONTRACT_ADDRESS as `0x${string}`,
+          address: CONTRACT_ADDRESS,
           abi: CONTRACT_ABI,
           functionName: 'MAX_SUPPLY',
         }) as bigint;
@@ -54,7 +51,7 @@ export default function TestPage() {
 
         addLog('📞 Reading paused...');
         const isPaused = await client.readContract({
-          address: CONTRACT_ADDRESS as `0x${string}`,
+          address: CONTRACT_ADDRESS,
           abi: CONTRACT_ABI,
           functionName: 'paused',
         }) as boolean;

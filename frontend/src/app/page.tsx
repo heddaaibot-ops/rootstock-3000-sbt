@@ -44,18 +44,19 @@ export default function Home() {
                     maskPosition: 'center'
                   }}
                 />
-                <h1 className="text-5xl md:text-7xl font-bold uppercase leading-tight">
-                  <div className="text-rsk-text-dark">爱你 3000</div>
+                <h1 className="text-4xl md:text-5xl font-bold uppercase leading-tight">
+                  <div className="inline-block bg-rsk-pink text-white px-8 py-4 border-3 border-rsk-border-dark">爱你 3000</div>
                 </h1>
               </div>
 
-              <p className="text-xl md:text-2xl text-rsk-text-dark/80 mb-4 leading-relaxed">
+              <p className="text-xl md:text-2xl text-rsk-text-dark/80 mb-4 leading-relaxed font-bold">
                 {t('hero.subtitle')}
               </p>
 
-              <p className="text-base md:text-lg text-rsk-text-dark/70 max-w-3xl mx-auto leading-relaxed">
-                {t('hero.description')}
-              </p>
+              <div className="text-sm md:text-base text-rsk-text-dark/70 max-w-3xl mx-auto leading-relaxed">
+                <p className="mb-2">这个纪念灵魂绑定代币庆祝这一里程碑，并向所有参与这一旅程的人致敬</p>
+                <p>通过铸造此 SBT，你将永久成为 Rootstock 历史的一部分</p>
+              </div>
             </div>
           </div>
         </section>
@@ -73,9 +74,6 @@ export default function Home() {
 
               {/* SBT 预览 */}
               <div className="mb-12">
-                <h3 className="inline-block bg-rsk-lime text-rsk-text-dark text-lg md:text-xl font-bold px-5 py-2 uppercase mb-6">
-                  NFT 预览
-                </h3>
                 <div className="max-w-2xl mx-auto">
                   <div className="bg-rsk-cream border-3 border-rsk-border-dark rounded-xl p-10 hover:border-rsk-orange transition-all">
                     <div className="relative aspect-square w-full max-w-md mx-auto">
@@ -199,19 +197,19 @@ export default function Home() {
         </section>
 
         {/* Campaign Info Section */}
-        <section className="relative py-20 bg-white">
+        <section className="relative pt-20 pb-12 bg-white">
           <div className="container mx-auto px-4">
             <CampaignInfo />
           </div>
         </section>
 
         {/* About Section */}
-        <section id="about" className="relative py-20 bg-rsk-cream">
+        <section id="about" className="relative pt-20 pb-6 bg-rsk-cream">
           <div className="container mx-auto px-4">
             <div className="max-w-7xl mx-auto">
               {/* 标题 */}
-              <div className="text-center mb-12">
-                <h2 className="inline-block bg-rsk-cyan text-rsk-text-dark text-2xl md:text-3xl font-bold px-6 py-3 uppercase">
+              <div className="text-center mb-6">
+                <h2 className="inline-block bg-rsk-lime text-rsk-text-dark text-2xl font-bold px-6 py-3 uppercase">
                   SBT 特性
                 </h2>
               </div>
@@ -219,12 +217,12 @@ export default function Home() {
               {/* 三个特性卡片 */}
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                 {/* Card 01 - Soul Bound */}
-                <div className="bg-white border-3 border-rsk-border-dark rounded-xl p-8 hover:bg-rsk-cream transition-all relative min-h-[320px] flex flex-col">
+                <div className="bg-white border-3 border-rsk-border-dark p-8 hover:bg-rsk-cream transition-all relative flex flex-col">
                   <div className="mb-6">
-                    <div className="inline-block bg-rsk-orange rounded-tag px-6 py-3">
+                    <div className="inline-block bg-rsk-orange px-6 py-3">
                       <h3 className="text-lg font-bold text-white leading-tight uppercase">{t('about.soulBound.title')}</h3>
                     </div>
-                    <div className="inline-block bg-rsk-lime rounded-tag px-4 py-1 ml-2">
+                    <div className="inline-block bg-rsk-lime px-4 py-1 ml-2">
                       <span className="text-sm font-bold text-rsk-text-dark">01</span>
                     </div>
                   </div>
@@ -234,12 +232,12 @@ export default function Home() {
                 </div>
 
                 {/* Card 02 - Free Mint */}
-                <div className="bg-white border-3 border-rsk-border-dark rounded-xl p-8 hover:bg-rsk-cream transition-all relative min-h-[320px] flex flex-col">
+                <div className="bg-white border-3 border-rsk-border-dark p-8 hover:bg-rsk-cream transition-all relative flex flex-col">
                   <div className="mb-6">
-                    <div className="inline-block bg-rsk-orange rounded-tag px-6 py-3">
+                    <div className="inline-block bg-rsk-orange px-6 py-3">
                       <h3 className="text-lg font-bold text-white leading-tight uppercase">{t('about.freeMint.title')}</h3>
                     </div>
-                    <div className="inline-block bg-rsk-lime rounded-tag px-4 py-1 ml-2">
+                    <div className="inline-block bg-rsk-lime px-4 py-1 ml-2">
                       <span className="text-sm font-bold text-rsk-text-dark">02</span>
                     </div>
                   </div>
@@ -249,12 +247,12 @@ export default function Home() {
                 </div>
 
                 {/* Card 03 - Limited Supply */}
-                <div className="bg-white border-3 border-rsk-border-dark rounded-xl p-8 hover:bg-rsk-cream transition-all relative min-h-[320px] flex flex-col">
+                <div className="bg-white border-3 border-rsk-border-dark p-8 hover:bg-rsk-cream transition-all relative flex flex-col">
                   <div className="mb-6">
-                    <div className="inline-block bg-rsk-orange rounded-tag px-6 py-3">
+                    <div className="inline-block bg-rsk-orange px-6 py-3">
                       <h3 className="text-lg font-bold text-white leading-tight uppercase">{t('about.limitedSupply.title')}</h3>
                     </div>
-                    <div className="inline-block bg-rsk-lime rounded-tag px-4 py-1 ml-2">
+                    <div className="inline-block bg-rsk-lime px-4 py-1 ml-2">
                       <span className="text-sm font-bold text-rsk-text-dark">03</span>
                     </div>
                   </div>
@@ -272,7 +270,7 @@ export default function Home() {
           <div className="container mx-auto px-4">
             <div className="max-w-3xl mx-auto">
               <div className="text-center mb-12">
-                <h2 className="inline-block bg-rsk-green text-rsk-cream text-2xl md:text-3xl font-bold px-6 py-3 uppercase">
+                <h2 className="inline-block bg-rsk-green text-rsk-cream text-2xl font-bold px-6 py-3 uppercase">
                   {t('faq.title')}
                 </h2>
               </div>
@@ -301,6 +299,17 @@ export default function Home() {
                     )}
                   </div>
                 ))}
+              </div>
+              <div className="mt-12 text-center">
+                <p className="text-base text-rsk-text-dark mb-4 font-semibold">还有其他问题？</p>
+                <a
+                  href="https://t.me/rootstockCNchat"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block bg-rsk-purple text-rsk-cream font-bold px-6 py-2 hover:bg-[#B088FF] transition-colors uppercase"
+                >
+                  在 RootstockCN 提问 →
+                </a>
               </div>
             </div>
           </div>

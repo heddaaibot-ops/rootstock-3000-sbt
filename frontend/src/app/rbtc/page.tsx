@@ -23,7 +23,7 @@ const platforms = [
   {
     name: 'Jumper',
     description: '真正的多链交易所。汇集最好的桥接、交换、入金服务',
-    url: 'https://jumper.exchange/es/',
+    url: 'https://jumper.xyz/zh?fromAmount=3&fromChain=42161&fromToken=0xaf88d065e77c8cC2239327C5EDb3A432268e5831&toChain=30&toToken=0x0000000000000000000000000000000000000000',
     category: 'crypto',
     type: '多链聚合器',
     featured: true,
@@ -136,10 +136,10 @@ export default function RBTCGuidePage() {
   return (
     <div className="min-h-screen bg-rsk-cream">
       {/* Header */}
-      <header className="fixed top-0 left-0 right-0 z-50 bg-rsk-cream border-b-4 border-rsk-orange">
+      <header className="fixed top-0 left-0 right-0 z-50 bg-rsk-cream border-b border-rsk-orange/20">
         <div className="container mx-auto px-4">
-          <div className="flex items-center justify-between h-16">
-            <div className="flex items-center gap-3">
+          <div className="flex items-center justify-between h-20">
+            <a href="/" className="flex items-center gap-3 cursor-pointer hover:opacity-80 transition-opacity">
               <div
                 className="h-8 w-36"
                 style={{
@@ -157,7 +157,7 @@ export default function RBTCGuidePage() {
               <div className="hidden md:block text-base font-semibold text-rsk-text-dark">
                 rBTC 获取指南
               </div>
-            </div>
+            </a>
             <nav className="hidden md:flex items-center gap-6">
               <button onClick={() => scrollToSection('about')} className="text-rsk-text-dark hover:text-rsk-orange font-medium transition-colors">
                 什么是 rBTC
@@ -172,19 +172,25 @@ export default function RBTCGuidePage() {
                 FAQ
               </button>
             </nav>
-            <button onClick={() => scrollToSection('get-rbtc')} className="bg-rsk-orange hover:bg-[#FFA726] text-white font-bold px-6 py-2 transition-colors">
-              开始获取
-            </button>
+            <div className="flex items-center gap-2 sm:gap-3">
+              <a href="/" className="bg-rsk-text-dark hover:bg-rsk-text-dark/90 text-white font-bold px-3 sm:px-6 py-2 transition-colors text-sm sm:text-base whitespace-nowrap">
+                <span className="hidden sm:inline">返回铸造 SBT</span>
+                <span className="sm:hidden">返回铸造</span>
+              </a>
+              <button onClick={() => scrollToSection('get-rbtc')} className="bg-rsk-orange hover:bg-[#FFA726] text-white font-bold px-3 sm:px-6 py-2 transition-colors text-sm sm:text-base whitespace-nowrap">
+                开始获取
+              </button>
+            </div>
           </div>
         </div>
       </header>
 
-      <main className="pt-16">
+      <main className="pt-20">
         {/* What is rBTC */}
         <section id="about" className="py-20 bg-white">
           <div className="container mx-auto px-4">
             <div className="mb-12">
-              <h2 className="inline-block bg-rsk-purple text-rsk-cream text-2xl md:text-3xl font-bold px-6 py-3 uppercase">
+              <h2 className="inline-block bg-rsk-purple text-rsk-cream text-xl md:text-2xl font-bold px-6 py-3 uppercase">
                 什么是 rBTC
               </h2>
             </div>
@@ -194,15 +200,15 @@ export default function RBTCGuidePage() {
               </p>
             </div>
             <div className="grid md:grid-cols-3 gap-8 mb-16">
-              <div className="bg-rsk-cream p-8">
+              <div className="bg-rsk-cream border-3 border-rsk-border-dark p-8">
                 <h3 className="text-lg font-bold text-rsk-text-dark mb-3 uppercase">比特币算力保护</h3>
                 <p className="text-rsk-text-dark">通过合并挖矿，由将近 90% 的比特币算力保护，确保网络安全</p>
               </div>
-              <div className="bg-rsk-cream p-8">
+              <div className="bg-rsk-cream border-3 border-rsk-border-dark p-8">
                 <h3 className="text-lg font-bold text-rsk-text-dark mb-3 uppercase">PowPeg 1:1 锚定</h3>
                 <p className="text-rsk-text-dark">通过 PowPeg（最安全的比特币桥）与 BTC 保持 1:1 锚定</p>
               </div>
-              <div className="bg-rsk-cream p-8">
+              <div className="bg-rsk-cream border-3 border-rsk-border-dark p-8">
                 <h3 className="text-lg font-bold text-rsk-text-dark mb-3 uppercase">无需许可访问 DeFi</h3>
                 <p className="text-rsk-text-dark">在 Rootstock 上访问 200+ DeFi 应用和协议</p>
               </div>
@@ -214,7 +220,7 @@ export default function RBTCGuidePage() {
         <section id="get-rbtc" className="py-20 bg-rsk-cream">
           <div className="container mx-auto px-4">
             <div className="mb-12">
-              <h2 className="inline-block bg-rsk-pink text-rsk-cream text-2xl md:text-3xl font-bold px-6 py-3 uppercase">
+              <h2 className="inline-block bg-rsk-pink text-rsk-cream text-xl md:text-2xl font-bold px-6 py-3 uppercase">
                 如何获取 rBTC
               </h2>
             </div>
@@ -240,7 +246,7 @@ export default function RBTCGuidePage() {
 
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
               {currentPlatforms.map((platform) => (
-                <div key={platform.name} className="bg-white p-6 hover:bg-rsk-cream transition-colors">
+                <div key={platform.name} className="bg-white border-3 border-rsk-border-dark p-6 hover:bg-rsk-cream transition-colors">
                   <div className="flex items-center gap-2 mb-3">
                     <h3 className="text-xl font-bold text-rsk-text-dark uppercase">{platform.name}</h3>
                     {platform.featured && (
@@ -272,13 +278,13 @@ export default function RBTCGuidePage() {
         <section className="py-20 bg-white">
           <div className="container mx-auto px-4">
             <div className="mb-12">
-              <h2 className="inline-block bg-rsk-purple text-rsk-cream text-2xl md:text-3xl font-bold px-6 py-3 uppercase">
+              <h2 className="inline-block bg-rsk-purple text-rsk-cream text-xl md:text-2xl font-bold px-6 py-3 uppercase">
                 操作步骤示范 - Jumper
               </h2>
             </div>
             <div className="max-w-5xl mx-auto">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div className="bg-rsk-cream p-6">
+                <div className="bg-rsk-cream border-3 border-rsk-border-dark p-6">
                   <div className="mb-4">
                     <span className="inline-block bg-rsk-orange text-rsk-cream text-lg font-bold px-4 py-2 rounded-full">
                       步骤 1
@@ -289,10 +295,13 @@ export default function RBTCGuidePage() {
                     alt="Jumper 步骤 1"
                     className="w-full border-2 border-rsk-border-dark mb-4"
                   />
-                  <p className="text-rsk-text-dark font-semibold">选择源链和目标链（Rootstock）</p>
+                  <div className="text-rsk-text-dark text-sm">
+                    <p>兑换页面选择 Arb 的 USDC 到 Rootstock 的 RBTC</p>
+                    <p>3 USDC 完全足够</p>
+                  </div>
                 </div>
 
-                <div className="bg-rsk-cream p-6">
+                <div className="bg-rsk-cream border-3 border-rsk-border-dark p-6">
                   <div className="mb-4">
                     <span className="inline-block bg-rsk-orange text-rsk-cream text-lg font-bold px-4 py-2 rounded-full">
                       步骤 2
@@ -303,10 +312,10 @@ export default function RBTCGuidePage() {
                     alt="Jumper 步骤 2"
                     className="w-full border-2 border-rsk-border-dark mb-4"
                   />
-                  <p className="text-rsk-text-dark font-semibold">输入要转账的金额</p>
+                  <p className="text-rsk-text-dark text-sm">点选开始跨链</p>
                 </div>
 
-                <div className="bg-rsk-cream p-6">
+                <div className="bg-rsk-cream border-3 border-rsk-border-dark p-6">
                   <div className="mb-4">
                     <span className="inline-block bg-rsk-orange text-rsk-cream text-lg font-bold px-4 py-2 rounded-full">
                       步骤 3
@@ -317,10 +326,13 @@ export default function RBTCGuidePage() {
                     alt="Jumper 步骤 3"
                     className="w-full border-2 border-rsk-border-dark mb-4"
                   />
-                  <p className="text-rsk-text-dark font-semibold">确认交易详情和费用</p>
+                  <div className="text-rsk-text-dark text-sm">
+                    <p>按步骤确认授权</p>
+                    <p>（过程大概 15 秒）</p>
+                  </div>
                 </div>
 
-                <div className="bg-rsk-cream p-6">
+                <div className="bg-rsk-cream border-3 border-rsk-border-dark p-6">
                   <div className="mb-4">
                     <span className="inline-block bg-rsk-orange text-rsk-cream text-lg font-bold px-4 py-2 rounded-full">
                       步骤 4
@@ -331,7 +343,7 @@ export default function RBTCGuidePage() {
                     alt="Jumper 步骤 4"
                     className="w-full border-2 border-rsk-border-dark mb-4"
                   />
-                  <p className="text-rsk-text-dark font-semibold">完成跨链转账，接收 rBTC</p>
+                  <p className="text-rsk-text-dark text-sm">恭喜你已经收到 rBTC</p>
                 </div>
               </div>
             </div>
@@ -342,15 +354,15 @@ export default function RBTCGuidePage() {
         <section id="network" className="py-20 bg-rsk-cream">
           <div className="container mx-auto px-4">
             <div className="mb-12">
-              <h2 className="inline-block bg-rsk-green text-rsk-cream text-2xl md:text-3xl font-bold px-6 py-3 uppercase">
+              <h2 className="inline-block bg-rsk-green text-rsk-cream text-xl md:text-2xl font-bold px-6 py-3 uppercase">
                 网络参数
               </h2>
             </div>
-            <div className="max-w-3xl mx-auto bg-rsk-cream p-8">
+            <div className="max-w-3xl mx-auto bg-rsk-cream border-3 border-rsk-border-dark p-8">
               <p className="text-rsk-text-dark mb-6 font-semibold">点击参数值即可复制到剪贴板</p>
               <div className="space-y-3">
                 {Object.entries(networkConfig).map(([key, value]) => (
-                  <div key={key} className="flex justify-between items-center bg-white p-4 hover:bg-gray-50 transition-colors">
+                  <div key={key} className="flex justify-between items-center bg-white border-2 border-rsk-border-dark p-4 hover:bg-gray-50 transition-colors">
                     <span className="font-semibold text-rsk-text-dark">{key}:</span>
                     <button
                       onClick={() => copyToClipboard(value, key)}
@@ -369,13 +381,13 @@ export default function RBTCGuidePage() {
         <section id="faq" className="py-20 bg-rsk-cream">
           <div className="container mx-auto px-4">
             <div className="mb-12">
-              <h2 className="inline-block bg-rsk-cyan text-rsk-text-dark text-2xl md:text-3xl font-bold px-6 py-3 uppercase">
+              <h2 className="inline-block bg-rsk-cyan text-rsk-text-dark text-xl md:text-2xl font-bold px-6 py-3 uppercase">
                 常见问题 FAQ
               </h2>
             </div>
             <div className="max-w-4xl mx-auto space-y-4">
               {faqs.map((faq, index) => (
-                <div key={index} className="bg-white">
+                <div key={index} className="bg-white border-3 border-rsk-border-dark">
                   <button
                     onClick={() => setOpenFaqIndex(openFaqIndex === index ? null : index)}
                     className="w-full px-6 py-4 text-left font-bold text-base text-rsk-text-dark hover:bg-rsk-cream flex justify-between items-center transition-colors"

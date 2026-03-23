@@ -73,11 +73,9 @@ export const copyToClipboard = async (text: string): Promise<boolean> => {
 export const openInExplorer = (
   type: 'address' | 'tx' | 'token',
   value: string,
-  chainId: number
+  chainId?: number
 ): void => {
-  const baseUrl = chainId === 31
-    ? 'https://rootstock-testnet.blockscout.com'
-    : 'https://rootstock.blockscout.com';
+  const baseUrl = 'https://rootstock.blockscout.com'; // Mainnet only
 
   let url = '';
   switch (type) {

@@ -17,9 +17,9 @@ export const Footer: React.FC = () => {
           </div>
 
           {/* Links */}
-          <div>
+          <div className="md:text-center">
             <h3 className="text-lg font-bold text-rsk-orange mb-4 uppercase">资源链接</h3>
-            <ul className="space-y-2 text-sm">
+            <ul className="space-y-2 text-sm md:inline-block text-left">
               <li>
                 <a
                   href="https://rootstock.io"
@@ -61,6 +61,44 @@ export const Footer: React.FC = () => {
               </li>
               <li>
                 <a
+                  href="/terms"
+                  className="text-rsk-text-dark hover:text-rsk-orange transition-colors font-medium"
+                >
+                  条款与条件
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/privacy"
+                  className="text-rsk-text-dark hover:text-rsk-orange transition-colors font-medium"
+                >
+                  隐私政策
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          {/* Contract Info */}
+          <div>
+            <h3 className="text-lg font-bold text-rsk-orange mb-4 uppercase">合约地址</h3>
+            <div className="text-sm mb-6">
+              <a
+                href={`https://rootstock.blockscout.com/address/${CONTRACT_ADDRESS}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-rsk-orange hover:underline flex items-center gap-1"
+              >
+                <code className="text-xs font-mono break-all">
+                  {CONTRACT_ADDRESS}
+                </code>
+                <svg className="w-3 h-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                </svg>
+              </a>
+            </div>
+            <ul className="space-y-2 text-sm">
+              <li>
+                <a
                   href="https://t.me/rootstockCNchat"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -98,50 +136,14 @@ export const Footer: React.FC = () => {
                   </svg>
                 </a>
               </li>
-              <li>
-                <a
-                  href="/terms"
-                  className="text-rsk-text-dark hover:text-rsk-orange transition-colors font-medium"
-                >
-                  条款与条件
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/privacy"
-                  className="text-rsk-text-dark hover:text-rsk-orange transition-colors font-medium"
-                >
-                  隐私政策
-                </a>
-              </li>
             </ul>
-          </div>
-
-          {/* Contract Info */}
-          <div>
-            <h3 className="text-lg font-bold text-rsk-orange mb-4 uppercase">合约地址</h3>
-            <div className="text-sm">
-              <a
-                href={`https://rootstock.blockscout.com/address/${CONTRACT_ADDRESS}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-rsk-orange hover:underline flex items-center gap-1"
-              >
-                <code className="text-xs font-mono break-all">
-                  {CONTRACT_ADDRESS}
-                </code>
-                <svg className="w-3 h-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                </svg>
-              </a>
-            </div>
           </div>
         </div>
 
         {/* Copyright */}
-        <div className="border-t-2 border-rsk-border-dark pt-8">
+        <div className="border-t-2 border-rsk-text-dark pt-8">
           <div className="text-center text-rsk-text-dark text-sm font-medium">
-            <p>© {currentYear} Rootstock 3000 Days. 为 Rootstock 社区倾情打造。</p>
+            <p>© {currentYear} Rootstock 3000 Days. 为 RootstockCN 倾情打造</p>
           </div>
         </div>
       </div>

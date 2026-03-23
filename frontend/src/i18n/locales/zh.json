@@ -2,7 +2,7 @@
   "hero": {
     "title": "Rootstock 3000 天",
     "subtitle": "纪念 Rootstock 主网稳定运行 3000 天",
-    "description": "这个纪念灵魂绑定代币庆祝这一里程碑，并向所有参与这一旅程的人致敬。通过铸造此 SBT，你将永久成为 Rootstock 历史的一部分。"
+    "description": "这个纪念灵魂绑定代币庆祝这一里程碑，并向所有参与这一旅程的人致敬\n通过铸造此 SBT，你将永久成为 Rootstock 历史的一部分"
   },
   "mint": {
     "title": "铸造进度",
@@ -52,19 +52,20 @@
     "howToParticipate": "如何参与",
     "step1": {
       "title": "关注 @RootstockCN",
-      "description": "前往 Twitter 关注 @RootstockCN 并转发活动推文"
+      "description": "前往 X 关注 @RootstockCN"
     },
     "step2": {
       "title": "铸造你的专属 SBT",
       "description": "连接钱包，免费铸造你的「爱你 3000」纪念 SBT"
     },
     "step3": {
-      "title": "分享到 Twitter",
-      "description": "在 Twitter 上分享你的 NFT，告诉大家你为什么爱 Rootstock"
+      "title": "分享到 X",
+      "description": "在 X 上分享你的 NFT，告诉大家你为什么爱 Rootstock"
     },
     "step4": {
-      "title": "参加抽奖",
-      "description": "完成以上步骤，即有机会赢取丰厚奖励！"
+      "title": "填写Google 表单参加抽奖",
+      "description": "完成以上步骤，即有机会赢取丰厚奖励！",
+      "link": "https://forms.gle/Jd82tnD9LyAMTz6q7"
     },
     "rewards": {
       "title": "活动奖励",

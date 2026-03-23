@@ -8,18 +8,6 @@ export const CampaignInfo: React.FC = () => {
 
   return (
     <div className="w-full">
-      {/* 活動主題 */}
-      <div className="text-center mb-12">
-        <div className="inline-block bg-rsk-offwhite border-3 border-rsk-orange rounded-xl px-8 py-4">
-          <h3 className="text-3xl font-bold text-rsk-orange mb-2 uppercase">
-            {t('campaign.title')}
-          </h3>
-          <p className="text-rsk-text-dark">
-            {t('campaign.subtitle')}
-          </p>
-        </div>
-      </div>
-
       {/* 活動說明 */}
       <div className="bg-rsk-offwhite border-3 border-rsk-border-dark rounded-xl p-8 mb-8">
         <div className="text-center mb-6">
@@ -75,6 +63,16 @@ export const CampaignInfo: React.FC = () => {
             </div>
             <div>
               <p className="font-semibold text-rsk-text-dark mb-1">{t('campaign.step4.title')}</p>
+              <p className="text-sm text-rsk-text-dark mb-2">
+                <a
+                  href={t('campaign.step4.link')}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-rsk-orange hover:underline break-all"
+                >
+                  {t('campaign.step4.link')}
+                </a>
+              </p>
               <p className="text-sm text-rsk-text-dark">{t('campaign.step4.description')}</p>
             </div>
           </div>
