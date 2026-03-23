@@ -25,8 +25,8 @@ export const metadata: Metadata = {
     images: [
       {
         url: '/images/sbt-preview.png',
-        width: 1200,
-        height: 630,
+        width: 2700,
+        height: 2700,
         alt: 'Rootstock 爱你 3000 - 纪念灵魂绑定代币',
       }
     ],
