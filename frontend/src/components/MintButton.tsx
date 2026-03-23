@@ -28,7 +28,13 @@ export const MintButton: React.FC<MintButtonProps> = ({
   // 从 localStorage 读取确认状态
   const [hasConfirmedFollow, setHasConfirmedFollow] = useState(() => {
     if (typeof window !== 'undefined') {
-      return localStorage.getItem('rootstock_twitter_confirmed') === 'true';
+      const confirmed = localStorage.getItem('rootstock_twitter_confirmed') === 'true';
+      // 🔧 调试提示：如需重置Twitter关注确认，在控制台运行：
+      // localStorage.removeItem('rootstock_twitter_confirmed'); location.reload();
+      if (confirmed) {
+        console.log('✅ Twitter follow confirmation found in localStorage');
+      }
+      return confirmed;
     }
     return false;
   });

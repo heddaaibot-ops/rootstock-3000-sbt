@@ -145,8 +145,13 @@ export const useContract = () => {
         await publicClient.waitForTransactionReceipt({ hash });
       }
 
-      // 刷新數據
-      await fetchContractData();
+      // 🔧 修复：即使 fetchContractData 失败也要返回成功状态
+      // 刷新數據（如果失败也不影响返回结果）
+      try {
+        await fetchContractData();
+      } catch (refreshErr) {
+        console.warn('Failed to refresh contract data after mint, but mint was successful:', refreshErr);
+      }
 
       return { success: true, txHash: hash };
     } catch (err: any) {
