@@ -377,7 +377,7 @@ function getMintProgressBasisPoints() public view returns (uint256) {
 1. 主網部署（2026-03-15 前）
 2. 社群推廣
 3. 監控和維護
-4. 慶祝 3000 天里程碑（2026-04-04）
+4. 慶祝 3000 天里程碑（2026-03-22）
 
 ---
 

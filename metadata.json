@@ -1,0 +1,33 @@
+{
+  "name": "Rootstock 3000 Days",
+  "description": "纪念 Rootstock 主网稳定运行 3000 天。运行时间最长的 Bitcoin's DeFi Layer 。这个灵魂绑定代币庆祝从 2018 年 1 月 3 日到 2026 年 3 月 22 日的旅程，见证比特币合并挖矿的安全性和比特币 DeFi 的基石。",
+  "image": "ipfs://Qma9saAgCkB8aZfiCBGuXV4Pth7gCJ88qwWVNyhy3oZ73t",
+  "external_url": "https://rootstockcn.com/",
+  "attributes": [
+    {
+      "trait_type": "Milestone",
+      "value": "3000 Days"
+    },
+    {
+      "trait_type": "Launch Date",
+      "value": "2018-01-03"
+    },
+    {
+      "trait_type": "Milestone Date",
+      "value": "2026-03-22"
+    },
+    {
+      "trait_type": "Type",
+      "value": "Soul Bound Token"
+    },
+    {
+      "trait_type": "Network",
+      "value": "Rootstock"
+    },
+    {
+      "display_type": "number",
+      "trait_type": "Total Supply",
+      "value": 10000
+    }
+  ]
+}

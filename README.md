@@ -2,17 +2,25 @@
 
 紀念 Rootstock 主網運行 3000 天的 Soul Bound Token 項目，包含智能合約和前端應用。
 
+## 🔗 快速链接
+
+- **🌐 生产网站**: https://rootstockcn.com
+- **📜 合约地址**: `0x55471B1A060188B1BF85777Aa2Dd2C6A2876f188`
+- **🔍 Blockscout**: https://rootstock.blockscout.com/address/0x55471B1A060188B1BF85777Aa2Dd2C6A2876f188
+- **📋 GitHub**: https://github.com/heddaaibot-ops/rootstock-3000-sbt
+- **📖 快速参考**: [QUICK_REFERENCE.md](./QUICK_REFERENCE.md) ⭐ - 所有链接和信息
+
 ## 🌐 在線演示
 
-**前端部署**: https://frontend-green-delta-12.vercel.app
-
-部署在 Vercel 上，連接到 Rootstock Testnet。
+**生产环境**: https://rootstockcn.com
+**状态**: ✅ 已上线，Rootstock Mainnet
+**已铸造**: 6 / 10,000
 
 ## 📅 重要日期
 
-- **Rootstock 主網上線**：2018-01-16
-- **3000 天里程碑**：2026-04-04
-- **距離里程碑**：29 天
+- **Rootstock 主網上線**：2018-01-03
+- **3000 天里程碑**：2026-03-22
+- **狀態**：✅ 已達成里程碑
 
 ## ✨ 合約特性
 

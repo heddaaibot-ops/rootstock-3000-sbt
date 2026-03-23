@@ -7,14 +7,15 @@ import "@openzeppelin/contracts/utils/Pausable.sol";
 import "@openzeppelin/contracts/utils/ReentrancyGuard.sol";
 
 /**
- * @title Rootstock3000SBT v2
- * @dev Soul Bound Token 紀念 Rootstock 主網運行 3000 天 (優化版)
+ * @title Rootstock3000SBT v3
+ * @dev Soul Bound Token 紀念 Rootstock 主網運行 3000 天 (單一 metadata 版本)
  *
  * 特性：
  * - 總量：10,000 個
  * - 每個地址限鑄 1 個
  * - 完全不可轉移（Soul Bound）
  * - 免費鑄造（僅支付 Gas）
+ * - 所有 NFT 使用同一個 metadata 文件（節省 IPFS 成本）
  * - 記錄鑄造時間和區塊資訊
  * - Gas 優化
  * - 批量查詢功能
@@ -44,8 +45,8 @@ contract Rootstock3000SBT is ERC721, Ownable, Pausable, ReentrancyGuard {
     /// @notice 當前已鑄造的 Token ID
     uint256 private _currentTokenId;
 
-    /// @notice 元數據 Base URI
-    string private _baseTokenURI;
+    /// @notice 元數據 URI（所有 Token 共用同一個）
+    string private _tokenMetadataURI;
 
     /// @notice 記錄每個地址是否已鑄造
     mapping(address => bool) public hasMinted;
@@ -71,8 +72,8 @@ contract Rootstock3000SBT is ERC721, Ownable, Pausable, ReentrancyGuard {
         uint256 blockNumber
     );
 
-    /// @notice Base URI 更新事件
-    event BaseURIUpdated(string newBaseURI);
+    /// @notice Metadata URI 更新事件
+    event MetadataURIUpdated(string newMetadataURI);
 
     // ============================================
     // 自定義錯誤（Gas 優化）
@@ -90,13 +91,13 @@ contract Rootstock3000SBT is ERC721, Ownable, Pausable, ReentrancyGuard {
     /**
      * @dev 初始化合約
      * @param initialOwner 初始 owner 地址
-     * @param baseURI 初始 Base URI
+     * @param metadataURI 統一的 metadata URI（所有 NFT 共用）
      */
     constructor(
         address initialOwner,
-        string memory baseURI
+        string memory metadataURI
     ) ERC721("Rootstock 3000 Days", "RSK3000") Ownable(initialOwner) {
-        _baseTokenURI = baseURI;
+        _tokenMetadataURI = metadataURI;
         // 合約部署時處於暫停狀態，等待 owner 開放
         _pause();
     }
@@ -172,7 +173,7 @@ contract Rootstock3000SBT is ERC721, Ownable, Pausable, ReentrancyGuard {
     /**
      * @notice 返回 Token 元數據 URI
      * @param tokenId Token ID
-     * @return Token URI
+     * @return Token URI（所有 Token 返回相同的 URI）
      */
     function tokenURI(uint256 tokenId)
         public
@@ -182,27 +183,23 @@ contract Rootstock3000SBT is ERC721, Ownable, Pausable, ReentrancyGuard {
         returns (string memory)
     {
         _requireOwned(tokenId);
-
-        string memory baseURI = _baseURI();
-        return bytes(baseURI).length > 0
-            ? string(abi.encodePacked(baseURI, _toString(tokenId), ".json"))
-            : "";
+        return _tokenMetadataURI;
     }
 
     /**
-     * @notice 設置 Base URI（僅 Owner）
-     * @param newBaseURI 新的 Base URI
+     * @notice 設置統一的 Metadata URI（僅 Owner）
+     * @param newMetadataURI 新的 Metadata URI
      */
-    function setBaseURI(string memory newBaseURI) external onlyOwner {
-        _baseTokenURI = newBaseURI;
-        emit BaseURIUpdated(newBaseURI);
+    function setMetadataURI(string memory newMetadataURI) external onlyOwner {
+        _tokenMetadataURI = newMetadataURI;
+        emit MetadataURIUpdated(newMetadataURI);
     }
 
     /**
-     * @dev 內部函數：返回 Base URI
+     * @notice 查詢當前 Metadata URI
      */
-    function _baseURI() internal view virtual override returns (string memory) {
-        return _baseTokenURI;
+    function getMetadataURI() external view returns (string memory) {
+        return _tokenMetadataURI;
     }
 
     // ============================================
@@ -363,31 +360,5 @@ contract Rootstock3000SBT is ERC721, Ownable, Pausable, ReentrancyGuard {
      */
     function unpause() external onlyOwner {
         _unpause();
-    }
-
-    // ============================================
-    // 輔助函數
-    // ============================================
-
-    /**
-     * @dev 將 uint256 轉換為 string
-     */
-    function _toString(uint256 value) internal pure returns (string memory) {
-        if (value == 0) {
-            return "0";
-        }
-        uint256 temp = value;
-        uint256 digits;
-        while (temp != 0) {
-            digits++;
-            temp /= 10;
-        }
-        bytes memory buffer = new bytes(digits);
-        while (value != 0) {
-            digits -= 1;
-            buffer[digits] = bytes1(uint8(48 + uint256(value % 10)));
-            value /= 10;
-        }
-        return string(buffer);
     }
 }
