@@ -1,4 +1,4 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import { Space_Grotesk } from 'next/font/google';
 import '@/styles/globals.css';
 import { Web3Provider } from '@/components/Web3Provider';
@@ -11,6 +11,7 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://rootstockcn.com'),
   title: 'Rootstock 爱你 3000 | 纪念灵魂绑定代币',
   description: '纪念 Rootstock 上主网 3000 天。运行时间最长的 Bitcoin\'s DeFi Layer。这个灵魂绑定代币庆祝从 2018 年 1 月 3 日到 2026 年 3 月 22 日的旅程，见证比特币合并挖矿的安全性和比特币 DeFi 的基石。',
   keywords: 'Rootstock, RSK, 比特币, 智能合约, SBT, 灵魂绑定代币, NFT, 区块链, Bitcoin DeFi',
@@ -36,7 +37,11 @@ export const metadata: Metadata = {
     description: '纪念 Rootstock 上主网 3000 天。运行时间最长的 Bitcoin\'s DeFi Layer。',
     images: ['/images/sbt-preview.png'],
   },
-  viewport: 'width=device-width, initial-scale=1',
+};
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
   themeColor: '#FF6B00',
 };
 
