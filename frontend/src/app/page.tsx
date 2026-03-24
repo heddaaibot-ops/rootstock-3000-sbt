@@ -27,50 +27,56 @@ export default function Home() {
         {/* Hero Section */}
         <section className="relative py-20 bg-rsk-cream">
           <div className="container mx-auto px-4">
-            <div className="max-w-7xl mx-auto">
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-                {/* 左侧：文字内容 */}
-                <div className="text-center">
-                  {/* Rootstock Logo + Title */}
-                  <div className="flex flex-col items-center mb-6 gap-4">
-                    <div
-                      className="h-20 md:h-28 w-64 md:w-96"
-                      style={{
-                        backgroundColor: '#FF9100',
-                        WebkitMaskImage: 'url(/images/figma/rootstock-logo.png)',
-                        WebkitMaskSize: 'contain',
-                        WebkitMaskRepeat: 'no-repeat',
-                        WebkitMaskPosition: 'center',
-                        maskImage: 'url(/images/figma/rootstock-logo.png)',
-                        maskSize: 'contain',
-                        maskRepeat: 'no-repeat',
-                        maskPosition: 'center'
-                      }}
-                    />
-                    <h1 className="text-4xl md:text-5xl font-bold uppercase leading-tight">
-                      <div className="inline-block bg-rsk-pink text-white px-8 py-4 border-3 border-rsk-border-dark">爱你 3000</div>
-                    </h1>
-                  </div>
+            <div className="max-w-4xl mx-auto text-center relative">
+              {/* 左侧装饰插画 */}
+              <div className="hidden lg:block absolute -left-32 top-1/2 -translate-y-1/2 w-48 opacity-80">
+                <img
+                  src="/images/geometric-illustration.png"
+                  alt="Rootstock Geometric Illustration"
+                  className="w-full h-auto animate-float"
+                />
+              </div>
 
-                  <p className="text-xl md:text-2xl text-rsk-text-dark/80 mb-4 leading-relaxed font-bold">
-                    {t('hero.subtitle')}
-                  </p>
+              {/* 右侧装饰插画 */}
+              <div className="hidden lg:block absolute -right-32 top-1/2 -translate-y-1/2 w-48 opacity-80">
+                <img
+                  src="/images/geometric-illustration.png"
+                  alt="Rootstock Geometric Illustration"
+                  className="w-full h-auto animate-float-delayed"
+                  style={{ transform: 'scaleX(-1)' }}
+                />
+              </div>
 
-                  <div className="text-sm md:text-base text-rsk-text-dark/70 max-w-3xl lg:max-w-none leading-relaxed">
-                    <p className="mb-2">这个纪念灵魂绑定代币庆祝这一里程碑，并向所有参与这一旅程的人致敬</p>
-                    <p>通过铸造此 SBT，你将永久成为 Rootstock 历史的一部分</p>
-                  </div>
+              {/* 中央文字内容 */}
+              <div className="relative z-10">
+                {/* Rootstock Logo + Title */}
+                <div className="flex flex-col items-center mb-6 gap-4">
+                  <div
+                    className="h-20 md:h-28 w-64 md:w-96"
+                    style={{
+                      backgroundColor: '#FF9100',
+                      WebkitMaskImage: 'url(/images/figma/rootstock-logo.png)',
+                      WebkitMaskSize: 'contain',
+                      WebkitMaskRepeat: 'no-repeat',
+                      WebkitMaskPosition: 'center',
+                      maskImage: 'url(/images/figma/rootstock-logo.png)',
+                      maskSize: 'contain',
+                      maskRepeat: 'no-repeat',
+                      maskPosition: 'center'
+                    }}
+                  />
+                  <h1 className="text-4xl md:text-5xl font-bold uppercase leading-tight">
+                    <div className="inline-block bg-rsk-pink text-white px-8 py-4 border-3 border-rsk-border-dark">爱你 3000</div>
+                  </h1>
                 </div>
 
-                {/* 右侧：几何插画 */}
-                <div className="flex justify-center lg:justify-end">
-                  <div className="relative w-full max-w-lg">
-                    <img
-                      src="/images/geometric-illustration.png"
-                      alt="Rootstock Geometric Illustration"
-                      className="w-full h-auto animate-float"
-                    />
-                  </div>
+                <p className="text-xl md:text-2xl text-rsk-text-dark/80 mb-4 leading-relaxed font-bold">
+                  {t('hero.subtitle')}
+                </p>
+
+                <div className="text-sm md:text-base text-rsk-text-dark/70 max-w-3xl mx-auto leading-relaxed">
+                  <p className="mb-2">这个纪念灵魂绑定代币庆祝这一里程碑，并向所有参与这一旅程的人致敬</p>
+                  <p>通过铸造此 SBT，你将永久成为 Rootstock 历史的一部分</p>
                 </div>
               </div>
             </div>
