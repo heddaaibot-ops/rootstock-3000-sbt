@@ -61,12 +61,35 @@ export const MintButton: React.FC<MintButtonProps> = ({
   }, [onMint]);
 
   const handleMintClick = () => {
-    // 如果还没确认关注，先显示关注模态框
+    // 检查是否已铸造
+    if (hasUserMinted) {
+      return;
+    }
+
+    // 检查是否暂停
+    if (isPaused) {
+      return;
+    }
+
+    // 检查是否正在铸造
+    if (minting) {
+      return;
+    }
+
+    // 优先检查 Twitter 关注状态（即使未连接钱包）
+    // 这样用户可以先完成关注，再连接钱包
     if (!hasConfirmedFollow) {
       setShowFollowModal(true);
       return;
     }
-    // 已确认关注，执行铸造
+
+    // 检查钱包连接状态
+    if (!isConnected) {
+      // 如果没连接钱包，不做任何操作（按钮文字会提示连接钱包）
+      return;
+    }
+
+    // 所有条件满足，执行铸造
     handleMint();
   };
 
@@ -235,7 +258,9 @@ export const MintButton: React.FC<MintButtonProps> = ({
   }
 
   // 确定按钮状态和文字
-  const isDisabled = !isConnected || isPaused || hasUserMinted || minting;
+  // 只在真正无法操作时才 disable（已铸造、暂停、正在铸造）
+  // 未连接钱包时不 disable，这样可以点击并触发提示逻辑
+  const isDisabled = isPaused || hasUserMinted || minting;
 
   let buttonText = t('mint.button.mint');
   let statusMessage = t('mint.status.free');
