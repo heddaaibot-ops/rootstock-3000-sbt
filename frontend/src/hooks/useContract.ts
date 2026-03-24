@@ -133,29 +133,7 @@ export const useContract = () => {
     }
 
     try {
-      // 檢查用戶餘額
-      if (publicClient) {
-        const balance = await publicClient.getBalance({ address });
-        console.log(`💰 Current balance: ${balance.toString()} wei (${Number(balance) / 1e18} RBTC)`);
-
-        // 估算最小需要的餘額（gas × gasPrice）
-        const gasPrice = await publicClient.getGasPrice();
-        const estimatedCost = 200000n * gasPrice; // 使用最大 gas limit 估算
-
-        console.log(`⛽ Gas price: ${gasPrice.toString()} wei`);
-        console.log(`💵 Estimated cost: ${estimatedCost.toString()} wei (${Number(estimatedCost) / 1e18} RBTC)`);
-
-        if (balance < estimatedCost) {
-          const neededRBTC = Number(estimatedCost) / 1e18;
-          const currentRBTC = Number(balance) / 1e18;
-          return {
-            success: false,
-            error: `余额不足。您的余额: ${currentRBTC.toFixed(6)} RBTC，预计需要: ${neededRBTC.toFixed(6)} RBTC。请添加更多 rBTC 后再试。`,
-          };
-        }
-      }
-
-      // 先估算 gas，然後設置合理的上限
+      // 先估算實際需要的 gas
       let gasEstimate: bigint;
       try {
         gasEstimate = await publicClient?.estimateContractGas({
@@ -164,17 +142,39 @@ export const useContract = () => {
           functionName: 'mint',
           args: [],
           account: address,
-        }) || 150000n;
+        }) || 100000n;
 
-        // 加 20% 緩衝，但最多不超過 200,000
-        gasEstimate = (gasEstimate * 120n) / 100n;
+        // 加 50% 緩衝以確保成功，但最多不超過 200,000
+        gasEstimate = (gasEstimate * 150n) / 100n;
         if (gasEstimate > 200000n) {
           gasEstimate = 200000n;
         }
         console.log(`⛽ Estimated gas: ${gasEstimate.toString()}`);
       } catch (estimateErr) {
         console.warn('Gas estimation failed, using default:', estimateErr);
-        gasEstimate = 150000n; // 默認值
+        gasEstimate = 100000n; // 使用較低的默認值
+      }
+
+      // 檢查用戶餘額（使用實際估算的 gas，而不是最大值）
+      if (publicClient) {
+        const balance = await publicClient.getBalance({ address });
+        const gasPrice = await publicClient.getGasPrice();
+        const estimatedCost = gasEstimate * gasPrice; // 使用實際估算值
+
+        console.log(`💰 Current balance: ${balance.toString()} wei (${Number(balance) / 1e18} RBTC)`);
+        console.log(`⛽ Gas price: ${gasPrice.toString()} wei`);
+        console.log(`💵 Estimated cost: ${estimatedCost.toString()} wei (${Number(estimatedCost) / 1e18} RBTC)`);
+
+        // 只有當餘額明顯不足時才提示（留 10% 緩衝）
+        const requiredBalance = (estimatedCost * 110n) / 100n;
+        if (balance < requiredBalance) {
+          const neededRBTC = Number(requiredBalance) / 1e18;
+          const currentRBTC = Number(balance) / 1e18;
+          return {
+            success: false,
+            error: `余额不足。您的余额: ${currentRBTC.toFixed(8)} RBTC，预计需要: ${neededRBTC.toFixed(8)} RBTC。请添加更多 rBTC 后再试。`,
+          };
+        }
       }
 
       const hash = await walletClient.writeContract({
