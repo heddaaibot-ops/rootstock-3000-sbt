@@ -166,8 +166,9 @@ export const useContract = () => {
         console.log(`⛽ Gas price: ${gasPrice.toString()} wei`);
         console.log(`💵 Estimated cost: ${estimatedCost.toString()} wei (${Number(estimatedCost) / 1e18} RBTC)`);
 
-        // 只有在餘額完全為 0 或非常接近 0 時才提前提示
-        if (balance < 10000000000000n) { // 小於 0.00001 RBTC
+        // 只有在餘額極低時才提前提示（約 $0.1 USD）
+        // 實際鑄造只需約 0.000003-0.000005 RBTC (約 $0.3-0.5 USD)
+        if (balance < 1000000000000n) { // 小於 0.000001 RBTC (約 $0.1 USD)
           const currentRBTC = Number(balance) / 1e18;
           return {
             success: false,
