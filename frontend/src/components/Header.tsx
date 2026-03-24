@@ -18,8 +18,12 @@ export const Header: React.FC = () => {
 
           // 如果钱包返回空数组但前端显示已连接，说明状态不同步
           if (!accounts || accounts.length === 0) {
-            console.log('⚠️ 检测到连接状态不同步，正在清理...');
+            console.log('⚠️ 检测到连接状态不同步，正在清理并刷新页面...');
             disconnect();
+            // 延迟刷新，确保 disconnect 完成
+            setTimeout(() => {
+              window.location.reload();
+            }, 500);
           }
         } catch (error) {
           console.error('验证连接状态失败:', error);

@@ -86,7 +86,15 @@ export const MintButton: React.FC<MintButtonProps> = ({
 
     // 检查钱包连接状态
     if (!isConnected) {
-      // 如果没连接钱包，不做任何操作（按钮文字会提示连接钱包）
+      // 如果没连接钱包，提示用户刷新页面或点击右上角连接按钮
+      const shouldRefresh = confirm(
+        '检测到钱包未连接。\n\n' +
+        '如果您已经连接了钱包但仍看到此消息，可能是页面状态过期。\n\n' +
+        '点击「确定」刷新页面，或点击「取消」然后使用右上角的连接钱包按钮。'
+      );
+      if (shouldRefresh) {
+        window.location.reload();
+      }
       return;
     }
 
