@@ -330,8 +330,8 @@ export const MintButton: React.FC<MintButtonProps> = ({
               </svg>
             </button>
 
-            <h3 id="follow-modal-title" className="text-2xl font-bold text-rsk-text-dark mb-4 uppercase text-center">
-              🔶 关注 Rootstock 中文得到铸造资格
+            <h3 id="follow-modal-title" className="text-2xl font-bold text-rsk-text-dark mb-4 uppercase text-center leading-tight">
+              🔶 关注 Rootstock 中文<br />得到铸造资格
             </h3>
             <p className="text-rsk-text-dark mb-6 text-center">
               请先关注 RootstockCN 官方账号
