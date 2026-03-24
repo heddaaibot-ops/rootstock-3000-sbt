@@ -30,9 +30,9 @@ export default function Home() {
             <div className="max-w-7xl mx-auto">
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
                 {/* 左侧：文字内容 */}
-                <div className="text-center">
+                <div className="text-center lg:text-left">
                   {/* Rootstock Logo + Title */}
-                  <div className="flex flex-col items-center mb-6 gap-4">
+                  <div className="flex flex-col items-center lg:items-start mb-6 gap-4">
                     <div
                       className="h-20 md:h-28 w-64 md:w-96"
                       style={{
@@ -56,7 +56,7 @@ export default function Home() {
                     {t('hero.subtitle')}
                   </p>
 
-                  <div className="text-sm md:text-base text-rsk-text-dark/70 max-w-3xl lg:max-w-none leading-relaxed">
+                  <div className="text-sm md:text-base text-rsk-text-dark/70 max-w-xl mx-auto lg:mx-0 leading-relaxed">
                     <p className="mb-2">这个纪念灵魂绑定代币庆祝这一里程碑，并向所有参与这一旅程的人致敬</p>
                     <p>通过铸造此 SBT，你将永久成为 Rootstock 历史的一部分</p>
                   </div>
