@@ -18,21 +18,22 @@ export const MintButton: React.FC<MintButtonProps> = ({
   onMint,
   chainId,
 }) => {
-  const { isConnected } = useAccount();
+  const { isConnected, address } = useAccount();
   const { t } = useI18n();
   const [minting, setMinting] = useState(false);
   const [txHash, setTxHash] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [showFollowModal, setShowFollowModal] = useState(false);
 
-  // 从 localStorage 读取确认状态
+  // 从 localStorage 读取确认状态（绑定到钱包地址）
   const [hasConfirmedFollow, setHasConfirmedFollow] = useState(() => {
-    if (typeof window !== 'undefined') {
-      const confirmed = localStorage.getItem('rootstock_twitter_confirmed') === 'true';
-      // 🔧 调试提示：如需重置Twitter关注确认，在控制台运行：
-      // localStorage.removeItem('rootstock_twitter_confirmed'); location.reload();
+    if (typeof window !== 'undefined' && address) {
+      const storageKey = `rootstock_twitter_confirmed_${address.toLowerCase()}`;
+      const confirmed = localStorage.getItem(storageKey) === 'true';
+      // 🔧 调试提示：如需重置当前钱包的Twitter关注确认，在控制台运行：
+      // localStorage.removeItem('rootstock_twitter_confirmed_' + 'YOUR_ADDRESS'.toLowerCase()); location.reload();
       if (confirmed) {
-        console.log('✅ Twitter follow confirmation found in localStorage');
+        console.log(`✅ Twitter follow confirmation found for wallet: ${address}`);
       }
       return confirmed;
     }
@@ -95,18 +96,37 @@ export const MintButton: React.FC<MintButtonProps> = ({
 
   const handleConfirmFollow = useCallback(() => {
     setHasConfirmedFollow(true);
-    // 保存到 localStorage
-    if (typeof window !== 'undefined') {
-      localStorage.setItem('rootstock_twitter_confirmed', 'true');
+    // 保存到 localStorage（绑定到钱包地址）
+    if (typeof window !== 'undefined' && address) {
+      const storageKey = `rootstock_twitter_confirmed_${address.toLowerCase()}`;
+      localStorage.setItem(storageKey, 'true');
+      console.log(`✅ Twitter follow confirmed for wallet: ${address}`);
     }
     setShowFollowModal(false);
     // 确认后直接执行铸造
     handleMint();
-  }, [handleMint]);
+  }, [handleMint, address]);
 
   const closeModal = useCallback(() => {
     setShowFollowModal(false);
   }, []);
+
+  // 监听钱包地址变化，重新检查确认状态
+  useEffect(() => {
+    if (typeof window !== 'undefined' && address) {
+      const storageKey = `rootstock_twitter_confirmed_${address.toLowerCase()}`;
+      const confirmed = localStorage.getItem(storageKey) === 'true';
+      setHasConfirmedFollow(confirmed);
+      if (confirmed) {
+        console.log(`✅ Twitter follow confirmation loaded for wallet: ${address}`);
+      } else {
+        console.log(`⚠️ No Twitter follow confirmation for wallet: ${address}`);
+      }
+    } else {
+      // 未连接钱包时重置确认状态
+      setHasConfirmedFollow(false);
+    }
+  }, [address]);
 
   // ESC 键关闭模态框
   useEffect(() => {
