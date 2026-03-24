@@ -64,7 +64,7 @@ export default function Home() {
 
                 {/* 右侧：几何插画 */}
                 <div className="flex justify-center lg:justify-end">
-                  <div className="relative w-full max-w-lg">
+                  <div className="relative w-full max-w-md">
                     <img
                       src="/images/geometric-illustration.png"
                       alt="Rootstock Geometric Illustration"
