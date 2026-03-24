@@ -133,11 +133,56 @@ export const useContract = () => {
     }
 
     try {
+      // 檢查用戶餘額
+      if (publicClient) {
+        const balance = await publicClient.getBalance({ address });
+        console.log(`💰 Current balance: ${balance.toString()} wei (${Number(balance) / 1e18} RBTC)`);
+
+        // 估算最小需要的餘額（gas × gasPrice）
+        const gasPrice = await publicClient.getGasPrice();
+        const estimatedCost = 200000n * gasPrice; // 使用最大 gas limit 估算
+
+        console.log(`⛽ Gas price: ${gasPrice.toString()} wei`);
+        console.log(`💵 Estimated cost: ${estimatedCost.toString()} wei (${Number(estimatedCost) / 1e18} RBTC)`);
+
+        if (balance < estimatedCost) {
+          const neededRBTC = Number(estimatedCost) / 1e18;
+          const currentRBTC = Number(balance) / 1e18;
+          return {
+            success: false,
+            error: `余额不足。您的余额: ${currentRBTC.toFixed(6)} RBTC，预计需要: ${neededRBTC.toFixed(6)} RBTC。请添加更多 rBTC 后再试。`,
+          };
+        }
+      }
+
+      // 先估算 gas，然後設置合理的上限
+      let gasEstimate: bigint;
+      try {
+        gasEstimate = await publicClient?.estimateContractGas({
+          address: CONTRACT_ADDRESS,
+          abi: CONTRACT_ABI,
+          functionName: 'mint',
+          args: [],
+          account: address,
+        }) || 150000n;
+
+        // 加 20% 緩衝，但最多不超過 200,000
+        gasEstimate = (gasEstimate * 120n) / 100n;
+        if (gasEstimate > 200000n) {
+          gasEstimate = 200000n;
+        }
+        console.log(`⛽ Estimated gas: ${gasEstimate.toString()}`);
+      } catch (estimateErr) {
+        console.warn('Gas estimation failed, using default:', estimateErr);
+        gasEstimate = 150000n; // 默認值
+      }
+
       const hash = await walletClient.writeContract({
         address: CONTRACT_ADDRESS,
         abi: CONTRACT_ABI,
         functionName: 'mint',
         args: [],
+        gas: gasEstimate,
       });
 
       // 等待交易确认
@@ -171,7 +216,7 @@ export const useContract = () => {
       } else if (err.message?.includes('network') || err.message?.includes('fetch')) {
         errorMessage = 'Exception: 当前服务或节点响应异常，暂时无法完成操作，请稍后重试';
       } else if (err.message?.includes('insufficient funds')) {
-        errorMessage = 'Exception: 余额不足，请确保钱包中有足够的 rBTC 支付 Gas 费用';
+        errorMessage = 'Exception: 余额不足。铸造 SBT 需要支付少量 Gas 费（约 0.0001 rBTC），请确保钱包中有足够的 rBTC';
       }
 
       return { success: false, error: errorMessage };
