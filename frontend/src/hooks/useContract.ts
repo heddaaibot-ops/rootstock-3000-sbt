@@ -155,24 +155,23 @@ export const useContract = () => {
         gasEstimate = 100000n; // 使用較低的默認值
       }
 
-      // 檢查用戶餘額（使用實際估算的 gas，而不是最大值）
+      // 簡單的餘額檢查 - 只記錄信息，不阻止交易
+      // 讓錢包自己處理餘額不足的情況，因為只有錢包知道實際費用
       if (publicClient) {
         const balance = await publicClient.getBalance({ address });
         const gasPrice = await publicClient.getGasPrice();
-        const estimatedCost = gasEstimate * gasPrice; // 使用實際估算值
+        const estimatedCost = gasEstimate * gasPrice;
 
         console.log(`💰 Current balance: ${balance.toString()} wei (${Number(balance) / 1e18} RBTC)`);
         console.log(`⛽ Gas price: ${gasPrice.toString()} wei`);
         console.log(`💵 Estimated cost: ${estimatedCost.toString()} wei (${Number(estimatedCost) / 1e18} RBTC)`);
 
-        // 只有當餘額明顯不足時才提示（留 10% 緩衝）
-        const requiredBalance = (estimatedCost * 110n) / 100n;
-        if (balance < requiredBalance) {
-          const neededRBTC = Number(requiredBalance) / 1e18;
+        // 只有在餘額完全為 0 或非常接近 0 時才提前提示
+        if (balance < 10000000000000n) { // 小於 0.00001 RBTC
           const currentRBTC = Number(balance) / 1e18;
           return {
             success: false,
-            error: `余额不足。您的余额: ${currentRBTC.toFixed(8)} RBTC，预计需要: ${neededRBTC.toFixed(8)} RBTC。请添加更多 rBTC 后再试。`,
+            error: `余额不足。您的余额: ${currentRBTC.toFixed(8)} RBTC。铸造需要少量 rBTC 支付 Gas 费（约 0.000005 RBTC），请添加更多 rBTC 后再试。`,
           };
         }
       }
