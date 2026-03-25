@@ -97,6 +97,10 @@ export function BridgeModal({ isOpen, onClose }: BridgeModalProps) {
    */
   async function switchNetwork(chainId: string): Promise<boolean> {
     try {
+      if (!window.ethereum) {
+        setError('請安裝 MetaMask 或其他以太坊錢包');
+        return false;
+      }
       await window.ethereum.request({
         method: 'wallet_switchEthereumChain',
         params: [{ chainId }],
@@ -118,6 +122,9 @@ export function BridgeModal({ isOpen, onClose }: BridgeModalProps) {
    * 檢查 USDC 餘額
    */
   async function checkUSDCBalance(chain: keyof typeof CHAINS): Promise<number> {
+    if (!window.ethereum) {
+      throw new Error('請安裝 MetaMask 或其他以太坊錢包');
+    }
     const provider = new ethers.BrowserProvider(window.ethereum);
     const signer = await provider.getSigner();
     const address = await signer.getAddress();
@@ -160,6 +167,11 @@ export function BridgeModal({ isOpen, onClose }: BridgeModalProps) {
       }
 
       // 3. 發送 USDC
+      if (!window.ethereum) {
+        setError('請安裝 MetaMask 或其他以太坊錢包');
+        setIsSending(false);
+        return;
+      }
       const provider = new ethers.BrowserProvider(window.ethereum);
       const signer = await provider.getSigner();
 
