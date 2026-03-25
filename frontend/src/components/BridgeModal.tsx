@@ -57,6 +57,8 @@ export function BridgeModal({ isOpen, onClose }: BridgeModalProps) {
   const [usdcTxHash, setUsdcTxHash] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [isSending, setIsSending] = useState(false);
+  const [needsNetworkSwitch, setNeedsNetworkSwitch] = useState(false);
+  const [switchingNetwork, setSwitchingNetwork] = useState(false);
 
   const { status, rbtcTxHash, isConnected, error: wsError, resumed } = useBridgeStatus({
     usdcTxHash,
@@ -142,16 +144,70 @@ export function BridgeModal({ isOpen, onClose }: BridgeModalProps) {
   }
 
   /**
+   * 检查并提示切换网络
+   */
+  async function checkAndPromptNetworkSwitch() {
+    if (!selectedChain || !window.ethereum) return;
+
+    try {
+      const currentChainId = await window.ethereum.request({ method: 'eth_chainId' });
+      const targetChainId = CHAINS[selectedChain].id;
+
+      if (currentChainId !== targetChainId) {
+        setNeedsNetworkSwitch(true);
+        setError(null);
+        return false; // 需要切换
+      }
+      return true; // 不需要切换
+    } catch (e) {
+      console.error('检查链失败:', e);
+      return true; // 出错则继续
+    }
+  }
+
+  /**
+   * 确认并切换网络
+   */
+  async function confirmAndSwitchNetwork() {
+    if (!selectedChain) return false;
+
+    setSwitchingNetwork(true);
+    setError(null);
+
+    try {
+      const switched = await switchNetwork(CHAINS[selectedChain].id);
+      if (switched) {
+        setNeedsNetworkSwitch(false);
+        // 切换成功后自动继续发送
+        setTimeout(() => {
+          handleSendUSDC();
+        }, 500); // 给一点时间让网络切换稳定
+      }
+      setSwitchingNetwork(false);
+      return switched;
+    } catch (e) {
+      setSwitchingNetwork(false);
+      return false;
+    }
+  }
+
+  /**
    * 发送 USDC
    */
   async function handleSendUSDC() {
     if (!selectedChain) return;
 
+    // 先检查是否需要切换网络
+    const canProceed = await checkAndPromptNetworkSwitch();
+    if (!canProceed) {
+      return; // 需要用户确认切换网络
+    }
+
     setIsSending(true);
     setError(null);
 
     try {
-      // 1. 切换网络
+      // 1. 再次确认网络（防止用户手动切换）
       const switched = await switchNetwork(CHAINS[selectedChain].id);
       if (!switched) {
         setIsSending(false);
@@ -299,6 +355,41 @@ export function BridgeModal({ isOpen, onClose }: BridgeModalProps) {
               <button className="close-button" onClick={onClose}>
                 知道了
               </button>
+            </div>
+          ) : needsNetworkSwitch && selectedChain ? (
+            <div className="network-switch-prompt">
+              <div className="warning-icon">⚠️</div>
+              <h3>需要切换网络</h3>
+              <p className="switch-message">
+                您当前不在 <strong>{CHAINS[selectedChain].name}</strong> 网络
+              </p>
+              <p className="switch-hint">
+                需要切换到 {CHAINS[selectedChain].name} 才能发送 USDC
+              </p>
+              <div className="switch-actions">
+                <button
+                  className="switch-confirm-btn"
+                  onClick={confirmAndSwitchNetwork}
+                  disabled={switchingNetwork}
+                >
+                  {switchingNetwork ? '切换中...' : `切换到 ${CHAINS[selectedChain].name}`}
+                </button>
+                <button
+                  className="switch-cancel-btn"
+                  onClick={() => {
+                    setNeedsNetworkSwitch(false);
+                    setSelectedChain(null);
+                  }}
+                  disabled={switchingNetwork}
+                >
+                  取消
+                </button>
+              </div>
+              {error && (
+                <div className="error-message" style={{ marginTop: '1rem' }}>
+                  {error}
+                </div>
+              )}
             </div>
           ) : !usdcTxHash ? (
             <>
