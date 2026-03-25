@@ -8,60 +8,15 @@ export const Header: React.FC = () => {
   const { isConnected, address } = useAccount();
   const { disconnect } = useDisconnect();
 
-  // 🔄 智能验证连接状态（避免误判）
+  // 👂 监听钱包事件（仅依赖事件，避免主动查询导致多钱包冲突）
   useEffect(() => {
-    let failureCount = 0;
-    const MAX_FAILURES = 3; // 连续失败3次才断开（避免临时网络问题导致误判）
-
-    const verifyConnection = async () => {
-      if (isConnected && address && typeof window.ethereum !== 'undefined') {
-        try {
-          // 检查钱包是否真的连接
-          const accounts = await window.ethereum.request({ method: 'eth_accounts' });
-
-          // ✅ 验证成功 - 重置失败计数
-          if (accounts && accounts.length > 0) {
-            if (failureCount > 0) {
-              console.log('✅ 连接状态恢复正常');
-              failureCount = 0;
-            }
-            return;
-          }
-
-          // ⚠️ 返回空数组 - 钱包真的断开了
-          if (accounts && accounts.length === 0) {
-            console.log('⚠️ 检测到钱包已断开连接，正在清理并刷新页面...');
-            disconnect();
-            setTimeout(() => {
-              window.location.reload();
-            }, 500);
-          }
-        } catch (error) {
-          failureCount++;
-          console.warn(`⚠️ 验证连接状态失败 (${failureCount}/${MAX_FAILURES}):`, error);
-
-          // 🔒 只有连续失败多次才断开（避免因临时问题、广告拦截器等导致误判）
-          if (failureCount >= MAX_FAILURES) {
-            console.error('❌ 连续多次验证失败，断开连接以确保状态一致');
-            disconnect();
-            setTimeout(() => {
-              window.location.reload();
-            }, 500);
-          }
-        }
-      }
-    };
-
-    // ⏱️ 延迟首次验证（给钱包2秒时间稳定）
-    const initialTimeout = setTimeout(verifyConnection, 2000);
-
-    // 🔄 每30秒定期验证
-    const interval = setInterval(verifyConnection, 30000);
-
-    // 👂 监听钱包事件（更可靠的断开检测）
+    // 监听账户变化事件（钱包断开时会触发）
     const handleAccountsChanged = (accounts: string[]) => {
+      console.log('👂 钱包事件：账户变化', accounts);
+
+      // 如果账户列表为空且前端显示已连接，说明钱包断开了
       if (accounts.length === 0 && isConnected) {
-        console.log('👂 钱包事件：账户已断开');
+        console.log('⚠️ 检测到钱包已断开，正在清理状态...');
         disconnect();
         setTimeout(() => {
           window.location.reload();
@@ -69,21 +24,32 @@ export const Header: React.FC = () => {
       }
     };
 
+    // 监听链切换事件
+    const handleChainChanged = (chainId: string) => {
+      console.log('👂 链切换事件:', chainId);
+      // 链切换时刷新页面，确保状态同步
+      window.location.reload();
+    };
+
     if (typeof window.ethereum !== 'undefined') {
-      // TypeScript 类型断言
       const ethereum = window.ethereum as any;
+
+      // 添加事件监听
       ethereum.on('accountsChanged', handleAccountsChanged);
+      ethereum.on('chainChanged', handleChainChanged);
+
+      console.log('✅ 钱包事件监听已启动');
     }
 
     return () => {
-      clearTimeout(initialTimeout);
-      clearInterval(interval);
       if (typeof window.ethereum !== 'undefined') {
         const ethereum = window.ethereum as any;
         ethereum.removeListener('accountsChanged', handleAccountsChanged);
+        ethereum.removeListener('chainChanged', handleChainChanged);
+        console.log('🔄 钱包事件监听已清理');
       }
     };
-  }, [isConnected, address, disconnect]);
+  }, [isConnected, disconnect]);
 
   const addRootstockNetwork = async () => {
     console.log('🔘 点击了添加 Rootstock 按钮');
