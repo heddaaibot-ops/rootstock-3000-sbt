@@ -151,9 +151,10 @@ export default function Home() {
                 <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
                   <button
                     onClick={() => setIsBridgeModalOpen(true)}
-                    className="inline-block bg-rsk-pink hover:bg-[#FF85E8] text-white font-bold px-10 py-3 transition-all uppercase text-lg shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
+                    className="inline-block bg-rsk-pink hover:bg-[#FF85E8] text-white font-bold px-10 py-3 transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 flex flex-col items-center gap-1"
                   >
-                    10 秒跨链 ⭐️推荐
+                    <span className="text-lg uppercase">10 秒跨链</span>
+                    <span className="text-xs font-bold text-rsk-cream/90">⭐️推荐</span>
                   </button>
                   <a
                     href="/rbtc"
