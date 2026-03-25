@@ -32,7 +32,19 @@ const config = createConfig(
   })
 );
 
-const queryClient = new QueryClient();
+// 配置 QueryClient 以保持更长的缓存时间（避免状态频繁失效）
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      gcTime: 1_000 * 60 * 60 * 24, // 24 小时垃圾回收
+      staleTime: 1_000 * 60 * 5, // 5 分钟内数据视为新鲜
+      refetchOnWindowFocus: false, // 禁用窗口聚焦时自动重新获取
+      refetchOnMount: false, // 禁用组件挂载时自动重新获取
+      refetchOnReconnect: true, // 网络重连时重新获取
+      retry: 3, // 失败时重试 3 次
+    },
+  },
+});
 
 interface Web3ProviderProps {
   children: React.ReactNode;
@@ -40,7 +52,7 @@ interface Web3ProviderProps {
 
 export const Web3Provider: React.FC<Web3ProviderProps> = ({ children }) => {
   return (
-    <WagmiProvider config={config}>
+    <WagmiProvider config={config} reconnectOnMount={true}>
       <QueryClientProvider client={queryClient}>
         <ConnectKitProvider
           mode="auto"
