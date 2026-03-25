@@ -293,6 +293,7 @@ export function BridgeModal({ isOpen, onClose }: BridgeModalProps) {
         <div className="modal-body">
           {!isWalletConnected ? (
             <div className="wallet-not-connected">
+              <div className="warning-icon">🔌</div>
               <h3>请先连接钱包</h3>
               <p>请使用右上角的「连接钱包」按钮连接您的钱包</p>
               <button className="close-button" onClick={onClose}>
@@ -350,7 +351,7 @@ export function BridgeModal({ isOpen, onClose }: BridgeModalProps) {
 
               {!isConnected && status !== 'completed' && status !== 'failed' && (
                 <div className="connection-warning">
-                  连接断开，正在尝试重连...
+                  🔌 连接断开，正在尝试重连...
                 </div>
               )}
 
