@@ -1,0 +1,11 @@
+# 钱包信息（包含私钥）
+generated-wallets.json
+
+# Node modules
+node_modules/
+
+# 日志文件
+*.log
+
+# 环境变量
+.env

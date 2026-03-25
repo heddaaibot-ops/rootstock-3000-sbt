@@ -1,0 +1,15 @@
+{
+  "name": "rootstock-sbt-auto-mint",
+  "version": "1.0.0",
+  "description": "Rootstock 3000 SBT 自动铸造脚本",
+  "main": "auto-mint.js",
+  "scripts": {
+    "generate": "node auto-mint.js generate",
+    "distribute": "node auto-mint.js distribute",
+    "mint": "node auto-mint.js mint",
+    "all": "node auto-mint.js all"
+  },
+  "dependencies": {
+    "ethers": "^6.13.0"
+  }
+}
