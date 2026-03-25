@@ -7,6 +7,7 @@ import { Footer } from '@/components/Footer';
 import { ProgressBar } from '@/components/ProgressBar';
 import { MintButton } from '@/components/MintButton';
 import { CampaignInfo } from '@/components/CampaignInfo';
+import { BridgeModal } from '@/components/BridgeModal';
 import { useContract } from '@/hooks/useContract';
 import { useI18n } from '@/i18n/provider';
 
@@ -15,6 +16,7 @@ export default function Home() {
   const { contractData, loading, error, refresh, mint } = useContract();
   const { t } = useI18n();
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
+  const [isBridgeModalOpen, setIsBridgeModalOpen] = useState(false);
 
   return (
     <div className="min-h-screen flex flex-col bg-rsk-cream relative overflow-hidden">
@@ -143,15 +145,26 @@ export default function Home() {
 
               {/* 获取 rBTC 链接 */}
               <div className="mb-12 bg-rsk-cream p-8 rounded-xl text-center">
-                <p className="text-rsk-text-dark mb-4 text-lg font-semibold">
+                <p className="text-rsk-text-dark mb-6 text-lg font-semibold">
                   需要 rBTC 来支付 Gas 费？
                 </p>
-                <a
-                  href="/rbtc"
-                  className="inline-block bg-rsk-purple hover:bg-[#B088FF] text-rsk-cream font-bold px-10 py-3 transition-colors uppercase text-lg"
-                >
-                  获取 rBTC 指南 →
-                </a>
+                <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                  <button
+                    onClick={() => setIsBridgeModalOpen(true)}
+                    className="inline-block bg-gradient-to-r from-[#667eea] to-[#764ba2] hover:from-[#5568d3] hover:to-[#6a3d91] text-white font-bold px-10 py-3 transition-all uppercase text-lg shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
+                  >
+                    🌉 快速跨链
+                  </button>
+                  <a
+                    href="/rbtc"
+                    className="inline-block bg-rsk-purple hover:bg-[#B088FF] text-rsk-cream font-bold px-10 py-3 transition-colors uppercase text-lg"
+                  >
+                    获取 rBTC 指南 →
+                  </a>
+                </div>
+                <p className="text-sm text-rsk-text-dark/60 mt-4">
+                  💡 使用快速跨链：发送 0.5 USDC，自动收到 rBTC
+                </p>
               </div>
 
               {/* 项目数据 */}
@@ -334,6 +347,12 @@ export default function Home() {
 
       <Footer />
       </div>
+
+      {/* 跨链桥彈窗 */}
+      <BridgeModal
+        isOpen={isBridgeModalOpen}
+        onClose={() => setIsBridgeModalOpen(false)}
+      />
     </div>
   );
 }
