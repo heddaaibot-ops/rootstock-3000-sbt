@@ -1,8 +1,8 @@
 /**
- * BridgeModal 樣式 - Rootstock 品牌風格
- * 版本：V2.0
+ * BridgeModal 樣式 - 與「關注彈窗」配色一致
+ * 版本：V2.1
  * 日期：2026-03-25
- * 設計：符合 Rootstock 品牌指南
+ * 設計：符合網站關注彈窗風格
  */
 
 /* 彈窗遮罩 */
@@ -29,17 +29,17 @@
   }
 }
 
-/* 彈窗內容 - Rootstock 風格 */
+/* 彈窗內容 - 與關注彈窗一致 */
 .modal-content {
-  background: #FAFAF5;
-  border: 3px solid #000;
-  border-radius: 16px;
+  background: #FFF8E7;
+  border: 4px solid #FF9100;
+  border-radius: 20px;
   width: 90%;
   max-width: 500px;
   max-height: 90vh;
   overflow-y: auto;
-  box-shadow: 8px 8px 0 rgba(0, 0, 0, 0.3);
   animation: slideUp 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  position: relative;
 }
 
 @keyframes slideUp {
@@ -53,14 +53,13 @@
   }
 }
 
-/* 彈窗頭部 - Rootstock Orange */
+/* 彈窗頭部 */
 .modal-header {
-  background: #FF9100;
-  padding: 20px 24px;
-  border-bottom: 3px solid #000;
+  padding: 24px 24px 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  border-bottom: none;
 }
 
 .modal-header h2 {
@@ -68,18 +67,16 @@
   font-size: 24px;
   font-weight: 900;
   color: #000;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
   display: flex;
   align-items: center;
   gap: 8px;
 }
 
 .close-btn {
-  background: #000;
+  background: transparent;
   border: none;
-  color: #FAFAF5;
-  font-size: 24px;
+  color: #000;
+  font-size: 28px;
   width: 40px;
   height: 40px;
   border-radius: 8px;
@@ -89,17 +86,16 @@
   align-items: center;
   justify-content: center;
   font-weight: bold;
+  line-height: 1;
 }
 
 .close-btn:hover {
-  background: #FF70E0;
-  color: #000;
-  transform: scale(1.1);
+  background: rgba(0, 0, 0, 0.05);
 }
 
 /* 彈窗主體 */
 .modal-body {
-  padding: 28px 24px;
+  padding: 0 28px 32px;
 }
 
 /* 鏈選擇器 */
@@ -108,118 +104,104 @@
 }
 
 .selector-label {
-  font-size: 14px;
-  font-weight: 700;
+  font-size: 15px;
+  font-weight: 600;
   color: #000;
   margin-bottom: 14px;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
 }
 
 .chain-button {
   width: 100%;
-  padding: 18px 20px;
+  padding: 16px 20px;
   margin-bottom: 12px;
   background: #fff;
-  border: 3px solid #000;
+  border: 2px solid #E0E0E0;
   border-radius: 12px;
   color: #000;
   font-size: 16px;
-  font-weight: 700;
+  font-weight: 600;
   cursor: pointer;
-  transition: all 0.15s ease-out;
+  transition: all 0.2s;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.15);
 }
 
 .chain-button:hover {
-  background: #DEFF1A;
-  transform: translate(-2px, -2px);
-  box-shadow: 6px 6px 0 rgba(0, 0, 0, 0.25);
+  border-color: #FF9100;
+  background: #FFF8E7;
 }
 
 .chain-button.selected {
-  background: #FF70E0;
-  border-color: #000;
-  color: #000;
-  box-shadow: 6px 6px 0 rgba(0, 0, 0, 0.3);
-  transform: translate(-2px, -2px);
+  background: #9E75FF;
+  border-color: #9E75FF;
+  color: #fff;
 }
 
 .chain-name {
-  font-weight: 900;
-  text-transform: uppercase;
+  font-weight: 700;
 }
 
 .chain-estimate {
-  font-size: 12px;
-  font-weight: 600;
-  opacity: 0.7;
+  font-size: 13px;
+  opacity: 0.8;
 }
 
-/* 錯誤消息 - Rootstock Pink */
+/* 錯誤消息 */
 .error-message {
-  background: #FF70E0;
-  border: 3px solid #000;
+  background: #FFE5E5;
+  border: 2px solid #FF4444;
   border-radius: 12px;
-  padding: 16px;
+  padding: 14px 16px;
   margin-bottom: 20px;
-  color: #000;
+  color: #C00;
   font-size: 14px;
-  font-weight: 600;
+  font-weight: 500;
   line-height: 1.5;
   white-space: pre-line;
 }
 
-/* 發送按鈕 - Rootstock Orange */
+/* 發送按鈕 - 紫色主按鈕 */
 .send-button {
   width: 100%;
-  padding: 18px;
-  background: #FF9100;
-  border: 3px solid #000;
+  padding: 16px;
+  background: #9E75FF;
+  border: none;
   border-radius: 12px;
-  color: #000;
-  font-size: 18px;
-  font-weight: 900;
-  text-transform: uppercase;
+  color: #fff;
+  font-size: 17px;
+  font-weight: 700;
   cursor: pointer;
-  transition: all 0.15s ease-out;
-  box-shadow: 5px 5px 0 rgba(0, 0, 0, 0.3);
+  transition: all 0.2s;
   margin-bottom: 20px;
-  letter-spacing: 0.5px;
 }
 
 .send-button:hover:not(:disabled) {
-  background: #DEFF1A;
-  transform: translate(-2px, -2px);
-  box-shadow: 7px 7px 0 rgba(0, 0, 0, 0.4);
+  background: #8B5FED;
+  transform: translateY(-1px);
 }
 
 .send-button:disabled {
   opacity: 0.5;
   cursor: not-allowed;
-  transform: none;
-  box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.2);
 }
 
-/* 信息框 - Rootstock Cyan */
+/* 信息框 */
 .info-box {
-  background: #08FFD1;
-  border: 3px solid #000;
+  background: #F5F5F5;
   border-radius: 12px;
-  padding: 18px;
+  padding: 16px;
+  border: 1px solid #E0E0E0;
 }
 
 .info-item {
   display: flex;
   align-items: flex-start;
-  gap: 12px;
-  margin-bottom: 12px;
+  gap: 10px;
+  margin-bottom: 10px;
   font-size: 14px;
-  font-weight: 600;
-  color: #000;
+  font-weight: 500;
+  color: #333;
   line-height: 1.6;
 }
 
@@ -228,7 +210,7 @@
 }
 
 .info-icon {
-  font-size: 18px;
+  font-size: 16px;
   flex-shrink: 0;
 }
 
@@ -239,7 +221,7 @@
 }
 
 .wallet-not-connected .warning-icon {
-  font-size: 72px;
+  font-size: 64px;
   margin-bottom: 20px;
   animation: bounce 1.5s ease-in-out infinite;
 }
@@ -254,19 +236,16 @@
 }
 
 .wallet-not-connected h3 {
-  font-size: 24px;
-  font-weight: 900;
+  font-size: 22px;
+  font-weight: 800;
   color: #000;
-  text-transform: uppercase;
   margin-bottom: 12px;
-  letter-spacing: 0.5px;
 }
 
 .wallet-not-connected p {
-  font-size: 16px;
-  font-weight: 600;
-  color: #000;
-  opacity: 0.8;
+  font-size: 15px;
+  font-weight: 500;
+  color: #666;
   margin-bottom: 24px;
   line-height: 1.6;
 }
@@ -274,20 +253,17 @@
 /* 狀態顯示 */
 .status {
   text-align: center;
-  padding: 36px 20px;
+  padding: 32px 20px;
 }
 
-/* Spinner - Rootstock 風格 */
+/* Spinner */
 .spinner {
-  width: 64px;
-  height: 64px;
-  border: 5px solid #000;
-  border-top-color: #FF9100;
-  border-right-color: #FF70E0;
-  border-bottom-color: #DEFF1A;
-  border-left-color: #08FFD1;
+  width: 60px;
+  height: 60px;
+  border: 4px solid #E0E0E0;
+  border-top-color: #9E75FF;
   border-radius: 50%;
-  margin: 0 auto 24px;
+  margin: 0 auto 20px;
   animation: spin 1s linear infinite;
 }
 
@@ -298,160 +274,141 @@
 }
 
 .status-text {
-  font-size: 20px;
-  font-weight: 900;
+  font-size: 18px;
+  font-weight: 700;
   color: #000;
-  text-transform: uppercase;
-  margin-bottom: 10px;
-  letter-spacing: 0.5px;
+  margin-bottom: 8px;
 }
 
 .status-hint {
   font-size: 14px;
-  font-weight: 600;
-  color: #000;
-  opacity: 0.7;
+  font-weight: 500;
+  color: #666;
 }
 
 .estimate {
-  font-size: 14px;
-  font-weight: 600;
-  color: #000;
-  opacity: 0.6;
-  margin-top: 10px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #999;
+  margin-top: 8px;
 }
 
 .resumed-badge {
   display: inline-block;
-  background: #9E75FF;
-  border: 3px solid #000;
+  background: #E8DEFF;
+  border: 2px solid #9E75FF;
   border-radius: 20px;
-  padding: 8px 16px;
+  padding: 6px 14px;
   font-size: 12px;
-  font-weight: 900;
-  color: #000;
-  text-transform: uppercase;
-  margin-top: 16px;
-  letter-spacing: 0.5px;
+  font-weight: 700;
+  color: #9E75FF;
+  margin-top: 14px;
 }
 
-/* 成功狀態 - Rootstock Green */
+/* 成功狀態 */
 .status.completed {
-  background: #78C700;
-  border: 3px solid #000;
+  background: #E8F5E9;
+  border: 2px solid #4CAF50;
   border-radius: 16px;
-  padding: 32px 24px;
+  padding: 28px 20px;
 }
 
 .success-icon {
-  font-size: 72px;
-  margin-bottom: 20px;
+  font-size: 64px;
+  margin-bottom: 16px;
 }
 
 .amount-info {
-  margin: 20px 0;
-  font-size: 18px;
-  font-weight: 700;
+  margin: 16px 0;
+  font-size: 17px;
+  font-weight: 600;
   color: #000;
 }
 
 .amount-info strong {
-  font-size: 24px;
-  font-weight: 900;
-  text-transform: uppercase;
+  font-size: 22px;
+  font-weight: 800;
+  color: #4CAF50;
 }
 
 .fee-info {
   font-size: 13px;
-  font-weight: 600;
-  color: #000;
-  opacity: 0.7;
-  margin-top: 8px;
+  font-weight: 500;
+  color: #666;
+  margin-top: 6px;
 }
 
 .view-tx {
   display: inline-block;
-  margin-top: 20px;
-  padding: 12px 24px;
-  background: #000;
-  border: 3px solid #000;
+  margin-top: 16px;
+  padding: 10px 20px;
+  background: #9E75FF;
   border-radius: 10px;
-  color: #DEFF1A;
+  color: #fff;
   text-decoration: none;
   font-size: 14px;
-  font-weight: 900;
-  text-transform: uppercase;
-  transition: all 0.15s ease-out;
-  box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.3);
-  letter-spacing: 0.5px;
+  font-weight: 700;
+  transition: all 0.2s;
 }
 
 .view-tx:hover {
-  background: #FF70E0;
-  color: #000;
-  transform: translate(-2px, -2px);
-  box-shadow: 6px 6px 0 rgba(0, 0, 0, 0.4);
+  background: #8B5FED;
+  transform: translateY(-1px);
 }
 
-/* 失敗狀態 - Rootstock Pink */
+/* 失敗狀態 */
 .status.failed {
-  background: #FF70E0;
-  border: 3px solid #000;
+  background: #FFEBEE;
+  border: 2px solid #F44336;
   border-radius: 16px;
-  padding: 32px 24px;
+  padding: 28px 20px;
 }
 
 .error-icon {
-  font-size: 72px;
-  margin-bottom: 20px;
+  font-size: 64px;
+  margin-bottom: 16px;
 }
 
 .error-hint {
   font-size: 14px;
-  font-weight: 600;
-  color: #000;
-  opacity: 0.8;
-  margin-top: 12px;
+  font-weight: 500;
+  color: #666;
+  margin-top: 10px;
 }
 
-/* 連接警告 - Rootstock Lime */
+/* 連接警告 */
 .connection-warning {
-  background: #DEFF1A;
-  border: 3px solid #000;
+  background: #FFF3CD;
+  border: 2px solid #FFC107;
   border-radius: 12px;
-  padding: 16px;
-  margin-top: 20px;
-  color: #000;
+  padding: 14px;
+  margin-top: 16px;
+  color: #856404;
   font-size: 14px;
-  font-weight: 700;
+  font-weight: 600;
   text-align: center;
 }
 
-/* 關閉/重試按鈕 */
+/* 關閉/重試按鈕 - 橙色次要按鈕 */
 .close-button,
 .retry-button {
   width: 100%;
-  padding: 16px;
-  margin-top: 20px;
-  background: #000;
-  border: 3px solid #000;
+  padding: 14px;
+  margin-top: 16px;
+  background: #FF9100;
+  border: none;
   border-radius: 12px;
-  color: #DEFF1A;
+  color: #fff;
   font-size: 16px;
-  font-weight: 900;
-  text-transform: uppercase;
+  font-weight: 700;
   cursor: pointer;
-  transition: all 0.15s ease-out;
-  box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.3);
-  letter-spacing: 0.5px;
+  transition: all 0.2s;
 }
 
 .close-button:hover,
 .retry-button:hover {
-  background: #9E75FF;
-  color: #000;
-  transform: translate(-2px, -2px);
-  box-shadow: 6px 6px 0 rgba(0, 0, 0, 0.4);
+  background: #FF7700;
+  transform: translateY(-1px);
 }
 
 /* 響應式設計 */
@@ -459,12 +416,11 @@
   .modal-content {
     width: 95%;
     max-height: 95vh;
-    border-radius: 14px;
-    border-width: 3px;
+    border-radius: 16px;
   }
 
   .modal-header {
-    padding: 18px 20px;
+    padding: 20px 20px 16px;
   }
 
   .modal-header h2 {
@@ -474,36 +430,35 @@
   .close-btn {
     width: 36px;
     height: 36px;
-    font-size: 20px;
+    font-size: 24px;
   }
 
   .modal-body {
-    padding: 24px 20px;
+    padding: 0 24px 28px;
   }
 
   .chain-button {
-    padding: 16px 18px;
+    padding: 14px 16px;
     font-size: 15px;
   }
 
   .send-button {
-    padding: 16px;
+    padding: 14px;
     font-size: 16px;
   }
 
   .status-text {
-    font-size: 18px;
+    font-size: 17px;
   }
 
   .spinner {
-    width: 56px;
-    height: 56px;
-    border-width: 4px;
+    width: 54px;
+    height: 54px;
   }
 
   .success-icon,
   .error-icon {
-    font-size: 64px;
+    font-size: 56px;
   }
 
   .amount-info strong {
