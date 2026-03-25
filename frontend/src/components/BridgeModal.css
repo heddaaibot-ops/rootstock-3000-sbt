@@ -66,7 +66,7 @@
   margin: 0;
   font-size: 24px;
   font-weight: 900;
-  color: #000;
+  color: #5C2E00;
   display: flex;
   align-items: center;
   gap: 8px;
@@ -75,7 +75,7 @@
 .close-btn {
   background: transparent;
   border: none;
-  color: #000;
+  color: #5C2E00;
   font-size: 28px;
   width: 40px;
   height: 40px;
@@ -106,7 +106,7 @@
 .selector-label {
   font-size: 15px;
   font-weight: 600;
-  color: #000;
+  color: #5C2E00;
   margin-bottom: 14px;
 }
 
@@ -117,7 +117,7 @@
   background: #fff;
   border: 2px solid #E0E0E0;
   border-radius: 12px;
-  color: #000;
+  color: #5C2E00;
   font-size: 16px;
   font-weight: 600;
   cursor: pointer;
@@ -201,7 +201,7 @@
   margin-bottom: 10px;
   font-size: 14px;
   font-weight: 500;
-  color: #333;
+  color: #5C2E00;
   line-height: 1.6;
 }
 
@@ -238,14 +238,14 @@
 .wallet-not-connected h3 {
   font-size: 22px;
   font-weight: 800;
-  color: #000;
+  color: #5C2E00;
   margin-bottom: 12px;
 }
 
 .wallet-not-connected p {
   font-size: 15px;
   font-weight: 500;
-  color: #666;
+  color: #8B5A3C;
   margin-bottom: 24px;
   line-height: 1.6;
 }
@@ -276,20 +276,20 @@
 .status-text {
   font-size: 18px;
   font-weight: 700;
-  color: #000;
+  color: #5C2E00;
   margin-bottom: 8px;
 }
 
 .status-hint {
   font-size: 14px;
   font-weight: 500;
-  color: #666;
+  color: #8B5A3C;
 }
 
 .estimate {
   font-size: 13px;
   font-weight: 500;
-  color: #999;
+  color: #A08060;
   margin-top: 8px;
 }
 
@@ -322,7 +322,7 @@
   margin: 16px 0;
   font-size: 17px;
   font-weight: 600;
-  color: #000;
+  color: #5C2E00;
 }
 
 .amount-info strong {
@@ -334,7 +334,7 @@
 .fee-info {
   font-size: 13px;
   font-weight: 500;
-  color: #666;
+  color: #8B5A3C;
   margin-top: 6px;
 }
 
@@ -372,7 +372,7 @@
 .error-hint {
   font-size: 14px;
   font-weight: 500;
-  color: #666;
+  color: #8B5A3C;
   margin-top: 10px;
 }
 
