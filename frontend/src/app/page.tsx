@@ -153,7 +153,7 @@ export default function Home() {
                     onClick={() => setIsBridgeModalOpen(true)}
                     className="inline-block bg-rsk-pink hover:bg-[#FF85E8] text-white font-bold px-10 py-3 transition-all uppercase text-lg shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
                   >
-                    快速跨链
+                    10 秒跨链 ⭐️推荐
                   </button>
                   <a
                     href="/rbtc"
