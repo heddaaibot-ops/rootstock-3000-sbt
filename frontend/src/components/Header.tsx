@@ -70,14 +70,17 @@ export const Header: React.FC = () => {
     };
 
     if (typeof window.ethereum !== 'undefined') {
-      window.ethereum.on('accountsChanged', handleAccountsChanged);
+      // TypeScript 类型断言
+      const ethereum = window.ethereum as any;
+      ethereum.on('accountsChanged', handleAccountsChanged);
     }
 
     return () => {
       clearTimeout(initialTimeout);
       clearInterval(interval);
       if (typeof window.ethereum !== 'undefined') {
-        window.ethereum.removeListener('accountsChanged', handleAccountsChanged);
+        const ethereum = window.ethereum as any;
+        ethereum.removeListener('accountsChanged', handleAccountsChanged);
       }
     };
   }, [isConnected, address, disconnect]);
