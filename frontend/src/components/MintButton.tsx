@@ -24,6 +24,15 @@ export const MintButton: React.FC<MintButtonProps> = ({
   const [txHash, setTxHash] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [showFollowModal, setShowFollowModal] = useState(false);
+  const [isReady, setIsReady] = useState(false);
+
+  // 等待 wagmi 状态稳定后再渲染（避免状态不同步）
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsReady(true);
+    }, 100);
+    return () => clearTimeout(timer);
+  }, []);
 
   // 从 localStorage 读取确认状态（绑定到钱包地址）
   const [hasConfirmedFollow, setHasConfirmedFollow] = useState(() => {
@@ -62,6 +71,11 @@ export const MintButton: React.FC<MintButtonProps> = ({
   }, [onMint]);
 
   const handleMintClick = () => {
+    // 检查状态是否准备好
+    if (!isReady) {
+      return;
+    }
+
     // 检查是否已铸造
     if (hasUserMinted) {
       return;
@@ -293,7 +307,11 @@ export const MintButton: React.FC<MintButtonProps> = ({
   let buttonText = t('mint.button.mint');
   let statusMessage = t('mint.status.free');
 
-  if (!isConnected) {
+  // 🔧 等待状态稳定后再检查连接状态（避免刚加载时的误判）
+  if (!isReady) {
+    buttonText = '加载中...';
+    statusMessage = '正在初始化...';
+  } else if (!isConnected) {
     buttonText = t('mint.button.connectWallet');
     statusMessage = t('mint.status.connect');
   } else if (hasUserMinted) {
@@ -313,8 +331,8 @@ export const MintButton: React.FC<MintButtonProps> = ({
       <div className="text-center">
         <button
           onClick={handleMintClick}
-          disabled={isDisabled}
-          className={`group relative px-10 py-4 min-w-[200px] h-[56px] ${!isConnected ? 'bg-rsk-pink hover:bg-[#FF85E6]' : 'bg-rsk-orange hover:bg-[#FFA726]'} text-white font-bold text-lg rounded-nametag transition-all duration-300 transform hover:scale-105 hover:shadow-[0_8px_24px_rgba(255,145,0,0.4)] disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none disabled:shadow-none uppercase tracking-wide`}
+          disabled={!isReady || isDisabled}
+          className={`group relative px-10 py-4 min-w-[200px] h-[56px] ${!isConnected && isReady ? 'bg-rsk-pink hover:bg-[#FF85E6]' : 'bg-rsk-orange hover:bg-[#FFA726]'} text-white font-bold text-lg rounded-nametag transition-all duration-300 transform hover:scale-105 hover:shadow-[0_8px_24px_rgba(255,145,0,0.4)] disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none disabled:shadow-none uppercase tracking-wide`}
         >
           {minting ? (
             <span className="flex items-center gap-3 justify-center">
