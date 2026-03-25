@@ -35,6 +35,7 @@ export function useBridgeStatus({ usdcTxHash, fromAddress, chain }: UseBridgeSta
   const [error, setError] = useState<string | null>(null);
   const wsRef = useRef<WebSocket | null>(null);
   const reconnectTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const heartbeatIntervalRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
     if (!usdcTxHash) {
@@ -67,13 +68,11 @@ export function useBridgeStatus({ usdcTxHash, fromAddress, chain }: UseBridgeSta
           }));
 
           // 啟動心跳檢測（每 30 秒）
-          const heartbeat = setInterval(() => {
+          heartbeatIntervalRef.current = setInterval(() => {
             if (ws.readyState === WebSocket.OPEN) {
               ws.send(JSON.stringify({ type: 'ping' }));
             }
           }, 30000);
-
-          ws.heartbeatInterval = heartbeat;
         };
 
         ws.onmessage = (event) => {
@@ -135,8 +134,9 @@ export function useBridgeStatus({ usdcTxHash, fromAddress, chain }: UseBridgeSta
           setIsConnected(false);
 
           // 清理心跳
-          if (ws.heartbeatInterval) {
-            clearInterval(ws.heartbeatInterval);
+          if (heartbeatIntervalRef.current) {
+            clearInterval(heartbeatIntervalRef.current);
+            heartbeatIntervalRef.current = null;
           }
 
           // 如果交易未完成，5 秒後自動重連
@@ -162,8 +162,9 @@ export function useBridgeStatus({ usdcTxHash, fromAddress, chain }: UseBridgeSta
         const ws = wsRef.current;
 
         // 清理心跳
-        if (ws.heartbeatInterval) {
-          clearInterval(ws.heartbeatInterval);
+        if (heartbeatIntervalRef.current) {
+          clearInterval(heartbeatIntervalRef.current);
+          heartbeatIntervalRef.current = null;
         }
 
         // 取消訂閱
