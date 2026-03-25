@@ -217,7 +217,7 @@ export function BridgeModal({ isOpen, onClose }: BridgeModalProps) {
       return (
         <div className="status sending">
           <div className="spinner"></div>
-          <div className="status-text">📤 正在发送 USDC...</div>
+          <div className="status-text">正在发送 USDC...</div>
           <div className="status-hint">请在钱包中确认交易</div>
         </div>
       );
@@ -227,9 +227,9 @@ export function BridgeModal({ isOpen, onClose }: BridgeModalProps) {
       return (
         <div className="status pending">
           <div className="spinner"></div>
-          <div className="status-text">⏳ 等待监听到交易...</div>
+          <div className="status-text">等待监听到交易...</div>
           <div className="estimate">预计 {CHAINS[selectedChain!].estimatedTime}</div>
-          {resumed && <div className="resumed-badge">🔄 已恢复进度</div>}
+          {resumed && <div className="resumed-badge">已恢复进度</div>}
         </div>
       );
     }
@@ -238,7 +238,7 @@ export function BridgeModal({ isOpen, onClose }: BridgeModalProps) {
       return (
         <div className="status processing">
           <div className="spinner"></div>
-          <div className="status-text">⚡ 正在发送 rBTC...</div>
+          <div className="status-text">正在发送 rBTC...</div>
           <div className="estimate">预计 30-60 秒</div>
         </div>
       );
@@ -251,7 +251,6 @@ export function BridgeModal({ isOpen, onClose }: BridgeModalProps) {
           <div className="status-text">已完成！rBTC 已发送</div>
           <div className="amount-info">
             <div>收到约 <strong>$0.42</strong> 等值 rBTC</div>
-            <div className="fee-info">（扣除 10% 手续费 + $0.03 Gas）</div>
           </div>
           {rbtcTxHash && (
             <a
@@ -270,7 +269,6 @@ export function BridgeModal({ isOpen, onClose }: BridgeModalProps) {
     if (status === 'failed') {
       return (
         <div className="status failed">
-          <div className="error-icon">❌</div>
           <div className="status-text">处理失败</div>
           <div className="error-hint">请联系客服或稍后重试</div>
         </div>
@@ -286,7 +284,7 @@ export function BridgeModal({ isOpen, onClose }: BridgeModalProps) {
     <div className="modal-overlay" onClick={(e) => e.target === e.currentTarget && status !== 'processing' && onClose()}>
       <div className="modal-content">
         <div className="modal-header">
-          <h2>🌉 跨链到 Rootstock</h2>
+          <h2>跨链到 Rootstock</h2>
           {status !== 'processing' && (
             <button className="close-btn" onClick={onClose}>✕</button>
           )}
@@ -295,7 +293,6 @@ export function BridgeModal({ isOpen, onClose }: BridgeModalProps) {
         <div className="modal-body">
           {!isWalletConnected ? (
             <div className="wallet-not-connected">
-              <div className="warning-icon">🔌</div>
               <h3>请先连接钱包</h3>
               <p>请使用右上角的「连接钱包」按钮连接您的钱包</p>
               <button className="close-button" onClick={onClose}>
@@ -320,7 +317,7 @@ export function BridgeModal({ isOpen, onClose }: BridgeModalProps) {
 
               {error && (
                 <div className="error-message">
-                  ⚠️ {error}
+                  {error}
                 </div>
               )}
 
@@ -334,15 +331,9 @@ export function BridgeModal({ isOpen, onClose }: BridgeModalProps) {
 
               <div className="info-box">
                 <div className="info-item">
-                  <span className="info-icon">📌</span>
                   <span>发送后将收到约 <strong>$0.42</strong> 等值的 rBTC</span>
                 </div>
                 <div className="info-item">
-                  <span className="info-icon">💰</span>
-                  <span>扣除 10% 手续费 + $0.03 Gas</span>
-                </div>
-                <div className="info-item">
-                  <span className="info-icon">⚡</span>
                   <span>Gas 费用：约 $0.03（Economy 模式）</span>
                 </div>
               </div>
@@ -353,13 +344,13 @@ export function BridgeModal({ isOpen, onClose }: BridgeModalProps) {
 
               {wsError && (
                 <div className="error-message">
-                  ⚠️ {wsError}
+                  {wsError}
                 </div>
               )}
 
               {!isConnected && status !== 'completed' && status !== 'failed' && (
                 <div className="connection-warning">
-                  🔌 连接断开，正在尝试重连...
+                  连接断开，正在尝试重连...
                 </div>
               )}
 
