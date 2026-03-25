@@ -154,7 +154,7 @@ export default function Home() {
                     className="inline-block bg-rsk-pink hover:bg-[#FF85E8] text-white font-bold px-10 py-3 transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
                   >
                     <span className="text-lg uppercase">10 秒跨链</span>
-                    <span className="text-sm font-bold text-rsk-orange ml-2">⭐️推荐</span>
+                    <span className="text-sm font-bold text-rsk-text-dark ml-2">⭐️推荐</span>
                   </button>
                   <a
                     href="/rbtc"
