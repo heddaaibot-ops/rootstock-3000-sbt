@@ -250,7 +250,7 @@ export function BridgeModal({ isOpen, onClose }: BridgeModalProps) {
           <div className="success-icon">✅</div>
           <div className="status-text">已完成！rBTC 已发送</div>
           <div className="amount-info">
-            <div>收到约 <strong>$0.42</strong> 等值 rBTC</div>
+            <div>收到约 <strong>$0.40</strong> 等值 rBTC</div>
           </div>
           {rbtcTxHash && (
             <a
@@ -332,7 +332,7 @@ export function BridgeModal({ isOpen, onClose }: BridgeModalProps) {
 
               <div className="info-box">
                 <div className="info-item">
-                  <span>发送后将收到约 <strong>$0.42</strong> 等值的 rBTC</span>
+                  <span>发送后将收到约 <strong>$0.40</strong> 等值的 rBTC</span>
                 </div>
                 <div className="info-item">
                   <span>Gas 费用：约 $0.03（Economy 模式）</span>
