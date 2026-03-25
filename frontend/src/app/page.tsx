@@ -151,19 +151,20 @@ export default function Home() {
                 <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
                   <button
                     onClick={() => setIsBridgeModalOpen(true)}
-                    className="inline-block bg-gradient-to-r from-[#667eea] to-[#764ba2] hover:from-[#5568d3] hover:to-[#6a3d91] text-white font-bold px-10 py-3 transition-all uppercase text-lg shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
+                    className="inline-block bg-rsk-pink hover:bg-[#FF85E8] text-white font-bold px-10 py-3 transition-all uppercase text-lg shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 rounded-lg"
                   >
-                    🌉 快速跨链
+                    快速跨链
                   </button>
                   <a
                     href="/rbtc"
-                    className="inline-block bg-rsk-purple hover:bg-[#B088FF] text-rsk-cream font-bold px-10 py-3 transition-colors uppercase text-lg"
+                    className="inline-block bg-rsk-purple hover:bg-[#B088FF] text-rsk-cream font-bold px-10 py-3 transition-colors uppercase text-lg rounded-lg"
                   >
                     获取 rBTC 指南 →
                   </a>
                 </div>
-                <p className="text-sm text-rsk-text-dark/60 mt-4">
-                  💡 使用快速跨链：发送 0.5 USDC，自动收到 rBTC
+                <p className="text-sm text-rsk-text-dark/70 mt-4 italic leading-relaxed">
+                  💡 使用快速跨链：发送 0.5 USDC，自动收到 rBTC<br />
+                  * 支持 Arbitrum / Base / Ethereum 链
                 </p>
               </div>
 
