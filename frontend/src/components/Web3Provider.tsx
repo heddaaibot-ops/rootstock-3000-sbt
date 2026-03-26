@@ -48,6 +48,8 @@ const binanceWalletConfig = (): Wallet => ({
 });
 
 // 配置 Rootstock Mainnet，添加 OKX Wallet 和 Binance Wallet 支持
+const { wallets: defaultWallets } = getDefaultWallets();
+
 const config = getDefaultConfig({
   appName: 'Rootstock 3000 Days SBT',
   projectId: WALLETCONNECT_PROJECT_ID,
@@ -64,6 +66,7 @@ const config = getDefaultConfig({
       groupName: 'Popular',
       wallets: [okxWallet, binanceWalletConfig],
     },
+    ...defaultWallets,
   ],
 });
 
