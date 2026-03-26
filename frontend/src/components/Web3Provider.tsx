@@ -4,14 +4,17 @@ import React from 'react';
 import { WagmiProvider, createConfig, http, createStorage } from 'wagmi';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ConnectKitProvider, getDefaultConfig } from 'connectkit';
+import { injected, walletConnect, coinbaseWallet } from 'wagmi/connectors';
+import { getWagmiConnectorV2 } from '@binance/w3w-wagmi-connector-v2';
 import { ROOTSTOCK_MAINNET } from '@/utils/contract';
 
 // WalletConnect Project ID (optional - app will work without it for read-only features)
 const WALLETCONNECT_PROJECT_ID = process.env.NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID || 'demo';
 
-// 配置 Rootstock Mainnet（使用 ConnectKit 默认配置）
-// 支持钱包：MetaMask、OKX Wallet、Coinbase Wallet、Trust Wallet、
-// Binance Wallet（通过 injected 自动检测）等
+// 获取 Binance Wallet 连接器
+const binanceConnector = getWagmiConnectorV2();
+
+// 配置 Rootstock Mainnet，添加 OKX Wallet 和 Binance Wallet 支持
 const config = createConfig(
   getDefaultConfig({
     chains: [ROOTSTOCK_MAINNET as any],
@@ -22,6 +25,34 @@ const config = createConfig(
         retryDelay: 1000, // 重试延迟 1 秒
       }),
     },
+    connectors: [
+      // MetaMask (默认 injected)
+      injected({
+        target: 'metaMask',
+      }),
+      // OKX Wallet
+      injected({
+        target() {
+          return {
+            id: 'okx',
+            name: 'OKX Wallet',
+            provider: typeof window !== 'undefined' ? (window as any).okxwallet : undefined,
+          };
+        },
+      }),
+      // Binance Wallet (官方连接器)
+      binanceConnector(),
+      // Coinbase Wallet
+      coinbaseWallet({
+        appName: 'Rootstock 3000 Days SBT',
+        appLogoUrl: 'https://rootstockcn.com/favicon.ico',
+      }),
+      // WalletConnect (支持其他移动端钱包)
+      walletConnect({
+        projectId: WALLETCONNECT_PROJECT_ID,
+        showQrModal: true,
+      }),
+    ],
     walletConnectProjectId: WALLETCONNECT_PROJECT_ID,
     appName: 'Rootstock 3000 Days SBT',
     appDescription: '纪念 Rootstock 主网稳定运行 3000 天',
