@@ -423,7 +423,7 @@ export function BridgeModal({ isOpen, onClose }: BridgeModalProps) {
 
               <div className="info-box">
                 <div className="info-item">
-                  <span>发送后将收到约 <strong>0.000014 RBTC</strong>（价值约 $0.90）</span>
+                  <span>发送后将收到约 <strong>$0.9</strong> 等值的 RBTC</span>
                 </div>
                 <div className="info-item">
                   <span>Gas 费用：约 $0.03（Economy 模式）</span>
