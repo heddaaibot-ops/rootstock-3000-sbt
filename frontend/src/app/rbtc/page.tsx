@@ -29,6 +29,14 @@ const platforms = [
     featured: true,
   },
   {
+    name: '10 秒跨链桥',
+    description: '发送 0.5 USDC（从 Arbitrum/Base/Ethereum）到指定地址，10 秒内自动收到 rBTC',
+    url: '/',
+    category: 'crypto',
+    type: '快速跨链',
+    featured: true,
+  },
+  {
     name: 'Sushi Swap',
     description: '社区驱动的去中心化交易所（DEX），面向交易者和流动性提供者',
     url: 'https://www.sushi.com/rootstock/swap',
