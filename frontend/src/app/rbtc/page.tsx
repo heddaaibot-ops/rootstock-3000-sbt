@@ -21,19 +21,19 @@ const platforms = [
   },
   // 跨链资产获取
   {
+    name: '10 秒跨链桥',
+    description: '由 Rootstock 中文打造，发送 0.5 USDC（从 Arbitrum/Base/Ethereum）到指定地址，0 磨损收到 rBTC',
+    url: '/',
+    category: 'crypto',
+    type: '快速跨链',
+    featured: true,
+  },
+  {
     name: 'Jumper',
     description: '真正的多链交易所。汇集最好的桥接、交换、入金服务',
     url: 'https://jumper.xyz/zh?fromAmount=3&fromChain=42161&fromToken=0xaf88d065e77c8cC2239327C5EDb3A432268e5831&toChain=30&toToken=0x0000000000000000000000000000000000000000',
     category: 'crypto',
     type: '多链聚合器',
-    featured: true,
-  },
-  {
-    name: '10 秒跨链桥',
-    description: '发送 0.5 USDC（从 Arbitrum/Base/Ethereum）到指定地址，10 秒内自动收到 rBTC',
-    url: '/',
-    category: 'crypto',
-    type: '快速跨链',
     featured: true,
   },
   {
