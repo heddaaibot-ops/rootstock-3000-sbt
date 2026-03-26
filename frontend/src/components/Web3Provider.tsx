@@ -3,34 +3,46 @@
 import React from 'react';
 import { WagmiProvider, createConfig, http, createStorage } from 'wagmi';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { ConnectKitProvider, getDefaultConfig } from 'connectkit';
+import { ConnectKitProvider } from 'connectkit';
+import { injected, walletConnect } from 'wagmi/connectors';
 import { ROOTSTOCK_MAINNET } from '@/utils/contract';
 
 // WalletConnect Project ID (optional - app will work without it for read-only features)
 const WALLETCONNECT_PROJECT_ID = process.env.NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID || 'demo';
 
-// 配置 Rootstock Mainnet
-const config = createConfig(
-  getDefaultConfig({
-    chains: [ROOTSTOCK_MAINNET as any],
-    transports: {
-      [ROOTSTOCK_MAINNET.id]: http(ROOTSTOCK_MAINNET.rpcUrls.default.http[0], {
-        timeout: 30_000, // 30 秒超时
-        retryCount: 3, // 重试 3 次
-        retryDelay: 1000, // 重试延迟 1 秒
-      }),
-    },
-    walletConnectProjectId: WALLETCONNECT_PROJECT_ID,
-    appName: 'Rootstock 3000 Days SBT',
-    appDescription: '纪念 Rootstock 主网稳定运行 3000 天',
-    appUrl: 'https://rootstockcn.com',
-    appIcon: 'https://rootstockcn.com/favicon.ico',
-    // 添加持久化存储，解决钱包连接状态丢失问题
-    storage: createStorage({
-      storage: typeof window !== 'undefined' ? window.localStorage : undefined,
+// 配置 Rootstock Mainnet（支持 MetaMask、币安钱包等多种钱包）
+const config = createConfig({
+  chains: [ROOTSTOCK_MAINNET as any],
+  connectors: [
+    // Injected 钱包 (MetaMask, Binance Wallet, Trust Wallet 等)
+    injected({
+      shimDisconnect: true,
     }),
-  })
-);
+    // WalletConnect
+    walletConnect({
+      projectId: WALLETCONNECT_PROJECT_ID,
+      metadata: {
+        name: 'Rootstock 3000 Days SBT',
+        description: '纪念 Rootstock 主网稳定运行 3000 天',
+        url: 'https://rootstockcn.com',
+        icons: ['https://rootstockcn.com/favicon.ico'],
+      },
+      showQrModal: true,
+    }),
+  ],
+  transports: {
+    [ROOTSTOCK_MAINNET.id]: http(ROOTSTOCK_MAINNET.rpcUrls.default.http[0], {
+      timeout: 30_000, // 30 秒超时
+      retryCount: 3, // 重试 3 次
+      retryDelay: 1000, // 重试延迟 1 秒
+    }),
+  },
+  // 添加持久化存储
+  storage: createStorage({
+    storage: typeof window !== 'undefined' ? window.localStorage : undefined,
+  }),
+  ssr: true,
+});
 
 // 配置 QueryClient 以保持更长的缓存时间（避免状态频繁失效）
 const queryClient = new QueryClient({
