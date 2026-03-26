@@ -43,16 +43,16 @@ const config = createConfig({
   transports: {
     [ROOTSTOCK_MAINNET.id]: fallback([
       http('https://public-node.rsk.co', {
-        timeout: 10_000,
-        retryCount: 2,
+        timeout: 30_000, // 增加到 30 秒，避免 Rootstock RPC 响应慢
+        retryCount: 1, // 减少重试次数，快速切换到备用节点
       }),
       http('https://rpc.mainnet.rootstock.io/ZRjBSeG4PpiSLNO4zHgxSLIoAAQ_hIQC', {
-        timeout: 10_000,
-        retryCount: 2,
+        timeout: 30_000,
+        retryCount: 1,
       }),
       http('https://mycrypto.rsk.co', {
-        timeout: 10_000,
-        retryCount: 2,
+        timeout: 30_000,
+        retryCount: 1,
       }),
     ]),
   },
@@ -97,7 +97,7 @@ export const Web3Provider: React.FC<Web3ProviderProps> = ({ children }) => {
 
   return (
     <Web3ErrorBoundary>
-      <WagmiProvider config={config} reconnectOnMount={true}>
+      <WagmiProvider config={config} reconnectOnMount={false}>
         <QueryClientProvider client={queryClient}>
           <RainbowKitProvider
             modalSize="compact"
