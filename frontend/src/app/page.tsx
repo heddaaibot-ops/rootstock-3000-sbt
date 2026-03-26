@@ -149,36 +149,39 @@ export default function Home() {
               </div>
 
               {/* 币安钱包用户重要提示 */}
-              <div className="mb-12 bg-red-50 border-3 border-red-500 rounded-xl p-6">
+              <div className="mb-12 bg-yellow-50 border-3 border-yellow-500 rounded-xl p-6">
                 <div className="flex items-start gap-3">
                   <span className="text-3xl">⚠️</span>
                   <div className="flex-1">
-                    <h3 className="text-lg font-bold text-red-600 mb-3">
+                    <h3 className="text-lg font-bold text-yellow-700 mb-3">
                       币安钱包用户必读
                     </h3>
                     <div className="bg-white rounded-lg p-4 mb-3">
                       <p className="text-sm text-rsk-text-dark font-semibold mb-2">
-                        ❌ <strong>币安钱包移动端 Gas 估算有误</strong>
+                        ⚠️ <strong>币安钱包移动端 Gas 估算问题</strong>
                       </p>
                       <p className="text-sm text-rsk-text-dark/80 leading-relaxed mb-2">
-                        币安钱包会错误地要求 <span className="font-mono text-red-600">0.00003 RBTC</span>，但实际只需 <span className="font-mono text-green-600">0.000005 RBTC</span>。
+                        币安钱包移动端会过度估算 Gas 费用，显示需要 <span className="font-mono text-red-600">0.00003+ RBTC</span>，但实际只需 <span className="font-mono text-green-600">0.000005 RBTC</span>。
                       </p>
                       <p className="text-sm text-rsk-text-dark/80 leading-relaxed">
-                        如果你的余额 ≥ <strong>0.000006 RBTC</strong> 但币安钱包提示余额不足，这是钱包的 bug。
+                        如果你的余额 ≥ <strong>0.000005 RBTC</strong> 但仍提示余额不足，这是币安钱包的内部估算机制导致的。
                       </p>
                     </div>
                     <div className="bg-green-50 rounded-lg p-4 border-2 border-green-400">
                       <p className="text-sm font-bold text-green-700 mb-2">
-                        ✅ 推荐解决方案：使用 MetaMask
+                        ✅ 解决方案：充值更多 RBTC
                       </p>
-                      <ol className="text-sm text-rsk-text-dark/80 leading-relaxed space-y-1 list-decimal list-inside">
-                        <li>下载 <strong>MetaMask</strong> 手机 App</li>
-                        <li>使用币安钱包的<strong>助记词</strong>导入到 MetaMask</li>
-                        <li>在 MetaMask 中添加 Rootstock 网络（网站会自动提示）</li>
-                        <li>用 MetaMask 连接本网站完成铸造</li>
-                      </ol>
+                      <p className="text-sm text-rsk-text-dark/80 leading-relaxed mb-3">
+                        由于币安钱包的估算机制，建议充值至少 <span className="font-mono font-bold text-green-700">0.0001 RBTC</span> 以确保交易顺利进行。
+                      </p>
+                      <button
+                        onClick={() => setIsBridgeModalOpen(true)}
+                        className="w-full bg-rsk-pink hover:bg-[#FF85E8] text-white font-bold px-6 py-3 rounded-lg transition-all shadow-md hover:shadow-lg transform hover:-translate-y-0.5 uppercase"
+                      >
+                        🚀 使用 10 秒跨链桥充值
+                      </button>
                       <p className="text-xs text-green-700 mt-3 font-semibold">
-                        💡 MetaMask 的 Gas 估算准确，0.000005 RBTC 余额即可成功铸造
+                        💡 通过跨链桥充值 0.5 USDC 可获得约 0.00007 RBTC，足够完成铸造
                       </p>
                     </div>
                   </div>

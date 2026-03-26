@@ -194,28 +194,77 @@ export const useContract = () => {
       let hash: `0x${string}`;
 
       if (isBinanceWallet) {
-        // 🟡 币安钱包：完全不设置 Gas 参数，让钱包自己估算
-        console.log(`🟡 Detected Binance Wallet - letting wallet estimate gas automatically`);
-        console.log(`   Not providing gas/gasPrice parameters - wallet will estimate`);
+        // 🟡 币安钱包：尝试多种策略
+        console.log(`🟡 Detected Binance Wallet - trying multiple gas strategies`);
 
         // 编码 mint() 函数调用（mint 函数没有参数，所以就是函数选择器）
         // mint() 的函数签名哈希（keccak256("mint()")）的前4字节是 0x1249c58b
         const mintFunctionData = '0x1249c58b';
 
-        // 直接使用 Binance Wallet API 发送交易，不设置任何 gas 参数
-        hash = await window.ethereum!.request({
-          method: 'eth_sendTransaction',
-          params: [
-            {
-              from: address,
-              to: CONTRACT_ADDRESS,
-              data: mintFunctionData,
-              // 🔥 完全不设置 gas 和 gasPrice，让币安钱包自己估算
-            },
-          ],
-        }) as `0x${string}`;
+        try {
+          // 🔥 策略 1: 尝试 EIP-1559 格式 (maxFeePerGas + maxPriorityFeePerGas)
+          // 即使 Rootstock 可能不支持，币安钱包可能会用不同方式处理
+          console.log(`   Strategy 1: Trying EIP-1559 format`);
+          const maxFeePerGas = currentGasPrice;
+          const maxPriorityFeePerGas = minGasPrice; // 最小值作为 tip
 
-        console.log(`✅ Transaction sent via Binance Wallet (auto gas estimation): ${hash}`);
+          hash = await window.ethereum!.request({
+            method: 'eth_sendTransaction',
+            params: [
+              {
+                from: address,
+                to: CONTRACT_ADDRESS,
+                data: mintFunctionData,
+                gas: `0x${gasEstimate.toString(16)}`,
+                maxFeePerGas: `0x${maxFeePerGas.toString(16)}`,
+                maxPriorityFeePerGas: `0x${maxPriorityFeePerGas.toString(16)}`,
+              },
+            ],
+          }) as `0x${string}`;
+
+          console.log(`✅ Transaction sent via Binance Wallet (EIP-1559): ${hash}`);
+        } catch (eip1559Error: any) {
+          console.warn(`   EIP-1559 failed, trying legacy format:`, eip1559Error.message);
+
+          // 🔥 策略 2: 使用极小的 gasPrice (0.001 Gwei = 1,000,000 wei)
+          // 让币安钱包看到一个非常小的值，可能会触发不同的处理逻辑
+          const veryLowGasPrice = 1000000n; // 0.001 Gwei
+
+          try {
+            console.log(`   Strategy 2: Using very low gasPrice (0.001 Gwei)`);
+            hash = await window.ethereum!.request({
+              method: 'eth_sendTransaction',
+              params: [
+                {
+                  from: address,
+                  to: CONTRACT_ADDRESS,
+                  data: mintFunctionData,
+                  gas: `0x${gasEstimate.toString(16)}`,
+                  gasPrice: `0x${veryLowGasPrice.toString(16)}`,
+                },
+              ],
+            }) as `0x${string}`;
+
+            console.log(`✅ Transaction sent via Binance Wallet (very low gas): ${hash}`);
+          } catch (lowGasError) {
+            console.warn(`   Very low gas failed, trying no parameters:`, lowGasError);
+
+            // 🔥 策略 3: 完全不设置任何参数
+            console.log(`   Strategy 3: No gas parameters`);
+            hash = await window.ethereum!.request({
+              method: 'eth_sendTransaction',
+              params: [
+                {
+                  from: address,
+                  to: CONTRACT_ADDRESS,
+                  data: mintFunctionData,
+                },
+              ],
+            }) as `0x${string}`;
+
+            console.log(`✅ Transaction sent via Binance Wallet (auto): ${hash}`);
+          }
+        }
       } else {
         // 🔵 其他钱包：使用 wagmi 标准方法
         console.log(`🔵 Using wagmi writeContract for non-Binance wallet`);
