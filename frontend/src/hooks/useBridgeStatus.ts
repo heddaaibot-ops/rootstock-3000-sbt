@@ -48,7 +48,7 @@ export function useBridgeStatus({ usdcTxHash, fromAddress, chain }: UseBridgeSta
       try {
         // 根據環境選擇 WebSocket URL
         const WS_URL = typeof window !== 'undefined' && window.location.hostname === 'rootstockcn.com'
-          ? 'wss://ws.rootstockcn.com'  // 生產環境（子域名）
+          ? 'wss://rootstockcn.com/ws'  // 生產環境（通過 Nginx 反向代理）
           : 'ws://localhost:3001';        // 本地開發
 
         const ws = new WebSocket(WS_URL);
