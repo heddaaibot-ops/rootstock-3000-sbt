@@ -5,19 +5,25 @@ import { WagmiProvider, createConfig, http, createStorage } from 'wagmi';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ConnectKitProvider } from 'connectkit';
 import { injected, walletConnect } from 'wagmi/connectors';
+import { getWagmiConnectorV2 } from '@binance/w3w-wagmi-connector-v2';
 import { ROOTSTOCK_MAINNET } from '@/utils/contract';
 
 // WalletConnect Project ID (optional - app will work without it for read-only features)
 const WALLETCONNECT_PROJECT_ID = process.env.NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID || 'demo';
 
+// 币安官方 Wagmi v2 连接器
+const binanceWalletConnector = getWagmiConnectorV2();
+
 // 配置 Rootstock Mainnet（支持 MetaMask、币安钱包等多种钱包）
 const config = createConfig({
   chains: [ROOTSTOCK_MAINNET as any],
   connectors: [
-    // Injected 钱包 (MetaMask, Binance Wallet, Trust Wallet 等)
+    // Injected 钱包 (MetaMask, Trust Wallet 等)
     injected({
       shimDisconnect: true,
     }),
+    // 币安钱包官方连接器
+    binanceWalletConnector(),
     // WalletConnect
     walletConnect({
       projectId: WALLETCONNECT_PROJECT_ID,
