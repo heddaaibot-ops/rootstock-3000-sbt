@@ -1,4 +1,4 @@
-// EIP-1193 Provider 類型定義
+// EIP-1193 Provider 类型定义
 interface EthereumProvider {
   request: (args: { method: string; params?: any[] }) => Promise<any>;
   on?: (event: string, handler: (...args: any[]) => void) => void;
@@ -8,7 +8,7 @@ interface EthereumProvider {
 }
 
 interface Window {
-  // MetaMask 或其他 EVM 錢包（注入到 window.ethereum）
+  // MetaMask 或其他 EVM 钱包（注入到 window.ethereum）
   ethereum?: EthereumProvider;
 
   // OKX Wallet 專用

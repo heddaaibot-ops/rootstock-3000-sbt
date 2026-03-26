@@ -333,8 +333,8 @@ export const useContract = () => {
 
       if (balance === 0n) return null;
 
-      // 如果有 token，查詢其詳情（這裡簡化處理）
-      // 實際可能需要遍歷或監聽 Transfer 事件
+      // 如果有 token，查询其详情（这里简化处理）
+      // 实际可能需要遍历或监听 Transfer 事件
       return 0n; // placeholder
     } catch (err) {
       console.error('Failed to get token ID:', err);

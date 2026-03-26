@@ -50,15 +50,15 @@ export class Web3ErrorBoundary extends React.Component<ErrorBoundaryProps, Error
             }}
           >
             <h2 style={{ color: '#FF9100', marginBottom: '16px' }}>
-              ⚠️ 錢包連接出錯
+              ⚠️ 钱包连接出错
             </h2>
             <p style={{ color: '#666', marginBottom: '24px' }}>
-              抱歉，Web3 錢包連接遇到問題。請嘗試重新加載頁面。
+              抱歉，Web3 钱包连接遇到问题。请尝试重新加载页面。
             </p>
             {this.state.error && (
               <details style={{ marginBottom: '24px', textAlign: 'left' }}>
                 <summary style={{ cursor: 'pointer', color: '#999', fontSize: '14px' }}>
-                  查看錯誤詳情
+                  查看错误详情
                 </summary>
                 <pre
                   style={{

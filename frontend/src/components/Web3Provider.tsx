@@ -18,7 +18,7 @@ import '@rainbow-me/rainbowkit/styles.css';
 // WalletConnect Project ID
 const WALLETCONNECT_PROJECT_ID = process.env.NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID || 'demo';
 
-// 配置所有錢包連接器
+// 配置所有钱包连接器
 const connectors = connectorsForWallets(
   [
     {
