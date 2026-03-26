@@ -139,13 +139,32 @@ export default function Home() {
               </div>
 
               {/* 铸造按钮 */}
-              <div className="mb-12">
+              <div className="mb-6">
                 <MintButton
                   isPaused={contractData?.isPaused ?? true}
                   hasUserMinted={contractData?.hasUserMinted ?? false}
                   onMint={mint}
                   chainId={chainId}
                 />
+              </div>
+
+              {/* 币安钱包用户提示 */}
+              <div className="mb-12 bg-yellow-50 border-2 border-yellow-400 rounded-xl p-6">
+                <div className="flex items-start gap-3">
+                  <span className="text-2xl">💡</span>
+                  <div className="flex-1">
+                    <h3 className="text-base font-bold text-rsk-text-dark mb-2">
+                      币安钱包用户提示
+                    </h3>
+                    <p className="text-sm text-rsk-text-dark/80 leading-relaxed mb-2">
+                      如果币安钱包显示费用过高（如 0.00003 RBTC），请点击费用选项，选择<strong>"标准"</strong>而不是"快速"。
+                    </p>
+                    <p className="text-xs text-rsk-text-dark/70 leading-relaxed">
+                      ✅ 实际 Gas 费用约 <strong>0.000005 RBTC</strong><br/>
+                      ⚠️ 币安钱包"快速"选项会显示较高费用，但实际消耗会少很多
+                    </p>
+                  </div>
+                </div>
               </div>
 
               {/* 获取 rBTC 链接 */}

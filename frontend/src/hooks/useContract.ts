@@ -139,13 +139,23 @@ export const useContract = () => {
       const gasEstimate = 165000n;
       console.log(`⛽ Using verified gas limit: ${gasEstimate.toString()}`);
 
-      // 获取当前 gas price（在 if 块外定义）
-      let currentGasPrice: bigint | undefined;
+      // 🔥 使用 Rootstock 绝对最低 Gas Price
+      // Rootstock 最低: 0.06 Gwei = 60,000,000 wei
+      const minGasPrice = 60000000n;
+
+      // 获取当前网络 gas price
+      let currentGasPrice = minGasPrice;
 
       // 余额检查 - 使用精确的 Gas 计算
       if (publicClient) {
         const balance = await publicClient.getBalance({ address });
-        currentGasPrice = await publicClient.getGasPrice();
+        const networkGasPrice = await publicClient.getGasPrice();
+
+        // 使用网络价格和最低价格中的较小值
+        currentGasPrice = networkGasPrice > 0n && networkGasPrice < minGasPrice
+          ? networkGasPrice
+          : minGasPrice;
+
         const estimatedCost = gasEstimate * currentGasPrice;
 
         console.log(`💰 Current balance: ${balance.toString()} wei (${Number(balance) / 1e18} RBTC)`);
@@ -166,15 +176,18 @@ export const useContract = () => {
         }
       }
 
-      // 🔥 币安钱包特殊处理：同时设置 gas 和 gasPrice
-      // 币安钱包会忽略前端的 gas 估算，我们需要明确指定 gasPrice
+      // 🔥 币安钱包特殊处理：明确设置 gas 和 gasPrice
+      console.log(`🔧 Sending transaction with:`);
+      console.log(`   Gas Limit: ${gasEstimate}`);
+      console.log(`   Gas Price: ${currentGasPrice} wei (${Number(currentGasPrice) / 1e9} Gwei)`);
+
       const hash = await walletClient.writeContract({
         address: CONTRACT_ADDRESS,
         abi: CONTRACT_ABI,
         functionName: 'mint',
         args: [],
         gas: gasEstimate,
-        ...(currentGasPrice && { gasPrice: currentGasPrice }), // 如果有 gasPrice 就使用
+        gasPrice: currentGasPrice, // 强制使用最低 gas price
       });
 
       // 等待交易确认
