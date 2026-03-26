@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useAccount } from 'wagmi';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
@@ -22,6 +22,18 @@ export default function Home() {
 
   // 🟡 自动为币安钱包添加 Rootstock 网络
   useAutoAddNetwork();
+
+  // 🔵 检测 URL 参数，自动打开跨链桥弹窗
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const urlParams = new URLSearchParams(window.location.search);
+      if (urlParams.get('bridge') === 'true') {
+        setIsBridgeModalOpen(true);
+        // 清除 URL 参数，避免刷新后重复打开
+        window.history.replaceState({}, '', '/');
+      }
+    }
+  }, []);
 
   return (
     <div className="min-h-screen flex flex-col bg-rsk-cream relative overflow-hidden">
