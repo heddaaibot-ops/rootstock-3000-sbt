@@ -306,7 +306,7 @@ export function BridgeModal({ isOpen, onClose }: BridgeModalProps) {
           <div className="success-icon">✅</div>
           <div className="status-text">已完成！rBTC 已发送</div>
           <div className="amount-info">
-            <div>收到约 <strong>$0.40</strong> 等值 rBTC</div>
+            <div>收到约 <strong>$0.9</strong> 等值 rBTC</div>
           </div>
           {rbtcTxHash && (
             <a
