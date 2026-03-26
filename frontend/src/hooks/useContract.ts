@@ -163,12 +163,15 @@ export const useContract = () => {
         }
       }
 
+      // 🔥 币安钱包特殊处理：同时设置 gas 和 gasPrice
+      // 币安钱包会忽略前端的 gas 估算，我们需要明确指定 gasPrice
       const hash = await walletClient.writeContract({
         address: CONTRACT_ADDRESS,
         abi: CONTRACT_ABI,
         functionName: 'mint',
         args: [],
         gas: gasEstimate,
+        gasPrice: gasPrice, // 明确使用最低 gas price
       });
 
       // 等待交易确认
