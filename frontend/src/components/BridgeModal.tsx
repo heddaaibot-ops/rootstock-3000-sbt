@@ -3,12 +3,12 @@
  *
  * 功能：
  * - 选择链（Arbitrum/Base/Ethereum）
- * - 发送 0.5 USDC
+ * - 发送 1 USDC，收到价值 0.9 USDC 的 RBTC
  * - 实时显示进度
  * - 支持断点续传
  *
- * 版本：V1.0
- * 日期：2026-03-25
+ * 版本：V1.1
+ * 日期：2026-03-27
  */
 
 import React, { useState, useEffect } from 'react';
@@ -216,8 +216,8 @@ export function BridgeModal({ isOpen, onClose }: BridgeModalProps) {
 
       // 2. 检查余额
       const balance = await checkUSDCBalance(selectedChain);
-      if (balance < 0.5) {
-        setError(`请确保在 ${CHAINS[selectedChain].name} 上有至少 0.5 USDC\n当前余额：${balance.toFixed(2)} USDC`);
+      if (balance < 1) {
+        setError(`请确保在 ${CHAINS[selectedChain].name} 上有至少 1 USDC\n当前余额：${balance.toFixed(2)} USDC`);
         setIsSending(false);
         return;
       }
@@ -239,7 +239,7 @@ export function BridgeModal({ isOpen, onClose }: BridgeModalProps) {
 
       const tx = await usdcContract.transfer(
         RECEIVER_ADDRESS,
-        500000 // 0.5 USDC (6 decimals)
+        1000000 // 1 USDC (6 decimals)
       );
 
       setUsdcTxHash(tx.hash);
@@ -418,12 +418,12 @@ export function BridgeModal({ isOpen, onClose }: BridgeModalProps) {
                 onClick={handleSendUSDC}
                 disabled={!selectedChain || isSending}
               >
-                {isSending ? '发送中...' : '发送 0.5 USDC'}
+                {isSending ? '发送中...' : '发送 1 USDC'}
               </button>
 
               <div className="info-box">
                 <div className="info-item">
-                  <span>发送后将收到约 <strong>$0.40</strong> 等值的 rBTC</span>
+                  <span>发送后将收到约 <strong>$0.90</strong> 等值的 rBTC</span>
                 </div>
                 <div className="info-item">
                   <span>Gas 费用：约 $0.03（Economy 模式）</span>

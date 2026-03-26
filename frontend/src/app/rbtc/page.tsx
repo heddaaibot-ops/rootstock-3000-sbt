@@ -22,7 +22,7 @@ const platforms = [
   // 跨链资产获取
   {
     name: '10 秒跨链桥',
-    description: '由 Rootstock 中文打造，发送 0.5 USDC（从 Arbitrum/Base/Ethereum）到指定地址，0 磨损收到 rBTC',
+    description: '由 Rootstock 中文打造，发送 1 USDC（从 Arbitrum/Base/Ethereum）到指定地址，收到价值 0.9 USDC 的 rBTC',
     url: '/?bridge=true',
     category: 'crypto',
     type: '快速跨链',
