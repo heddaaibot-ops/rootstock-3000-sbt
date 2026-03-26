@@ -14,11 +14,12 @@ import { useAutoAddNetwork } from '@/hooks/useAutoAddNetwork';
 import { useI18n } from '@/i18n/provider';
 
 export default function Home() {
-  const { chainId } = useAccount();
+  const { chainId, isConnected, connector } = useAccount();
   const { contractData, loading, error, refresh, mint } = useContract();
   const { t } = useI18n();
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
   const [isBridgeModalOpen, setIsBridgeModalOpen] = useState(false);
+  const [isBinanceWallet, setIsBinanceWallet] = useState(false);
 
   // 🟡 自动为币安钱包添加 Rootstock 网络
   useAutoAddNetwork();
@@ -34,6 +35,20 @@ export default function Home() {
       }
     }
   }, []);
+
+  // 🟡 检测是否为币安钱包
+  useEffect(() => {
+    if (isConnected && typeof window !== 'undefined') {
+      const isBinance =
+        window.ethereum?.isBinance ||
+        window.BinanceChain ||
+        connector?.name?.toLowerCase().includes('binance') ||
+        false;
+      setIsBinanceWallet(isBinance);
+    } else {
+      setIsBinanceWallet(false);
+    }
+  }, [isConnected, connector]);
 
   return (
     <div className="min-h-screen flex flex-col bg-rsk-cream relative overflow-hidden">
@@ -160,45 +175,47 @@ export default function Home() {
                 />
               </div>
 
-              {/* 币安钱包用户重要提示 */}
-              <div className="mb-12 bg-yellow-50 border-3 border-yellow-500 rounded-xl p-6">
-                <div className="flex items-start gap-3">
-                  <span className="text-3xl">⚠️</span>
-                  <div className="flex-1">
-                    <h3 className="text-lg font-bold text-yellow-700 mb-3">
-                      币安钱包用户必读
-                    </h3>
-                    <div className="bg-white rounded-lg p-4 mb-3">
-                      <p className="text-sm text-rsk-text-dark font-semibold mb-2">
-                        ⚠️ <strong>币安钱包移动端 Gas 估算问题</strong>
-                      </p>
-                      <p className="text-sm text-rsk-text-dark/80 leading-relaxed mb-2">
-                        币安钱包移动端会过度估算 Gas 费用，显示需要 <span className="font-mono text-red-600">0.00003+ RBTC</span>，但实际只需 <span className="font-mono text-green-600">0.000005 RBTC</span>。
-                      </p>
-                      <p className="text-sm text-rsk-text-dark/80 leading-relaxed">
-                        如果你的余额 ≥ <strong>0.000005 RBTC</strong> 但仍提示余额不足，这是币安钱包的内部估算机制导致的。
-                      </p>
-                    </div>
-                    <div className="bg-green-50 rounded-lg p-4 border-2 border-green-400">
-                      <p className="text-sm font-bold text-green-700 mb-2">
-                        ✅ 解决方案：充值更多 RBTC
-                      </p>
-                      <p className="text-sm text-rsk-text-dark/80 leading-relaxed mb-3">
-                        由于币安钱包的估算机制，建议充值至少 <span className="font-mono font-bold text-green-700">0.0001 RBTC</span> 以确保交易顺利进行。
-                      </p>
-                      <button
-                        onClick={() => setIsBridgeModalOpen(true)}
-                        className="w-full bg-rsk-pink hover:bg-[#FF85E8] text-white font-bold px-6 py-3 rounded-lg transition-all shadow-md hover:shadow-lg transform hover:-translate-y-0.5 uppercase"
-                      >
-                        🚀 使用 10 秒跨链桥充值
-                      </button>
-                      <p className="text-xs text-green-700 mt-3 font-semibold">
-                        💡 通过跨链桥充值 0.5 USDC 可获得约 0.00007 RBTC，足够完成铸造
-                      </p>
+              {/* 币安钱包用户重要提示 - 只在连接币安钱包时显示 */}
+              {isBinanceWallet && (
+                <div className="mb-12 bg-yellow-50 border-3 border-yellow-500 rounded-xl p-6">
+                  <div className="flex items-start gap-3">
+                    <span className="text-3xl">⚠️</span>
+                    <div className="flex-1">
+                      <h3 className="text-lg font-bold text-yellow-700 mb-3">
+                        币安钱包用户必读
+                      </h3>
+                      <div className="bg-white rounded-lg p-4 mb-3">
+                        <p className="text-sm text-rsk-text-dark font-semibold mb-2">
+                          ⚠️ <strong>币安钱包移动端 Gas 估算问题</strong>
+                        </p>
+                        <p className="text-sm text-rsk-text-dark/80 leading-relaxed mb-2">
+                          币安钱包移动端会过度估算 Gas 费用，显示需要 <span className="font-mono text-red-600">0.00003+ RBTC</span>，但实际只需 <span className="font-mono text-green-600">0.000005 RBTC</span>。
+                        </p>
+                        <p className="text-sm text-rsk-text-dark/80 leading-relaxed">
+                          如果你的余额 ≥ <strong>0.000005 RBTC</strong> 但仍提示余额不足，这是币安钱包的内部估算机制导致的。
+                        </p>
+                      </div>
+                      <div className="bg-green-50 rounded-lg p-4 border-2 border-green-400">
+                        <p className="text-sm font-bold text-green-700 mb-2">
+                          ✅ 解决方案：充值更多 RBTC
+                        </p>
+                        <p className="text-sm text-rsk-text-dark/80 leading-relaxed mb-3">
+                          由于币安钱包的估算机制，建议充值至少 <span className="font-mono font-bold text-green-700">0.0001 RBTC</span> 以确保交易顺利进行。
+                        </p>
+                        <button
+                          onClick={() => setIsBridgeModalOpen(true)}
+                          className="w-full bg-rsk-pink hover:bg-[#FF85E8] text-white font-bold px-6 py-3 rounded-lg transition-all shadow-md hover:shadow-lg transform hover:-translate-y-0.5 uppercase"
+                        >
+                          🚀 使用 10 秒跨链桥充值
+                        </button>
+                        <p className="text-xs text-green-700 mt-3 font-semibold">
+                          💡 通过跨链桥充值 0.5 USDC 可获得约 0.00007 RBTC，足够完成铸造
+                        </p>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
+              )}
 
               {/* 获取 rBTC 链接 */}
               <div className="mb-12 bg-rsk-cream p-8 rounded-xl text-center">
