@@ -8,7 +8,9 @@ import { ProgressBar } from '@/components/ProgressBar';
 import { MintButton } from '@/components/MintButton';
 import { CampaignInfo } from '@/components/CampaignInfo';
 import { BridgeModal } from '@/components/BridgeModal';
+import { NetworkGuide } from '@/components/NetworkGuide';
 import { useContract } from '@/hooks/useContract';
+import { useAutoAddNetwork } from '@/hooks/useAutoAddNetwork';
 import { useI18n } from '@/i18n/provider';
 
 export default function Home() {
@@ -17,6 +19,9 @@ export default function Home() {
   const { t } = useI18n();
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
   const [isBridgeModalOpen, setIsBridgeModalOpen] = useState(false);
+
+  // 🟡 自动为币安钱包添加 Rootstock 网络
+  useAutoAddNetwork();
 
   return (
     <div className="min-h-screen flex flex-col bg-rsk-cream relative overflow-hidden">

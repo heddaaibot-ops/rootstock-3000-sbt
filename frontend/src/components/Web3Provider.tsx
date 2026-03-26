@@ -81,7 +81,7 @@ interface Web3ProviderProps {
 }
 
 export const Web3Provider: React.FC<Web3ProviderProps> = ({ children }) => {
-  // 🚀 Optimization 5: Performance monitoring
+  // 🚀 Performance monitoring
   useEffect(() => {
     if (typeof window !== 'undefined' && window.performance) {
       const perfData = window.performance.getEntriesByType('navigation')[0] as PerformanceNavigationTiming;
