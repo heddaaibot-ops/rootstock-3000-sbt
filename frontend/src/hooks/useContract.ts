@@ -146,6 +146,12 @@ export const useContract = () => {
       // 获取当前网络 gas price
       let currentGasPrice = minGasPrice;
 
+      // 🔥 检测是否为币安钱包（需要在作用域外定义）
+      const isBinanceWallet =
+        typeof window !== 'undefined' &&
+        window.ethereum &&
+        (window.ethereum.isBinance || window.BinanceChain);
+
       // 余额检查 - 使用精确的 Gas 计算
       if (publicClient) {
         const balance = await publicClient.getBalance({ address });
@@ -169,6 +175,15 @@ export const useContract = () => {
           const currentRBTC = Number(balance) / 1e18;
           const neededRBTC = Number(estimatedCost) / 1e18;
           const shortfallRBTC = Number(estimatedCost - balance) / 1e18;
+
+          // 🟡 币安钱包特殊提示：如果实际余额接近需要的金额，可能是钱包估算错误
+          if (isBinanceWallet && currentRBTC >= 0.000004) {
+            return {
+              success: false,
+              error: `币安钱包 Gas 估算提示：您的余额 ${currentRBTC.toFixed(8)} RBTC 可能已足够铸造（实际需要约 0.000005 RBTC），但币安钱包可能过度估算了 Gas 费用。建议通过 10 秒跨链桥充值到 0.0001 RBTC 以确保交易成功。`,
+            };
+          }
+
           return {
             success: false,
             error: `余额不足。您的余额: ${currentRBTC.toFixed(8)} RBTC，需要: ${neededRBTC.toFixed(8)} RBTC，还差: ${shortfallRBTC.toFixed(8)} RBTC。请添加更多 rBTC 后再试。`,
@@ -176,25 +191,18 @@ export const useContract = () => {
         }
       }
 
-      // 🔥 检测是否为币安钱包，使用不同的交易发送策略
-      const isBinanceWallet =
-        typeof window !== 'undefined' &&
-        window.ethereum &&
-        (window.ethereum.isBinance || window.BinanceChain);
-
       let hash: `0x${string}`;
 
       if (isBinanceWallet) {
-        // 🟡 币安钱包：使用直接 API 调用，不通过 wagmi 抽象层
-        console.log(`🟡 Detected Binance Wallet - using direct eth_sendTransaction`);
-        console.log(`   Gas Limit: ${gasEstimate.toString()}`);
-        console.log(`   Gas Price: ${currentGasPrice.toString()} wei (${Number(currentGasPrice) / 1e9} Gwei)`);
+        // 🟡 币安钱包：完全不设置 Gas 参数，让钱包自己估算
+        console.log(`🟡 Detected Binance Wallet - letting wallet estimate gas automatically`);
+        console.log(`   Not providing gas/gasPrice parameters - wallet will estimate`);
 
         // 编码 mint() 函数调用（mint 函数没有参数，所以就是函数选择器）
         // mint() 的函数签名哈希（keccak256("mint()")）的前4字节是 0x1249c58b
         const mintFunctionData = '0x1249c58b';
 
-        // 直接使用 Binance Wallet API 发送交易
+        // 直接使用 Binance Wallet API 发送交易，不设置任何 gas 参数
         hash = await window.ethereum!.request({
           method: 'eth_sendTransaction',
           params: [
@@ -202,13 +210,12 @@ export const useContract = () => {
               from: address,
               to: CONTRACT_ADDRESS,
               data: mintFunctionData,
-              gas: `0x${gasEstimate.toString(16)}`, // 转换为 hex
-              gasPrice: `0x${currentGasPrice.toString(16)}`, // 转换为 hex
+              // 🔥 完全不设置 gas 和 gasPrice，让币安钱包自己估算
             },
           ],
         }) as `0x${string}`;
 
-        console.log(`✅ Transaction sent via Binance Wallet direct API: ${hash}`);
+        console.log(`✅ Transaction sent via Binance Wallet (auto gas estimation): ${hash}`);
       } else {
         // 🔵 其他钱包：使用 wagmi 标准方法
         console.log(`🔵 Using wagmi writeContract for non-Binance wallet`);
