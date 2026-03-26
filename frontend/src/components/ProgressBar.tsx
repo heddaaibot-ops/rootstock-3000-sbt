@@ -8,8 +8,10 @@ interface ProgressBarProps {
 }
 
 export const ProgressBar: React.FC<ProgressBarProps> = ({ current, total, loading }) => {
-  const percentage = calculateProgress(current, total);
-  const remaining = total - current;
+  // 前端显示固定为 3000（纪念 3000 天），实际合约是 10000
+  const displayTotal = 3000n;
+  const percentage = calculateProgress(current, displayTotal);
+  const remaining = displayTotal - current;
 
   return (
     <div className="w-full">
@@ -23,7 +25,7 @@ export const ProgressBar: React.FC<ProgressBarProps> = ({ current, total, loadin
         </div>
         <div className="text-center">
           <div className={`text-4xl font-bold text-rsk-orange font-mono ${loading ? 'animate-pulse' : ''}`}>
-            {formatNumber(Number(total))}
+            {formatNumber(Number(displayTotal))}
           </div>
           <div className="text-sm text-rsk-text-dark font-semibold mt-2 uppercase">总供应量</div>
         </div>
@@ -61,10 +63,10 @@ export const ProgressBar: React.FC<ProgressBarProps> = ({ current, total, loadin
       {/* 刻度线 - 粉色字体 */}
       <div className="flex justify-between mt-3 text-xs text-rsk-pink font-mono font-semibold">
         <span>0</span>
-        <span>2.5k</span>
-        <span>5k</span>
-        <span>7.5k</span>
-        <span>10k</span>
+        <span>750</span>
+        <span>1.5k</span>
+        <span>2.25k</span>
+        <span>3k</span>
       </div>
     </div>
   );
