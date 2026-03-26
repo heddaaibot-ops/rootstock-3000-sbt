@@ -17,7 +17,7 @@ import '@rainbow-me/rainbowkit/styles.css';
 // WalletConnect Project ID
 const WALLETCONNECT_PROJECT_ID = process.env.NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID || 'demo';
 
-// 自定义 OKX Wallet
+// 自定义 OKX Wallet（符合 RainbowKit CreateWalletFn 類型）
 const okxWallet = (): Wallet => ({
   id: 'okx',
   name: 'OKX Wallet',
@@ -37,7 +37,7 @@ const okxWallet = (): Wallet => ({
   }),
 });
 
-// 配置所有錢包連接器
+// 配置所有錢包連接器（傳入函數本身，不調用）
 const connectors = connectorsForWallets(
   [
     {
