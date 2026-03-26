@@ -8,7 +8,7 @@ import {
   metaMaskWallet,
   coinbaseWallet,
   walletConnectWallet,
-  injectedWallet,
+  okxWallet,
 } from '@rainbow-me/rainbowkit/wallets';
 import binanceWallet from '@binance/w3w-rainbow-connector-v2';
 import { ROOTSTOCK_MAINNET } from '@/utils/contract';
@@ -18,12 +18,11 @@ import '@rainbow-me/rainbowkit/styles.css';
 const WALLETCONNECT_PROJECT_ID = process.env.NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID || 'demo';
 
 // 配置所有錢包連接器
-// injectedWallet 會自動檢測 MetaMask、OKX、Binance 等所有注入式錢包
 const connectors = connectorsForWallets(
   [
     {
       groupName: 'Popular',
-      wallets: [injectedWallet, binanceWallet, metaMaskWallet],
+      wallets: [okxWallet, binanceWallet, metaMaskWallet],
     },
     {
       groupName: 'Others',
