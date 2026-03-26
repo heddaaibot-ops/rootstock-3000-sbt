@@ -1,9 +1,9 @@
 'use client';
 
-import React from 'react';
-import { WagmiProvider, createConfig, http, createStorage } from 'wagmi';
+import React, { useEffect } from 'react';
+import { WagmiProvider, createConfig, http, createStorage, fallback } from 'wagmi';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { RainbowKitProvider, connectorsForWallets, Wallet } from '@rainbow-me/rainbowkit';
+import { RainbowKitProvider, connectorsForWallets } from '@rainbow-me/rainbowkit';
 import {
   metaMaskWallet,
   coinbaseWallet,
@@ -12,6 +12,7 @@ import {
 } from '@rainbow-me/rainbowkit/wallets';
 import binanceWallet from '@binance/w3w-rainbow-connector-v2';
 import { ROOTSTOCK_MAINNET } from '@/utils/contract';
+import { Web3ErrorBoundary } from './Web3ErrorBoundary';
 import '@rainbow-me/rainbowkit/styles.css';
 
 // WalletConnect Project ID
@@ -35,16 +36,25 @@ const connectors = connectorsForWallets(
   }
 );
 
-// 配置 Rootstock Mainnet
+// 配置 Rootstock Mainnet（多 RPC 備份，提升穩定性）
 const config = createConfig({
   connectors,
-  chains: [ROOTSTOCK_MAINNET as any],
+  chains: [ROOTSTOCK_MAINNET],
   transports: {
-    [ROOTSTOCK_MAINNET.id]: http(ROOTSTOCK_MAINNET.rpcUrls.default.http[0], {
-      timeout: 30_000,
-      retryCount: 3,
-      retryDelay: 1000,
-    }),
+    [ROOTSTOCK_MAINNET.id]: fallback([
+      http('https://public-node.rsk.co', {
+        timeout: 10_000,
+        retryCount: 2,
+      }),
+      http('https://rpc.mainnet.rootstock.io/ZRjBSeG4PpiSLNO4zHgxSLIoAAQ_hIQC', {
+        timeout: 10_000,
+        retryCount: 2,
+      }),
+      http('https://mycrypto.rsk.co', {
+        timeout: 10_000,
+        retryCount: 2,
+      }),
+    ]),
   },
   ssr: true, // Next.js SSR 支持
   storage: createStorage({
@@ -71,18 +81,34 @@ interface Web3ProviderProps {
 }
 
 export const Web3Provider: React.FC<Web3ProviderProps> = ({ children }) => {
+  // 🚀 Optimization 5: Performance monitoring
+  useEffect(() => {
+    if (typeof window !== 'undefined' && window.performance) {
+      const perfData = window.performance.getEntriesByType('navigation')[0] as PerformanceNavigationTiming;
+      if (perfData) {
+        console.log('⚡ 頁面加載性能:', {
+          domContentLoaded: Math.round(perfData.domContentLoadedEventEnd - perfData.domContentLoadedEventStart),
+          loadComplete: Math.round(perfData.loadEventEnd - perfData.loadEventStart),
+          domInteractive: Math.round(perfData.domInteractive - perfData.fetchStart),
+        });
+      }
+    }
+  }, []);
+
   return (
-    <WagmiProvider config={config} reconnectOnMount={true}>
-      <QueryClientProvider client={queryClient}>
-        <RainbowKitProvider
-          modalSize="compact"
-          initialChain={ROOTSTOCK_MAINNET}
-          showRecentTransactions={true}
-          locale="zh-CN"
-        >
-          {children}
-        </RainbowKitProvider>
-      </QueryClientProvider>
-    </WagmiProvider>
+    <Web3ErrorBoundary>
+      <WagmiProvider config={config} reconnectOnMount={true}>
+        <QueryClientProvider client={queryClient}>
+          <RainbowKitProvider
+            modalSize="compact"
+            initialChain={ROOTSTOCK_MAINNET}
+            showRecentTransactions={true}
+            locale="zh-CN"
+          >
+            {children}
+          </RainbowKitProvider>
+        </QueryClientProvider>
+      </WagmiProvider>
+    </Web3ErrorBoundary>
   );
 };
