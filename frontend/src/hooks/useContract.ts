@@ -139,14 +139,17 @@ export const useContract = () => {
       const gasEstimate = 165000n;
       console.log(`⛽ Using verified gas limit: ${gasEstimate.toString()}`);
 
+      // 获取当前 gas price（在 if 块外定义）
+      let currentGasPrice: bigint | undefined;
+
       // 余额检查 - 使用精确的 Gas 计算
       if (publicClient) {
         const balance = await publicClient.getBalance({ address });
-        const gasPrice = await publicClient.getGasPrice();
-        const estimatedCost = gasEstimate * gasPrice;
+        currentGasPrice = await publicClient.getGasPrice();
+        const estimatedCost = gasEstimate * currentGasPrice;
 
         console.log(`💰 Current balance: ${balance.toString()} wei (${Number(balance) / 1e18} RBTC)`);
-        console.log(`⛽ Gas price: ${gasPrice.toString()} wei (${Number(gasPrice) / 1e9} Gwei)`);
+        console.log(`⛽ Gas price: ${currentGasPrice.toString()} wei (${Number(currentGasPrice) / 1e9} Gwei)`);
         console.log(`📊 Gas limit: ${gasEstimate.toString()}`);
         console.log(`💵 Estimated cost: ${estimatedCost.toString()} wei (${Number(estimatedCost) / 1e18} RBTC)`);
 
@@ -171,7 +174,7 @@ export const useContract = () => {
         functionName: 'mint',
         args: [],
         gas: gasEstimate,
-        gasPrice: gasPrice, // 明确使用最低 gas price
+        ...(currentGasPrice && { gasPrice: currentGasPrice }), // 如果有 gasPrice 就使用
       });
 
       // 等待交易确认
