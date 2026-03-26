@@ -176,19 +176,54 @@ export const useContract = () => {
         }
       }
 
-      // 🔥 尝试不同策略：让钱包自动选择 gas price
-      console.log(`🔧 Sending transaction with:`);
-      console.log(`   Gas Limit: ${gasEstimate}`);
-      console.log(`   Letting wallet choose gas price automatically`);
+      // 🔥 检测是否为币安钱包，使用不同的交易发送策略
+      const isBinanceWallet =
+        typeof window !== 'undefined' &&
+        window.ethereum &&
+        (window.ethereum.isBinance || window.BinanceChain);
 
-      const hash = await walletClient.writeContract({
-        address: CONTRACT_ADDRESS,
-        abi: CONTRACT_ABI,
-        functionName: 'mint',
-        args: [],
-        gas: gasEstimate,
-        // 不设置 gasPrice，让钱包自动选择
-      });
+      let hash: `0x${string}`;
+
+      if (isBinanceWallet) {
+        // 🟡 币安钱包：使用直接 API 调用，不通过 wagmi 抽象层
+        console.log(`🟡 Detected Binance Wallet - using direct eth_sendTransaction`);
+        console.log(`   Gas Limit: ${gasEstimate.toString()}`);
+        console.log(`   Gas Price: ${currentGasPrice.toString()} wei (${Number(currentGasPrice) / 1e9} Gwei)`);
+
+        // 编码 mint() 函数调用（mint 函数没有参数，所以就是函数选择器）
+        // mint() 的函数签名哈希（keccak256("mint()")）的前4字节是 0x1249c58b
+        const mintFunctionData = '0x1249c58b';
+
+        // 直接使用 Binance Wallet API 发送交易
+        hash = await window.ethereum!.request({
+          method: 'eth_sendTransaction',
+          params: [
+            {
+              from: address,
+              to: CONTRACT_ADDRESS,
+              data: mintFunctionData,
+              gas: `0x${gasEstimate.toString(16)}`, // 转换为 hex
+              gasPrice: `0x${currentGasPrice.toString(16)}`, // 转换为 hex
+            },
+          ],
+        }) as `0x${string}`;
+
+        console.log(`✅ Transaction sent via Binance Wallet direct API: ${hash}`);
+      } else {
+        // 🔵 其他钱包：使用 wagmi 标准方法
+        console.log(`🔵 Using wagmi writeContract for non-Binance wallet`);
+        console.log(`   Gas Limit: ${gasEstimate}`);
+        console.log(`   Letting wallet choose gas price automatically`);
+
+        hash = await walletClient.writeContract({
+          address: CONTRACT_ADDRESS,
+          abi: CONTRACT_ABI,
+          functionName: 'mint',
+          args: [],
+          gas: gasEstimate,
+          // 不设置 gasPrice，让钱包自动选择
+        });
+      }
 
       // 等待交易确认
       if (publicClient) {
