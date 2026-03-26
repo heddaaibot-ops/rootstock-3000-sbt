@@ -101,7 +101,6 @@ export const Web3Provider: React.FC<Web3ProviderProps> = ({ children }) => {
         <QueryClientProvider client={queryClient}>
           <RainbowKitProvider
             modalSize="compact"
-            initialChain={ROOTSTOCK_MAINNET}
             showRecentTransactions={true}
             locale="zh-CN"
           >
