@@ -1,15 +1,15 @@
 'use client';
 
 import React from 'react';
-import { WagmiProvider, createConfig, http } from 'wagmi';
+import { WagmiProvider, createConfig, http, createStorage } from 'wagmi';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { RainbowKitProvider, connectorsForWallets, Wallet } from '@rainbow-me/rainbowkit';
 import {
   metaMaskWallet,
   coinbaseWallet,
   walletConnectWallet,
+  injectedWallet,
 } from '@rainbow-me/rainbowkit/wallets';
-import { injected } from 'wagmi/connectors';
 import binanceWallet from '@binance/w3w-rainbow-connector-v2';
 import { ROOTSTOCK_MAINNET } from '@/utils/contract';
 import '@rainbow-me/rainbowkit/styles.css';
@@ -17,36 +17,17 @@ import '@rainbow-me/rainbowkit/styles.css';
 // WalletConnect Project ID
 const WALLETCONNECT_PROJECT_ID = process.env.NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID || 'demo';
 
-// 自定义 OKX Wallet（符合 RainbowKit CreateWalletFn 類型）
-const okxWallet = (): Wallet => ({
-  id: 'okx',
-  name: 'OKX Wallet',
-  iconUrl: 'https://static.okx.com/cdn/assets/imgs/247/58E63FEA47A2B7D7.png',
-  iconBackground: '#000',
-  downloadUrls: {
-    browserExtension: 'https://www.okx.com/web3',
-  },
-  createConnector: () => injected({
-    target() {
-      return {
-        id: 'okx',
-        name: 'OKX Wallet',
-        provider: typeof window !== 'undefined' ? (window as any).okxwallet : undefined,
-      };
-    },
-  }),
-});
-
-// 配置所有錢包連接器（傳入函數本身，不調用）
+// 配置所有錢包連接器
+// injectedWallet 會自動檢測 MetaMask、OKX、Binance 等所有注入式錢包
 const connectors = connectorsForWallets(
   [
     {
       groupName: 'Popular',
-      wallets: [okxWallet, binanceWallet],
+      wallets: [injectedWallet, binanceWallet, metaMaskWallet],
     },
     {
       groupName: 'Others',
-      wallets: [metaMaskWallet, coinbaseWallet, walletConnectWallet],
+      wallets: [coinbaseWallet, walletConnectWallet],
     },
   ],
   {
@@ -66,6 +47,10 @@ const config = createConfig({
       retryDelay: 1000,
     }),
   },
+  ssr: true, // Next.js SSR 支持
+  storage: createStorage({
+    storage: typeof window !== 'undefined' ? window.localStorage : undefined,
+  }),
 });
 
 // 配置 QueryClient
@@ -90,7 +75,12 @@ export const Web3Provider: React.FC<Web3ProviderProps> = ({ children }) => {
   return (
     <WagmiProvider config={config} reconnectOnMount={true}>
       <QueryClientProvider client={queryClient}>
-        <RainbowKitProvider modalSize="compact">
+        <RainbowKitProvider
+          modalSize="compact"
+          initialChain={ROOTSTOCK_MAINNET}
+          showRecentTransactions={true}
+          locale="zh-CN"
+        >
           {children}
         </RainbowKitProvider>
       </QueryClientProvider>

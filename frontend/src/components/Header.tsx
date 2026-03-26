@@ -8,48 +8,15 @@ export const Header: React.FC = () => {
   const { isConnected, address } = useAccount();
   const { disconnect } = useDisconnect();
 
-  // 👂 监听钱包事件（仅依赖事件，避免主动查询导致多钱包冲突）
+  // 👂 使用 wagmi 监听账户断开（Wagmi v2 已自动处理链切换和账户变化）
   useEffect(() => {
-    // 监听账户变化事件（钱包断开时会触发）
-    const handleAccountsChanged = (accounts: string[]) => {
-      console.log('👂 钱包事件：账户变化', accounts);
-
-      // 如果账户列表为空且前端显示已连接，说明钱包断开了
-      if (accounts.length === 0 && isConnected) {
-        console.log('⚠️ 检测到钱包已断开，正在清理状态...');
-        disconnect();
-        setTimeout(() => {
-          window.location.reload();
-        }, 500);
-      }
-    };
-
-    // 监听链切换事件
-    const handleChainChanged = (chainId: string) => {
-      console.log('👂 链切换事件:', chainId);
-      // 链切换时刷新页面，确保状态同步
-      window.location.reload();
-    };
-
-    if (typeof window.ethereum !== 'undefined') {
-      const ethereum = window.ethereum as any;
-
-      // 添加事件监听
-      ethereum.on('accountsChanged', handleAccountsChanged);
-      ethereum.on('chainChanged', handleChainChanged);
-
-      console.log('✅ 钱包事件监听已启动');
+    // Wagmi 已经自动处理大部分钱包事件，这里只需监听特殊情况
+    // 如果需要在断开连接时执行特定操作，可以在这里添加
+    if (!isConnected && address) {
+      console.log('⚠️ 钱包已断开连接');
+      // 移除强制刷新，让 Wagmi 自动处理状态更新
     }
-
-    return () => {
-      if (typeof window.ethereum !== 'undefined') {
-        const ethereum = window.ethereum as any;
-        ethereum.removeListener('accountsChanged', handleAccountsChanged);
-        ethereum.removeListener('chainChanged', handleChainChanged);
-        console.log('🔄 钱包事件监听已清理');
-      }
-    };
-  }, [isConnected, disconnect]);
+  }, [isConnected, address]);
 
   const addRootstockNetwork = async () => {
     console.log('🔘 点击了添加 Rootstock 按钮');
