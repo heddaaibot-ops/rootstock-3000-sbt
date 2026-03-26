@@ -176,10 +176,10 @@ export const useContract = () => {
         }
       }
 
-      // 🔥 币安钱包特殊处理：明确设置 gas 和 gasPrice
+      // 🔥 尝试不同策略：让钱包自动选择 gas price
       console.log(`🔧 Sending transaction with:`);
       console.log(`   Gas Limit: ${gasEstimate}`);
-      console.log(`   Gas Price: ${currentGasPrice} wei (${Number(currentGasPrice) / 1e9} Gwei)`);
+      console.log(`   Letting wallet choose gas price automatically`);
 
       const hash = await walletClient.writeContract({
         address: CONTRACT_ADDRESS,
@@ -187,7 +187,7 @@ export const useContract = () => {
         functionName: 'mint',
         args: [],
         gas: gasEstimate,
-        gasPrice: currentGasPrice, // 强制使用最低 gas price
+        // 不设置 gasPrice，让钱包自动选择
       });
 
       // 等待交易确认
