@@ -266,10 +266,10 @@ export const useContract = () => {
           }
         }
       } else {
-        // 🔵 其他钱包：固定 Gas Limit，让钱包估算 Gas Price
+        // 🔵 其他钱包：固定 Gas Limit 和最低 Gas Price
         console.log(`🔵 Using wagmi writeContract for non-Binance wallet`);
         console.log(`   Gas Limit: ${gasEstimate} (fixed)`);
-        console.log(`   Letting wallet estimate gas price`);
+        console.log(`   Gas Price: ${currentGasPrice} wei (${Number(currentGasPrice) / 1e9} Gwei)`);
 
         hash = await walletClient.writeContract({
           address: CONTRACT_ADDRESS,
@@ -277,7 +277,7 @@ export const useContract = () => {
           functionName: 'mint',
           args: [],
           gas: gasEstimate, // 🔥 固定 Gas Limit 为 165,000
-          // 不设置 gasPrice，让钱包自己估算价格
+          gasPrice: currentGasPrice, // 🔥 使用最低 Gas Price (0.06 Gwei 或网络价格)
         });
       }
 
