@@ -266,18 +266,16 @@ export const useContract = () => {
           }
         }
       } else {
-        // 🔵 其他钱包：使用 wagmi 标准方法
+        // 🔵 其他钱包：完全使用钱包自己的估算
         console.log(`🔵 Using wagmi writeContract for non-Binance wallet`);
-        console.log(`   Gas Limit: ${gasEstimate}`);
-        console.log(`   Letting wallet choose gas price automatically`);
+        console.log(`   Letting wallet estimate gas automatically`);
 
         hash = await walletClient.writeContract({
           address: CONTRACT_ADDRESS,
           abi: CONTRACT_ABI,
           functionName: 'mint',
           args: [],
-          gas: gasEstimate,
-          // 不设置 gasPrice，让钱包自动选择
+          // 🔥 不设置任何 gas 参数，让钱包完全自己估算
         });
       }
 
