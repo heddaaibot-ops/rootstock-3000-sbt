@@ -1,17 +1,20 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { useAccount, useConnect } from 'wagmi';
 
 export const useAutoAddNetwork = () => {
-  const { connector, isConnected } = useAccount();
+  const { connector, isConnected, chainId } = useAccount();
   const { connectors } = useConnect();
+  const hasAutoAdded = useRef(false);
 
   useEffect(() => {
     const addRootstockNetwork = async () => {
+      // 只在首次连接时执行，且未执行过
+      if (!isConnected || hasAutoAdded.current) return;
       if (typeof window.ethereum === 'undefined') return;
 
-      const rootstockChainId = '0x1e'; // 30 in hex
+      const rootstockChainId = '0x1e'; // 30 in hex (decimal 30)
       const networkParams = {
         chainId: rootstockChainId,
         chainName: 'Rootstock',
@@ -31,35 +34,26 @@ export const useAutoAddNetwork = () => {
           window.BinanceChain ||
           connector?.name?.toLowerCase().includes('binance');
 
-        if (isBinanceWallet && isConnected) {
-          console.log('🟡 检测到币安钱包连接，检查 Rootstock 网络...');
+        if (isBinanceWallet) {
+          console.log('🟡 检测到币安钱包连接，准备添加 Rootstock 网络...');
+          hasAutoAdded.current = true; // 标记为已执行
 
-          // 先尝试切换到 Rootstock
+          // 🔥 关键修改：直接添加网络，不切换网络
+          // wallet_addEthereumChain 会自动弹窗让用户确认，不会打断其他操作
           try {
             await window.ethereum.request({
-              method: 'wallet_switchEthereumChain',
-              params: [{ chainId: rootstockChainId }],
+              method: 'wallet_addEthereumChain',
+              params: [networkParams],
             });
-            console.log('✅ 成功切换到 Rootstock 网络');
-          } catch (switchError: any) {
-            // 如果网络不存在（错误码 4902），自动添加
-            if (switchError.code === 4902) {
-              console.log('📝 Rootstock 网络不存在，正在自动添加...');
-              try {
-                await window.ethereum.request({
-                  method: 'wallet_addEthereumChain',
-                  params: [networkParams],
-                });
-                console.log('✅ 已自动添加 Rootstock 网络！所有字段已自动填充');
-              } catch (addError: any) {
-                if (addError.code === 4001) {
-                  console.log('用户取消了添加网络');
-                } else {
-                  console.warn('⚠️ 添加网络失败:', addError);
-                }
-              }
-            } else if (switchError.code !== 4001) {
-              console.warn('⚠️ 切换网络失败:', switchError);
+            console.log('✅ 已自动添加 Rootstock 网络！所有字段已自动填充');
+          } catch (addError: any) {
+            // 错误码 4902 表示网络已存在，这是正常的
+            if (addError.code === -32602 || addError.message?.includes('already')) {
+              console.log('✅ Rootstock 网络已存在，无需添加');
+            } else if (addError.code === 4001) {
+              console.log('用户取消了添加网络');
+            } else {
+              console.warn('⚠️ 添加网络失败:', addError);
             }
           }
         }
@@ -68,9 +62,8 @@ export const useAutoAddNetwork = () => {
       }
     };
 
-    // 当钱包连接状态改变时执行
-    if (isConnected) {
-      addRootstockNetwork();
-    }
+    // 延迟执行，避免与钱包初始化冲突
+    const timer = setTimeout(addRootstockNetwork, 1000);
+    return () => clearTimeout(timer);
   }, [isConnected, connector]);
 };
