@@ -1,80 +1,82 @@
 'use client';
 
 import React from 'react';
-import { WagmiProvider, createConfig, http, createStorage } from 'wagmi';
+import { WagmiProvider, createConfig, http } from 'wagmi';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { ConnectKitProvider, getDefaultConfig } from 'connectkit';
-import { injected, walletConnect, coinbaseWallet } from 'wagmi/connectors';
+import { RainbowKitProvider, getDefaultWallets, getDefaultConfig, Wallet } from '@rainbow-me/rainbowkit';
+import { injected } from 'wagmi/connectors';
 import { getWagmiConnectorV2 } from '@binance/w3w-wagmi-connector-v2';
 import { ROOTSTOCK_MAINNET } from '@/utils/contract';
+import '@rainbow-me/rainbowkit/styles.css';
 
-// WalletConnect Project ID (optional - app will work without it for read-only features)
+// WalletConnect Project ID
 const WALLETCONNECT_PROJECT_ID = process.env.NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID || 'demo';
 
 // 获取 Binance Wallet 连接器
 const binanceConnector = getWagmiConnectorV2();
 
-// 配置 Rootstock Mainnet，添加 OKX Wallet 和 Binance Wallet 支持
-const config = createConfig(
-  getDefaultConfig({
-    chains: [ROOTSTOCK_MAINNET as any],
-    transports: {
-      [ROOTSTOCK_MAINNET.id]: http(ROOTSTOCK_MAINNET.rpcUrls.default.http[0], {
-        timeout: 30_000, // 30 秒超时
-        retryCount: 3, // 重试 3 次
-        retryDelay: 1000, // 重试延迟 1 秒
-      }),
+// 自定义 OKX Wallet
+const okxWallet = (): Wallet => ({
+  id: 'okx',
+  name: 'OKX Wallet',
+  iconUrl: 'https://static.okx.com/cdn/assets/imgs/247/58E63FEA47A2B7D7.png',
+  iconBackground: '#000',
+  downloadUrls: {
+    browserExtension: 'https://www.okx.com/web3',
+  },
+  createConnector: () => injected({
+    target() {
+      return {
+        id: 'okx',
+        name: 'OKX Wallet',
+        provider: typeof window !== 'undefined' ? (window as any).okxwallet : undefined,
+      };
     },
-    connectors: [
-      // MetaMask (默认 injected)
-      injected({
-        target: 'metaMask',
-      }),
-      // OKX Wallet
-      injected({
-        target() {
-          return {
-            id: 'okx',
-            name: 'OKX Wallet',
-            provider: typeof window !== 'undefined' ? (window as any).okxwallet : undefined,
-          };
-        },
-      }),
-      // Binance Wallet (官方连接器)
-      binanceConnector(),
-      // Coinbase Wallet
-      coinbaseWallet({
-        appName: 'Rootstock 3000 Days SBT',
-        appLogoUrl: 'https://rootstockcn.com/favicon.ico',
-      }),
-      // WalletConnect (支持其他移动端钱包)
-      walletConnect({
-        projectId: WALLETCONNECT_PROJECT_ID,
-        showQrModal: true,
-      }),
-    ],
-    walletConnectProjectId: WALLETCONNECT_PROJECT_ID,
-    appName: 'Rootstock 3000 Days SBT',
-    appDescription: '纪念 Rootstock 主网稳定运行 3000 天',
-    appUrl: 'https://rootstockcn.com',
-    appIcon: 'https://rootstockcn.com/favicon.ico',
-    // 添加持久化存储，解决钱包连接状态丢失问题
-    storage: createStorage({
-      storage: typeof window !== 'undefined' ? window.localStorage : undefined,
-    }),
-  })
-);
+  }),
+});
 
-// 配置 QueryClient 以保持更长的缓存时间（避免状态频繁失效）
+// 自定义 Binance Wallet
+const binanceWalletConfig = (): Wallet => ({
+  id: 'binance',
+  name: 'Binance Wallet',
+  iconUrl: 'https://public.bnbstatic.com/image/pgc/202402/6dc2b1ebd11a2e6a0f13f2f6bf6e1e37.png',
+  iconBackground: '#F0B90B',
+  downloadUrls: {
+    browserExtension: 'https://www.binance.com/en/web3wallet',
+  },
+  createConnector: () => binanceConnector(),
+});
+
+// 配置 Rootstock Mainnet，添加 OKX Wallet 和 Binance Wallet 支持
+const config = getDefaultConfig({
+  appName: 'Rootstock 3000 Days SBT',
+  projectId: WALLETCONNECT_PROJECT_ID,
+  chains: [ROOTSTOCK_MAINNET as any],
+  transports: {
+    [ROOTSTOCK_MAINNET.id]: http(ROOTSTOCK_MAINNET.rpcUrls.default.http[0], {
+      timeout: 30_000,
+      retryCount: 3,
+      retryDelay: 1000,
+    }),
+  },
+  wallets: [
+    {
+      groupName: 'Popular',
+      wallets: [okxWallet, binanceWalletConfig],
+    },
+  ],
+});
+
+// 配置 QueryClient
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      gcTime: 1_000 * 60 * 60 * 24, // 24 小时垃圾回收
-      staleTime: 1_000 * 60 * 5, // 5 分钟内数据视为新鲜
-      refetchOnWindowFocus: false, // 禁用窗口聚焦时自动重新获取
-      refetchOnMount: false, // 禁用组件挂载时自动重新获取
-      refetchOnReconnect: true, // 网络重连时重新获取
-      retry: 3, // 失败时重试 3 次
+      gcTime: 1_000 * 60 * 60 * 24,
+      staleTime: 1_000 * 60 * 5,
+      refetchOnWindowFocus: false,
+      refetchOnMount: false,
+      refetchOnReconnect: true,
+      retry: 3,
     },
   },
 });
@@ -87,39 +89,9 @@ export const Web3Provider: React.FC<Web3ProviderProps> = ({ children }) => {
   return (
     <WagmiProvider config={config} reconnectOnMount={true}>
       <QueryClientProvider client={queryClient}>
-        <ConnectKitProvider
-          mode="auto"
-          theme="soft"
-          options={{
-            enforceSupportedChains: false,
-            walletConnectName: 'WalletConnect',
-            disclaimer: (
-              <div style={{ textAlign: 'center', fontSize: '14px', color: '#666' }}>
-                连接钱包即表示您同意使用 Rootstock 区块链
-              </div>
-            ),
-          }}
-          customTheme={{
-            '--ck-font-family': '"Space Grotesk", system-ui, sans-serif',
-            '--ck-border-radius': '9999px',
-            '--ck-connectbutton-background': '#000000',
-            '--ck-connectbutton-color': '#FFFFFF',
-            '--ck-connectbutton-border-color': '#FFFFFF',
-            '--ck-connectbutton-border-width': '2px',
-            '--ck-connectbutton-box-shadow': '3px 3px 0 0 #FFFFFF',
-            '--ck-connectbutton-hover-background': '#FF70E0',
-            '--ck-connectbutton-hover-color': '#000000',
-            '--ck-connectbutton-active-background': '#FF70E0',
-            '--ck-primary-button-background': '#FF9100',
-            '--ck-primary-button-color': '#FFFFFF',
-            '--ck-primary-button-hover-background': '#FFA833',
-            '--ck-body-background': '#FDF8F0',
-            '--ck-body-background-secondary': '#F5EFE6',
-            '--ck-overlay-background': 'rgba(0, 0, 0, 0.3)',
-          }}
-        >
+        <RainbowKitProvider modalSize="compact">
           {children}
-        </ConnectKitProvider>
+        </RainbowKitProvider>
       </QueryClientProvider>
     </WagmiProvider>
   );

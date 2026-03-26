@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useEffect } from 'react';
-import { ConnectKitButton } from 'connectkit';
+import { ConnectButton } from '@rainbow-me/rainbowkit';
 import { useAccount, useDisconnect } from 'wagmi';
 
 export const Header: React.FC = () => {
@@ -193,28 +193,49 @@ export const Header: React.FC = () => {
               <span className="hidden sm:inline">添加 Rootstock</span>
               <span className="sm:hidden">添加</span>
             </button>
-            <ConnectKitButton.Custom>
-              {({ isConnected, show, truncatedAddress, ensName }) => {
+            <ConnectButton.Custom>
+              {({ account, chain, openAccountModal, openChainModal, openConnectModal, mounted }) => {
+                const ready = mounted;
+                const connected = ready && account && chain;
+
                 return (
-                  <button
-                    onClick={show}
-                    className="bg-rsk-text-dark hover:bg-rsk-text-dark/90 text-white font-bold px-3 sm:px-6 py-2 transition-colors text-sm sm:text-base"
+                  <div
+                    {...(!ready && {
+                      'aria-hidden': true,
+                      'style': {
+                        opacity: 0,
+                        pointerEvents: 'none',
+                        userSelect: 'none',
+                      },
+                    })}
                   >
-                    {isConnected ? (
-                      <>
-                        <span className="hidden sm:inline">{ensName ?? truncatedAddress}</span>
-                        <span className="sm:hidden">{truncatedAddress}</span>
-                      </>
-                    ) : (
-                      <>
-                        <span className="hidden sm:inline">连接钱包</span>
-                        <span className="sm:hidden">连接</span>
-                      </>
-                    )}
-                  </button>
+                    {(() => {
+                      if (!connected) {
+                        return (
+                          <button
+                            onClick={openConnectModal}
+                            className="bg-rsk-text-dark hover:bg-rsk-text-dark/90 text-white font-bold px-3 sm:px-6 py-2 transition-colors text-sm sm:text-base"
+                          >
+                            <span className="hidden sm:inline">连接钱包</span>
+                            <span className="sm:hidden">连接</span>
+                          </button>
+                        );
+                      }
+
+                      return (
+                        <button
+                          onClick={openAccountModal}
+                          className="bg-rsk-text-dark hover:bg-rsk-text-dark/90 text-white font-bold px-3 sm:px-6 py-2 transition-colors text-sm sm:text-base"
+                        >
+                          <span className="hidden sm:inline">{account.displayName}</span>
+                          <span className="sm:hidden">{account.displayBalance ? account.displayBalance : account.displayName}</span>
+                        </button>
+                      );
+                    })()}
+                  </div>
                 );
               }}
-            </ConnectKitButton.Custom>
+            </ConnectButton.Custom>
           </div>
         </div>
       </div>
