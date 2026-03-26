@@ -209,7 +209,7 @@ export default function Home() {
                           🚀 使用 10 秒跨链桥充值
                         </button>
                         <p className="text-xs text-green-700 mt-3 font-semibold">
-                          💡 通过跨链桥充值 1 USDC 可获得价值约 0.9 USDC 的 RBTC，足够完成铸造
+                          💡 通过跨链桥充值 1 USDC 可获得约 0.00014 RBTC，足够完成铸造
                         </p>
                       </div>
                     </div>
@@ -238,7 +238,7 @@ export default function Home() {
                   </a>
                 </div>
                 <p className="text-sm text-rsk-text-dark/70 mt-4 italic leading-relaxed">
-                  💡 使用快速跨链：发送 1 USDC，收到价值 0.9 USDC 的 rBTC<br />
+                  💡 使用快速跨链：发送 1 USDC，收到约 0.00014 rBTC<br />
                   * 支持 Arbitrum / Base / Ethereum 链
                 </p>
               </div>
