@@ -2,8 +2,8 @@
  * Rootstock 3000 SBT 自动铸造脚本
  *
  * 功能：
- * 1. 生成 30 个新钱包
- * 2. 从主钱包分发 rBTC 到 28 个钱包（随机金额 0.335-0.35 USD）
+ * 1. 生成 60 个新钱包
+ * 2. 从主钱包分发 rBTC 到 52 个钱包（随机金额 0.335-0.35 USD）
  * 3. 每 2 分钟自动铸造一个 SBT
  */
 
@@ -36,8 +36,8 @@ const CONFIG = {
   MINT_INTERVAL_MS: 2 * 60 * 1000, // 2 分钟
 
   // 钱包数量
-  TOTAL_WALLETS: 30,
-  WALLETS_TO_FUND: 26,  // 调整为26个，适配10美元预算
+  TOTAL_WALLETS: 60,
+  WALLETS_TO_FUND: 50,  // 调整为50个，适配20美元预算
 
   // 保存钱包信息的文件
   WALLETS_FILE: path.join(__dirname, 'generated-wallets.json'),
@@ -210,28 +210,32 @@ async function showEstimate(walletCount = CONFIG.WALLETS_TO_FUND) {
 
   const currentPrice = await checkRBTCPrice();
 
-  // 计算总需要的 USD
-  let totalUSD = 0;
+  // 计算总需要的 USD（仅分发金额）
+  let distributionUSD = 0;
   for (let i = 0; i < walletCount; i++) {
-    totalUSD += getRandomAmountUSD();
+    distributionUSD += getRandomAmountUSD();
   }
 
   // 估算 gas 费用
-  const estimatedGasUSD = 0.000021 * 28 * currentPrice; // 21000 gas per transfer
-  totalUSD += estimatedGasUSD;
+  // Rootstock gas price 约 0.026 Gwei，21000 gas = 0.000000546 RBTC per transfer
+  const estimatedGasCostRBTC = 0.000000546 * walletCount;
+  const estimatedGasUSD = estimatedGasCostRBTC * currentPrice;
 
+  const totalUSD = distributionUSD + estimatedGasUSD;
   const totalRBTC = totalUSD / currentPrice;
 
   console.log(`  分发目标:`);
   console.log(`    • 钱包数量: ${walletCount}`);
   console.log(`    • 每个钱包: ${CONFIG.MIN_AMOUNT_USD}-${CONFIG.MAX_AMOUNT_USD} USD`);
-  console.log(`    • 分发总额: ~${totalUSD.toFixed(2)} USD (${formatRBTC(totalRBTC)})`);
-  console.log(`    • Gas 费用: ~${estimatedGasUSD.toFixed(2)} USD`);
+  console.log(`    • 分发总额: ~${distributionUSD.toFixed(2)} USD (${formatRBTC(distributionUSD / currentPrice)})`);
+  console.log(`    • Gas 费用: ~${estimatedGasUSD.toFixed(4)} USD (${formatRBTC(estimatedGasCostRBTC)})`);
   console.log(`\n  铸造计划:`);
   console.log(`    • 铸造数量: ${walletCount}`);
   console.log(`    • 铸造间隔: ${CONFIG.MINT_INTERVAL_MS / 1000} 秒`);
   console.log(`    • 预计时长: ${(walletCount * CONFIG.MINT_INTERVAL_MS / 60000).toFixed(0)} 分钟`);
-  console.log(`\n  建议准备: ${formatRBTC(totalRBTC * 1.2)} (含 20% 缓冲)\n`);
+  console.log(`\n  总成本预估:`);
+  console.log(`    • 总需求: ~${totalUSD.toFixed(2)} USD (${formatRBTC(totalRBTC)})`);
+  console.log(`    • 建议准备: ${formatRBTC(totalRBTC * 1.2)} (~$${(totalUSD * 1.2).toFixed(2)} 含 20% 缓冲)\n`);
 }
 
 // ============================================
@@ -290,17 +294,25 @@ async function distributeRBTC(masterPrivateKey, wallets) {
   const balanceRBTC = parseFloat(ethers.formatEther(balance));
   console.log(`💰 主钱包余额: ${formatRBTC(balanceRBTC)}`);
 
-  // 计算总需要的 rBTC
+  // 计算总需要的 rBTC（跳过已分发的钱包）
   let totalNeeded = 0;
   const distributions = [];
 
   for (let i = 0; i < CONFIG.WALLETS_TO_FUND; i++) {
+    const wallet = wallets[i];
+
+    // 跳过已经获得资金的钱包
+    if (wallet.funded && wallet.fundedAmount > 0) {
+      console.log(`  ⏭️  钱包 ${i + 1} 已获得资金，跳过`);
+      continue;
+    }
+
     const amountUSD = getRandomAmountUSD();
     const amountRBTC = usdToRBTC(amountUSD);
     totalNeeded += amountRBTC;
 
     distributions.push({
-      wallet: wallets[i],
+      wallet: wallet,
       amountUSD,
       amountRBTC,
     });
@@ -309,13 +321,17 @@ async function distributeRBTC(masterPrivateKey, wallets) {
   // 估算 gas 费用（每笔交易约 21000 gas）
   const gasPrice = await provider.getFeeData();
   const estimatedGasCost = parseFloat(
-    ethers.formatEther(gasPrice.gasPrice * BigInt(21000) * BigInt(CONFIG.WALLETS_TO_FUND))
+    ethers.formatEther(gasPrice.gasPrice * BigInt(21000) * BigInt(distributions.length))
   );
 
   totalNeeded += estimatedGasCost;
 
+  const alreadyFunded = wallets.filter(w => w.funded).length;
+
   console.log(`\n📊 分发计划:`);
-  console.log(`  • 需要分发到 ${CONFIG.WALLETS_TO_FUND} 个钱包`);
+  console.log(`  • 目标钱包总数: ${CONFIG.WALLETS_TO_FUND}`);
+  console.log(`  • 已分发: ${alreadyFunded} 个`);
+  console.log(`  • 本次需分发: ${distributions.length} 个钱包`);
   console.log(`  • 总 rBTC 需求: ${formatRBTC(totalNeeded)}`);
   console.log(`  • 估算 gas 费用: ${formatRBTC(estimatedGasCost)}`);
 
@@ -332,7 +348,7 @@ async function distributeRBTC(masterPrivateKey, wallets) {
     const { wallet, amountUSD, amountRBTC } = distributions[i];
 
     console.log(
-      `  [${i + 1}/${CONFIG.WALLETS_TO_FUND}] 向 ${wallet.address.substring(0, 10)}... 发送 ${formatRBTC(amountRBTC)} ($${amountUSD})`
+      `  [${i + 1}/${distributions.length}] 向 ${wallet.address.substring(0, 10)}... 发送 ${formatRBTC(amountRBTC)} ($${amountUSD})`
     );
 
     try {
