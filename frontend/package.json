@@ -10,6 +10,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@binance/w3w-rainbow-connector-v2": "^1.0.8",
     "@binance/w3w-wagmi-connector-v2": "^1.2.11",
     "@rainbow-me/rainbowkit": "^2.0.0",
     "@tanstack/react-query": "^5.28.0",

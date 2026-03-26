@@ -3,17 +3,19 @@
 import React from 'react';
 import { WagmiProvider, createConfig, http } from 'wagmi';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { RainbowKitProvider, getDefaultWallets, getDefaultConfig, Wallet } from '@rainbow-me/rainbowkit';
+import { RainbowKitProvider, connectorsForWallets, Wallet } from '@rainbow-me/rainbowkit';
+import {
+  metaMaskWallet,
+  coinbaseWallet,
+  walletConnectWallet,
+} from '@rainbow-me/rainbowkit/wallets';
 import { injected } from 'wagmi/connectors';
-import { getWagmiConnectorV2 } from '@binance/w3w-wagmi-connector-v2';
+import binanceWallet from '@binance/w3w-rainbow-connector-v2';
 import { ROOTSTOCK_MAINNET } from '@/utils/contract';
 import '@rainbow-me/rainbowkit/styles.css';
 
 // WalletConnect Project ID
 const WALLETCONNECT_PROJECT_ID = process.env.NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID || 'demo';
-
-// 获取 Binance Wallet 连接器
-const binanceConnector = getWagmiConnectorV2();
 
 // 自定义 OKX Wallet
 const okxWallet = (): Wallet => ({
@@ -35,24 +37,27 @@ const okxWallet = (): Wallet => ({
   }),
 });
 
-// 自定义 Binance Wallet
-const binanceWalletConfig = (): Wallet => ({
-  id: 'binance',
-  name: 'Binance Wallet',
-  iconUrl: 'https://public.bnbstatic.com/image/pgc/202402/6dc2b1ebd11a2e6a0f13f2f6bf6e1e37.png',
-  iconBackground: '#F0B90B',
-  downloadUrls: {
-    browserExtension: 'https://www.binance.com/en/web3wallet',
-  },
-  createConnector: () => binanceConnector(),
-});
+// 配置所有錢包連接器
+const connectors = connectorsForWallets(
+  [
+    {
+      groupName: 'Popular',
+      wallets: [okxWallet, binanceWallet],
+    },
+    {
+      groupName: 'Others',
+      wallets: [metaMaskWallet, coinbaseWallet, walletConnectWallet],
+    },
+  ],
+  {
+    appName: 'Rootstock 3000 Days SBT',
+    projectId: WALLETCONNECT_PROJECT_ID,
+  }
+);
 
-// 配置 Rootstock Mainnet，添加 OKX Wallet 和 Binance Wallet 支持
-const { wallets: defaultWallets } = getDefaultWallets();
-
-const config = getDefaultConfig({
-  appName: 'Rootstock 3000 Days SBT',
-  projectId: WALLETCONNECT_PROJECT_ID,
+// 配置 Rootstock Mainnet
+const config = createConfig({
+  connectors,
   chains: [ROOTSTOCK_MAINNET as any],
   transports: {
     [ROOTSTOCK_MAINNET.id]: http(ROOTSTOCK_MAINNET.rpcUrls.default.http[0], {
@@ -61,13 +66,6 @@ const config = getDefaultConfig({
       retryDelay: 1000,
     }),
   },
-  wallets: [
-    {
-      groupName: 'Popular',
-      wallets: [okxWallet, binanceWalletConfig],
-    },
-    ...defaultWallets,
-  ],
 });
 
 // 配置 QueryClient
